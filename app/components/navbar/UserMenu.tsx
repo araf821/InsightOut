@@ -1,3 +1,5 @@
+"use client";
+
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import { BsPenFill } from "react-icons/bs";
@@ -6,8 +8,14 @@ import MenuItem from "./MenuItem";
 import Avatar from "../Avatar";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
+import { SafeUser } from "@/app/types";
+import { signOut } from "next-auth/react";
 
-const UserMenu = () => {
+interface UserMenuProps {
+  currentUser?: SafeUser | null | undefined;
+}
+
+const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
 
@@ -68,15 +76,20 @@ const UserMenu = () => {
           "
         >
           <div className="flex flex-col cursor-pointer">
-            <MenuItem
-              onClick={() => {
-                loginModal.open();
-              }}
-              label="Login"
-            />
-          </div>
-          <div className="flex flex-col cursor-pointer">
-            <MenuItem onClick={registerModal.open} label="Sign Up" />
+            {currentUser ? (
+              <>
+                <MenuItem onClick={() => {}} label="Login" />
+                <MenuItem onClick={() => {}} label="Login" />
+                <MenuItem onClick={() => {}} label="Login" />
+                <hr />
+                <MenuItem onClick={() => signOut()} label="Sign Out" />
+              </>
+            ) : (
+              <>
+                <MenuItem onClick={loginModal.open} label="Login" />
+                <MenuItem onClick={registerModal.open} label="Sign Up" />
+              </>
+            )}
           </div>
         </div>
       )}
