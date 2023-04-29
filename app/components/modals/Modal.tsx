@@ -1,6 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { IoIosClose } from "react-icons/io";
+import Button from "../Button";
 
 interface ModalProps {
   isOpen?: boolean;
@@ -19,6 +21,7 @@ const Modal: React.FC<ModalProps> = ({
   title,
   body,
   footer,
+  buttonLabel
 }) => {
   const [showModal, setShowModal] = useState(isOpen);
 
@@ -41,59 +44,40 @@ const Modal: React.FC<ModalProps> = ({
     return null;
   }
 
-  return (
-    <div>
-        asdf
-    </div>
-  );
-};
-export default Modal;
+  
 
-/**
- * <div className="flex justify-center items-center fixed z-10 bg-neutral-800/50">
-      <div className="relative w-full h-full my-6 mx-auto md:w-4/6 lg:w-3/6 xl:w-2/5 lg:h-auto md:h-auto">
+  return (
+    <div className="fixed inset-0 z-50 bg-neutral-800/70 flex items-center justify-center">
+      <div className="w-full md:w-4/6 lg:w-3/6 xl:w-2/5">
         <div
-          className={`
-            translate
-            duration-300
-            h-full
+          className={`translate duration-300 h-full
             ${showModal ? "translate-y-0" : "translate-y-full"}
             ${showModal ? "opacity-100" : "opacity-0"}
         `}
         >
-          <div
-            className="
-                translate
-                w-full
-                h-full
-                lg:h-auto
-                md:h-auto
-                border-0
-                rounded-lg
-                shadow-lg
-                relative
-                flex
-                flex-col
-                bg-white
-                outline-none
-                focus:outline-none
-            "
-          >
-            <div
-              className="
-                    flex
-                    items-center
-                    p-6
-                    rounded-t
-                    justify-center
-                    relative
-                    border-b-[1px]
-                "
-            >
-              <button>adsf</button>
+          <div className="bg-slate-200 h-full w-full flex flex-col shadow-lg rounded-lg border-0 p">
+            {/* Header */}
+            <div className="flex items-center justify-center relative p-4 border-b-[1px] border-slate-400 rounded-t">
+              <button className="absolute left-5 p-1 border-0 opacity-70" onClick={handleClose}>
+                <IoIosClose size={24} />
+              </button>
+              <p className="text-lg font-semibold">{title}</p>
+            </div>
+
+            {/* Body Content */}
+            <div className="flex-auto relative p-6">{body}</div>
+
+            {/* Footer Content */}
+            <div className="flex flex-row items-center gap-4 p-6 w-full">
+              <Button
+                label={buttonLabel}
+                onClick={handleSubmit}
+              />
             </div>
           </div>
         </div>
       </div>
     </div>
- */
+  );
+};
+export default Modal;
