@@ -4,8 +4,11 @@ import { BsPenFill } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import MenuItem from "./MenuItem";
 import Avatar from "../Avatar";
+import useLoginModal from "@/app/hooks/useLoginModal";
 
 const UserMenu = () => {
+  const loginModal = useLoginModal();
+
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -63,7 +66,12 @@ const UserMenu = () => {
           "
         >
           <div className="flex flex-col cursor-pointer">
-            <MenuItem onClick={() => {}} label="Login" />
+            <MenuItem
+              onClick={() => {
+                loginModal.open();
+              }}
+              label="Login"
+            />
           </div>
           <div className="flex flex-col cursor-pointer">
             <MenuItem onClick={() => {}} label="Sign Up" />
