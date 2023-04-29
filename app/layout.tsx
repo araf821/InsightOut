@@ -4,6 +4,7 @@ import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 import Modal from "./components/modals/Modal";
 import LoginModal from "./components/modals/LoginModal";
+import RegisterModal from "./components/modals/RegisterModal";
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -25,9 +26,8 @@ export default function RootLayout({
         <Navbar />
         <div className="pb-20 pt-28">
           {children}
-
+          <RegisterModal />
           <LoginModal />
-          {/* <Modal isOpen title="asdf" buttonLabel="Submit" /> */}
         </div>
         <Footer />
       </body>

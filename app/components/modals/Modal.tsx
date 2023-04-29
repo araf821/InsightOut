@@ -62,7 +62,7 @@ const Modal: React.FC<ModalProps> = ({
               >
                 <IoIosClose size={30} />
               </button>
-              <p className="text-lg font-semibold">{title}</p>
+              <p className="text-lg font-semibold tracking-wider">{title}</p>
             </div>
 
             {/* Body Content */}

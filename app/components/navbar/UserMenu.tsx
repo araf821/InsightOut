@@ -5,9 +5,11 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import MenuItem from "./MenuItem";
 import Avatar from "../Avatar";
 import useLoginModal from "@/app/hooks/useLoginModal";
+import useRegisterModal from "@/app/hooks/useRegisterModal";
 
 const UserMenu = () => {
   const loginModal = useLoginModal();
+  const registerModal = useRegisterModal();
 
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
@@ -74,7 +76,7 @@ const UserMenu = () => {
             />
           </div>
           <div className="flex flex-col cursor-pointer">
-            <MenuItem onClick={() => {}} label="Sign Up" />
+            <MenuItem onClick={registerModal.open} label="Sign Up" />
           </div>
         </div>
       )}

@@ -10,9 +10,12 @@ import { signIn } from "next-auth/react";
 import { toast } from "react-hot-toast";
 import Input from "../inputs/Input";
 import Button from "../Button";
+import useRegisterModal from "@/app/hooks/useRegisterModal";
 
 const LoginModal = () => {
   const loginModal = useLoginModal();
+  const registerModal = useRegisterModal();
+
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
@@ -80,6 +83,18 @@ const LoginModal = () => {
         onClick={() => signIn("google")}
         outline
       />
+
+      <div className="text-center text-neutral-700">
+        <p className="text-md mb-2">New to InsightOut?</p>
+        <Button
+          outline
+          label="Create An Account"
+          onClick={() => {
+            loginModal.close();
+            registerModal.open();
+          }}
+        />
+      </div>
     </div>
   );
 
