@@ -2,6 +2,7 @@ import { Nunito } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
+import Modal from "./components/modals/Modal";
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -21,7 +22,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={nunito.className}>
         <Navbar />
-        <div className="pb-20 pt-28">{children}</div>
+        <div className="pb-20 pt-28">
+          {children}
+
+          <Modal isOpen title="asdf" buttonLabel="Submit" />
+        </div>
         <Footer />
       </body>
     </html>
