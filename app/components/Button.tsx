@@ -28,7 +28,7 @@ const Button: React.FC<ButtonProps> = ({
         text-md
         font-semibold
         border-[2px]
-        ${outline ? "bg-white" : "bg-slate-900"}
+        ${outline ? "bg-white" : "bg-gray-800"}
         ${outline ? "border-black" : "border-gray-800"}
         ${outline ? "text-black" : "text-white"}
         

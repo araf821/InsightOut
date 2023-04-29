@@ -24,15 +24,16 @@ const Input: React.FC<InputProps> = ({
         {...register(id, { required })}
         placeholder=" "
         type={type}
-        className={`peer
+        className={`
+        peer
         w-full
         p-4 pt-6
         font-light
         bg-white
         border-2 rounded-md outline-none
         transition
-        ${errors ? "border-red-700" : "border-neutral-300"}
-        ${errors ? "focus:border-red-700" : "focus:border-black"}
+        ${errors[id] ? "border-red-700" : "border-neutral-300"}
+        ${errors[id] ? "focus:border-red-700" : "focus:border-black"}
         `}
       />
       <label
@@ -43,8 +44,9 @@ const Input: React.FC<InputProps> = ({
             transform
             -translate-y-3
             top-5
-            origin-[0]
+            left-4
             z-10
+            origin-[0]
             peer-placeholder-shown:scale-100
             peer-placeholder-shown:translate-y-0
             peer-focus:scale-75

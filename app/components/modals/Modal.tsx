@@ -21,7 +21,7 @@ const Modal: React.FC<ModalProps> = ({
   title,
   body,
   footer,
-  buttonLabel
+  buttonLabel,
 }) => {
   const [showModal, setShowModal] = useState(isOpen);
 
@@ -44,8 +44,6 @@ const Modal: React.FC<ModalProps> = ({
     return null;
   }
 
-  
-
   return (
     <div className="fixed inset-0 z-50 bg-neutral-800/70 flex items-center justify-center">
       <div className="w-full md:w-4/6 lg:w-3/6 max-w-[700px]">
@@ -55,11 +53,14 @@ const Modal: React.FC<ModalProps> = ({
             ${showModal ? "opacity-100" : "opacity-0"}
         `}
         >
-          <div className="bg-slate-200 h-full w-full flex flex-col shadow-lg rounded-lg border-0 p">
+          <div className="bg-slate-200 h-full w-full flex flex-col shadow-lg sm:rounded-lg border-0 p">
             {/* Header */}
-            <div className="flex items-center justify-center relative p-4 border-b-[1px] border-slate-400 rounded-t">
-              <button className="absolute left-5 p-1 border-0 opacity-70" onClick={handleClose}>
-                <IoIosClose size={24} />
+            <div className="flex items-center justify-center relative p-4 text-white bg-gray-800 border-b-[1px] border-slate-400 sm:rounded-t-md">
+              <button
+                className="absolute left-5 p-1 border-0 opacity-70 hover:scale-125 transition"
+                onClick={handleClose}
+              >
+                <IoIosClose size={30} />
               </button>
               <p className="text-lg font-semibold">{title}</p>
             </div>
@@ -68,11 +69,11 @@ const Modal: React.FC<ModalProps> = ({
             <div className="flex-auto relative p-6">{body}</div>
 
             {/* Footer Content */}
-            <div className="flex flex-row items-center gap-4 p-6 w-full">
-              <Button
-                label={buttonLabel}
-                onClick={handleSubmit}
-              />
+            <div className="flex flex-col gap-2 p-6">
+              <div className="flex flex-row items-center gap-4 w-full">
+                <Button label={buttonLabel} onClick={handleSubmit} />
+              </div>
+              {footer}
             </div>
           </div>
         </div>
