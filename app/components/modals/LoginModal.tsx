@@ -46,7 +46,9 @@ const LoginModal = () => {
     });
   };
 
-  const bodyContent = <div></div>;
+  const bodyContent = <div>
+    
+  </div>;
 
   const footerContent = <div></div>;
 
