@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { BsPenFill } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import MenuItem from "./MenuItem";
@@ -20,7 +20,18 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const registerModal = useRegisterModal();
 
   const router = useRouter();
+  const dropdownRef = useRef<any>(null);
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside, true);
+  }, []);
+
+  const handleClickOutside = (e: any) => {
+    if (!dropdownRef?.current?.contains(e.target)) {
+      setIsOpen(false);
+    }
+  };
 
   const toggleDropdown = useCallback(() => {
     setIsOpen((value) => !value);
@@ -58,13 +69,14 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
         >
           <GiHamburgerMenu />
           <div>
-            <Avatar src={null} />
+            <Avatar src={currentUser?.image} />
           </div>
         </div>
       </div>
 
       {isOpen && (
         <div
+          ref={dropdownRef}
           className="
             absolute
             rounded-xl

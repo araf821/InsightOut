@@ -3,6 +3,10 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
-}
 
-module.exports = nextConfig
+  images: {
+    domains: ["lh3.googleusercontent.com"],
+  },
+};
+
+module.exports = nextConfig;
