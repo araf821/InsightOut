@@ -12,6 +12,8 @@ import Input from "../inputs/Input";
 import Button from "../Button";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 
+import { FcGoogle } from "react-icons/fc";
+
 const LoginModal = () => {
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
@@ -82,6 +84,7 @@ const LoginModal = () => {
         label="Continue With Google"
         onClick={() => signIn("google")}
         outline
+        icon={FcGoogle}
       />
 
       <div className="text-center text-neutral-700">

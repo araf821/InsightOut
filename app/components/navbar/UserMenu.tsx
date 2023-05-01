@@ -23,18 +23,18 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const dropdownRef = useRef<any>(null);
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    document.addEventListener("click", handleClickOutside, true);
-  }, []);
-
-  const handleClickOutside = (e: any) => {
+  const handleClickOutside = useCallback((e: any) => {
     if (!dropdownRef?.current?.contains(e.target)) {
       setIsOpen(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside, true);
+  }, [handleClickOutside]);
 
   const toggleDropdown = useCallback(() => {
-    setIsOpen((value) => !value);
+    setIsOpen(true);
   }, []);
 
   return (
@@ -63,7 +63,9 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
         </div>
 
         <div
-          onClick={toggleDropdown}
+          onClick={() => {
+            toggleDropdown();
+          }}
           className="flex items-center gap-4 px-4 py-1.5 border-white border-[2px]
         rounded-lg cursor-pointer text-white hover:text-black hover:bg-white text-[32px] transition duration-300"
         >

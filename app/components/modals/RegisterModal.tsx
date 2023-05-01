@@ -11,6 +11,7 @@ import useRegisterModal from "@/app/hooks/useRegisterModal";
 import Input from "../inputs/Input";
 import Button from "../Button";
 import { signIn } from "next-auth/react";
+import { FcGoogle } from "react-icons/fc";
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
@@ -85,6 +86,7 @@ const RegisterModal = () => {
         label="Continue With Google"
         onClick={() => signIn("google")}
         outline
+        icon={FcGoogle}
       />
       <div className="text-center text-neutral-700">
         <p className="text-md mb-2">Already have an account?</p>
