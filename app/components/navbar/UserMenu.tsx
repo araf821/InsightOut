@@ -21,11 +21,14 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
 
   const router = useRouter();
   const dropdownRef = useRef<any>(null);
+  const menuBtnRef = useRef<any>(null);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClickOutside = useCallback((e: any) => {
     if (!dropdownRef?.current?.contains(e.target)) {
-      setIsOpen(false);
+      if (!menuBtnRef?.current?.contains(e.target)) {
+        setIsOpen(false);
+      }
     }
   }, []);
 
@@ -34,14 +37,14 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   }, [handleClickOutside]);
 
   const toggleDropdown = useCallback(() => {
-    setIsOpen(true);
+    setIsOpen((value) => !value);
   }, []);
 
   return (
     <div className="relative">
       <div className="flex flex-row gap-4 items-center justify-center">
         <div
-          onClick={() => {}}
+          onClick={() => router.push("/post/write")}
           className="
         hidden md:flex
         items-center
@@ -63,6 +66,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
         </div>
 
         <div
+          ref={menuBtnRef}
           onClick={() => {
             toggleDropdown();
           }}
