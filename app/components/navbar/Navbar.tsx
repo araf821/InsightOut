@@ -11,7 +11,7 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
   return (
-    <div className=" bg-gray-800 w-full py-6">
+    <div className="bg-zinc-800 w-full py-6 z-50">
       <Container>
         <div className="flex flex-row items-center justify-between gap-3">
           <Logo />

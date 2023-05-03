@@ -5,15 +5,7 @@ const Categories = () => {
   return (
     <Container>
       <div className="flex flex-row justify-center items-center overflow-x-auto py-4">
-        <div className="flex flex-grow justify-around gap-8 md:gap-12">
-          <CategoryItem />
-          <CategoryItem />
-          <CategoryItem />
-          <CategoryItem />
-          <CategoryItem />
-          <CategoryItem />
-          <CategoryItem />
-          <CategoryItem />
+        <div className="flex flex-grow justify-center gap-8 md:gap-16 lg:gap-32 xl:gap-40">
           <CategoryItem />
           <CategoryItem />
           <CategoryItem />

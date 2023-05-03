@@ -13,7 +13,7 @@ const Logo = () => {
       className="cursor-pointer"
       height="150"
       width="150"
-      src='/images/LOGO.png'
+      src='/images/app-logo.png'
     />
   );
 };

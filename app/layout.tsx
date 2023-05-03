@@ -27,10 +27,9 @@ export default async function RootLayout({
     <html lang="en">
       <body className={nunito.className}>
         <Navbar currentUser={currentUser} />
-        <Categories />
         <RegisterModal />
         <LoginModal />
-        <div className="pb-20 pt-28">{children}</div>
+        <div className="pb-20">{children}</div>
         <Footer />
       </body>
     </html>
