@@ -5,6 +5,7 @@ import Footer from "./components/footer/Footer";
 import LoginModal from "./components/modals/LoginModal";
 import RegisterModal from "./components/modals/RegisterModal";
 import getCurrentUser from "./actions/getCurrentUser";
+import Categories from "./components/categories/Categories";
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -26,6 +27,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={nunito.className}>
         <Navbar currentUser={currentUser} />
+        <Categories />
         <RegisterModal />
         <LoginModal />
         <div className="pb-20 pt-28">{children}</div>
