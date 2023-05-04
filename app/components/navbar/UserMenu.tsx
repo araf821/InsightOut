@@ -44,6 +44,12 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
     <div className="relative">
       <div className="flex flex-row gap-4 items-center justify-center">
         <div
+          onClick={() => router.push("/explore")}
+          className=" hidden md:block text-white cursor-pointer font-bold text-xl px-6 py-2 transition hover:translate-x-1"
+        >
+          Explore
+        </div>
+        <div
           onClick={() => router.push("/post/write")}
           className="
         hidden md:flex
@@ -71,7 +77,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             toggleDropdown();
           }}
           className="flex items-center gap-4 px-4 py-1.5 border-white border-[2px]
-        rounded-lg cursor-pointer text-white hover:text-black hover:bg-white text-[32px] transition duration-300"
+        rounded-lg cursor-pointer hover:text-white text-black bg-white hover:bg-transparent text-[32px] transition duration-300"
         >
           <GiHamburgerMenu />
           <div>
@@ -107,10 +113,20 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
         <div className="flex flex-col cursor-pointer">
           {currentUser ? (
             <>
-              <MenuItem onClick={() => {}} label="Login" />
-              <MenuItem onClick={() => {}} label="Login" />
-              <MenuItem onClick={() => {}} label="Login" />
+              <MenuItem
+                onClick={() => router.push(`/dashboard/${currentUser.id}`)}
+                label="Dashboard"
+              />
+              <MenuItem
+                onClick={() => router.push("/post/write")}
+                label="Write A New Post"
+              />
+              <MenuItem
+                onClick={() => router.push(`/drafts/${currentUser.id}`)}
+                label="Drafts"
+              />
               <hr />
+              <MenuItem onClick={() => router.push('/settings')} label="Settings" />
               <MenuItem onClick={() => signOut()} label="Sign Out" />
             </>
           ) : (
