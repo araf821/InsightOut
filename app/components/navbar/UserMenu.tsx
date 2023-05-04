@@ -59,7 +59,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
         transition
         duration-300
         cursor-pointer
-      "
+        "
         >
           <BsPenFill />
           Write
@@ -80,10 +80,10 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
         </div>
       </div>
 
-      {isOpen && (
-        <div
-          ref={dropdownRef}
-          className="
+      {/* {isOpen && ( */}
+      <div
+        ref={dropdownRef}
+        className={`
             absolute
             rounded-xl
             w-[60vw] md:w-[40vw] lg:w-[15vw] min-w-[250px] max-w-[500px]
@@ -92,26 +92,36 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             text-md text-black
             shadow-lg
             z-50
-          "
-        >
-          <div className="flex flex-col cursor-pointer">
-            {currentUser ? (
-              <>
-                <MenuItem onClick={() => {}} label="Login" />
-                <MenuItem onClick={() => {}} label="Login" />
-                <MenuItem onClick={() => {}} label="Login" />
-                <hr />
-                <MenuItem onClick={() => signOut()} label="Sign Out" />
-              </>
-            ) : (
-              <>
-                <MenuItem onClick={loginModal.open} label="Login" />
-                <MenuItem onClick={registerModal.open} label="Sign Up" />
-              </>
-            )}
-          </div>
+            transition
+            duration-300
+            ${
+              isOpen
+                ? "translate-y-0"
+                : currentUser
+                ? "-translate-y-96 duration-500"
+                : "-translate-y-56"
+            }
+            ${isOpen ? "opacity-100" : "opacity-0"}
+          `}
+      >
+        <div className="flex flex-col cursor-pointer">
+          {currentUser ? (
+            <>
+              <MenuItem onClick={() => {}} label="Login" />
+              <MenuItem onClick={() => {}} label="Login" />
+              <MenuItem onClick={() => {}} label="Login" />
+              <hr />
+              <MenuItem onClick={() => signOut()} label="Sign Out" />
+            </>
+          ) : (
+            <>
+              <MenuItem onClick={loginModal.open} label="Login" />
+              <MenuItem onClick={registerModal.open} label="Sign Up" />
+            </>
+          )}
         </div>
-      )}
+      </div>
+      {/* )} */}
     </div>
   );
 };
