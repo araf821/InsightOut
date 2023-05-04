@@ -7,6 +7,7 @@ interface InputProps {
   required?: boolean;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
+  textArea?: boolean;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -16,7 +17,34 @@ const Input: React.FC<InputProps> = ({
   required,
   register,
   errors,
+  textArea,
 }) => {
+  if (textArea) {
+    return (
+      <div className="w-full relative">
+        <textarea
+          rows={10}
+          id={id}
+          {...register(id, { required })}
+          placeholder="Content"
+          className={`
+          peer
+          resize-none
+          w-full
+          p-4 pt-4
+          font-light
+          bg-white
+          border-2 rounded-md
+          transition
+          ${errors[id] ? "border-red-700" : "border-neutral-300"}
+          ${errors[id] ? "focus:border-red-700" : "focus:border-black"}
+        `}
+        />
+        
+      </div>
+    );
+  }
+
   return (
     <div className="w-full relative">
       <input

@@ -43,7 +43,7 @@ const WritePage = () => {
       <div className="flex flex-col justify-center items-center gap-8 font-semibold">
         {/* Photo upload */}
         <section className="w-full max-w-[1250px]">
-          <p className="text-xl md:text-3xl">
+          <p className="text-xl md:text-2xl">
             Add a photo relevant to your post.
           </p>
           <div>
@@ -53,29 +53,28 @@ const WritePage = () => {
 
         {/* Blog title, category, content */}
         <section className="w-full max-w-[1250px]">
-          <p className="text-xl md:text-3xl">Title</p>
-          <div className="text-md md:text-xl my-1">
+          <div className="text-md md:text-xl font-bold my-1">
             <Input
               id="post-title"
-              label="Post Title"
+              label="Title"
               register={register}
               errors={errors}
               required
             />
           </div>
 
-          <p className="text-xl md:text-3xl mt-6">Body</p>
           <div className="text-md md:text-xl my-1">
             <Input
               id="post-content"
-              label="Post Content"
+              label="Content"
               register={register}
               errors={errors}
               required
+              textArea
             />
           </div>
 
-          <p className="text-xl md:text-3xl mt-6 mb-2">Category</p>
+          <p className="text-xl md:text-2xl mt-6 mb-2">Category</p>
           <Select options={options} onChange={handleChange} />
         </section>
       </div>
