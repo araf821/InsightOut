@@ -6,20 +6,29 @@ import Heading from "@/app/components/Heading";
 import ImageUpload from "@/app/components/inputs/ImageUpload";
 import Input from "@/app/components/inputs/Input";
 import PostInput from "@/app/components/inputs/PostInput";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { FieldValues, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import Select from "react-select";
+import slugify from "slugify";
 
 const WritePage = () => {
   const [selected, setSelected] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const router = useRouter();
 
   const handleChange = (selectedOption: any) => {
     setSelected(selectedOption.value);
+    console.log(selected);
   };
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
     watch,
     setValue,
@@ -28,9 +37,34 @@ const WritePage = () => {
       imgSrc: "",
       title: "",
       content: "",
-      category: selected,
+      slug: "",
+      category: "",
+      published: false,
     },
   });
+
+  const onPublish: SubmitHandler<FieldValues> = (data) => {
+    setIsLoading(true);
+
+    axios
+      .post("/api/post/publish", {
+        ...data,
+        slug: slugify(data.title),
+        published: true,
+        category: selected,
+      })
+      .then(() => {
+        toast.success("Insight published!");
+        router.push("/explore");
+        reset();
+      })
+      .catch(() => {
+        toast.error("Something went wrong.");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
   const imgSrc = watch("imgSrc");
 
@@ -54,7 +88,7 @@ const WritePage = () => {
 
   return (
     <Container>
-      <Heading title="Uncover A New Insight" center />
+      <Heading title="Give Us A New Insight" center />
       <div className="mb-8 flex flex-col items-center justify-center gap-8 font-semibold">
         <section className="flex w-full max-w-[945px] flex-col items-center justify-center gap-8">
           {/* Photo upload */}
@@ -80,15 +114,18 @@ const WritePage = () => {
             required
             textarea
           />
-          <Select
-            className="w-full"
-            options={options}
-            onChange={handleChange}
-          />
+          <div className="flex w-full flex-col gap-2">
+            <p className="text-center tracking-wider">Category</p>
+            <Select
+              className="w-full"
+              options={options}
+              onChange={handleChange}
+            />
+          </div>
         </section>
-        <div className="flex w-full max-w-[950px] flex-col items-center justify-between gap-4 sm:flex-row sm:gap-12 md:gap-32 lg:gap-52 xl:gap-64">
+        <div className="flex w-full max-w-[950px] flex-col items-center justify-between gap-4 sm:flex-row sm:gap-20 md:gap-44 lg:gap-64 xl:gap-80">
           <Button label="Save to Drafts" onClick={() => {}} outline />
-          <Button label="Publish" onClick={() => {}} />
+          <Button label="Publish" onClick={handleSubmit(onPublish)} />
         </div>
       </div>
     </Container>
