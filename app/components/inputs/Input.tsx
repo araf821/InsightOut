@@ -21,7 +21,7 @@ const Input: React.FC<InputProps> = ({
 }) => {
   if (textArea) {
     return (
-      <div className="w-full relative">
+      <div className="relative w-full">
         <textarea
           rows={10}
           id={id}
@@ -29,24 +29,23 @@ const Input: React.FC<InputProps> = ({
           placeholder="Content"
           className={`
           peer
-          resize-none
           w-full
-          p-4 pt-4
-          font-light
+          resize-none
+          rounded-md border-2
           bg-white
-          border-2 rounded-md
+          p-4
+          pt-4 font-light
           transition
           ${errors[id] ? "border-red-700" : "border-neutral-300"}
           ${errors[id] ? "focus:border-red-700" : "focus:border-black"}
         `}
         />
-        
       </div>
     );
   }
 
   return (
-    <div className="w-full relative">
+    <div className="relative w-full">
       <input
         id={id}
         {...register(id, { required })}
@@ -55,10 +54,10 @@ const Input: React.FC<InputProps> = ({
         className={`
         peer
         w-full
-        p-4 pt-6
-        font-light
+        rounded-md border-2
         bg-white
-        border-2 rounded-md outline-none
+        p-4
+        pt-6 font-light outline-none
         transition
         ${errors[id] ? "border-red-700" : "border-neutral-300"}
         ${errors[id] ? "focus:border-red-700" : "focus:border-black"}
@@ -66,19 +65,19 @@ const Input: React.FC<InputProps> = ({
       />
       <label
         className={`
-            absolute
             text-md
-            duration-200
-            transform
-            -translate-y-3
-            top-5
+            absolute
             left-4
+            top-5
             z-10
             origin-[0]
-            peer-placeholder-shown:scale-100
+            -translate-y-3
+            transform
+            duration-200
             peer-placeholder-shown:translate-y-0
-            peer-focus:scale-75
+            peer-placeholder-shown:scale-100
             peer-focus:-translate-y-4
+            peer-focus:scale-75
             ${errors[id] ? "text-red-700" : "text-zinc-400"}
         `}
       >
