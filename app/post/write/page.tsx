@@ -1,5 +1,6 @@
 "use client";
 
+import Button from "@/app/components/Button";
 import Container from "@/app/components/Container";
 import Heading from "@/app/components/Heading";
 import ImageUpload from "@/app/components/inputs/ImageUpload";
@@ -54,15 +55,13 @@ const WritePage = () => {
   return (
     <Container>
       <Heading title="Uncover A New Insight" center />
-      <div className="flex flex-col items-center justify-center gap-8 font-semibold">
-        <section className="flex w-full max-w-[1250px] flex-col items-center justify-center">
+      <div className="mb-8 flex flex-col items-center justify-center gap-8 font-semibold">
+        <section className="flex w-full max-w-[945px] flex-col items-center justify-center gap-8">
           {/* Photo upload */}
-          <div className="mb-8">
-            <ImageUpload
-              value={imgSrc}
-              onChange={(value) => setCustomValue("imgSrc", value)}
-            />
-          </div>
+          <ImageUpload
+            value={imgSrc}
+            onChange={(value) => setCustomValue("imgSrc", value)}
+          />
 
           {/* Title */}
           <PostInput
@@ -72,33 +71,25 @@ const WritePage = () => {
             register={register}
             required
           />
+
+          <PostInput
+            id="content"
+            errors={errors}
+            placeholder="Post Content"
+            register={register}
+            required
+            textarea
+          />
+          <Select
+            className="w-full"
+            options={options}
+            onChange={handleChange}
+          />
         </section>
-        {/* Blog title, category, content */}
-        {/* <section className="w-full max-w-[1250px]">
-          <div className="text-md md:text-xl font-bold my-1">
-            <Input
-              id="post-title"
-              label="Title"
-              register={register}
-              errors={errors}
-              required
-            />
-          </div>
-
-          <div className="text-md md:text-xl my-1">
-            <Input
-              id="post-content"
-              label="Content"
-              register={register}
-              errors={errors}
-              required
-              textArea
-            />
-          </div>
-
-          <p className="text-xl md:text-2xl mt-6 mb-2">Category</p>
-          <Select options={options} onChange={handleChange} />
-        </section> */}
+        <div className="flex w-full max-w-[950px] flex-col items-center justify-between gap-4 sm:flex-row sm:gap-12 md:gap-32 lg:gap-52 xl:gap-64">
+          <Button label="Save to Drafts" onClick={() => {}} outline />
+          <Button label="Publish" onClick={() => {}} />
+        </div>
       </div>
     </Container>
   );

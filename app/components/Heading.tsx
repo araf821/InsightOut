@@ -13,9 +13,13 @@ interface HeadingProps {
 const Heading: React.FC<HeadingProps> = ({ title, center }) => {
   return (
     <div
-      className={`${pacifico.className} mx-auto py-10 w-full flex flex-col justify-center gap-4`}
+      className={`${pacifico.className} mx-auto flex w-full flex-col justify-center gap-4 py-10`}
     >
-      <p className={`text-4xl text-zinc-800 ${center && "text-center"} `}>
+      <p
+        className={`text-2xl text-zinc-800 sm:text-3xl md:text-4xl lg:text-5xl ${
+          center && "text-center"
+        } `}
+      >
         {title}
       </p>
       <hr />

@@ -19,18 +19,18 @@ const Button: React.FC<ButtonProps> = ({
     <button
       onClick={onClick}
       className={`
-        w-full
-        relative
-        rounded-lg
-        hover:opacity-80
-        transition
-        py-3
         text-md
-        font-semibold
+        relative
+        w-full
+        rounded-lg
         border-[2px]
-        ${outline ? "bg-white" : "bg-gray-800"}
-        ${outline ? "border-black" : "border-gray-800"}
-        ${outline ? "text-black" : "text-white"}
+        py-3
+        font-semibold
+        transition
+        hover:opacity-80
+        ${outline ? "bg-white" : "bg-zinc-800"}
+        ${outline ? "border-zinc-800" : "border-zinc-800"}
+        ${outline ? "text-zinc-800" : "text-white"}
         
   `}
     >

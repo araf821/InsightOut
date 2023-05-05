@@ -33,12 +33,12 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value }) => {
           <div
             onClick={() => open?.()}
             className="relative flex cursor-pointer flex-col items-center
-            justify-center gap-4 border-2 border-dashed border-neutral-300
-            p-20 text-neutral-600 transition hover:opacity-70"
+            justify-center border-2 border-dashed border-neutral-300
+            px-32 py-20 text-neutral-600 transition hover:opacity-70 sm:px-44 sm:py-28 md:px-56 md:py-36 lg:px-80 lg:py-48"
           >
             <TbPhotoPlus size={50} />
             {value && (
-              <div className="absolute inset-0 w-full h-full">
+              <div className="absolute inset-0 h-full w-full">
                 <Image
                   alt="image upload"
                   fill
