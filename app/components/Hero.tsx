@@ -3,28 +3,26 @@ import Image from "next/image";
 
 const pacifico = Pacifico({
   weight: "400",
-  subsets: ['latin']
+  subsets: ["latin"],
 });
 
 const Hero = () => {
   return (
     <div
-      className={`flex justify-center max-w-[2520px] mx-auto 2xl:px-20 ${pacifico.className}`}
+      className={`mx-auto flex max-w-[2520px] justify-center ${pacifico.className}`}
     >
       <div
-        className="text-center aspect-video relative overflow-hidden xl:rounded-b-xl text
-        flex flex-row justify-center items-center h-[400px] sm:h-[500px] lg:h-[60vw] max-h-[600px] w-full"
+        className="text relative flex aspect-video h-[100px] max-h-[250px]
+        w-full flex-row items-center justify-center overflow-hidden text-center sm:h-[500px] lg:h-[20vw]"
       >
-        <div className="max-w-[550px] z-10 text-5xl tracking-wider sm:rounded-xl p-6 sm:text-7xl md:text-8xl text-zinc-800">
-          <p>Unleash</p>
-          <p className="py-2">Your</p>
-          <p>Insights</p>
+        <div className="z-10 select-none p-6 text-3xl sm:text-5xl tracking-wider text-zinc-800 sm:rounded-xl lg:text-6xl xl:text-7xl">
+          Unleash Your Insights
         </div>
         <Image
           fill
           src="/images/hero-bg.jpg"
           alt="blog background"
-          className="object-cover w-full xl:object-none"
+          className="w-full object-cover"
         />
       </div>
     </div>
