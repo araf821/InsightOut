@@ -15,7 +15,7 @@ const Hero = () => {
         className="text relative flex aspect-video h-[100px] max-h-[250px]
         w-full flex-row items-center justify-center overflow-hidden text-center sm:h-[500px] lg:h-[20vw]"
       >
-        <div className="z-10 select-none p-6 text-3xl sm:text-5xl tracking-wider text-zinc-800 sm:rounded-xl lg:text-6xl xl:text-7xl">
+        <div className="z-10 select-none p-6 text-3xl tracking-wider text-zinc-800 sm:rounded-xl sm:text-5xl lg:text-6xl xl:text-7xl">
           Unleash Your Insights
         </div>
         <Image

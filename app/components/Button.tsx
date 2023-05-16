@@ -24,7 +24,7 @@ const Button: React.FC<ButtonProps> = ({
         w-full
         rounded-lg
         border-[2px]
-        py-3
+        p-2 py-3
         font-semibold
         transition
         hover:opacity-80

@@ -1,4 +1,10 @@
+import EmptyState from "../components/EmptyState";
+
 const DraftsPage = () => {
-  return <div>DraftsPage</div>;
+  return (
+    <div>
+      <EmptyState title="idk" subtitle="" button />
+    </div>
+  );
 };
 export default DraftsPage;
