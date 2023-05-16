@@ -42,29 +42,29 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
 
   return (
     <div className="relative">
-      <div className="flex flex-row gap-4 items-center justify-center">
+      <div className="flex flex-row items-center justify-center gap-4">
         <div
           onClick={() => router.push("/explore")}
-          className=" hidden md:block text-white cursor-pointer font-bold text-xl px-6 py-2 transition hover:translate-x-1"
+          className=" hidden cursor-pointer px-6 py-2 text-xl font-bold text-white transition hover:translate-x-1 md:block"
         >
           Explore
         </div>
         <div
           onClick={() => router.push("/post/write")}
           className="
-        hidden md:flex
+        hidden cursor-pointer
         items-center
-        hover:text-white
-        hover:bg-transparent
-        text-lg font-bold
-        gap-2 px-6 py-2
-        border-white border-[2px]
+        gap-2
         rounded-lg
-       bg-white
-       text-black
-        transition
-        duration-300
-        cursor-pointer
+        border-[2px] border-white
+        bg-white px-6 py-2
+        text-lg font-bold
+        text-black
+       transition
+       duration-300
+        hover:bg-transparent
+        hover:text-white
+        md:flex
         "
         >
           <BsPenFill />
@@ -76,8 +76,8 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           onClick={() => {
             toggleDropdown();
           }}
-          className="flex items-center gap-4 px-4 py-1.5 border-white border-[2px]
-        rounded-lg cursor-pointer hover:text-white text-black bg-white hover:bg-transparent text-[32px] transition duration-300"
+          className="flex cursor-pointer items-center gap-4 rounded-lg border-[2px] border-white
+        bg-white px-4 py-1.5 text-[32px] text-black transition duration-300 hover:bg-transparent hover:text-white"
         >
           <GiHamburgerMenu />
           <div>
@@ -90,16 +90,16 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
       <div
         ref={dropdownRef}
         className={`
+            text-md
             absolute
-            rounded-xl
-            w-[60vw] md:w-[40vw] lg:w-[15vw] min-w-[250px] max-w-[500px]
-            overflow-hidden
-            right-0 top-20
-            text-md text-black
-            shadow-lg
-            z-50
+            right-0 top-20 z-50 w-[60vw] min-w-[250px]
+            max-w-[500px]
+            overflow-hidden rounded-xl
+            text-black shadow-lg
             transition
             duration-300
+            md:w-[40vw]
+            lg:w-[15vw]
             ${
               isOpen
                 ? "translate-y-0"
@@ -110,12 +110,12 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             ${isOpen ? "opacity-100" : "opacity-0"}
           `}
       >
-        <div className="flex flex-col cursor-pointer">
+        <div className="flex cursor-pointer flex-col">
           {currentUser ? (
             <>
               <MenuItem
                 onClick={() => {
-                  router.push(`/dashboard/${currentUser.id}`);
+                  router.push("/dashboard");
                   toggleDropdown();
                 }}
                 label="Dashboard"
@@ -129,7 +129,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
               />
               <MenuItem
                 onClick={() => {
-                  router.push(`/drafts/${currentUser.id}`);
+                  router.push('/drafts');
                   toggleDropdown();
                 }}
                 label="Drafts"
