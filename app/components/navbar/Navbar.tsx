@@ -11,13 +11,23 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
   return (
-    <div className="bg-zinc-800 w-full py-6 z-50">
+    <div className="z-50 w-full bg-[#1e2429] capitalize">
       <Container>
-        <div className="flex flex-row items-center justify-between gap-3">
-          <Logo />
-          <UserMenu currentUser={currentUser} />
+        <div className="flex flex-col items-center justify-center pb-9 pt-12 text-white">
+          <Logo height={225} width={225} />
+          {/* <UserMenu currentUser={currentUser} /> */}
+          <p className="pt-1 font-semibold">More than just a blog</p>
         </div>
       </Container>
+
+      {/* lower nav */}
+      <div className="bg-slate-100">
+        <Container>
+          <div className="flex justify-between items-center">
+
+          </div>
+        </Container>
+      </div>
     </div>
   );
 };

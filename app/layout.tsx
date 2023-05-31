@@ -5,7 +5,6 @@ import Footer from "./components/footer/Footer";
 import LoginModal from "./components/modals/LoginModal";
 import RegisterModal from "./components/modals/RegisterModal";
 import getCurrentUser from "./actions/getCurrentUser";
-import Categories from "./components/categories/Categories";
 import ToasterProvider from "./providers/ToasterProvider";
 
 const nunito = Nunito({
@@ -26,7 +25,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={nunito.className}>
+      <body className={`${nunito.className} bg-[#e2e6e9]`}>
         <ToasterProvider />
         <Navbar currentUser={currentUser} />
         <RegisterModal />

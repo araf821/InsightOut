@@ -3,7 +3,12 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-const Logo = () => {
+interface LogoProps {
+  height: number;
+  width: number;
+}
+
+const Logo: React.FC<LogoProps> = ({ height, width }) => {
   const router = useRouter();
 
   return (
@@ -11,9 +16,9 @@ const Logo = () => {
       onClick={() => router.push("/")}
       alt="site logo"
       className="cursor-pointer"
-      height="150"
-      width="150"
-      src='/images/app-logo.png'
+      height={height}
+      width={width}
+      src="/images/app-logo.png"
     />
   );
 };
