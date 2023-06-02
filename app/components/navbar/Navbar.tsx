@@ -1,6 +1,7 @@
 "use client";
 
 import Container from "../Container";
+import Sidebar from "../sidebar/Sidebar";
 import Logo from "./Logo";
 import UserMenu from "./UserMenu";
 import { SafeUser } from "@/app/types";
@@ -23,9 +24,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
       {/* lower nav */}
       <div className="bg-slate-100">
         <Container>
-          <div className="flex justify-between items-center">
-
-          </div>
+          <div className="flex items-center justify-between"></div>
         </Container>
       </div>
     </div>
