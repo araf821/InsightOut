@@ -1,4 +1,4 @@
-import Logo from "../navbar/Logo";
+import Logo from "../texts/Logo";
 
 const Footer = () => {
   return (

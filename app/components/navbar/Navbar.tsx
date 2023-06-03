@@ -1,12 +1,10 @@
 "use client";
 
 import { useContext } from "react";
-import Container from "../Container";
-import Sidebar from "../sidebar/Sidebar";
-import Logo from "./Logo";
-import UserMenu from "./UserMenu";
+import Logo from "../texts/Logo";
 import { SafeUser } from "@/app/types";
 import { SidebarContext } from "@/app/context/sidebar_context";
+import Slogan from "../texts/Slogan";
 
 interface NavbarProps {
   currentUser?: SafeUser | null | undefined;
@@ -16,7 +14,16 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
   const { openSidebar } = useContext(SidebarContext);
 
   return (
-    <div className="z-30 w-full capitalize">
+    <nav className="z-30 w-full text-center capitalize">
+      {/* Logo and slogan container */}
+      <div className="">
+        <Logo />
+        <Slogan />
+      </div>
+
+      {/* Lower nav menu bar */}
+      <div className="lower-nav "></div>
+
       {/* <Container>
         <div className="flex flex-col items-center justify-center pb-9 pt-12 text-white">
           <Logo height={225} width={225} />
@@ -32,7 +39,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
           <div className="flex items-center justify-between"></div>
         </Container>
       </div> */}
-    </div>
+    </nav>
   );
 };
 export default Navbar;
