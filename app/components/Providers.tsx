@@ -13,7 +13,7 @@ const Providers: FC<ProvidersProps> = ({ children }) => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <SidebarProvider>{children}</SidebarProvider>;
+      <SidebarProvider>{children}</SidebarProvider>
     </QueryClientProvider>
   );
 };

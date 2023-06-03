@@ -27,15 +27,14 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${nunito.className} bg-[#e2e6e9]`}>
+      <body className={`${nunito.className} bg-orange-50`}>
         <Providers>
           <ToasterProvider />
           <Navbar currentUser={currentUser} />
           <RegisterModal />
           <LoginModal />
           <Sidebar />
-          <div className="pb-20">{children}</div>
-          <Footer />
+          <div className="asdfasd">{children}</div>
         </Providers>
       </body>
     </html>

@@ -10,8 +10,8 @@ const Sidebar: FC<SidebarProps> = ({}) => {
 
   return (
     <div
-      className={`absolute right-0 top-0 h-screen w-screen translate-x-full transform bg-white transition duration-500 ${
-        isOpen ? "z-10 -translate-x-0" : ""
+      className={`absolute left-0 top-0 z-50 h-screen w-screen -translate-x-full transform transition duration-300 md:w-2/3 lg:w-1/2 xl:w-1/3 ${
+        isOpen ? "translate-x-0" : ""
       }`}
     >
       <button onClick={closeSidebar}>close me</button>

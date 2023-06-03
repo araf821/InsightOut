@@ -15,7 +15,6 @@ export function SidebarProvider({ children }: { children: ReactNode }) {
 
   const openSidebar = () => {
     setIsOpen(true);
-    console.log("isOpen: ", isOpen);
   };
 
   const closeSidebar = () => {

@@ -16,22 +16,22 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
   const { openSidebar } = useContext(SidebarContext);
 
   return (
-    <div className="z-50 w-full bg-[#1e2429] capitalize">
-      <Container>
+    <div className="z-30 w-full capitalize">
+      {/* <Container>
         <div className="flex flex-col items-center justify-center pb-9 pt-12 text-white">
           <Logo height={225} width={225} />
-          {/* <UserMenu currentUser={currentUser} /> */}
+          <UserMenu currentUser={currentUser} />
           <button onClick={openSidebar}>click me to open sidebar</button>
           <p className="pt-1 font-semibold">More than just a blog</p>
         </div>
-      </Container>
+      </Container> */}
 
       {/* lower nav */}
-      <div className="bg-slate-100">
+      {/* <div className="bg-slate-100">
         <Container>
           <div className="flex items-center justify-between"></div>
         </Container>
-      </div>
+      </div> */}
     </div>
   );
 };
