@@ -15,7 +15,7 @@ const nunito = Nunito({
 
 export const metadata = {
   title: "InsightOut",
-  description: "Blogging simplified.",
+  description: "Next Level Blogging.",
 };
 
 export default async function RootLayout({

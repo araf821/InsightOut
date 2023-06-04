@@ -11,19 +11,11 @@ const Logo = () => {
   const router = useRouter();
 
   return (
-    // <Image
-    //   onClick={() => router.push("/")}
-    //   alt="site logo"
-    //   className="cursor-pointer"
-    //   height={height}
-    //   width={width}
-    //   src="/images/app-logo.png"
-    // />
     <div
-      className={`${yeseva.className} mt-6 mb-2 text-4xl text-zinc-900 sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl`}
+      className={`${yeseva.className} mb-2 mt-6 select-none text-5xl text-zinc-900 sm:text-6xl md:text-7xl lg:text-[5rem]`}
       onClick={() => router.push("/")}
     >
-      Insight<span className="text-rose-500">Out</span>
+      Insight<span className="text-rose-600">Out</span>
     </div>
   );
 };
