@@ -27,7 +27,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${nunito.className} bg-orange-50`}>
+      <body className={`${nunito.className} overflow-x-hidden bg-orange-50`}>
         <Providers>
           <ToasterProvider />
           <Navbar currentUser={currentUser} />

@@ -16,23 +16,33 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
-  const { openSidebar } = useContext(SidebarContext);
+  const { openSidebar, isOpen } = useContext(SidebarContext);
 
   return (
-    <nav className="z-30 w-full text-center capitalize">
+    <nav
+      className={`${
+        isOpen ? "translate-x-36 blur-sm duration-500" : ""
+      } z-30 w-full text-center capitalize transition`}
+    >
       {/* Logo and slogan container */}
-      <div className="">
-        <Logo />
+      <div className="grid place-items-center">
+        <div className="mx-auto pb-2 pt-6">
+          <Logo />
+        </div>
         <Slogan />
       </div>
 
       {/* Lower nav menu bar */}
-      <div className="lower-nav mt-2">
+      <div className="lower-nav pt-2">
         <Container>
           <div className="flex items-center justify-center gap-3">
-            <NavButton title="Discover" icon={FaSearch} />
-            <NavButton title="Write" icon={FaPenFancy} />
-            <NavButton title="Profile" icon={BsPersonFill} />
+            <NavButton title="Discover" icon={FaSearch} onClick={openSidebar} />
+            <NavButton title="Write" icon={FaPenFancy} onClick={openSidebar} />
+            <NavButton
+              title="Profile"
+              icon={BsPersonFill}
+              onClick={openSidebar}
+            />
           </div>
         </Container>
       </div>
