@@ -19,7 +19,7 @@ const Sidebar: FC<SidebarProps> = ({ currentUser }) => {
       <div className="mx-auto flex items-center justify-between">
         <Logo sidebar />
         <button onClick={closeSidebar}>
-          <IoIosCloseCircle className="text-3xl text-zinc-800" />
+          <IoIosCloseCircle className="text-3xl text-zinc-800 transition hover:scale-110 duration-500 hover:animate-pulse" />
         </button>
       </div>
     </div>

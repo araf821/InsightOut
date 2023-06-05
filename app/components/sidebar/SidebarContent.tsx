@@ -12,7 +12,8 @@ const SidebarContent: FC<SidebarContentProps> = ({ currentUser }) => {
   if (!currentUser) {
     body = (
       <div className="flex flex-col gap-4">
-        <SidebarButton title="" onClick={() => {}} />
+        <SidebarButton title="Login" onClick={() => {}} />
+        <SidebarButton title="Sign Up" onClick={() => {}} />
       </div>
     );
   } else {
@@ -24,7 +25,7 @@ const SidebarContent: FC<SidebarContentProps> = ({ currentUser }) => {
   }
 
   return (
-    <section className="sidebar-content mx-auto max-w-[800px] py-8">
+    <section className="sidebar-content mx-auto max-w-[800px] px-4 py-8">
       {body}
     </section>
   );
