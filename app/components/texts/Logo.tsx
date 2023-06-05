@@ -21,16 +21,16 @@ const Logo: React.FC<LogoProps> = ({ sidebar }) => {
     <div
       className={`${
         yeseva.className
-      } select-none max-w-min cursor-pointer text-5xl text-zinc-900 sm:text-6xl md:text-7xl lg:text-[5rem] ${
+      } max-w-min cursor-pointer select-none text-5xl text-zinc-900 sm:text-6xl md:text-7xl lg:text-[5rem] ${
         sidebar === true &&
-        "text-[36px] sm:text-[44px] md:text-[52px] lg:text-[52px] xl:text-[52px]"
+        "text-[36px] sm:text-[44px] md:text-[50px] lg:text-[54px] xl:text-[56px]"
       }`}
       onClick={() => {
         router.push("/");
         closeSidebar();
       }}
     >
-        Insight<span className="text-rose-600">Out</span>
+      Insight<span className="text-rose-600">Out</span>
     </div>
   );
 };

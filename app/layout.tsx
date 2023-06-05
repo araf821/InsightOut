@@ -33,8 +33,8 @@ export default async function RootLayout({
           <Navbar currentUser={currentUser} />
           <RegisterModal />
           <LoginModal />
-          <Sidebar />
-          <div className="asdfasd">{children}</div>
+          <Sidebar currentUser={currentUser} />
+          <div>{children}</div>
         </Providers>
       </body>
     </html>

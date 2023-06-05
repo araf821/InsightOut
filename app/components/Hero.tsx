@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import Container from "./Container";
 import { Merriweather } from "next/font/google";
+import { useRouter } from "next/navigation";
 
 const merri = Merriweather({
   subsets: ["latin"],
@@ -8,6 +11,8 @@ const merri = Merriweather({
 });
 
 const Hero = () => {
+  const router = useRouter();
+
   return (
     <div className="my-6 w-full bg-rose-600 shadow-[0px_0px_30px_#F43F5E]">
       <Container>
@@ -47,8 +52,14 @@ const Hero = () => {
                 </span>
               ))}
             </div>
+
             {/* Read Button */}
-            <button className="group relative w-full max-w-[200px] overflow-hidden border  border-zinc-900 bg-orange-50 px-5 py-3 font-medium text-gray-600 shadow-inner">
+            <button
+              onClick={() => {
+                router.push(`/post/${dummyPost.slug}`);
+              }}
+              className="group relative w-full max-w-[200px] overflow-hidden border  border-zinc-900 bg-orange-50 px-5 py-3 font-medium text-gray-600 shadow-inner"
+            >
               <span className="ease absolute left-0 top-0 h-0 w-0 border-t-2 border-gray-600 transition-all duration-200 group-hover:w-full"></span>
               <span className="ease absolute bottom-0 right-0 h-0 w-0 border-b-2 border-gray-600 transition-all duration-200 group-hover:w-full"></span>
               <span className="ease absolute left-0 top-0 h-0 w-full bg-gray-600 transition-all delay-200 duration-300 group-hover:h-full"></span>
@@ -70,6 +81,7 @@ export default Hero;
 const dummyPost = {
   title: "The Title of the Amazing Blog Post",
   image: "",
+  slug: "asdf",
   author: "Author Name",
   category: ["ummm", "idk", "omg"],
   createdAt: "August 82, 1238",
