@@ -18,17 +18,17 @@ const Hero = () => {
       <Container>
         <div className="flex flex-col items-center justify-between gap-8 py-8 lg:flex-row xl:gap-12">
           {/* Image Container */}
-          <div className="group relative aspect-[4/3] h-full w-full bg-orange-50 lg:min-w-[560px] lg:max-w-[650px] xl:max-w-[800px]">
+          <div className="group relative aspect-[4/3] h-full w-full lg:min-w-[560px] lg:max-w-[650px] xl:max-w-[800px]">
             <Image
               src="https://res.cloudinary.com/dw7izgruq/image/upload/v1684769626/gys4evgyekggbzorixvk.jpg"
               alt=""
               fill
-              className="absolute scale-[0.97] object-cover drop-shadow-2xl transition-all group-hover:scale-[1]"
+              className="absolute border-4 border-zinc-900 object-cover drop-shadow-2xl transition-all group-hover:scale-[1]"
             />
           </div>
 
           {/* Info Container */}
-          <div className="flex w-full flex-col justify-between gap-4 xl:gap-6">
+          <div className="flex w-full flex-col justify-between gap-4 md:gap-6 xl:gap-8">
             <p>
               <span className="bg-zinc-800 px-2 py-1 text-sm text-white">
                 {dummyPost.createdAt}
@@ -39,10 +39,14 @@ const Hero = () => {
             >
               {dummyPost.title}
             </p>
-            <p className={`font-bold tracking-widest md:text-lg`}>
+            {/* Author Name */}
+            <p
+              className={`-mt-2 text-xl font-light tracking-wider md:text-2xl`}
+            >
               {dummyPost.author}
             </p>
-            <div className="flex gap-2">
+            {/* Post category tags */}
+            <div className="flex h-fit max-w-[600px] flex-wrap gap-2">
               {dummyPost.category.map((cat) => (
                 <span
                   key={cat}
@@ -52,23 +56,6 @@ const Hero = () => {
                 </span>
               ))}
             </div>
-
-            {/* Read Button */}
-            <button
-              onClick={() => {
-                router.push(`/post/${dummyPost.slug}`);
-              }}
-              className="group relative w-full max-w-[200px] overflow-hidden border  border-zinc-900 bg-orange-50 px-5 py-3 font-medium text-gray-600 shadow-inner"
-            >
-              <span className="ease absolute left-0 top-0 h-0 w-0 border-t-2 border-gray-600 transition-all duration-200 group-hover:w-full"></span>
-              <span className="ease absolute bottom-0 right-0 h-0 w-0 border-b-2 border-gray-600 transition-all duration-200 group-hover:w-full"></span>
-              <span className="ease absolute left-0 top-0 h-0 w-full bg-gray-600 transition-all delay-200 duration-300 group-hover:h-full"></span>
-              <span className="ease absolute bottom-0 left-0 h-0 w-full bg-gray-600 transition-all delay-200 duration-300 group-hover:h-full"></span>
-              <span className="absolute inset-0 h-full w-full bg-gray-900 opacity-0 delay-300 duration-300 group-hover:opacity-100"></span>
-              <span className="ease relative transition-colors delay-200 duration-300 group-hover:text-white">
-                <p className="text-xl md:text-2xl">Read</p>
-              </span>
-            </button>
           </div>
         </div>
       </Container>
@@ -83,6 +70,19 @@ const dummyPost = {
   image: "",
   slug: "asdf",
   author: "Author Name",
-  category: ["ummm", "idk", "omg"],
+  category: [
+    "ummm",
+    "idk",
+    "omg",
+    "ummm",
+    "idk",
+    "omg",
+    "ummm",
+    "idk",
+    "omg",
+    "ummm",
+    "idk",
+    "omg",
+  ],
   createdAt: "August 82, 1238",
 };
