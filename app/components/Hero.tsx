@@ -2,10 +2,11 @@
 
 import Image from "next/image";
 import Container from "./Container";
-import { Merriweather } from "next/font/google";
+import { Ubuntu } from "next/font/google";
 import { useRouter } from "next/navigation";
+import ToolbarComponent from "./radix/Toolbar";
 
-const merri = Merriweather({
+const ubuntu = Ubuntu({
   subsets: ["latin"],
   weight: ["300", "400", "700"],
 });
@@ -35,7 +36,8 @@ const Hero = () => {
               </span>
             </p>
             <p
-              className={`text-5xl font-bold tracking-wider text-zinc-900 sm:text-6xl lg:text-7xl ${merri.className}`}
+              onClick={() => router.push(`/post/${dummyPost.slug}`)}
+              className={`cursor-pointer text-5xl font-semibold text-zinc-900 hover:underline sm:text-6xl lg:text-7xl ${ubuntu.className}`}
             >
               {dummyPost.title}
             </p>
@@ -70,19 +72,6 @@ const dummyPost = {
   image: "",
   slug: "asdf",
   author: "Author Name",
-  category: [
-    "ummm",
-    "idk",
-    "omg",
-    "ummm",
-    "idk",
-    "omg",
-    "ummm",
-    "idk",
-    "omg",
-    "ummm",
-    "idk",
-    "omg",
-  ],
+  category: ["ummm", "idk", "omg"],
   createdAt: "August 82, 1238",
 };
