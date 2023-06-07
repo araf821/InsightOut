@@ -1,10 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import Container from "./Container";
+import Container from "../Container";
 import { Ubuntu } from "next/font/google";
 import { useRouter } from "next/navigation";
-import ToolbarComponent from "./radix/Toolbar";
 
 const ubuntu = Ubuntu({
   subsets: ["latin"],
@@ -15,7 +14,7 @@ const Hero = () => {
   const router = useRouter();
 
   return (
-    <div className="my-6 w-full bg-rose-600 shadow-[0px_0px_30px_#F43F5E]">
+    <div className="my-6 w-full bg-[#B78570]">
       <Container>
         <div className="flex flex-col items-center justify-between gap-8 py-8 lg:flex-row xl:gap-12">
           {/* Image Container */}
@@ -24,7 +23,7 @@ const Hero = () => {
               src="https://res.cloudinary.com/dw7izgruq/image/upload/v1684769626/gys4evgyekggbzorixvk.jpg"
               alt=""
               fill
-              className="absolute border-4 border-zinc-900 object-cover drop-shadow-2xl transition-all group-hover:scale-[1]"
+              className="absolute border-2 border-zinc-700 object-cover outline drop-shadow-2xl transition-all duration-300 outline-offset-4 outline-zinc-800"
             />
           </div>
 
@@ -37,7 +36,7 @@ const Hero = () => {
             </p>
             <p
               onClick={() => router.push(`/post/${dummyPost.slug}`)}
-              className={`cursor-pointer text-5xl font-semibold text-zinc-900 hover:underline sm:text-6xl lg:text-7xl ${ubuntu.className}`}
+              className={`cursor-pointer text-5xl font-semibold text-zinc-800 hover:underline hover:underline-offset-8 sm:text-6xl lg:text-7xl ${ubuntu.className}`}
             >
               {dummyPost.title}
             </p>
@@ -52,7 +51,7 @@ const Hero = () => {
               {dummyPost.category.map((cat) => (
                 <span
                   key={cat}
-                  className="bg-orange-50 px-2 py-1 font-bold tracking-wider text-rose-600 md:text-lg"
+                  className="rounded-md bg-orange-50 px-2 py-1 font-bold tracking-wider text-zinc-800 md:text-lg"
                 >
                   {cat}
                 </span>

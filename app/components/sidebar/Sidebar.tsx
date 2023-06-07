@@ -15,7 +15,7 @@ const Sidebar: FC<SidebarProps> = ({ currentUser }) => {
   const { isOpen, closeSidebar } = useSidebarContext();
 
   const header = (
-    <div className="w-full bg-orange-50 px-4 py-5 shadow-lg">
+    <div className="w-full bg-[#FFF6F1] px-4 py-5 shadow-lg">
       <div className="mx-auto flex items-center justify-between">
         <Logo sidebar />
         <button onClick={closeSidebar}>
@@ -27,7 +27,7 @@ const Sidebar: FC<SidebarProps> = ({ currentUser }) => {
 
   return (
     <div
-      className={`absolute left-0 top-0 z-50 h-screen w-screen -translate-x-full transform  bg-rose-500 duration-500 lg:w-3/4 xl:w-3/5 ${
+      className={`absolute left-0 top-0 z-50 h-screen w-screen -translate-x-full transform  bg-[#B78570] duration-500 lg:w-3/4 xl:w-3/5 ${
         isOpen && "translate-x-0"
       }`}
     >
