@@ -1,9 +1,9 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { Yeseva_One } from "next/font/google";
 import { useContext } from "react";
 import { SidebarContext } from "@/app/context/sidebar_context";
 
+import { Yeseva_One } from "next/font/google";
 const yeseva = Yeseva_One({
   weight: "400",
   subsets: ["latin"],
@@ -30,7 +30,7 @@ const Logo: React.FC<LogoProps> = ({ sidebar }) => {
         closeSidebar();
       }}
     >
-      Insight<span className="text-[#E07242]">Out</span>
+      Insight<span className="text-[#ff804a]">Out</span>
     </div>
   );
 };
