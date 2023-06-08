@@ -17,7 +17,7 @@ const LatestPosts: FC<LatestPostsProps> = ({}) => {
    */
   return (
     <Container>
-      <div className="py-4">
+      <div className="pb-12 pt-4">
         <p className="text-4xl sm:text-5xl lg:text-6xl">
           <span className={merri.className}>Latest Posts</span>
         </p>
