@@ -1,7 +1,6 @@
-import { Nunito } from "next/font/google";
+import { Nunito, Ubuntu, Yeseva_One } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/navbar/Navbar";
-import Footer from "./components/footer/Footer";
 import LoginModal from "./components/modals/LoginModal";
 import RegisterModal from "./components/modals/RegisterModal";
 import getCurrentUser from "./actions/getCurrentUser";
@@ -11,6 +10,20 @@ import Sidebar from "./components/sidebar/Sidebar";
 
 const nunito = Nunito({
   subsets: ["latin"],
+  variable: "--font-nunito"
+});
+
+const ubuntu = Ubuntu({
+  subsets: ["latin"],
+  weight: ["300", "400", "700"],
+  variable: "--font-ubuntu"
+
+});
+
+const yeseva = Yeseva_One({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-yeseva-one",
 });
 
 export const metadata = {
@@ -27,7 +40,9 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${nunito.className} overflow-x-hidden bg-[#FFF6F1]`}>
+      <body
+        className={`${nunito.variable} ${ubuntu.variable} font-nunito  ${yeseva.variable} overflow-x-hidden bg-[#FFF6F1]`}
+      >
         <Providers>
           <ToasterProvider />
           <Navbar currentUser={currentUser} />

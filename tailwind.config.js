@@ -9,6 +9,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        yeseva: ["var(--font-yeseva-one)", "cursive"],
+        nunito: ["var(--font-nunito)", "sans-serif"],
+        nunito: ["var(--font-ubuntu)", "sans-serif"],
+      },
       colors: {
         ...blackA,
         ...mauve,

@@ -2,13 +2,7 @@
 
 import Image from "next/image";
 import Container from "../Container";
-import { Ubuntu } from "next/font/google";
 import { useRouter } from "next/navigation";
-
-const ubuntu = Ubuntu({
-  subsets: ["latin"],
-  weight: ["300", "400", "700"],
-});
 
 const Hero = () => {
   const router = useRouter();
@@ -23,7 +17,7 @@ const Hero = () => {
               src="https://images.unsplash.com/photo-1519682337058-a94d519337bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
               alt=""
               fill
-              className="absolute border-2 border-zinc-700 object-cover outline drop-shadow-2xl outline-offset-4 outline-zinc-800"
+              className="absolute border-2 border-zinc-700 object-cover outline outline-offset-4 outline-zinc-800 drop-shadow-2xl"
             />
           </div>
 
@@ -36,7 +30,7 @@ const Hero = () => {
             </p>
             <p
               onClick={() => router.push(`/post/${dummyPost.slug}`)}
-              className={`cursor-pointer text-5xl font-semibold text-zinc-800 hover:underline hover:underline-offset-8 sm:text-6xl lg:text-7xl ${ubuntu.className}`}
+              className={`font-ubuntu cursor-pointer font-nunito text-5xl font-semibold text-zinc-800 hover:underline hover:underline-offset-8 sm:text-6xl lg:text-7xl`}
             >
               {dummyPost.title}
             </p>
