@@ -19,7 +19,7 @@ const Sidebar: FC<SidebarProps> = ({ currentUser }) => {
       <div className="mx-auto flex items-center justify-between">
         <Logo sidebar />
         <button onClick={closeSidebar}>
-          <IoIosCloseCircle className="text-3xl text-zinc-800 transition hover:scale-110 duration-500 hover:animate-pulse" />
+          <IoIosCloseCircle className="text-3xl text-zinc-800 transition duration-500 hover:scale-110 hover:animate-pulse" />
         </button>
       </div>
     </div>
@@ -27,12 +27,18 @@ const Sidebar: FC<SidebarProps> = ({ currentUser }) => {
 
   return (
     <div
-      className={`absolute left-0 top-0 z-50 h-screen w-screen -translate-x-full transform  bg-[#B78570] duration-500 lg:w-3/4 xl:w-3/5 ${
+      className={`fixed inset-0 left-0 top-0 z-40 h-screen w-screen -translate-x-full transform   duration-500  ${
         isOpen && "translate-x-0"
       }`}
     >
-      <div className="mx-auto flex flex-col items-center">{header}</div>
-      <SidebarContent currentUser={currentUser} />
+      <div className={`sidebar-bg h-full w-full delay-300 duration-300 transition
+        ${isOpen && 'backdrop-blur-md'}
+      `}>
+        <div className="z-50 h-full w-full bg-[#B78570] lg:w-3/4 xl:w-3/5">
+          <div className="mx-auto flex flex-col items-center">{header}</div>
+          <SidebarContent currentUser={currentUser} />
+        </div>
+      </div>
     </div>
   );
 };
