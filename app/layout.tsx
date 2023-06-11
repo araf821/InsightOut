@@ -10,14 +10,13 @@ import Sidebar from "./components/sidebar/Sidebar";
 
 const nunito = Nunito({
   subsets: ["latin"],
-  variable: "--font-nunito"
+  variable: "--font-nunito",
 });
 
 const ubuntu = Ubuntu({
   subsets: ["latin"],
   weight: ["300", "400", "700"],
-  variable: "--font-ubuntu"
-
+  variable: "--font-ubuntu",
 });
 
 const yeseva = Yeseva_One({

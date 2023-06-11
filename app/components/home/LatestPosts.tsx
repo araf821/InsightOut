@@ -1,8 +1,10 @@
+"use client";
+
 import { FC } from "react";
 import Container from "../Container";
 import { Merriweather } from "next/font/google";
-import PostCard from "../PostCard";
 import DynamicPostContainer from "./DynamicPostContainer";
+import Button from "../Button";
 
 const merri = Merriweather({
   subsets: ["latin"],
@@ -25,6 +27,9 @@ const LatestPosts: FC<LatestPostsProps> = ({}) => {
 
         {/* Cards container */}
         <DynamicPostContainer />
+        <div className="mx-auto max-w-[20rem] pt-6">
+          <Button onClick={() => {}} label="View More" />
+        </div>
       </div>
     </Container>
   );

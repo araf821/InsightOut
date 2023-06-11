@@ -30,7 +30,7 @@ const Hero = () => {
             </p>
             <p
               onClick={() => router.push(`/post/${dummyPost.slug}`)}
-              className={`font-ubuntu cursor-pointer font-nunito text-5xl font-semibold text-zinc-800 hover:underline hover:underline-offset-8 sm:text-6xl lg:text-7xl`}
+              className={`font-ubuntu cursor-pointer text-5xl font-semibold text-zinc-800 hover:underline hover:underline-offset-8 sm:text-6xl lg:text-7xl`}
             >
               {dummyPost.title}
             </p>

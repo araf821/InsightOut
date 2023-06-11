@@ -12,7 +12,7 @@ module.exports = {
       fontFamily: {
         yeseva: ["var(--font-yeseva-one)", "cursive"],
         nunito: ["var(--font-nunito)", "sans-serif"],
-        nunito: ["var(--font-ubuntu)", "sans-serif"],
+        ubuntu: ["var(--font-ubuntu)", "sans-serif"],
       },
       colors: {
         ...blackA,
