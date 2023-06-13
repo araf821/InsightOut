@@ -37,9 +37,9 @@ const NewsletterSection: FC<NewsletterSectionProps> = ({}) => {
                 <p className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl">
                   <span className="font-semibold">Join Our Newsletter</span>
                 </p>
-                <p className="group">
+                <p className="group w-fit">
                   We will surely spam you with content that you{" "}
-                  <span className="transition duration-500 group-hover:opacity-0">
+                  <span className="transition duration-500 group-hover:hidden">
                     don&rsquo;t
                   </span>{" "}
                   love.
@@ -48,7 +48,7 @@ const NewsletterSection: FC<NewsletterSectionProps> = ({}) => {
               <div className="space-y-4">
                 <input
                   type="text"
-                  placeholder="First Name"
+                  placeholder="Your Name"
                   className="w-full max-w-[700px] px-4 py-2 text-lg text-zinc-800 sm:text-xl md:text-left md:text-2xl"
                 />
                 <input

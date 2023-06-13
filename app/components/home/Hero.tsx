@@ -8,7 +8,7 @@ const Hero = () => {
   const router = useRouter();
 
   return (
-    <div className="my-6 w-full bg-[#B78570]">
+    <div className="my-6 w-full bg-primary">
       <Container>
         <div className="flex flex-col items-center justify-between gap-8 py-8 lg:flex-row xl:gap-12">
           {/* Image Container */}
@@ -45,7 +45,7 @@ const Hero = () => {
               {dummyPost.category.map((cat) => (
                 <span
                   key={cat}
-                  className="rounded-md bg-orange-50 px-2 py-1 font-bold tracking-wider text-zinc-800 md:text-lg"
+                  className="rounded-md bg-bg px-2 py-1 font-bold tracking-wider text-zinc-800 md:text-lg"
                 >
                   {cat}
                 </span>

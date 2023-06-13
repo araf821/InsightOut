@@ -31,9 +31,11 @@ const Sidebar: FC<SidebarProps> = ({ currentUser }) => {
         isOpen && "translate-x-0"
       }`}
     >
-      <div className={`sidebar-bg h-full w-full delay-300 duration-300 transition
-        ${isOpen && 'backdrop-blur-md'}
-      `}>
+      <div
+        className={`sidebar-bg h-full w-full transition delay-300 duration-300
+        ${isOpen && "backdrop-blur-md"}
+      `}
+      >
         <div className="z-50 h-full w-full bg-[#B78570] lg:w-3/4 xl:w-3/5">
           <div className="mx-auto flex flex-col items-center">{header}</div>
           <SidebarContent currentUser={currentUser} />

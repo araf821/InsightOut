@@ -23,7 +23,7 @@ const LatestPosts: FC<LatestPostsProps> = ({}) => {
         <p className="text-4xl sm:text-5xl lg:text-6xl">
           <span className={merri.className}>Latest Posts</span>
         </p>
-        <hr />
+        <hr className="w-20 border-4 " />
 
         {/* Cards container */}
         <DynamicPostContainer />

@@ -29,12 +29,12 @@ const PostCard: FC<PostCardProps> = ({
         "md:flex md:h-full md:min-w-[350px] md:flex-grow lg:min-w-[500px]"
       }`}
     >
-      <div className="relative aspect-[5/4] w-full rounded-lg shadow-lg">
+      <div className="relative overflow-hidden aspect-[5/4] w-full rounded-lg shadow-lg">
         <Image
           src="https://images.unsplash.com/photo-1519682337058-a94d519337bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
           fill
           alt=""
-          className="absolute rounded-lg object-cover"
+          className="ease-out absolute rounded-lg object-cover hover:scale-125 transition-transform duration-1000"
         />
       </div>
 
