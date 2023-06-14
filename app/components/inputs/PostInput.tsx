@@ -7,6 +7,7 @@ interface PostInputProps {
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
   textarea?: boolean;
+  className?: string;
 }
 
 const PostInput: React.FC<PostInputProps> = ({
@@ -16,6 +17,7 @@ const PostInput: React.FC<PostInputProps> = ({
   register,
   errors,
   textarea,
+  className = "",
 }) => {
   if (textarea) {
     return (
@@ -27,7 +29,8 @@ const PostInput: React.FC<PostInputProps> = ({
         placeholder={placeholder}
         className={`w-full resize-none rounded-md border-2 bg-white p-4 font-light outline-none transition
         ${errors[id] ? "border-red-700" : "border-neutral-300"}
-        ${errors[id] ? "focus:border-red-700" : "focus:border-zinc-800"}`}
+        ${errors[id] ? "focus:border-red-700" : "focus:border-zinc-800"}
+        ${className}`}
       />
     );
   }

@@ -25,10 +25,11 @@ const Button: React.FC<ButtonProps> = ({
     <button
       onClick={onClick}
       disabled={disabled}
+      type="button"
       className={` group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-sm border-2 px-4 py-2 text-lg text-zinc-900 outline-none transition-all duration-300  focus:ring-4 md:text-xl lg:gap-4 lg:text-2xl
       ${
         special
-          ? "bg-accent border-zinc-800 hover:outline-zinc-800 outline-offset-[-6px] focus:ring-zinc-800"
+          ? "border-zinc-800 bg-accent outline-offset-[-6px] hover:outline-zinc-800 focus:ring-zinc-800"
           : outline
           ? "border-zinc-800 bg-bg hover:bg-primary hover:outline-zinc-800 focus:ring-zinc-800"
           : "bg-primary outline-2 hover:outline-primary focus:ring-primary"
