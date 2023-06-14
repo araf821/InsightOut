@@ -2,10 +2,9 @@
 
 import Button from "@/app/components/Button";
 import Container from "@/app/components/Container";
-import Heading from "@/app/components/Heading";
 import ImageUpload from "@/app/components/inputs/ImageUpload";
-import Input from "@/app/components/inputs/Input";
 import PostInput from "@/app/components/inputs/PostInput";
+import ToolbarComponent from "@/app/components/radix/Toolbar";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -88,45 +87,80 @@ const WritePage = () => {
 
   return (
     <Container>
-      <Heading title="Give Us A New Insight" center />
-      <div className="mb-8 flex flex-col items-center justify-center gap-8 font-semibold">
-        <section className="flex w-full max-w-[945px] flex-col items-center justify-center gap-8">
-          {/* Photo upload */}
-          <ImageUpload
-            value={imgSrc}
-            onChange={(value) => setCustomValue("imgSrc", value)}
-          />
+      <div className="py-8">
+        {/* Heading */}
+        <p className="text-4xl text-zinc-800 sm:text-5xl lg:text-6xl">
+          <span className="font-merri font-bold">New Post</span>
+        </p>
+        <hr className="w-12 border-4 border-accent md:w-20" />
 
-          {/* Title */}
-          <PostInput
-            id="title"
-            errors={errors}
-            placeholder="Title"
-            register={register}
-            required
-          />
-
-          <PostInput
-            id="content"
-            errors={errors}
-            placeholder="Post Content"
-            register={register}
-            required
-            textarea
-          />
-          <div className="flex w-full flex-col gap-2">
-            <p className="text-center tracking-wider">Category</p>
-            <Select
-              className="w-full"
-              options={options}
-              onChange={handleChange}
+        {/* Content Container */}
+        <div className="my-6 flex w-full flex-col justify-between gap-6 xl:flex-row">
+          {/* Form */}
+          <form className="flex w-full max-w-[1280px] flex-col gap-4 rounded-md bg-primary px-4 py-6">
+            {/* Title */}
+            <PostInput
+              id="title"
+              errors={errors}
+              placeholder="Title"
+              register={register}
+              required
             />
+            <ToolbarComponent />
+            <PostInput
+              id="content"
+              errors={errors}
+              placeholder="Post Content"
+              register={register}
+              required
+              textarea
+            />
+          </form>
+
+          {/* AD */}
+          <div className="w-full max-w-[400px] rounded-md bg-primary p-4">
+            <p className="text-xl">Ad Goes Here</p>
           </div>
-        </section>
-        <div className="flex w-full max-w-[950px] flex-col items-center justify-between gap-4 sm:flex-row sm:gap-20 md:gap-44 lg:gap-64 xl:gap-80">
-          <Button label="Save to Drafts" onClick={() => {}} outline />
-          <Button label="Publish" onClick={handleSubmit(onPublish)} />
         </div>
+        {/* <div className="mb-8 flex flex-col items-center justify-center gap-8 font-semibold">
+          <section className="flex w-full max-w-[945px] flex-col items-center justify-center gap-8"> */}
+        {/* Photo upload */}
+        {/* <ImageUpload
+              value={imgSrc}
+              onChange={(value) => setCustomValue("imgSrc", value)}
+            /> */}
+
+        {/* Title */}
+        {/* <PostInput
+              id="title"
+              errors={errors}
+              placeholder="Title"
+              register={register}
+              required
+            /> */}
+
+        {/* <PostInput
+              id="content"
+              errors={errors}
+              placeholder="Post Content"
+              register={register}
+              required
+              textarea
+            />
+            <div className="flex w-full flex-col gap-2">
+              <p className="text-center tracking-wider">Category</p>
+              <Select
+                className="w-full"
+                options={options}
+                onChange={handleChange}
+              />
+            </div>
+          </section>
+          <div className="flex w-full max-w-[950px] flex-col items-center justify-between gap-4 sm:flex-row sm:gap-20 md:gap-44 lg:gap-64 xl:gap-80">
+            <Button label="Save to Drafts" onClick={() => {}} outline />
+            <Button label="Publish" onClick={handleSubmit(onPublish)} />
+          </div>
+        </div> */}
       </div>
     </Container>
   );
