@@ -11,14 +11,14 @@ module.exports = {
     extend: {
       fontFamily: {
         yeseva: ["var(--font-yeseva-one)", "cursive"],
-        nunito: ["var(--font-nunito)", "sans-serif"],
+        merri: ["var(--font-merri)", "serif"],
         ubuntu: ["var(--font-ubuntu)", "sans-serif"],
       },
       colors: {
         ...blackA,
         ...mauve,
         ...violet,
-        accent: "#ff804a",
+        accent: "#EA580C",
         primary: "#B78570",
         bg: "#FFF6F1",
       },

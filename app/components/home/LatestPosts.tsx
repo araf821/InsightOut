@@ -2,14 +2,8 @@
 
 import { FC } from "react";
 import Container from "../Container";
-import { Merriweather } from "next/font/google";
 import DynamicPostContainer from "./DynamicPostContainer";
 import Button from "../Button";
-
-const merri = Merriweather({
-  subsets: ["latin"],
-  weight: "400",
-});
 
 interface LatestPostsProps {}
 
@@ -21,9 +15,9 @@ const LatestPosts: FC<LatestPostsProps> = ({}) => {
     <Container>
       <div className="pb-12 pt-4">
         <p className="text-4xl sm:text-5xl lg:text-6xl">
-          <span className={merri.className}>Latest Posts</span>
+          <span className="font-merri ">Latest Posts</span>
         </p>
-        <hr className="w-20 border-4 " />
+        <hr className="w-12 border-4 border-accent md:w-20" />
 
         {/* Cards container */}
         <DynamicPostContainer />

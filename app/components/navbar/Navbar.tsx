@@ -18,7 +18,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
   return (
     <nav
       className={`${
-        isOpen ? "translate-x-36 blur-sm duration-500" : ""
+        isOpen ? "translate-x-full md:translate-x-96 blur-sm duration-500" : ""
       } z-30 w-full text-center capitalize transition`}
     >
       {/* Logo and slogan container */}

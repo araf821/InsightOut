@@ -8,9 +8,13 @@ const Hero = () => {
   const router = useRouter();
 
   return (
-    <div className="my-6 w-full bg-primary">
+    <div className="w-full bg-primary">
       <Container>
-        <div className="flex flex-col items-center justify-between gap-8 py-8 lg:flex-row xl:gap-12">
+        <p className="py-8 text-center font-nunito text-6xl">
+          Post of the Week
+          <hr className="mx-auto mt-3 w-32 border-2 border-zinc-700" />
+        </p>
+        <div className="flex flex-col items-center justify-between gap-8 pb-8 lg:flex-row xl:gap-12">
           {/* Image Container */}
           <div className="group relative aspect-[4/3] h-full w-full lg:min-w-[560px] lg:max-w-[650px] xl:max-w-[800px]">
             <Image
@@ -30,7 +34,7 @@ const Hero = () => {
             </p>
             <p
               onClick={() => router.push(`/post/${dummyPost.slug}`)}
-              className={`font-ubuntu cursor-pointer text-5xl font-semibold text-zinc-800 hover:underline hover:underline-offset-8 sm:text-6xl lg:text-7xl`}
+              className={`cursor-pointer font-ubuntu text-5xl font-semibold text-zinc-800 hover:underline hover:underline-offset-8 sm:text-6xl lg:text-7xl`}
             >
               {dummyPost.title}
             </p>

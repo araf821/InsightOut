@@ -29,7 +29,7 @@ const Logo: React.FC<LogoProps> = ({ sidebar }) => {
         closeSidebar();
       }}
     >
-      Insight<span className="text-[#ff804a]">Out</span>
+      Insight<span className="text-accent">Out</span>
     </div>
   );
 };

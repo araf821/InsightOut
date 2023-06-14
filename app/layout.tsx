@@ -1,4 +1,4 @@
-import { Nunito, Ubuntu, Yeseva_One } from "next/font/google";
+import { Merriweather, Nunito, Ubuntu, Yeseva_One } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/navbar/Navbar";
 import LoginModal from "./components/modals/LoginModal";
@@ -8,9 +8,10 @@ import ToasterProvider from "./providers/ToasterProvider";
 import Providers from "./components/Providers";
 import Sidebar from "./components/sidebar/Sidebar";
 
-const nunito = Nunito({
+const merri = Merriweather({
   subsets: ["latin"],
-  variable: "--font-nunito",
+  weight: ["400", "700"],
+  variable: "--font-merri",
 });
 
 const ubuntu = Ubuntu({
@@ -40,7 +41,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${nunito.variable} ${ubuntu.variable} font-nunito  ${yeseva.variable} overflow-x-hidden bg-[#FFF6F1]`}
+        className={`${merri.variable} ${ubuntu.className} ${ubuntu.variable} font-nunito ${yeseva.variable} overflow-x-hidden bg-[#FFF6F1]`}
       >
         <Providers>
           <ToasterProvider />
