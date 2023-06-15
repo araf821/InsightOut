@@ -13,7 +13,7 @@ const SocialProof: FC<SocialProofProps> = ({ icon: Icon, followers, type }) => {
       <span className="absolute left-2 top-2 -z-10 h-full w-full rounded-md bg-primary"></span>
       <Icon className="text-7xl" />
       <div className="flex flex-col justify-center">
-        <p className="text-2xl">{followers}</p>
+        <p className="text-2xl font-semibold">{followers}</p>
         <p className="text-xl">{type}</p>
       </div>
     </div>

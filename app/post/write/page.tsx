@@ -12,6 +12,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import Select from "react-select";
 import slugify from "slugify";
+import MultiSelect from "./MultiSelect";
 
 const WritePage = () => {
   const [selected, setSelected] = useState("");
@@ -65,6 +66,17 @@ const WritePage = () => {
       });
   };
 
+  const options = [
+    { label: "Option 1", value: 1 },
+    { label: "Option 2", value: 2 },
+    { label: "Option 3", value: 3 },
+    { label: "Option 3", value: 3 },
+    { label: "Option 3", value: 3 },
+    { label: "Option 3", value: 3 },
+    { label: "Option 3", value: 3 },
+    { label: "Option 3", value: 3 },
+  ];
+
   const imgSrc = watch("imgSrc");
 
   const setCustomValue = (id: string, value: any) => {
@@ -75,15 +87,15 @@ const WritePage = () => {
     });
   };
 
-  const options = [
-    { value: "home", label: "Home" },
-    { value: "lifestyle", label: "Lifestyle" },
-    { value: "fitness", label: "Fitness" },
-    { value: "news", label: "News" },
-    { value: "entertainment", label: "Entertainment" },
-    { value: "careers", label: "Careers" },
-    { value: "food", label: "Food" },
-  ];
+  // const options = [
+  //   { value: "home", label: "Home" },
+  //   { value: "lifestyle", label: "Lifestyle" },
+  //   { value: "fitness", label: "Fitness" },
+  //   { value: "news", label: "News" },
+  //   { value: "entertainment", label: "Entertainment" },
+  //   { value: "careers", label: "Careers" },
+  //   { value: "food", label: "Food" },
+  // ];
 
   return (
     <Container>
@@ -132,6 +144,9 @@ const WritePage = () => {
               textarea
               className="-mt-2"
             />
+
+            {/* Tags */}
+            <MultiSelect options={options} />
 
             {/* Buttons */}
             <div className="flex flex-col justify-between gap-12 md:flex-row">

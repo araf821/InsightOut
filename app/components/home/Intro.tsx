@@ -19,7 +19,7 @@ const Intro = () => {
           </div>
           <div className="flex w-full flex-col items-center gap-4">
             {/* Social Proof Section */}
-            <div className="flex w-full max-w-[600px] flex-col items-center justify-center gap-6 lg:gap-8">
+            <div className="flex w-full max-w-[550px] flex-col items-center justify-center gap-6 lg:gap-8">
               <SocialProof
                 icon={FaTwitter}
                 followers="123,123,123"
