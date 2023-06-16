@@ -13,10 +13,23 @@ import { toast } from "react-hot-toast";
 import Select from "react-select";
 import slugify from "slugify";
 import MultiSelect from "./MultiSelect";
+import SingleSelect, { SelectOption } from "./SingleSelect";
+
+const options = [
+  { label: "Option 1", value: 1 },
+  { label: "Option 2", value: 2 },
+  { label: "Option 3", value: 3 },
+  { label: "Option 4", value: 4 },
+  { label: "Option 5", value: 5 },
+  { label: "Option 6", value: 6 },
+  { label: "Option 7", value: 7 },
+  { label: "Option 8", value: 8 },
+];
 
 const WritePage = () => {
   const [selected, setSelected] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [tagValue, setTagValue] = useState<SelectOption[]>([]);
 
   const router = useRouter();
 
@@ -66,17 +79,6 @@ const WritePage = () => {
       });
   };
 
-  const options = [
-    { label: "Option 1", value: 1 },
-    { label: "Option 2", value: 2 },
-    { label: "Option 3", value: 3 },
-    { label: "Option 3", value: 3 },
-    { label: "Option 3", value: 3 },
-    { label: "Option 3", value: 3 },
-    { label: "Option 3", value: 3 },
-    { label: "Option 3", value: 3 },
-  ];
-
   const imgSrc = watch("imgSrc");
 
   const setCustomValue = (id: string, value: any) => {
@@ -112,12 +114,25 @@ const WritePage = () => {
           <form className="flex w-full max-w-[1280px] flex-col gap-4 rounded-md border px-4 py-6 shadow-lg">
             {/* Title */}
             <input
+              tabIndex={4}
               id="title"
               autoCorrect="off"
               autoComplete="off"
               type="text"
               placeholder="Title"
               className="h-12 w-full border-b-2 bg-transparent px-4 py-2 font-merri text-xl font-semibold outline-none sm:text-2xl md:text-3xl "
+            />
+
+            {/* Tags */}
+            {/* <SingleSelect
+              options={options}
+              value={tagValue}
+              onChange={(e) => setTagValue(e)}
+            /> */}
+            <MultiSelect
+              options={options}
+              value={tagValue}
+              onChange={(e) => setTagValue(e)}
             />
 
             <div className="mx-auto max-w-[700px] space-y-2 text-center">
@@ -145,13 +160,19 @@ const WritePage = () => {
               className="-mt-2"
             />
 
-            {/* Tags */}
-            <MultiSelect options={options} />
-
             {/* Buttons */}
             <div className="flex flex-col justify-between gap-12 md:flex-row">
-              <Button label="Save As Draft" outline className="max-w-[400px]" />
-              <Button label="Publish Post" className="max-w-[400px]" />
+              <Button
+                onClick={() => {}}
+                label="Save As Draft"
+                outline
+                className="max-w-[400px]"
+              />
+              <Button
+                onClick={() => {}}
+                label="Publish Post"
+                className="max-w-[400px]"
+              />
             </div>
           </form>
 

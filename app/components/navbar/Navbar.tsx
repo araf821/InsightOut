@@ -16,11 +16,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
   const { isOpen } = useContext(SidebarContext);
 
   return (
-    <nav
-      className={`${
-        isOpen ? "translate-x-full md:translate-x-96 blur-sm duration-500" : ""
-      } z-30 w-full text-center capitalize transition`}
-    >
+    <nav className={`z-30 w-full text-center capitalize transition`}>
       {/* Logo and slogan container */}
       <div className="grid place-items-center">
         <div className="mx-auto pb-2 pt-6">

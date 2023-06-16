@@ -3,31 +3,31 @@
 import { FC, useState } from "react";
 import { IoIosCloseCircle } from "react-icons/io";
 import { AiOutlineCaretDown } from "react-icons/ai";
-import { SelectOption } from "./SingleSelect";
 
-interface MultiSelectProps {
+export type SelectOption = {
+  label: string;
+  value: any;
+};
+
+interface SingleSelectProps {
   options: SelectOption[];
-  value: SelectOption[];
-  onChange: (value: SelectOption[]) => void;
+  value?: SelectOption;
+  onChange: (value: SelectOption | undefined) => void;
 }
 
-const MultiSelect: FC<MultiSelectProps> = ({ options, value, onChange }) => {
+const SingleSelect: FC<SingleSelectProps> = ({ options, value, onChange }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   function clearOptions() {
-    onChange([]);
+    onChange(undefined);
   }
 
   function selectOption(option: SelectOption) {
-    if (value?.includes(option)) {
-      onChange(value.filter((val) => val !== option));
-    } else {
-      onChange([...value, option]);
-    }
+    if (option !== value) onChange(option);
   }
 
   function isSelected(option: SelectOption) {
-    return value?.includes(option);
+    return option === value;
   }
 
   return (
@@ -35,36 +35,17 @@ const MultiSelect: FC<MultiSelectProps> = ({ options, value, onChange }) => {
       onBlur={() => setIsOpen(false)}
       onClick={() => setIsOpen((prev) => !prev)}
       tabIndex={6}
-      className="relative flex w-full items-center justify-between rounded-md border-2 border-neutral-300 bg-white px-3 py-2"
+      className="relative flex w-full items-center justify-between rounded-md border-2 border-neutral-300 bg-white px-3 py-1.5"
     >
-      <span className="flex flex-wrap gap-2 overflow-x-auto">
-        {value.length === 0 ? (
-          <span className="text-neutral-500">Tags</span>
-        ) : (
-          value?.map((val) => (
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                selectOption(val);
-              }}
-              key={val.value}
-              className="flex items-center gap-2 rounded-md border-2 border-zinc-400 px-2 py-1 text-sm md:text-base"
-            >
-              {val.label}
-              <IoIosCloseCircle className="text-lg md:text-xl" />
-            </button>
-          ))
-        )}
-      </span>
-      <div className="flex items-center justify-center gap-2 self-stretch">
+      <span>{value?.label}</span>
+      <div className="flex items-center justify-center gap-2">
         <button
           type="button"
-          className="hidden cursor-pointer border-none bg-none p-2 text-2xl outline-none sm:block"
+          className="cursor-pointer border-none bg-none p-2 text-2xl outline-none"
           onClick={(e) => {
             e.stopPropagation();
             clearOptions();
           }}
-          title="Clear All Tags"
         >
           <IoIosCloseCircle />
         </button>
@@ -97,4 +78,4 @@ const MultiSelect: FC<MultiSelectProps> = ({ options, value, onChange }) => {
   );
 };
 
-export default MultiSelect;
+export default SingleSelect;
