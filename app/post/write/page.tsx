@@ -1,7 +1,10 @@
 import Container from "@/app/components/Container";
 import PostForm from "./PostForm";
+import getCurrentUser from "@/app/actions/getCurrentUser";
 
 const WritePage = () => {
+  const currentUser = getCurrentUser();
+
   return (
     <Container>
       <div className="py-8">
@@ -14,7 +17,7 @@ const WritePage = () => {
         {/* Main Content Container */}
         <div className="my-6 flex w-full flex-col justify-between gap-6 xl:flex-row">
           {/* Form */}
-          <PostForm />
+          <PostForm currentUser={currentUser} />
 
           {/* AD */}
           <div className="w-full max-w-[400px] rounded-md bg-primary p-4">

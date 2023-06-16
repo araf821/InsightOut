@@ -1,7 +1,5 @@
 import {
-  Indie_Flower,
   Merriweather,
-  Nunito,
   Ubuntu,
   Yeseva_One,
 } from "next/font/google";
@@ -18,12 +16,6 @@ const merri = Merriweather({
   subsets: ["latin"],
   weight: ["400", "700"],
   variable: "--font-merri",
-});
-
-const indie = Indie_Flower({
-  subsets: ["latin"],
-  weight: ['400'],
-  variable: "--font-indie"
 });
 
 const ubuntu = Ubuntu({
@@ -53,7 +45,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${merri.variable} ${indie.variable} ${ubuntu.className} ${ubuntu.variable} font-nunito ${yeseva.variable} overflow-x-hidden bg-[#FFF6F1]`}
+        className={`${merri.variable} ${ubuntu.className} ${ubuntu.variable} ${yeseva.variable} font-ubuntu overflow-x-hidden bg-bg`}
       >
         <Providers>
           <ToasterProvider />

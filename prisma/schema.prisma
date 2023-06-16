@@ -29,7 +29,7 @@ model Post {
   title     String
   content   String
   slug      String   @unique
-  image     String?
+  image     String
   tags      String[]
   published Boolean  @default(false)
   createdAt DateTime @default(now())

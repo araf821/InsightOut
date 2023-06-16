@@ -11,8 +11,12 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Button from "@/app/components/Button";
+import TitleInput from "./TitleInput";
+import { SafeUser } from "@/app/types";
 
-interface PostFormProps {}
+interface PostFormProps {
+  currentUser: SafeUser | undefined;
+}
 
 const options = [
   { label: "Option 1", value: 1 },
@@ -50,7 +54,6 @@ const PostForm: FC<PostFormProps> = ({}) => {
   });
 
   const onPublish: SubmitHandler<FieldValues> = (data) => {
-    console.log("posting");
     setIsLoading(true);
 
     axios
@@ -58,7 +61,7 @@ const PostForm: FC<PostFormProps> = ({}) => {
         ...data,
         slug: slugify(data.title),
         published: true,
-        tags: postTags,
+        tags: postTags.map((tag) => tag.label),
       })
       .then(() => {
         toast.success("Post published!");
@@ -86,20 +89,12 @@ const PostForm: FC<PostFormProps> = ({}) => {
   return (
     <form className="flex w-full max-w-[1280px] flex-col gap-4 rounded-md border px-4 py-6 shadow-lg">
       {/* Title */}
-      <input
-        tabIndex={4}
+      <TitleInput
         id="title"
-        autoCorrect="off"
-        autoComplete="off"
-        type="text"
+        errors={errors}
+        register={register}
         disabled={isLoading}
-        maxLength={75}
         required
-        {...register("title")}
-        placeholder="Title"
-        className={`h-12 w-full border-b-2 bg-transparent px-4 py-2 font-merri text-xl font-semibold outline-none sm:text-2xl md:text-3xl
-    ${errors["title"] ? "border-red-700" : "border-neutral-300"}
-    ${errors["title"] ? "focus:border-red-700" : "focus:border-zinc-800"}`}
       />
 
       <div className="mx-auto max-w-[700px] space-y-2 text-center">
@@ -122,8 +117,9 @@ const PostForm: FC<PostFormProps> = ({}) => {
       <MultiSelect
         options={options}
         value={postTags}
-        onChange={(tags) => setPostTags(tags)}
+        onChange={(tag) => setPostTags(tag)}
       />
+
       <PostInput
         id="content"
         errors={errors}
