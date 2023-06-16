@@ -2,8 +2,8 @@ import Container from "@/app/components/Container";
 import PostForm from "./PostForm";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 
-const WritePage = () => {
-  const currentUser = getCurrentUser();
+const WritePage = async() => {
+  const currentUser = await getCurrentUser();
 
   return (
     <Container>

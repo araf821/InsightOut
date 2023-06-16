@@ -27,7 +27,7 @@ const NewsletterSection: FC<NewsletterSectionProps> = ({}) => {
       <section className="relative bg-[#F6E9DD] py-10 lg:py-0">
         <div className="mx-auto max-w-[1550px] px-4 sm:px-6 md:px-10 xl:px-20">
           <div className="grid grid-cols-1 gap-12 text-center lg:grid-cols-2 lg:text-start">
-            <p className="flex flex-col gap-1 font-yeseva text-5xl sm:text-6xl md:gap-2 md:text-7xl lg:gap-3  lg:text-left lg:text-7xl xl:text-[80px]">
+            <p className="flex flex-col gap-1 font-merri font-semibold text-5xl sm:text-6xl md:gap-2 md:text-7xl lg:gap-3  lg:text-left lg:text-7xl xl:text-[80px]">
               <span>Step Into An</span>
               <span>Insightful</span>
               <span>Wonderland</span>

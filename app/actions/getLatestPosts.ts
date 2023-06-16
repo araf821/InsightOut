@@ -1,22 +1,26 @@
 import prismaClient from "../lib/prismadb";
 
-const getAllPosts = async () => {
+const getLatestPosts = async (count: number) => {
   try {
     const posts = await prismaClient.post.findMany({
+      take: count,
+      orderBy: {
+        createdAt: "desc",
+      },
       include: {
-        author: true,
+        author: true, // Include the author relation
       },
     });
 
     const safePosts = posts.map((post) => ({
       ...post,
-      createdAt: post.createdAt.toISOString(),
-      updatedAt: post.updatedAt.toISOString(),
       author: {
         id: post.author.id,
         name: post.author.name,
         image: post.author.image,
       },
+      createdAt: post.createdAt.toISOString(),
+      updatedAt: post.updatedAt.toISOString(),
     }));
 
     return safePosts;
@@ -25,4 +29,4 @@ const getAllPosts = async () => {
   }
 };
 
-export default getAllPosts;
+export default getLatestPosts;

@@ -16,7 +16,7 @@ const Hero = () => {
           className="absolute object-cover xl:rounded-lg"
         />
         <div className="absolute left-0 top-0 h-fit w-fit bg-zinc-800 px-4 py-2 font-semibold text-white md:text-lg xl:rounded-tl-lg">
-          <p>Post of the Month</p>
+          <p>Featured Post</p>
         </div>
         <div className="absolute bottom-0 z-10 h-fit w-full bg-white/10 px-4 py-3 shadow-xl backdrop-blur-md lg:py-5 xl:rounded-b-lg">
           <div className="flex flex-col gap-3">

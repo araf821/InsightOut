@@ -1,7 +1,6 @@
 import {
   Merriweather,
   Ubuntu,
-  Yeseva_One,
 } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/navbar/Navbar";
@@ -24,12 +23,6 @@ const ubuntu = Ubuntu({
   variable: "--font-ubuntu",
 });
 
-const yeseva = Yeseva_One({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-yeseva-one",
-});
-
 export const metadata = {
   title: "InsightOut",
   description: "Next Level Blogging.",
@@ -45,7 +38,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${merri.variable} ${ubuntu.className} ${ubuntu.variable} ${yeseva.variable} font-ubuntu overflow-x-hidden bg-bg`}
+        className={`${merri.variable} ${ubuntu.className} ${ubuntu.variable} font-ubuntu overflow-x-hidden bg-bg`}
       >
         <Providers>
           <ToasterProvider />

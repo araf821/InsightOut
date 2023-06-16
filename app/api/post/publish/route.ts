@@ -21,7 +21,11 @@ export async function POST(request: Request) {
       slug,
       tags,
       published,
-      authorId: currentUser.id,
+      author: {
+        connect: {
+          id: currentUser.id,
+        },
+      },
     },
   });
 

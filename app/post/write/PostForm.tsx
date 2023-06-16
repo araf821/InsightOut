@@ -15,7 +15,7 @@ import TitleInput from "./TitleInput";
 import { SafeUser } from "@/app/types";
 
 interface PostFormProps {
-  currentUser: SafeUser | undefined;
+  currentUser: SafeUser | null;
 }
 
 const options = [
