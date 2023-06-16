@@ -31,8 +31,8 @@ const Button: React.FC<ButtonProps> = ({
         special
           ? "border-zinc-800 bg-accent outline-offset-[-6px] hover:outline-zinc-800 focus:ring-zinc-800"
           : outline
-          ? "border-zinc-800 bg-bg hover:bg-primary hover:outline-zinc-800 focus:ring-zinc-800"
-          : "bg-primary outline-2 hover:outline-primary focus:ring-primary"
+          ? "border-zinc-800 bg-bg hover:outline-zinc-800 focus:ring-zinc-800"
+          : "border-primary bg-primary outline-2 hover:outline-primary focus:ring-primary"
       }
       ${className}
       `}

@@ -4,6 +4,7 @@ import { FC, useState } from "react";
 import { IoIosCloseCircle } from "react-icons/io";
 import { AiOutlineCaretDown } from "react-icons/ai";
 import { SelectOption } from "./SingleSelect";
+import { toast } from "react-hot-toast";
 
 interface MultiSelectProps {
   options: SelectOption[];
@@ -22,6 +23,10 @@ const MultiSelect: FC<MultiSelectProps> = ({ options, value, onChange }) => {
     if (value?.includes(option)) {
       onChange(value.filter((val) => val !== option));
     } else {
+      if (value.length === 5) {
+        toast.error("You may only add up to 5 tags.");
+        return;
+      }
       onChange([...value, option]);
     }
   }
@@ -32,6 +37,7 @@ const MultiSelect: FC<MultiSelectProps> = ({ options, value, onChange }) => {
 
   return (
     <div
+      title="Post Tags"
       onBlur={() => setIsOpen(false)}
       onClick={() => setIsOpen((prev) => !prev)}
       tabIndex={6}
@@ -48,7 +54,7 @@ const MultiSelect: FC<MultiSelectProps> = ({ options, value, onChange }) => {
                 selectOption(val);
               }}
               key={val.value}
-              className="flex items-center gap-2 rounded-md border-2 border-zinc-400 px-2 py-1 text-sm md:text-base"
+              className="flex items-center gap-2 rounded-md border-2 border-zinc-600 bg-bg px-2 py-1 text-sm md:text-base"
             >
               {val.label}
               <IoIosCloseCircle className="text-lg md:text-xl" />

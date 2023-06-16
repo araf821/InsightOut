@@ -6,6 +6,7 @@ interface PostInputProps {
   required?: boolean;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
+  disabled: boolean;
   textarea?: boolean;
   className?: string;
 }
@@ -17,6 +18,7 @@ const PostInput: React.FC<PostInputProps> = ({
   register,
   errors,
   textarea,
+  disabled,
   className = "",
 }) => {
   if (textarea) {
@@ -25,9 +27,11 @@ const PostInput: React.FC<PostInputProps> = ({
         id={id}
         rows={10}
         cols={10}
+        maxLength={3000}
+        disabled={disabled}
         {...register(id, { required })}
         placeholder={placeholder}
-        className={`w-full resize-none rounded-md border-2 bg-white p-4 font-light outline-none transition
+        className={`w-full resize-none rounded-md border-2 bg-white p-4 outline-none transition
         ${errors[id] ? "border-red-700" : "border-neutral-300"}
         ${errors[id] ? "focus:border-red-700" : "focus:border-zinc-800"}
         ${className}`}

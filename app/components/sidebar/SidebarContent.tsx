@@ -1,18 +1,27 @@
 import { SafeUser } from "@/app/types";
 import { FC } from "react";
 import SidebarButton from "./SidebarButton";
+import useLoginModal from "@/app/hooks/useLoginModal";
+import { signOut } from "next-auth/react";
 
 interface SidebarContentProps {
   currentUser: SafeUser | null;
 }
 
 const SidebarContent: FC<SidebarContentProps> = ({ currentUser }) => {
+  const { open } = useLoginModal();
+
   let body = <></>;
 
   if (!currentUser) {
     body = (
       <div className="flex flex-col gap-4">
-        <SidebarButton title="Login" onClick={() => {}} />
+        <SidebarButton
+          title="Login"
+          onClick={() => {
+            open();
+          }}
+        />
         <SidebarButton title="Sign Up" onClick={() => {}} />
       </div>
     );
@@ -20,6 +29,7 @@ const SidebarContent: FC<SidebarContentProps> = ({ currentUser }) => {
     body = (
       <div>
         <p>Hello, {currentUser.name?.split(" ")[0]}</p>
+        <SidebarButton title="Out" onClick={signOut} />
       </div>
     );
   }

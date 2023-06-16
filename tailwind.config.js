@@ -13,6 +13,7 @@ module.exports = {
         yeseva: ["var(--font-yeseva-one)", "cursive"],
         merri: ["var(--font-merri)", "serif"],
         ubuntu: ["var(--font-ubuntu)", "sans-serif"],
+        indie: ["var(--font-indie)", "sans-serif"],
       },
       colors: {
         ...blackA,

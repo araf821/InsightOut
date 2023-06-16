@@ -11,7 +11,7 @@ export async function POST(request: Request) {
 
   const body = await request.json();
 
-  const { title, content, imgSrc: image, category, published, slug } = body;
+  const { title, content, imgSrc: image, tags, published, slug } = body;
 
   const post = await prismaClient.post.create({
     data: {
@@ -19,7 +19,7 @@ export async function POST(request: Request) {
       content,
       image,
       slug,
-      category,
+      tags,
       published,
       authorId: currentUser.id,
     },
