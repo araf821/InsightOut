@@ -14,7 +14,7 @@ export type SafePost = Omit<Post, "createdAt" | "updatedAt"> & {
   updatedAt: string;
   author: {
     id: string;
-    name: string;
-    image: string;
+    name: string | null;
+    image: string | null;
   };
 };
