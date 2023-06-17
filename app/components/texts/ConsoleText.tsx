@@ -49,7 +49,7 @@ const ConsoleText: React.FC<ConsoleTextProps> = ({ words, id }) => {
 
   return (
     <div>
-      <div className="text-center font-[cursive] h-12 text-base text-zinc-800 sm:text-lg md:text-xl lg:text-2xl">
+      <div className="text-center lg:text-left font-[cursive] h-12 text-base text-zinc-800 sm:text-lg md:text-xl lg:text-2xl">
         <span>We are </span>
         <span id={id} />
         <span className="animate-ping">_</span>

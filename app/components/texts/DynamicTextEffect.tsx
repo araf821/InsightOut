@@ -5,7 +5,7 @@ interface DynamicTextEffectProps {}
 
 const DynamicTextEffect: FC<DynamicTextEffectProps> = ({}) => {
   return (
-    <div className="text-black">
+    <div className="text-black w-full">
       <ConsoleText
         words={[
           "more than just a blog.",
