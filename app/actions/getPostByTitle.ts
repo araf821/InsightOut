@@ -1,20 +1,12 @@
 import prismaClient from "../lib/prismadb";
 
-interface IParams {
-  slug: string;
-}
-
-const getPostBySlug = async (params: IParams) => {
+const getPostByTitle = async (title: string) => {
   try {
-    const { slug } = params;
-
-    if (!slug) {
-      return null;
-    }
-
-    const post = await prismaClient.post.findUnique({
+    const post = await prismaClient.post.findFirst({
       where: {
-        slug: slug,
+        title: {
+          equals: title,
+        },
       },
       include: {
         author: true,
@@ -41,4 +33,5 @@ const getPostBySlug = async (params: IParams) => {
     return null;
   }
 };
-export default getPostBySlug;
+
+export default getPostByTitle;

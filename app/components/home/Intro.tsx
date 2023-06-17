@@ -17,9 +17,6 @@ const Intro = () => {
               </span>
             </p>
             <hr className="mx-auto -mt-0 w-20 border-4 border-accent lg:mx-0" />
-            {/* <p className="-mt-2 text-center text-xl sm:text-2xl md:text-3xl lg:text-left">
-              We&rsquo;re more than just a blog.
-            </p> */}
             <DynamicTextEffect />
           </div>
           <div className="flex w-full flex-col items-center gap-4">

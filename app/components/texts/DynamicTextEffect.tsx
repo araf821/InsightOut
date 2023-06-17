@@ -9,8 +9,10 @@ const DynamicTextEffect: FC<DynamicTextEffectProps> = ({}) => {
       <ConsoleText
         words={[
           "more than just a blog.",
-          "the dreamers of improbable dreams.",
-          "the architects of virtual unicorns.",
+          "the creators of digital mayhem.",
+          "the conjurers of code and chaos.",
+          "the time-travelers of innovation.",
+          "the the adventurers in the realms of imagination.",
         ]}
         id="dynamicText"
       />

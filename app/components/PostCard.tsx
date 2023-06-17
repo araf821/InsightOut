@@ -21,7 +21,7 @@ const PostCard: FC<PostCardProps> = ({ post, horizontal, main }) => {
           src={post.image}
           fill
           alt=""
-          className="absolute rounded-lg object-cover transition-transform duration-1000 ease-out hover:scale-125"
+          className="absolute rounded-lg object-cover transition-transform duration-1000 ease-out hover:scale-110"
         />
       </div>
 
