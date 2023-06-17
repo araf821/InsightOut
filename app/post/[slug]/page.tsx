@@ -11,7 +11,7 @@ const PostPage = async ({ params }: { params: IParams }) => {
   const post = await getPostBySlug({ slug });
 
   if (!post) {
-    return <EmptyState title="" subtitle="" button />;
+    return <EmptyState title="Nothing to see here :/" subtitle="This page may still be under construction." button />;
   }
 
   return <div>idk</div>;

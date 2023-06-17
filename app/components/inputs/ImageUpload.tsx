@@ -26,6 +26,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value }) => {
       uploadPreset="updapnr1"
       options={{
         maxFiles: 1,
+        sources: ["unsplash", "local", "camera"],
       }}
     >
       {({ open }) => {

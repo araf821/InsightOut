@@ -19,14 +19,21 @@ interface PostFormProps {
 }
 
 const options = [
-  { label: "Option 1", value: 1 },
-  { label: "Option 2", value: 2 },
-  { label: "Option 3", value: 3 },
-  { label: "Option 4", value: 4 },
-  { label: "Option 5", value: 5 },
-  { label: "Option 6", value: 6 },
-  { label: "Option 7", value: 7 },
-  { label: "Option 8", value: 8 },
+  { label: "Technology", value: "technology" },
+  { label: "Health", value: "health" },
+  { label: "Travel", value: "travel" },
+  { label: "Food", value: "food" },
+  { label: "Anime", value: "anime" },
+  { label: "Gaming", value: "gaming" },
+  { label: "Movies", value: "movies" },
+  { label: "Entertainment", value: "entertainment" },
+  { label: "Fashion", value: "fashion" },
+  { label: "Fitness", value: "fitness" },
+  { label: "Sports", value: "sports" },
+  { label: "Business", value: "business" },
+  { label: "Art", value: "art" },
+  { label: "Science", value: "science" },
+  { label: "Lifestyle", value: "lifestyle" },
 ];
 
 const PostForm: FC<PostFormProps> = ({}) => {
@@ -102,14 +109,6 @@ const PostForm: FC<PostFormProps> = ({}) => {
           value={imgSrc}
           onChange={(value) => setCustomValue("imgSrc", value)}
         />
-        <p className="text-lg font-bold md:text-2xl">Upload An Image</p>
-        <p className="font-bold">Or</p>
-        <p className="cursor-not-allowed text-xl font-bold text-zinc-600 underline sm:text-2xl md:text-3xl">
-          Import from Unsplash
-        </p>
-        <p className="text-sm font-light md:text-base">
-          - Feature Coming Soon -
-        </p>
       </div>
       {/* <ToolbarComponent /> */}
 

@@ -82,7 +82,7 @@ const MultiSelect: FC<MultiSelectProps> = ({ options, value, onChange }) => {
       <ul
         className={`${
           isOpen ? "scale-y-100" : "scale-y-0"
-        } absolute left-0 top-[110%] z-10 max-h-screen w-full origin-top-left overflow-y-auto rounded-md border-2 border-zinc-700 bg-white transition-transform duration-200 ease-out`}
+        } absolute left-0 top-[110%] z-10 max-h-72 w-full origin-top-left overflow-y-auto rounded-md border-2 border-zinc-700 bg-white transition-transform duration-200 ease-out`}
       >
         {options.map((option, index) => (
           <li
@@ -92,8 +92,8 @@ const MultiSelect: FC<MultiSelectProps> = ({ options, value, onChange }) => {
               selectOption(option);
               setIsOpen(false);
             }}
-            className={`cursor-pointer list-none px-3 py-2.5 transition-colors 
-            ${isSelected(option) ? "bg-bg hover:bg-bg" : "hover:bg-primary"}`}
+            className={`cursor-pointer list-none px-3 py-2.5 transition-colors hover:bg-primary 
+            ${isSelected(option) && "bg-bg"}`}
           >
             {option.label}
           </li>

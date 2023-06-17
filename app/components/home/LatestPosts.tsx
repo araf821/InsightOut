@@ -22,7 +22,7 @@ const LatestPosts: FC<LatestPostsProps> = ({ posts }) => {
         <hr className="w-12 border-4 border-accent md:w-20" />
 
         {/* Cards container */}
-        <div className="md: mt-4 flex flex-col gap-4 md:flex-row md:justify-between md:border md:border-neutral-200 md:p-2 md:shadow-lg lg:gap-8 lg:p-3 xl:p-4">
+        <div className="mt-4 flex flex-col gap-4 md:flex-row md:justify-between md:border md:border-neutral-200 md:p-2 md:shadow-lg lg:gap-8 lg:p-3 xl:p-4">
           <div className="h-full w-full">
             <PostCard main post={posts[0]} />
           </div>
