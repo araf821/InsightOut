@@ -6,6 +6,7 @@ import SidebarButton from "./SidebarButton";
 import { signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
+import { FaDiscord, FaGithub } from "react-icons/fa";
 
 interface SidebarContentProps {
   currentUser: SafeUser | null;
@@ -19,12 +20,29 @@ const SidebarContent: FC<SidebarContentProps> = ({ currentUser }) => {
   if (!currentUser) {
     body = (
       <div className="flex flex-col gap-4">
+        <p className="text-center font-semibold sm:text-lg lg:text-xl">
+          Login to view your dashboard.
+        </p>
         <SidebarButton
           title="Login with Google"
           onClick={() => {
             signIn("google");
           }}
           icon={FcGoogle}
+        />
+        <SidebarButton
+          title="Login with Github"
+          onClick={() => {
+            signIn("github");
+          }}
+          icon={FaGithub}
+        />
+        <SidebarButton
+          title="Login with Discord"
+          onClick={() => {
+            signIn("discord");
+          }}
+          icon={FaDiscord}
         />
       </div>
     );
@@ -43,7 +61,7 @@ const SidebarContent: FC<SidebarContentProps> = ({ currentUser }) => {
             router.push("/profile/preferences");
           }}
         />
-        <hr className="rounded-full border-2 border-[#A57864]" />
+        <hr className="rounded-full border-[#936a59]" />
         <p className="sm:text-lg lg:text-xl">Signed in as {currentUser.name}</p>
         <SidebarButton title="Sign Out" onClick={signOut} />
       </div>
@@ -53,7 +71,11 @@ const SidebarContent: FC<SidebarContentProps> = ({ currentUser }) => {
   return (
     <section className="sidebar-content mx-auto max-w-[800px] px-4 py-8 md:px-0">
       {body}
-      <hr className="rounded-full my-4 border-2 border-[#A57864]" />
+      <hr className="my-4 rounded-full border-[#936a59]" />
+      <SidebarButton
+        title="Help and FAQs"
+        onClick={() => router.push("/help")}
+      />
     </section>
   );
 };
