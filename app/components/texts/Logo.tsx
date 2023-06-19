@@ -14,9 +14,10 @@ const Logo: React.FC<LogoProps> = ({ sidebar }) => {
   return (
     <div
       tabIndex={0}
-      className={`max-w-min cursor-pointer font-bold select-none font-merri text-5xl text-zinc-800 sm:text-6xl md:text-7xl lg:text-[5rem] ${
-        sidebar === true &&
-        "text-[36px] sm:text-[44px] md:text-[50px] lg:text-[54px] xl:text-[56px]"
+      className={`max-w-min cursor-pointer select-none font-merri font-bold text-zinc-800 ${
+        sidebar
+          ? "text-[36px] sm:text-[44px] md:text-[50px] lg:text-5xl xl:text-[56px]"
+          : "text-5xl sm:text-6xl md:text-7xl lg:text-[5rem]"
       }`}
       onClick={() => {
         router.push("/");

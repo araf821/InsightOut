@@ -19,6 +19,7 @@ module.exports = {
         ...violet,
         accent: "#EA580C",
         primary: "#B78570",
+        // primary: "#CE967A",
         bg: "#FFF6F1",
       },
       backgroundImage: {

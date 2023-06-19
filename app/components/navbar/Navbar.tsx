@@ -16,17 +16,17 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
   const { isOpen } = useContext(SidebarContext);
 
   return (
-    <nav className={`z-30 w-full text-center capitalize transition`}>
+    <nav className={`z-30 w-full text-center capitalize shadow-md shadow-primary/30 transition`}>
       {/* Logo and slogan container */}
       <div className="grid place-items-center">
         <div className="mx-auto pb-2 pt-6">
           <Logo />
         </div>
-        <Slogan />
+        {/* <Slogan /> */}
       </div>
 
       {/* Lower nav menu bar */}
-      <div className="lower-nav pt-2">
+      <div className="lower-nav py-4">
         <Container>
           <NavButtonsContainer />
         </Container>

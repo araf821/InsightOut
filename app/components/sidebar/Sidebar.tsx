@@ -15,8 +15,8 @@ const Sidebar: FC<SidebarProps> = ({ currentUser }) => {
   const { isOpen, closeSidebar } = useSidebarContext();
 
   const header = (
-    <div className="w-full bg-[#FFF6F1] px-4 py-5 shadow-lg">
-      <div className="mx-auto flex items-center justify-between">
+    <div className="w-full bg-bg px-4 py-5 shadow-lg">
+      <div className="mx-auto flex max-w-[800px] items-center justify-between">
         <Logo sidebar />
         <button onClick={closeSidebar}>
           <IoIosCloseCircle className="text-3xl text-zinc-800 transition duration-500 hover:scale-110 hover:animate-pulse" />
@@ -36,7 +36,7 @@ const Sidebar: FC<SidebarProps> = ({ currentUser }) => {
         ${isOpen && "backdrop-blur-md"}
       `}
       >
-        <div className="z-50 h-full w-full bg-[#B78570] lg:w-3/4 xl:w-3/5">
+        <div className="z-50 h-full w-full bg-primary">
           <div className="mx-auto flex flex-col items-center">{header}</div>
           <SidebarContent currentUser={currentUser} />
         </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { SafePost } from "@/app/types";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -22,7 +23,7 @@ const Hero: React.FC<HeroProps> = ({ post }) => {
         <div className="absolute left-0 top-0 h-fit w-fit bg-zinc-800 px-4 py-2 font-semibold text-white md:text-lg lg:rounded-tl-lg">
           <p>Featured Post</p>
         </div>
-        <div className="absolute bottom-0 z-10 h-fit w-full bg-white/10 px-4 py-3 shadow-xl backdrop-blur-md lg:py-5 lg:rounded-b-lg">
+        <div className="absolute bottom-0 z-10 h-fit w-full bg-white/10 px-4 py-3 shadow-xl backdrop-blur-md lg:rounded-b-lg lg:py-5">
           <div className="flex flex-col gap-3">
             <p
               onClick={() => router.push(`/post/${post.slug}`)}
@@ -34,7 +35,7 @@ const Hero: React.FC<HeroProps> = ({ post }) => {
               {post.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-md bg-bg px-2 py-1 tracking-wider text-zinc-800 md:text-lg"
+                  className="rounded-md bg-zinc-800 px-2 py-1 tracking-wider text-bg md:text-lg"
                 >
                   {tag}
                 </span>
