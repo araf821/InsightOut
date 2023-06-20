@@ -13,8 +13,8 @@ interface NewsletterSectionProps {}
 
 const NewsletterSection: FC<NewsletterSectionProps> = ({}) => {
   return (
-    <>
-      <div>
+    <div className="relative">
+      {/* <div>
         <svg id="visual" version="1.1" viewBox="0 528.02 900 72.98">
           <path
             d="M0 574L21.5 572.7C43 571.3 86 568.7 128.8 568.3C171.7 568 214.3 570 257.2 571.2C300 572.3 343 572.7 385.8 570.7C428.7 568.7 471.3 564.3 514.2 562.3C557 560.3 600 560.7 642.8 562.5C685.7 564.3 728.3 567.7 771.2 570.5C814 573.3 857 575.7 878.5 576.8L900 578L900 601L878.5 601C857 601 814 601 771.2 601C728.3 601 685.7 601 642.8 601C600 601 557 601 514.2 601C471.3 601 428.7 601 385.8 601C343 601 300 601 257.2 601C214.3 601 171.7 601 128.8 601C86 601 43 601 21.5 601L0 601Z"
@@ -23,8 +23,23 @@ const NewsletterSection: FC<NewsletterSectionProps> = ({}) => {
             strokeLinejoin="miter"
           />
         </svg>
+      </div> */}
+      <div className="overflow-hidden absolute top-0 -translate-y-full -z-10">
+        <svg
+          preserveAspectRatio="none"
+          viewBox="0 0 1200 120"
+          xmlns="http://www.w3.org/2000/svg"
+          style={{
+            fill: "#F6E9DD",
+            width: "100%",
+            height: 300,
+            transform: "rotate(180deg) scaleX(-1)",
+          }}
+        >
+          <path d="M1200 120L0 16.48V0h1200v120z" />
+        </svg>
       </div>
-      <section className="relative bg-[#F6E9DD] py-10 lg:py-0">
+      <section className="relative bg-[#F6E9DD] pb-10 lg:pt-10">
         <div className="mx-auto max-w-[1550px] px-4 sm:px-6 md:px-10 xl:px-20">
           <div className="grid grid-cols-1 gap-12 text-center lg:grid-cols-2 lg:text-start">
             <p className="flex flex-col gap-1 font-merri text-5xl sm:text-6xl md:gap-2 md:text-7xl lg:gap-3  lg:text-left lg:text-7xl xl:text-[80px]">
@@ -77,7 +92,7 @@ const NewsletterSection: FC<NewsletterSectionProps> = ({}) => {
           />
         </svg>
       </div>
-    </>
+    </div>
   );
 };
 

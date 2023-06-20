@@ -1,7 +1,4 @@
-import {
-  Merriweather,
-  Ubuntu,
-} from "next/font/google";
+import { Merriweather, Ubuntu } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/navbar/Navbar";
 import LoginModal from "./components/modals/LoginModal";
@@ -38,14 +35,14 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${merri.variable} ${ubuntu.className} ${ubuntu.variable} font-ubuntu overflow-x-hidden bg-bg`}
+        className={`${merri.variable} ${ubuntu.className} ${ubuntu.variable} overflow-x-hidden bg-bg font-ubuntu`}
       >
         <Providers>
           <ToasterProvider />
-          <Navbar currentUser={currentUser} />
           <RegisterModal />
           <LoginModal />
           <Sidebar currentUser={currentUser} />
+          <Navbar />
           <div>{children}</div>
         </Providers>
       </body>

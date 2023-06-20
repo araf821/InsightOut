@@ -1,22 +1,16 @@
 "use client";
 
-import { useContext } from "react";
 import Logo from "../texts/Logo";
-import { SafeUser } from "@/app/types";
-import { SidebarContext } from "@/app/context/sidebar_context";
-import Slogan from "../texts/Slogan";
 import Container from "../Container";
 import NavButtonsContainer from "./NavButtonsContainer";
 
-interface NavbarProps {
-  currentUser?: SafeUser | null | undefined;
-}
+interface NavbarProps {}
 
-const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
-  const { isOpen } = useContext(SidebarContext);
-
+const Navbar: React.FC<NavbarProps> = ({}) => {
   return (
-    <nav className={`z-30 w-full text-center capitalize shadow-md shadow-primary/30 transition`}>
+    <nav
+      className={`z-30 w-full origin-top bg-bg text-center capitalize shadow-sm shadow-primary/30 transition`}
+    >
       {/* Logo and slogan container */}
       <div className="grid place-items-center">
         <div className="mx-auto pb-2 pt-6">

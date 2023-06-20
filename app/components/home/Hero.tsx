@@ -5,11 +5,15 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 interface HeroProps {
-  post: SafePost;
+  post: SafePost | null;
 }
 
 const Hero: React.FC<HeroProps> = ({ post }) => {
   const router = useRouter();
+
+  if (!post) {
+    return null;
+  }
 
   return (
     <section className="mx-auto w-full max-w-[1750px] py-8">
@@ -26,8 +30,9 @@ const Hero: React.FC<HeroProps> = ({ post }) => {
         <div className="absolute bottom-0 z-10 h-fit w-full bg-white/10 px-4 py-3 shadow-xl backdrop-blur-md lg:rounded-b-lg lg:py-5">
           <div className="flex flex-col gap-3">
             <p
+              tabIndex={0}
               onClick={() => router.push(`/post/${post.slug}`)}
-              className="cursor-pointer font-merri text-2xl hover:underline sm:text-3xl md:text-4xl lg:text-5xl"
+              className="cursor-pointer font-merri text-2xl hover:underline focus:underline sm:text-3xl md:text-4xl lg:text-5xl"
             >
               {post.title}
             </p>
