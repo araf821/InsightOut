@@ -64,7 +64,7 @@ const PostForm: FC<PostFormProps> = ({}) => {
     setIsLoading(true);
 
     axios
-      .post("/api/post/publish", {
+      .post("/api/post/post", {
         ...data,
         slug: slugify(data.title),
         published: true,
@@ -73,6 +73,28 @@ const PostForm: FC<PostFormProps> = ({}) => {
       .then(() => {
         toast.success("Post published!");
         router.push("/explore");
+        reset();
+      })
+      .catch(() => {
+        toast.error("Something went wrong.");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
+  const onDraft: SubmitHandler<FieldValues> = (data) => {
+    setIsLoading(true);
+
+    axios
+      .post("/api/post/post", {
+        ...data,
+        slug: slugify(data.title),
+        tags: postTags.map((tag) => tag.label),
+      })
+      .then(() => {
+        toast.success("Saved as draft!");
+        router.push("/profile/dashboard");
         reset();
       })
       .catch(() => {
@@ -133,7 +155,7 @@ const PostForm: FC<PostFormProps> = ({}) => {
       {/* Buttons */}
       <div className="flex flex-col items-center justify-between gap-4 md:flex-row md:gap-12">
         <Button
-          onClick={() => {}}
+          onClick={handleSubmit(onDraft)}
           label="Save As Draft"
           outline
           className="md:max-w-[400px]"

@@ -12,7 +12,7 @@ export default async function Home() {
 
   return (
     <div className="relative">
-      <div className="overflow-hidden hidden md:block absolute top-0 -z-10 scale-x-[-1]">
+      <div className="absolute top-0 -z-10 hidden scale-x-[-1] overflow-hidden md:block">
         <svg
           preserveAspectRatio="none"
           viewBox="0 0 1200 120"
