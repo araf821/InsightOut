@@ -7,8 +7,8 @@ const Intro = () => {
   return (
     <section className="w-full pb-8 pt-10">
       <Container>
-        <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-4 text-zinc-800 lg:flex-row lg:gap-12 xl:gap-0">
-          <div className="flex w-full flex-col items-center gap-4 ">
+        <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-4 lg:flex-row lg:gap-12 xl:gap-0">
+          <div className="flex w-full flex-col items-center gap-4 text-zinc-800">
             <p className="text-center font-merri text-4xl font-semibold sm:text-5xl md:text-6xl lg:text-left xl:text-[68px]">
               Welcome to the Insight<span className="text-accent">Out</span>{" "}
               Blog

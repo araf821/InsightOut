@@ -15,7 +15,7 @@ const Sidebar: FC<SidebarProps> = ({ currentUser }) => {
   const { isOpen, closeSidebar } = useSidebarContext();
 
   const header = (
-    <div className="w-full bg-bg px-4 py-5 shadow-lg">
+    <div className="w-full bg-bg px-4 py-5 shadow-md">
       <div className="mx-auto flex max-w-[800px] items-center justify-between">
         <Logo sidebar />
         <button onClick={closeSidebar}>

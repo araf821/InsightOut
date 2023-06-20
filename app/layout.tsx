@@ -35,7 +35,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${merri.variable} ${ubuntu.className} ${ubuntu.variable} overflow-x-hidden bg-bg font-ubuntu`}
+        className={`text-whi ${merri.variable} ${ubuntu.className} ${ubuntu.variable} overflow-x-hidden bg-bg font-ubuntu`}
       >
         <Providers>
           <ToasterProvider />

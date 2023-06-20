@@ -9,7 +9,7 @@ interface NavbarProps {}
 const Navbar: React.FC<NavbarProps> = ({}) => {
   return (
     <nav
-      className={`z-30 w-full origin-top bg-bg text-center capitalize shadow-sm shadow-primary/30 transition`}
+      className={`z-30 w-full origin-top bg-bg text-center capitalize shadow-md transition`}
     >
       {/* Logo and slogan container */}
       <div className="grid place-items-center">

@@ -17,7 +17,8 @@ export default async function Home() {
           preserveAspectRatio="none"
           viewBox="0 0 1200 120"
           xmlns="http://www.w3.org/2000/svg"
-          style={{ fill: "#F6E9DD", width: "200%", height: 500 }}
+          style={{ width: "200%", height: 500 }}
+          className="fill-secondary"
         >
           <path d="M1200 120L0 16.48V0h1200v120z" />
         </svg>

@@ -27,7 +27,7 @@ const Hero: React.FC<HeroProps> = ({ post }) => {
         <div className="absolute left-0 top-0 h-fit w-fit bg-zinc-800 px-4 py-2 font-semibold text-white md:text-lg lg:rounded-tl-lg">
           <p>Featured Post</p>
         </div>
-        <div className="absolute bottom-0 z-10 h-fit w-full bg-white/10 px-4 py-3 shadow-xl backdrop-blur-md lg:rounded-b-lg lg:py-5">
+        <div className="absolute bottom-0 z-10 h-fit w-full bg-bg/20 px-4 py-3 shadow-xl backdrop-blur-md lg:rounded-b-lg lg:py-5">
           <div className="flex flex-col gap-3">
             <p
               tabIndex={0}
