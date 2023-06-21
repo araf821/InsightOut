@@ -3,6 +3,9 @@ import prismaClient from "../lib/prismadb";
 const getAllPosts = async () => {
   try {
     const posts = await prismaClient.post.findMany({
+      where: {
+        published: true,
+      },
       include: {
         author: true,
       },

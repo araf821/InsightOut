@@ -3,6 +3,9 @@ import prismaClient from "../lib/prismadb";
 const getLatestPosts = async (count: number) => {
   try {
     const posts = await prismaClient.post.findMany({
+      where: {
+        published: true,
+      },
       take: count,
       orderBy: {
         createdAt: "desc",
