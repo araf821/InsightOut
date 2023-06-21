@@ -1,6 +1,7 @@
 import Container from "@/app/components/Container";
 import PostForm from "./PostForm";
 import getCurrentUser from "@/app/actions/getCurrentUser";
+import Chat from "./Chat";
 
 const WritePage = async () => {
   const currentUser = await getCurrentUser();
@@ -20,9 +21,7 @@ const WritePage = async () => {
           <PostForm currentUser={currentUser} />
 
           {/* AD */}
-          <div className="w-full max-w-[400px] rounded-md bg-primary p-4">
-            <p className="text-xl">Ad Goes Here</p>
-          </div>
+          <Chat />
         </div>
       </div>
     </Container>

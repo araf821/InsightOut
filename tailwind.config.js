@@ -22,8 +22,8 @@ module.exports = {
         // secondary: "#fbb1d0",
         // bg: "#fdd3e5",
         //--------------------------------
-        accent: "#c76433",
-        primary: "#c76433",
+        accent: "#fb7185",
+        primary: "#7dd3fc",
         secondary: "#ffffff",
         bg: "#f3f9fc",
         //--------------------------------
