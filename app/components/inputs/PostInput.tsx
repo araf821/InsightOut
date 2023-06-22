@@ -1,7 +1,7 @@
 "use client";
 
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 interface PostInputProps {
   id: string;
@@ -10,23 +10,19 @@ interface PostInputProps {
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
   disabled: boolean;
-  textarea?: boolean;
   className?: string;
 }
 
 const PostInput: React.FC<PostInputProps> = ({
   id,
   placeholder,
-  required,
-  register,
   errors,
-  textarea,
   disabled,
   className = "",
 }) => {
   const [count, setCount] = useState(0);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCount(e.target.value.length);
   };
 
@@ -36,6 +32,7 @@ const PostInput: React.FC<PostInputProps> = ({
         id={id}
         rows={10}
         cols={10}
+        required
         maxLength={3000}
         onChange={handleChange}
         disabled={disabled}

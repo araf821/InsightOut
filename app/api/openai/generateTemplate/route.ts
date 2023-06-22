@@ -18,7 +18,6 @@ export async function POST(request: Request) {
         model: "gpt-3.5-turbo",
         temperature: 1,
         n: 1,
-
         messages: [
           {
             role: "user",
@@ -26,7 +25,7 @@ export async function POST(request: Request) {
           },
           {
             role: "system",
-            content: `${role}`,
+            content: `I am a helpful assistant.`,
           },
         ],
       });

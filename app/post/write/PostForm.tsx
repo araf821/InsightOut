@@ -2,7 +2,7 @@
 
 import PostGeneration from "./PostGeneration";
 import ImageUpload from "@/app/components/inputs/ImageUpload";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import MultiSelect from "./MultiSelect";
 import PostInput from "@/app/components/inputs/PostInput";
 import slugify from "slugify";
@@ -14,6 +14,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Button from "@/app/components/Button";
 import TitleInput from "./TitleInput";
 import { SafeUser } from "@/app/types";
+import getPostTemplate from "@/app/actions/openai/generatePostTemplate";
 
 interface PostFormProps {
   currentUser: SafeUser | null;
@@ -40,11 +41,21 @@ const options = [
 const PostForm: FC<PostFormProps> = ({}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [postTags, setPostTags] = useState<SelectOption[]>([]);
+  const [generatedContent, setGeneratedContent] = useState("");
+
   const router = useRouter();
 
-  const handleGenerate = () => {
-
-  }
+  const handleGenerate = async (title: string) => {
+    if (title === "") {
+      toast.error("You literally didn't come up with a title yet.");
+    } else {
+      setIsLoading(true);
+      setGeneratedContent("Loading...");
+      const data = await getPostTemplate(title);
+      setGeneratedContent(data.content);
+      setIsLoading(false);
+    }
+  };
 
   const {
     register,
@@ -65,6 +76,16 @@ const PostForm: FC<PostFormProps> = ({}) => {
   });
 
   const onPublish: SubmitHandler<FieldValues> = (data) => {
+    if (imgSrc === "") {
+      toast.error("You better add an image!");
+      return;
+    }
+
+    if (postTags.length < 1) {
+      toast.error("WHERE ARE THE TAGS?!");
+      return;
+    }
+
     setIsLoading(true);
 
     axios
@@ -88,6 +109,16 @@ const PostForm: FC<PostFormProps> = ({}) => {
   };
 
   const onDraft: SubmitHandler<FieldValues> = (data) => {
+    if (imgSrc === "") {
+      toast.error("You better add an image!");
+      return;
+    }
+
+    if (postTags.length < 1) {
+      toast.error("WHERE ARE THE TAGS?!");
+      return;
+    }
+
     setIsLoading(true);
 
     axios
@@ -110,6 +141,7 @@ const PostForm: FC<PostFormProps> = ({}) => {
   };
 
   const imgSrc = watch("imgSrc");
+  const title = watch("title");
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -118,6 +150,10 @@ const PostForm: FC<PostFormProps> = ({}) => {
       shouldTouch: true,
     });
   };
+
+  useEffect(() => {
+    setValue("content", generatedContent);
+  }, [generatedContent, setValue]);
 
   return (
     <form className="flex w-full max-w-[1280px] flex-col gap-4 rounded-md sm:border sm:px-4 sm:py-6 sm:shadow-lg">
@@ -146,7 +182,7 @@ const PostForm: FC<PostFormProps> = ({}) => {
       />
 
       {/* Generate template prompt */}
-      <PostGeneration handleGenerate={handleGenerate} />
+      <PostGeneration handleGenerate={() => handleGenerate(title)} />
 
       {/* Post Content */}
       <PostInput
@@ -155,9 +191,8 @@ const PostForm: FC<PostFormProps> = ({}) => {
         placeholder="Post Content"
         register={register}
         required
-        textarea
         disabled={isLoading}
-        className={`font-ubuntu sm:text-lg md:text-xl lg:text-2xl`}
+        className={`font-ubuntu md:text-lg lg:text-xl`}
       />
 
       {/* Buttons */}

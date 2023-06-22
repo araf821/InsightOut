@@ -1,6 +1,4 @@
-import { role } from "@/app/constants/chatbot-prompt";
-
-const getPostContent = async (title: string) => {
+const getPostTemplate = async (title: string) => {
   try {
     const response = await fetch(`/api/openai/generateTemplate`, {
       method: "POST",
@@ -8,7 +6,6 @@ const getPostContent = async (title: string) => {
       body: JSON.stringify({
         //@ts-ignore
         title: title,
-        role: role,
       }),
     });
 
@@ -19,4 +16,4 @@ const getPostContent = async (title: string) => {
   }
 };
 
-export default getPostContent;
+export default getPostTemplate;
