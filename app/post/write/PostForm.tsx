@@ -1,5 +1,6 @@
 "use client";
 
+import PostGeneration from "./PostGeneration";
 import ImageUpload from "@/app/components/inputs/ImageUpload";
 import { FC, useState } from "react";
 import MultiSelect from "./MultiSelect";
@@ -39,8 +40,11 @@ const options = [
 const PostForm: FC<PostFormProps> = ({}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [postTags, setPostTags] = useState<SelectOption[]>([]);
-
   const router = useRouter();
+
+  const handleGenerate = () => {
+
+  }
 
   const {
     register,
@@ -141,6 +145,10 @@ const PostForm: FC<PostFormProps> = ({}) => {
         onChange={(tag) => setPostTags(tag)}
       />
 
+      {/* Generate template prompt */}
+      <PostGeneration handleGenerate={handleGenerate} />
+
+      {/* Post Content */}
       <PostInput
         id="content"
         errors={errors}

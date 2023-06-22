@@ -1,6 +1,7 @@
 import { AxiosResponse } from "axios";
 import { NextResponse } from "next/server";
 import { Configuration, CreateChatCompletionResponse, OpenAIApi } from "openai";
+import { role } from "@/app/constants/chatbot-prompt";
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -9,7 +10,7 @@ const openai = new OpenAIApi(configuration);
 
 export async function POST(request: Request) {
   try {
-    const { title, role } = await request.json();
+    const { title } = await request.json();
 
     //@ts-ignore
     const aiResponse: AxiosResponse<CreateChatCompletionResponse, any> =
@@ -21,11 +22,11 @@ export async function POST(request: Request) {
         messages: [
           {
             role: "user",
-            content: `Create a blog post template based on this title: ${title}`,
+            content: `Create a blog post template based on this title: ${title}. This template should have one small sentence for the introduction as well as three short sentences to start off the 3 body paragraphs and one small sentence to start off the conclusion of the blog post.`,
           },
           {
             role: "system",
-            content: `${role || "I am an assistant writer."}.`,
+            content: `${role}`,
           },
         ],
       });

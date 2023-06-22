@@ -1,5 +1,6 @@
 "use client";
 
+import getPostContent from "@/app/actions/getPostContent";
 import { FC, useState } from "react";
 import { BsFillRocketTakeoffFill } from "react-icons/bs";
 
@@ -10,20 +11,27 @@ const Chat: FC<ChatProps> = ({}) => {
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("Content will show up here.");
 
-  const postAiContent = async () => {
-    setContent("Generating AI Content...");
+  //   const postAiContent = async () => {
+  //     setContent("Generating AI Content...");
 
-    const response = await fetch(`/api/openai`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        //@ts-ignore
-        title: title,
-        role: role,
-      }),
-    });
+  //     const response = await fetch(`/api/openai`, {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({
+  //         //@ts-ignore
+  //         title: title,
+  //         role: role,
+  //       }),
+  //     });
 
-    const data = await response.json();
+  //     const data = await response.json();
+  //     setContent(data.content);
+  //   };
+
+  const handleFetch = () => {
+    // setContent("Loading AI Generated Content.");
+    const data = getPostContent(title, role);
+    //@ts-ignore
     setContent(data.content);
   };
 
@@ -40,7 +48,7 @@ const Chat: FC<ChatProps> = ({}) => {
           value={role}
         />
 
-        <button onClick={postAiContent} type="button">
+        <button onClick={handleFetch} type="button">
           <BsFillRocketTakeoffFill className="h-8 w-8 text-black hover:text-zinc-700" />
         </button>
       </div>

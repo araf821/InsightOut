@@ -64,12 +64,12 @@ const NewsletterSection: FC<NewsletterSectionProps> = ({}) => {
                 <input
                   type="text"
                   placeholder="Your Name"
-                  className="w-full max-w-[700px] rounded-sm border-b-4 border-zinc-700 px-4 py-2 text-lg text-zinc-800 sm:text-xl md:text-left md:text-2xl"
+                  className="w-full outline-none max-w-[700px] rounded-sm border-b-2 border-zinc-700 px-4 py-2 text-lg text-zinc-800 focus:border-b-4 sm:text-xl md:text-left md:text-2xl"
                 />
                 <input
                   type="email"
                   placeholder="OutsightIn@jeemail.com"
-                  className="w-full max-w-[700px] rounded-sm border-b-4 border-zinc-700 px-4 py-2 text-lg text-zinc-800 sm:text-xl md:text-left md:text-2xl"
+                  className="w-full outline-none max-w-[700px] rounded-sm border-b-2 border-zinc-700 px-4 py-2 text-lg text-zinc-800 focus:border-b-4 sm:text-xl md:text-left md:text-2xl"
                 />
                 <Button
                   special
