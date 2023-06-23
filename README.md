@@ -6,6 +6,7 @@ A full-stack blog site created with Next.js, MongoDB, Prisma, OAuth, TailwindCSS
 
 ## Features
 
+- Get a generated post template based on your title
 - Get blog ideas/suggestions from a chatbot
 - Create blog posts
 - Publish posts or save as drafts

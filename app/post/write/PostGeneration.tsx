@@ -4,6 +4,7 @@ import Button from "@/app/components/Button";
 import { FC } from "react";
 import { AiTwotoneCopy } from "react-icons/ai";
 import TemplateLoader from "./TemplateLoader";
+import { toast } from "react-hot-toast";
 
 interface PostGenerationProps {
   isLoading: boolean;
@@ -16,15 +17,18 @@ const PostGeneration: FC<PostGenerationProps> = ({
   handleGenerate,
   generatedContent,
 }) => {
-  const handleCopy = () => {};
+  const handleCopy = (generatedContent: string) => {
+    navigator.clipboard.writeText(generatedContent);
+    toast.success("Copied!")
+  };
 
   return (
     <div className="flex flex-col gap-2 rounded-md bg-white shadow-md">
-      <p className="rounded-t-md bg-zinc-800 font-merri px-3 py-1.5 text-center font-semibold text-bg md:text-lg">
+      <p className="rounded-t-md bg-zinc-800 px-3 py-1.5 text-center font-merri font-semibold text-bg md:text-lg">
         Need a starting template for your post?
       </p>
       <div className="mb-2 mt-1 space-y-4 px-3 py-1.5">
-        <p className="balance text-center text-sm text-zinc-700 font-semibold tracking-tight md:text-base">
+        <p className="balance text-center text-sm font-semibold tracking-tight text-zinc-700 md:text-base">
           Based on the title you&rsquo;ve given above, you can generate a short
           template for your post if you&rsquo;d like.
         </p>
@@ -54,7 +58,7 @@ const PostGeneration: FC<PostGenerationProps> = ({
             <Button
               icon={AiTwotoneCopy}
               label="Copy Content"
-              onClick={handleCopy}
+              onClick={() => handleCopy(generatedContent)}
               small
               special
               className="hover:-translate-y-1"
