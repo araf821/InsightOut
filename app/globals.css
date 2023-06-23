@@ -7,3 +7,63 @@ body,
 :root {
   height: 100%;
 }
+
+.balance {
+  text-wrap: balance;
+}
+
+/* Template Loader */
+
+.loader {
+  width: 47px;
+  height: 47px;
+  position: relative;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  display: block;
+  border: 24px solid;
+  border-color: transparent transparent #fb7185 #fb7185;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%);
+  animation: mvx 1.2s infinite ease-in;
+}
+.loader:before {
+  border-color: #fb7185 #fb7185 transparent transparent;
+  animation-name: mvrx;
+}
+@keyframes mvx {
+  0%,
+  10% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  30% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(180deg);
+  }
+  75%,
+  100% {
+    transform: translate(0, 0) rotate(180deg);
+  }
+}
+@keyframes mvrx {
+  0%,
+  10% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  30% {
+    transform: translate(50%, 50%) rotate(0deg);
+  }
+  50% {
+    transform: translate(50%, 50%) rotate(180deg);
+  }
+  75%,
+  100% {
+    transform: translate(0, 0) rotate(180deg);
+  }
+}

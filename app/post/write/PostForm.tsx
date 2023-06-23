@@ -50,7 +50,6 @@ const PostForm: FC<PostFormProps> = ({}) => {
       toast.error("You literally didn't come up with a title yet.");
     } else {
       setIsLoading(true);
-      setGeneratedContent("Loading...");
       const data = await getPostTemplate(title);
       setGeneratedContent(data.content);
       setIsLoading(false);
@@ -182,7 +181,11 @@ const PostForm: FC<PostFormProps> = ({}) => {
       />
 
       {/* Generate template prompt */}
-      <PostGeneration handleGenerate={() => handleGenerate(title)} />
+      <PostGeneration
+        isLoading={isLoading}
+        generatedContent={generatedContent}
+        handleGenerate={() => handleGenerate(title)}
+      />
 
       {/* Post Content */}
       <PostInput

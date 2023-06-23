@@ -30,10 +30,10 @@ const PostInput: React.FC<PostInputProps> = ({
     <div className="relative">
       <textarea
         id={id}
-        rows={10}
+        rows={20}
         cols={10}
         required
-        maxLength={3000}
+        maxLength={5000}
         onChange={handleChange}
         disabled={disabled}
         placeholder={placeholder}
@@ -43,7 +43,7 @@ const PostInput: React.FC<PostInputProps> = ({
       ${className}`}
       />
       <span className="absolute bottom-2 right-2 text-xs text-neutral-500 md:text-sm">
-        Characters: {count} / 3000
+        Characters: {count} / 5000
       </span>
     </div>
   );
