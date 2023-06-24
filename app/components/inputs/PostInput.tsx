@@ -37,7 +37,7 @@ const PostInput: React.FC<PostInputProps> = ({
         onChange={handleChange}
         disabled={disabled}
         placeholder={placeholder}
-        className={`w-full resize-none rounded-md border-2 bg-white p-4 outline-none transition
+        className={`w-full resize-y rounded-md border-2 bg-white p-4 outline-none transition
       ${errors[id] ? "border-red-700" : "border-neutral-300"}
       ${errors[id] ? "focus:border-red-700" : "focus:border-zinc-800"}
       ${className}`}

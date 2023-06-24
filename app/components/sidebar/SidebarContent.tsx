@@ -62,7 +62,7 @@ const SidebarContent: FC<SidebarContentProps> = ({ currentUser }) => {
           }}
         />
         <hr className="rounded-full border-[#936a59]" />
-        <p className="sm:text-lg lg:text-xl">Signed in as {currentUser.name}</p>
+        <p className="sm:text-lg text-center lg:text-xl">Signed in as {currentUser.name}</p>
         <SidebarButton title="Sign Out" onClick={signOut} />
       </div>
     );

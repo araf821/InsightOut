@@ -43,7 +43,7 @@ export default async function RootLayout({
           <LoginModal />
           <Sidebar currentUser={currentUser} />
           <Navbar />
-          <div>{children}</div>
+          {children}
         </Providers>
       </body>
     </html>
