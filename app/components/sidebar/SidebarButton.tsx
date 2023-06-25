@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { IconType } from "react-icons";
+import { useSidebarContext } from "@/app/context/sidebar_context";
 
 interface SidebarButtonProps {
   title: string;

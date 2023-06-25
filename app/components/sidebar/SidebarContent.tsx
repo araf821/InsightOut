@@ -7,6 +7,7 @@ import { signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 import { FaDiscord, FaGithub } from "react-icons/fa";
+import { useSidebarContext } from "@/app/context/sidebar_context";
 
 interface SidebarContentProps {
   currentUser: SafeUser | null;
@@ -14,6 +15,7 @@ interface SidebarContentProps {
 
 const SidebarContent: FC<SidebarContentProps> = ({ currentUser }) => {
   const router = useRouter();
+  const { closeSidebar } = useSidebarContext();
 
   let body = <></>;
 
@@ -52,6 +54,7 @@ const SidebarContent: FC<SidebarContentProps> = ({ currentUser }) => {
         <SidebarButton
           title="Dashboard"
           onClick={() => {
+            closeSidebar();
             router.push("/profile/dashboard");
           }}
         />
@@ -59,6 +62,7 @@ const SidebarContent: FC<SidebarContentProps> = ({ currentUser }) => {
           title="Preferences"
           onClick={() => {
             router.push("/profile/preferences");
+            closeSidebar();
           }}
         />
         <hr className="rounded-full border-zinc-800" />

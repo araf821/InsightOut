@@ -169,6 +169,7 @@ const PostForm: FC<PostFormProps> = ({}) => {
         <ImageUpload
           value={imgSrc}
           onChange={(value) => setCustomValue("imgSrc", value)}
+          className="px-32 py-20 sm:px-44 sm:py-28 md:px-56 md:py-36 lg:px-80 lg:py-48"
         />
       </div>
       {/* <ToolbarComponent /> */}
@@ -195,7 +196,7 @@ const PostForm: FC<PostFormProps> = ({}) => {
         register={register}
         required
         disabled={isLoading}
-        className={`md:text-lg focus:shadow-lg duration-300 lg:text-xl`}
+        className={`duration-300 focus:shadow-lg md:text-lg lg:text-xl`}
       />
 
       {/* Buttons */}
