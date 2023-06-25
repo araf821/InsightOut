@@ -1,13 +1,7 @@
 "use client";
 
-import { Josefin_Sans } from "next/font/google";
 import { FC } from "react";
 import Button from "../Button";
-
-const josefin = Josefin_Sans({
-  weight: "400",
-  subsets: ["latin"],
-});
 
 interface NewsletterSectionProps {}
 
@@ -41,14 +35,12 @@ const NewsletterSection: FC<NewsletterSectionProps> = ({}) => {
       </div>
       <section className="relative bg-secondary pb-10 lg:pt-10">
         <div className="mx-auto max-w-[1550px] px-4 sm:px-6 md:px-10 xl:px-20">
-          <div className="grid grid-cols-1 gap-12 text-center lg:grid-cols-2 lg:text-start">
-            <p className="flex flex-col gap-1 font-merri text-5xl sm:text-6xl md:gap-2 md:text-7xl lg:gap-3  lg:text-left lg:text-7xl xl:text-[80px]">
-              <span>Step Into An</span>
-              <span>Insightful</span>
-              <span>Wonderland</span>
+          <div className="grid grid-cols-1 items-center gap-8 text-center lg:grid-cols-2 lg:gap-12 lg:text-start">
+            <p className="balance flex flex-col font-josefin text-5xl font-semibold tracking-tight sm:text-6xl md:gap-2 md:text-7xl lg:gap-3  lg:text-left lg:text-7xl xl:text-[80px]">
+              Step Into An Insightful Wonderland
             </p>
             <div className="justify flex flex-col space-y-5">
-              <div className={josefin.className}>
+              <div>
                 <p className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl">
                   <span className="font-semibold">Join Our Newsletter</span>
                 </p>
@@ -64,12 +56,12 @@ const NewsletterSection: FC<NewsletterSectionProps> = ({}) => {
                 <input
                   type="text"
                   placeholder="Your Name"
-                  className="w-full outline-none max-w-[700px] rounded-sm border-b-2 border-zinc-700 px-4 py-2 text-lg text-zinc-800 focus:border-b-4 sm:text-xl md:text-left md:text-2xl"
+                  className="w-full max-w-[700px] rounded-sm border-b-2 border-zinc-700 px-4 py-2 text-lg text-zinc-800 outline-none focus:border-b-4 sm:text-xl md:text-left md:text-2xl"
                 />
                 <input
                   type="email"
                   placeholder="OutsightIn@jeemail.com"
-                  className="w-full outline-none max-w-[700px] rounded-sm border-b-2 border-zinc-700 px-4 py-2 text-lg text-zinc-800 focus:border-b-4 sm:text-xl md:text-left md:text-2xl"
+                  className="w-full max-w-[700px] rounded-sm border-b-2 border-zinc-700 px-4 py-2 text-lg text-zinc-800 outline-none focus:border-b-4 sm:text-xl md:text-left md:text-2xl"
                 />
                 <Button
                   special

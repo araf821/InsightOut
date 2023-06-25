@@ -31,7 +31,7 @@ const TitleInput: FC<TitleInputProps> = ({
         required
         {...register(id, { required })}
         placeholder="Title"
-        className={`h-12 w-full border-b-2 bg-transparent px-4 py-2 font-merri text-xl font-semibold outline-none sm:text-2xl md:text-3xl
+        className={`h-12 w-full border-b-2 bg-transparent px-4 py-2 font-josefin text-xl font-semibold outline-none sm:text-2xl md:text-3xl
       ${errors[id] ? "border-red-700" : "border-neutral-300"}
       ${errors[id] ? "focus:border-red-700" : "focus:border-zinc-800"}`}
       />

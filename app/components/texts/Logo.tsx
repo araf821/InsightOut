@@ -14,17 +14,18 @@ const Logo: React.FC<LogoProps> = ({ sidebar }) => {
   return (
     <div
       tabIndex={0}
-      className={`max-w-min cursor-pointer select-none font-merri font-bold text-zinc-800 ${
+      className={`max-w-min cursor-pointer translate-y-1 select-none font-josefin font-bold text-zinc-800 ${
         sidebar
           ? "text-[36px] sm:text-[44px] md:text-[50px] lg:text-5xl xl:text-[56px]"
-          : "text-5xl sm:text-6xl md:text-7xl lg:text-[5rem]"
+          : "xl:[4rem] text-4xl sm:text-5xl lg:text-[3.5rem]"
       }`}
       onClick={() => {
         router.push("/");
         closeSidebar();
       }}
     >
-      Insight<span className="text-accent">Out</span>
+      Insight
+      <span className="text-accent">Out</span>
     </div>
   );
 };

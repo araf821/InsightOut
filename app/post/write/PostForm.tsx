@@ -195,7 +195,7 @@ const PostForm: FC<PostFormProps> = ({}) => {
         register={register}
         required
         disabled={isLoading}
-        className={`font-ubuntu md:text-lg focus:shadow-lg duration-300 lg:text-xl`}
+        className={`md:text-lg focus:shadow-lg duration-300 lg:text-xl`}
       />
 
       {/* Buttons */}

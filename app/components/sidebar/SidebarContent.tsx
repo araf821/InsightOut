@@ -61,8 +61,10 @@ const SidebarContent: FC<SidebarContentProps> = ({ currentUser }) => {
             router.push("/profile/preferences");
           }}
         />
-        <hr className="rounded-full border-[#936a59]" />
-        <p className="sm:text-lg text-center lg:text-xl">Signed in as {currentUser.name}</p>
+        <hr className="rounded-full border-zinc-800" />
+        <p className="text-center sm:text-lg lg:text-xl">
+          Signed in as {currentUser.name}
+        </p>
         <SidebarButton title="Sign Out" onClick={signOut} />
       </div>
     );
@@ -71,7 +73,7 @@ const SidebarContent: FC<SidebarContentProps> = ({ currentUser }) => {
   return (
     <section className="sidebar-content mx-auto max-w-[800px] px-4 py-8 md:px-0">
       {body}
-      <hr className="my-4 rounded-full border-[#936a59]" />
+      <hr className="my-4 rounded-full border-zinc-800" />
       <SidebarButton
         title="Help and FAQs"
         onClick={() => router.push("/help")}

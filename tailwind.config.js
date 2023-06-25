@@ -10,6 +10,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
+        josefin: ["var(--font-josefin)", "sans-serif"],
         merri: ["var(--font-merri)", "serif"],
         ubuntu: ["var(--font-ubuntu)", "sans-serif"],
       },
@@ -22,10 +23,15 @@ module.exports = {
         // secondary: "#fbb1d0",
         // bg: "#fdd3e5",
         //--------------------------------
-        accent: "#fb7185",
-        primary: "#7dd3fc",
-        secondary: "#ffffff",
-        bg: "#f3f9fc",
+        // accent: "#fb7185",
+        // primary: "#7dd3fc",
+        // secondary: "#ffffff",
+        // bg: "#f3f9fc",
+        //---------------------------------
+        accent: "#E52B50",
+        primary: "#4685ff",
+        secondary: "#f2f2f2",
+        bg: "#ffffff",
         //--------------------------------
         // accent: "#8dcb76",
         // primary: "#b7cb76",

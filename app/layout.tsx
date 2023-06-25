@@ -1,4 +1,4 @@
-import { Merriweather, Ubuntu } from "next/font/google";
+import { Josefin_Sans, Merriweather, Ubuntu } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/navbar/Navbar";
 import LoginModal from "./components/modals/LoginModal";
@@ -20,6 +20,11 @@ const ubuntu = Ubuntu({
   variable: "--font-ubuntu",
 });
 
+const josefin = Josefin_Sans({
+  subsets: ["latin"],
+  variable: "--font-josefin",
+});
+
 export const metadata = {
   title: "InsightOut",
   description: "Next Level Blogging.",
@@ -35,7 +40,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`text-whi ${merri.variable} ${ubuntu.className} ${ubuntu.variable} overflow-x-hidden bg-bg font-ubuntu`}
+        className={`text-whi ${merri.variable} ${josefin.variable} ${ubuntu.variable} overflow-x-hidden bg-bg font-merri`}
       >
         <Providers>
           <ToasterProvider />

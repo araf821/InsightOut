@@ -17,7 +17,7 @@ const LatestPosts: FC<LatestPostsProps> = ({ posts }) => {
     <Container>
       <div className="pb-12 pt-4">
         <p className="text-4xl sm:text-5xl lg:text-6xl">
-          <span className="font-merri ">Latest Posts</span>
+          <span className="font-josefin font-semibold">Latest Posts</span>
         </p>
         <hr className="w-12 border-4 border-accent md:w-20" />
 

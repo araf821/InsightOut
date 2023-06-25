@@ -19,12 +19,12 @@ const PostGeneration: FC<PostGenerationProps> = ({
 }) => {
   const handleCopy = (generatedContent: string) => {
     navigator.clipboard.writeText(generatedContent);
-    toast.success("Copied!")
+    toast.success("Copied!");
   };
 
   return (
     <div className="flex flex-col gap-2 rounded-md bg-white shadow-md">
-      <p className="rounded-t-md bg-zinc-800 px-3 py-1.5 text-center font-merri font-semibold text-bg md:text-lg">
+      <p className="rounded-t-md bg-zinc-800 px-3 py-1.5 text-center font-josefin font-semibold text-bg md:text-lg">
         Need a starting template for your post?
       </p>
       <div className="mb-2 mt-1 space-y-4 px-3 py-1.5">
@@ -53,7 +53,7 @@ const PostGeneration: FC<PostGenerationProps> = ({
               rows={10}
               disabled
               value={generatedContent}
-              className="w-full resize-none overflow-x-hidden rounded-md border-2 border-zinc-800 px-3 py-1.5 text-sm text-primary disabled:bg-zinc-800 md:text-base"
+              className="w-full resize-none overflow-x-hidden rounded-md border-2 border-zinc-800 px-3 py-1.5 text-accent disabled:bg-gray-800 md:text-lg"
             />
             <Button
               icon={AiTwotoneCopy}

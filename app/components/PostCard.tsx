@@ -33,7 +33,7 @@ const PostCard: FC<PostCardProps> = ({ post, horizontal, main }) => {
         }`}
       >
         <p
-          className={`font-ubuntu text-2xl font-bold ${
+          className={`font-josefin text-2xl font-bold ${
             horizontal && "md:text-xl lg:text-[26px] xl:text-3xl"
           }
           ${main && "lg:text-[26px] xl:text-3xl"}`}
