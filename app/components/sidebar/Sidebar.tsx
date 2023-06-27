@@ -25,6 +25,13 @@ const Sidebar: FC<SidebarProps> = ({ currentUser }) => {
     </div>
   );
 
+  // Disable scrolling if the sidebar is open
+  if (isOpen) {
+    document.body.classList.add(`overflow-hidden`);
+  } else {
+    document.body.classList.remove("overflow-hidden");
+  }
+
   return (
     <div
       className={`fixed inset-0 left-0 top-0 z-40 h-screen w-screen -translate-x-full transform   duration-500  ${

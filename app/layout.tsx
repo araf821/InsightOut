@@ -7,6 +7,7 @@ import getCurrentUser from "./actions/getCurrentUser";
 import ToasterProvider from "./providers/ToasterProvider";
 import Providers from "./components/Providers";
 import Sidebar from "./components/sidebar/Sidebar";
+import Footer from "./components/Footer";
 
 const merri = Merriweather({
   subsets: ["latin"],
@@ -49,6 +50,7 @@ export default async function RootLayout({
           <Sidebar currentUser={currentUser} />
           <Navbar />
           {children}
+          <Footer />
         </Providers>
       </body>
     </html>
