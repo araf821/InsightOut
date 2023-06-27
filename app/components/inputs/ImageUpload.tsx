@@ -11,12 +11,14 @@ interface ImageUploadProps {
   onChange: (value: string) => void;
   value: string;
   className?: string;
+  rounded?: string;
 }
 
 const ImageUpload: React.FC<ImageUploadProps> = ({
   onChange,
   value,
   className,
+  rounded,
 }) => {
   const handleUpload = useCallback(
     (result: any) => {
@@ -50,6 +52,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
                   fill
                   style={{ objectFit: "cover" }}
                   src={value}
+                  className={rounded ? `${rounded}` : ""}
                 />
               </div>
             )}

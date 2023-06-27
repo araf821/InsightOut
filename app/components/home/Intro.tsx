@@ -9,9 +9,8 @@ const Intro = () => {
       <Container>
         <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-4 lg:flex-row lg:gap-12 xl:gap-0">
           <div className="flex w-full flex-col items-center gap-4 text-zinc-800">
-            <p className="balance text-center text-transparent bg-gradient-to-br from-blue-700 via-zinc-800 to-accent bg-clip-text font-josefin text-4xl font-bold sm:text-5xl md:text-6xl lg:text-left xl:text-[68px]">
-              Welcome to the Insight<span className="">Out</span>{" "}
-              Blog
+            <p className="balance bg-gradient-to-br from-blue-700 via-zinc-800 to-accent bg-clip-text text-center font-josefin text-4xl font-bold text-transparent sm:text-5xl md:text-6xl lg:text-left xl:text-[68px]">
+              Welcome to the Insight<span className="">Out</span> Blog
             </p>
             <hr className="mx-auto -mt-0 w-20 self-start border-4 border-accent lg:mx-0" />
             <DynamicTextEffect />
