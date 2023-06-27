@@ -1,11 +1,15 @@
 "use client";
 
 import { FC, useEffect, useMemo, useState } from "react";
+import { HashLoader } from "react-spinners";
 
 interface TemplateLoaderProps {}
 
 const TemplateLoader: FC<TemplateLoaderProps> = ({}) => {
-  const texts = useMemo(() => ["Loading...", "Please wait.", "Almost there!"], []);
+  const texts = useMemo(
+    () => ["Generating...", "Searching the web...", "", "Almost there!"],
+    []
+  );
   const [loadingText, setLoadingText] = useState(texts[0]);
 
   useEffect(() => {
@@ -20,8 +24,9 @@ const TemplateLoader: FC<TemplateLoaderProps> = ({}) => {
 
   return (
     <div className="min-h-44 grid h-56 place-items-center">
-      <span className="loader" />
-      <p className="text-light md:text-lg -mt-20 font-merri">{loadingText}</p>
+      {/* <span className="loader" /> */}
+      <HashLoader size={60} color="#E52B50" />
+      <p className="text-light -mt-20 font-merri md:text-lg">{loadingText}</p>
     </div>
   );
 };

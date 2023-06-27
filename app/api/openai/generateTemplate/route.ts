@@ -21,7 +21,21 @@ export async function POST(request: Request) {
         messages: [
           {
             role: "user",
-            content: `Create a blog post template based on this title: ${title}. This template should have one small sentence for the introduction as well as three short sentences to start off the 3 body paragraphs and one small sentence to start off the conclusion of the blog post.`,
+            content: `Create a blog post template based on this title: ${title}. This template should have one small sentence for the introduction as well as a short sentence to start off the 3 body paragraphs each and one small sentence to start off the conclusion of the blog post.
+
+            Generate in this format:
+            "
+            Introduction: *introduction para*
+
+            Body Paragraphs:
+
+            *para 1*
+            *para 2*
+            *para 3*
+
+            Conclusion: *conclusion para*
+            "
+            `,
           },
           {
             role: "system",

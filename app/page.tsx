@@ -4,6 +4,9 @@ import Hero from "./components/home/Hero";
 import Intro from "./components/home/Intro";
 import LatestPosts from "./components/home/LatestPosts";
 import NewsletterSection from "./components/home/NewsletterSection";
+
+export const revalidate = 60
+
 export default async function Home() {
   const latestPosts = await getLatestPosts(3);
   const featuredPost = await getPostByTitle(

@@ -41,7 +41,7 @@ const PreferencesClient: FC<PreferencesClientProps> = ({ currentUser }) => {
   return (
     <div className="my-6 flex w-full flex-col gap-4 rounded-md px-4 py-6 shadow-[0px_0px_20px_10px_rgba(0,0,0,0.1)]">
       <div className="mx-auto">
-        <ImageUpload onChange={() => {}} value={image} className="p-12" />
+        <ImageUpload onChange={() => {}} value={image} className="rounded-full p-12" />
       </div>
 
       {/* name input */}
