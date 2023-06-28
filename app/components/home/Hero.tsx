@@ -22,7 +22,7 @@ const Hero: React.FC<HeroProps> = ({ post }) => {
           src={post.image}
           alt="post"
           fill
-          className="absolute object-cover lg:rounded-lg"
+          className="select-none absolute object-cover lg:rounded-lg"
         />
         <div className="absolute left-0 top-0 h-fit w-fit bg-zinc-800 px-4 py-2 font-semibold text-white md:text-lg lg:rounded-tl-lg">
           <p>Featured Post</p>

@@ -8,24 +8,14 @@ interface NewsletterSectionProps {}
 const NewsletterSection: FC<NewsletterSectionProps> = ({}) => {
   return (
     <div className="relative">
-      {/* <div>
-        <svg id="visual" version="1.1" viewBox="0 528.02 900 72.98">
-          <path
-            d="M0 574L21.5 572.7C43 571.3 86 568.7 128.8 568.3C171.7 568 214.3 570 257.2 571.2C300 572.3 343 572.7 385.8 570.7C428.7 568.7 471.3 564.3 514.2 562.3C557 560.3 600 560.7 642.8 562.5C685.7 564.3 728.3 567.7 771.2 570.5C814 573.3 857 575.7 878.5 576.8L900 578L900 601L878.5 601C857 601 814 601 771.2 601C728.3 601 685.7 601 642.8 601C600 601 557 601 514.2 601C471.3 601 428.7 601 385.8 601C343 601 300 601 257.2 601C214.3 601 171.7 601 128.8 601C86 601 43 601 21.5 601L0 601Z"
-            fill="#F6E9DD"
-            strokeLinecap="square"
-            strokeLinejoin="miter"
-          />
-        </svg>
-      </div> */}
-      <div className="absolute top-0 -z-10 -translate-y-full overflow-hidden">
+      <div className="absolute top-0 -z-10 -translate-y-full w-full overflow-hidden">
         <svg
           preserveAspectRatio="none"
           viewBox="0 0 1200 120"
           xmlns="http://www.w3.org/2000/svg"
           style={{
             width: "100%",
-            height: 300,
+            height: 400,
             transform: "rotate(180deg) scaleX(-1)",
           }}
           className="fill-secondary"

@@ -16,7 +16,7 @@ const PostCard: FC<PostCardProps> = ({ post, horizontal, main }) => {
         "md:flex md:h-full md:min-w-[350px] md:flex-grow lg:min-w-[500px]"
       }`}
     >
-      <div className="relative aspect-[5/4] w-full overflow-hidden rounded-lg shadow-lg">
+      <div className="relative hover:shadow-2xl transition duration-300 aspect-[5/4] w-full hover:shadow-zinc-500 overflow-hidden rounded-lg shadow-md">
         <Image
           src={post.image}
           fill
