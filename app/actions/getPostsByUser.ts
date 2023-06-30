@@ -7,12 +7,20 @@ const getPostsByUser = async (userId: string) => {
       where: {
         authorId: userId,
       },
+      include: {
+        author: true,
+      },
     });
 
     const safePosts = posts.map((post) => ({
       ...post,
       createdAt: post.createdAt.toISOString(),
       updatedAt: post.updatedAt.toISOString(),
+      author: {
+        id: post.author.id,
+        name: post.author.name,
+        image: post.author.image,
+      },
     }));
 
     return safePosts;

@@ -53,7 +53,7 @@ const PostGeneration: FC<PostGenerationProps> = ({
               rows={10}
               disabled
               value={generatedContent}
-              className="w-full resize-none overflow-x-hidden rounded-md border-2 border-zinc-800 px-3 py-1.5 text-accent disabled:bg-gray-800 md:text-lg"
+              className="w-full resize-none font-ubuntu overflow-x-hidden rounded-md border-2 border-zinc-800 px-3 py-1.5 text-accent disabled:bg-gray-800 md:text-lg"
             />
             <Button
               icon={AiTwotoneCopy}

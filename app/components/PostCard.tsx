@@ -5,10 +5,12 @@ import { SafePost } from "../types";
 interface PostCardProps {
   main?: boolean;
   horizontal?: boolean;
-  post: SafePost;
+  post?: SafePost;
 }
 
-const PostCard: FC<PostCardProps> = ({ post, horizontal, main }) => {
+const PostCard: FC<PostCardProps> = ({ post = null, horizontal, main }) => {
+  if (!post) return null;
+
   return (
     <div
       className={`w-full max-w-[800px] ${
@@ -16,12 +18,12 @@ const PostCard: FC<PostCardProps> = ({ post, horizontal, main }) => {
         "md:flex md:h-full md:min-w-[350px] md:flex-grow lg:min-w-[500px]"
       }`}
     >
-      <div className="relative hover:shadow-2xl transition duration-300 aspect-[5/4] w-full hover:shadow-zinc-500 overflow-hidden rounded-lg shadow-md">
+      <div className="relative aspect-[5/4] w-full overflow-hidden rounded-lg shadow-md transition duration-300 hover:shadow-lg hover:shadow-zinc-500">
         <Image
           src={post.image}
           fill
           alt=""
-          className="absolute rounded-lg object-cover transition-transform duration-1000 ease-out hover:scale-110"
+          className="absolute rounded-lg object-cover"
         />
       </div>
 
@@ -42,9 +44,11 @@ const PostCard: FC<PostCardProps> = ({ post, horizontal, main }) => {
             {post.title}
           </span>
         </p>
-        <p className={`text-lg font-light ${horizontal && "xl:text-xl"}`}>
-          {post.author.name}
-        </p>
+        {post ? (
+          <p className={`text-lg font-light ${horizontal && "xl:text-xl"}`}>
+            {post.author.name}
+          </p>
+        ) : null}
       </div>
     </div>
   );
