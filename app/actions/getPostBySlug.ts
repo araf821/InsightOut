@@ -1,13 +1,7 @@
 import prismaClient from "../lib/prismadb";
 
-interface IParams {
-  slug: string;
-}
-
-const getPostBySlug = async (params: IParams) => {
+const getPostBySlug = async (slug: string) => {
   try {
-    const { slug } = params;
-
     if (!slug) {
       return null;
     }

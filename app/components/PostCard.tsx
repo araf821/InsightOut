@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import { FC } from "react";
 import { SafePost } from "../types";
+import { useRouter } from "next/navigation";
 
 interface PostCardProps {
   main?: boolean;
@@ -9,6 +12,8 @@ interface PostCardProps {
 }
 
 const PostCard: FC<PostCardProps> = ({ post = null, horizontal, main }) => {
+  const router = useRouter();
+
   if (!post) return null;
 
   return (
@@ -17,8 +22,9 @@ const PostCard: FC<PostCardProps> = ({ post = null, horizontal, main }) => {
         horizontal &&
         "md:flex md:h-full md:min-w-[350px] md:flex-grow lg:min-w-[500px]"
       }`}
+      onClick={() => router.push(`/post/${post.slug}`)}
     >
-      <div className="relative aspect-[5/4] w-full overflow-hidden rounded-lg shadow-md transition duration-300 hover:shadow-lg hover:shadow-zinc-500">
+      <div className="relative aspect-[5/4] w-full overflow-hidden rounded-lg shadow-md transition duration-300 hover:-translate-y-2 hover:shadow-lg">
         <Image
           src={post.image}
           fill
