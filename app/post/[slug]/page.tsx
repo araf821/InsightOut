@@ -1,6 +1,8 @@
 import getPostBySlug from "@/app/actions/getPostBySlug";
+import getPostsByTag from "@/app/actions/getPostsByTag";
 import Container from "@/app/components/Container";
 import EmptyState from "@/app/components/EmptyState";
+import PostCard from "@/app/components/PostCard";
 
 interface IParams {
   slug: string;
@@ -8,7 +10,6 @@ interface IParams {
 
 const PostPage = async ({ params }: { params: IParams }) => {
   const { slug } = params;
-  console.log(decodeURI(slug));
 
   const post = await getPostBySlug(decodeURIComponent(slug));
 
@@ -22,6 +23,9 @@ const PostPage = async ({ params }: { params: IParams }) => {
     );
   }
 
+  const suggestedPosts = await getPostsByTag(post.tags[0], 6, post.id);
+  console.log(suggestedPosts);
+
   return (
     <main className="single-post-page">
       <Container>
@@ -29,6 +33,15 @@ const PostPage = async ({ params }: { params: IParams }) => {
         <p>{post.title}</p>
         <p>{post.content}</p>
         <p>{post.tags}</p>
+        {suggestedPosts && suggestedPosts.length > 0 ? (
+          <div>
+            {suggestedPosts.map((post) => (
+              <PostCard key={post.id} post={post} />
+            ))}
+          </div>
+        ) : (
+          <div>No related posts</div>
+        )}
       </Container>
     </main>
   );
