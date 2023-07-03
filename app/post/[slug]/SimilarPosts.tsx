@@ -1,3 +1,5 @@
+'use client'
+
 import Heading from "@/app/components/Heading";
 import PostCard from "@/app/components/PostCard";
 import { SafePost } from "@/app/types";

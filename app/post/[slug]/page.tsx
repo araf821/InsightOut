@@ -2,7 +2,6 @@ import getPostBySlug from "@/app/actions/getPostBySlug";
 import getPostsByTag from "@/app/actions/getPostsByTag";
 import Container from "@/app/components/Container";
 import EmptyState from "@/app/components/EmptyState";
-import PostCard from "@/app/components/PostCard";
 import SimilarPosts from "./SimilarPosts";
 import Post from "./Post";
 
@@ -25,8 +24,7 @@ const PostPage = async ({ params }: { params: IParams }) => {
     );
   }
 
-  const suggestedPosts = await getPostsByTag(post.tags[0], 6, post.id);
-  console.log(suggestedPosts);
+  let suggestedPosts = await getPostsByTag(post.tags[0], 3, post.id);
 
   return (
     <main className="single-post-page">
