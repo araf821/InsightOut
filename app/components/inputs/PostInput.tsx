@@ -19,6 +19,7 @@ const PostInput: React.FC<PostInputProps> = ({
   errors,
   disabled,
   className = "",
+  register,
 }) => {
   const [count, setCount] = useState(0);
 
@@ -33,6 +34,7 @@ const PostInput: React.FC<PostInputProps> = ({
         rows={20}
         cols={10}
         required
+        {...register(id)}
         maxLength={5000}
         onChange={handleChange}
         disabled={disabled}

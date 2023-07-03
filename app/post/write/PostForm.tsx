@@ -152,7 +152,7 @@ const PostForm: FC<PostFormProps> = ({}) => {
 
   useEffect(() => {
     setValue("content", generatedContent);
-  }, [generatedContent, setValue]);
+  }, [setValue]);
 
   return (
     <form className="flex w-full max-w-[1280px] flex-col gap-4 rounded-md sm:border sm:px-4 sm:py-6 sm:shadow-lg">
