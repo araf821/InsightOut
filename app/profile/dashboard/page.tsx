@@ -14,7 +14,7 @@ const Dashboard = async ({}) => {
   }
 
   //@ts-ignore
-  const postsFromUser: SafePost[] = await getPostsByUser(currentUser.id);
+  const postsFromUser: SafePost[] = await getPostsByUser(currentUser.id, 6);
 
   return (
     <Container>

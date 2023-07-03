@@ -1,15 +1,19 @@
 import { NextResponse } from "next/server";
 import prismaClient from "../lib/prismadb";
 
-const getPostsByUser = async (userId: string) => {
+const getPostsByUser = async (userId: string, count: number) => {
   try {
     const posts = await prismaClient.post.findMany({
       where: {
         authorId: userId,
       },
+      orderBy: {
+        createdAt: "desc",
+      },
       include: {
         author: true,
       },
+      take: count,
     });
 
     const safePosts = posts.map((post) => ({

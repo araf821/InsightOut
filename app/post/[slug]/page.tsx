@@ -3,6 +3,8 @@ import getPostsByTag from "@/app/actions/getPostsByTag";
 import Container from "@/app/components/Container";
 import EmptyState from "@/app/components/EmptyState";
 import PostCard from "@/app/components/PostCard";
+import SimilarPosts from "./SimilarPosts";
+import Post from "./Post";
 
 interface IParams {
   slug: string;
@@ -29,16 +31,15 @@ const PostPage = async ({ params }: { params: IParams }) => {
   return (
     <main className="single-post-page">
       <Container>
-        <p>{post.author.name}</p>
-        <p>{post.title}</p>
-        <p>{post.content}</p>
-        <p>{post.tags}</p>
+        <Post post={post} />
+
         {suggestedPosts && suggestedPosts.length > 0 ? (
-          <div>
-            {suggestedPosts.map((post) => (
-              <PostCard key={post.id} post={post} />
-            ))}
-          </div>
+          // <div>
+          //   {suggestedPosts.map((post) => (
+          //     <PostCard key={post.id} post={post} />
+          //   ))}
+          // </div>
+          <SimilarPosts posts={suggestedPosts} />
         ) : (
           <div>No related posts</div>
         )}

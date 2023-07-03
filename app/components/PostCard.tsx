@@ -18,13 +18,13 @@ const PostCard: FC<PostCardProps> = ({ post = null, horizontal, main }) => {
 
   return (
     <div
-      className={`w-full max-w-[800px] ${
+      className={`group w-full max-w-[800px] cursor-pointer duration-500 transition hover:scale-105 ${
         horizontal &&
         "md:flex md:h-full md:min-w-[350px] md:flex-grow lg:min-w-[500px]"
       }`}
       onClick={() => router.push(`/post/${post.slug}`)}
     >
-      <div className="relative aspect-[5/4] w-full overflow-hidden rounded-lg shadow-md transition duration-300 hover:-translate-y-2 hover:shadow-lg">
+      <div className="relative aspect-[5/4] w-full overflow-hidden rounded-lg shadow-sm transition duration-300 group-hover:shadow-lg">
         <Image
           src={post.image}
           fill
@@ -46,7 +46,7 @@ const PostCard: FC<PostCardProps> = ({ post = null, horizontal, main }) => {
           }
           ${main && "lg:text-[26px] xl:text-3xl"}`}
         >
-          <span className="cursor-pointer underline-offset-4 hover:underline">
+          <span className="cursor-pointer underline-offset-4 group-hover:underline">
             {post.title}
           </span>
         </p>
