@@ -15,6 +15,8 @@ const Dashboard = async ({}) => {
 
   //@ts-ignore
   const postsFromUser: SafePost[] = await getPostsByUser(currentUser.id, 6);
+  const published = postsFromUser.filter((post) => post.published);
+  const drafts = postsFromUser.filter((post) => !post.published);
 
   return (
     <Container>
@@ -75,12 +77,39 @@ const Dashboard = async ({}) => {
             </div>
           </div>
         </div>
-        <Heading small center title="Your Latest Posts" />
-        <section className="grid grid-cols-1 gap-4 py-8 md:grid-cols-2 lg:grid-cols-3">
-          {postsFromUser.map((post) => (
-            <PostCard key={post.id} post={post} />
-          ))}
-        </section>
+
+        {published.length > 0 && (
+          <>
+            <Heading small center title="Published" />
+            <section className="grid grid-cols-1 gap-4 py-8 md:grid-cols-2 lg:grid-cols-3">
+              {published.map((post) => (
+                <PostCard key={post.id} post={post} />
+              ))}
+            </section>
+          </>
+        )}
+
+        {drafts.length > 0 && (
+          <>
+            <Heading small center title="Drafts" />
+            <section className="grid grid-cols-1 gap-4 py-8 md:grid-cols-2 lg:grid-cols-3">
+              {drafts.map((post) => (
+                <PostCard key={post.id} post={post} />
+              ))}
+            </section>
+          </>
+        )}
+
+        {!drafts.length && !published.length && (
+          <section className="flex w-full flex-col items-center gap-2 py-12 font-josefin">
+            <p className="text-lg font-semibold md:text-xl lg:text-2xl xl:text-3xl">
+              Looks like you have not written any posts yet.
+            </p>
+            <p className="cursor-pointer text-neutral-700 transition-colors hover:text-neutral-900 hover:underline md:text-lg lg:text-xl xl:text-2xl">
+              Get started now!
+            </p>
+          </section>
+        )}
       </section>
     </Container>
   );
