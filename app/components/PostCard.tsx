@@ -35,7 +35,7 @@ const PostCard: FC<PostCardProps> = ({ post = null, horizontal, main }) => {
 
       {/* Post Info */}
       <div
-        className={`h-full w-full p-2 text-center capitalize ${
+        className={`h-fit w-full p-2 text-center capitalize ${
           horizontal &&
           "md:my-auto md:h-fit md:space-y-3 md:p-0 md:pl-2 md:text-start"
         }`}

@@ -15,7 +15,7 @@ const Post: FC<PostProps> = ({ post }) => {
   const router = useRouter();
 
   return (
-    <article className="my-8 flex max-w-[1024px] flex-col gap-4">
+    <article className="my-8 flex w-full flex-col gap-4">
       <Heading title={post.title} bold />
       <hr />
       <div className="relative aspect-[16/10] w-full">

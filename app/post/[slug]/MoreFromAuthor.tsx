@@ -1,18 +1,17 @@
-"use client";
-
 import Heading from "@/app/components/Heading";
 import PostCard from "@/app/components/PostCard";
 import { SafePost } from "@/app/types";
 import { FC } from "react";
 
-interface SimilarPostsProps {
+interface MoreFromAuthorProps {
   posts: SafePost[];
+  authorName: string;
 }
 
-const SimilarPosts: FC<SimilarPostsProps> = ({ posts }) => {
+const MoreFromAuthor: FC<MoreFromAuthorProps> = ({ posts, authorName }) => {
   return (
     <section className="">
-      <Heading title="Similar Posts" small />
+      <Heading title={authorName} small />
       <div className="grid grid-cols-1 gap-4 py-6 md:grid-cols-2 lg:grid-cols-3">
         {posts.map((post) => (
           <PostCard post={post} key={post.id} />
@@ -22,4 +21,4 @@ const SimilarPosts: FC<SimilarPostsProps> = ({ posts }) => {
   );
 };
 
-export default SimilarPosts;
+export default MoreFromAuthor;
