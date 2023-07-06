@@ -1,11 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { SafePost } from "../types";
 import { useRouter } from "next/navigation";
 import Button from "./Button";
-import DeleteModal from "./modals/DeleteModal";
+import PostDeleteButton from "./PostDeleteButton";
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
 interface PostCardProps {
   main?: boolean;
@@ -21,10 +23,26 @@ const PostCard: FC<PostCardProps> = ({
   dashboard,
 }) => {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   if (!post) return null;
 
-  const handleDelete = () => {};
+  const handleDelete = () => {
+    setIsLoading(true);
+
+    axios
+      .delete(`/api/post/${post.id}`)
+      .then(() => {
+        toast.error("Post deleted!");
+        router.refresh();
+      })
+      .catch(() => {
+        toast.error("Something went wrong.");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
   return (
     <div
@@ -69,7 +87,8 @@ const PostCard: FC<PostCardProps> = ({
 
       {dashboard && (
         <div className="z-10 flex w-full flex-col items-end gap-1">
-          <Button label="Delete post" outline small onClick={() => {}} />
+          {/* <Button label="Delete post" outline small onClick={() => {}} /> */}
+          <PostDeleteButton onDelete={handleDelete} />
           {post.published ? (
             <Button
               label="Save as draft"
