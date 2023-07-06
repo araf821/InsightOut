@@ -1,13 +1,12 @@
 import { Josefin_Sans, Merriweather, Ubuntu } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/navbar/Navbar";
-import LoginModal from "./components/modals/LoginModal";
-import RegisterModal from "./components/modals/RegisterModal";
 import getCurrentUser from "./actions/getCurrentUser";
 import ToasterProvider from "./providers/ToasterProvider";
 import Providers from "./components/Providers";
 import Sidebar from "./components/sidebar/Sidebar";
 import Footer from "./components/Footer";
+import Modal from "./components/modals/Modal";
 
 const merri = Merriweather({
   subsets: ["latin"],
@@ -45,8 +44,6 @@ export default async function RootLayout({
       >
         <Providers>
           <ToasterProvider />
-          <RegisterModal />
-          <LoginModal />
           <Sidebar currentUser={currentUser} />
           <Navbar />
           {children}

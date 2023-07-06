@@ -38,9 +38,9 @@ const DashboardClient: FC<DashboardClientProps> = ({
         <div className="relative flex w-full flex-col overflow-hidden rounded-t-lg bg-secondary px-2 py-3 shadow-md sm:flex-row sm:rounded-l-lg lg:col-span-3">
           <span
             onClick={() => router.push("/profile/preferences")}
-            className="cursor-pointer absolute right-1 top-2 z-10 grid h-12 w-12 group place-items-center sm:top-1"
+            className="group absolute right-1 top-2 z-10 grid h-12 w-12 cursor-pointer place-items-center sm:top-1"
           >
-            <FaUserEdit className="opacity-80 group-hover:opacity-100 group-hover:scale-110 transition text-2xl text-neutral-200 sm:text-neutral-800" />
+            <FaUserEdit className="text-2xl text-neutral-200 opacity-80 transition group-hover:scale-110 group-hover:opacity-100 sm:text-neutral-800" />
           </span>
           {/* Image component */}
           <div className="relative  aspect-square w-full sm:max-w-[200px] md:h-[200px]">
@@ -98,7 +98,7 @@ const DashboardClient: FC<DashboardClientProps> = ({
           <Heading small center title="Published" />
           <section className="grid grid-cols-1 gap-4 py-8 md:grid-cols-2 lg:grid-cols-3">
             {published.map((post) => (
-              <PostCard key={post.id} post={post} />
+              <PostCard dashboard key={post.id} post={post} />
             ))}
           </section>
         </>
@@ -109,7 +109,7 @@ const DashboardClient: FC<DashboardClientProps> = ({
           <Heading small center title="Drafts" />
           <section className="grid grid-cols-1 gap-4 py-8 md:grid-cols-2 lg:grid-cols-3">
             {drafts.map((post) => (
-              <PostCard key={post.id} post={post} />
+              <PostCard dashboard key={post.id} post={post} />
             ))}
           </section>
         </>

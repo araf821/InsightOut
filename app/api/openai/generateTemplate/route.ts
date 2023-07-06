@@ -1,7 +1,6 @@
 import { AxiosResponse } from "axios";
 import { NextResponse } from "next/server";
 import { Configuration, CreateChatCompletionResponse, OpenAIApi } from "openai";
-import { role } from "@/app/constants/chatbot-prompt";
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -24,10 +23,8 @@ export async function POST(request: Request) {
             content: `Create a blog post template based on this title: ${title}.
 
             Generate in this format:
-            "
-            Introduction: *introduction para*
-
-            Body Paragraphs:
+            
+            "*introduction para*
 
             *para 1*
 
@@ -35,14 +32,14 @@ export async function POST(request: Request) {
             
             *para 3*
 
-            Conclusion: *conclusion para*
-            "
-            Each paragraph should just have one starting sentence to start off the user, that's it. Please keep it very short.
+            *conclusion para*"
+            
+            Each paragraph should just have one starting sentence, that's it. Please keep it short. Don't include the " or the *. Make it so that the blog post is incomplete, but a good starting point for anyone who isn't sure where to start with their idea.
             `,
           },
           {
             role: "system",
-            content: `I am a helpful assistant.`,
+            content: `I am an author's assistant.`,
           },
         ],
       });
