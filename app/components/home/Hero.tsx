@@ -22,7 +22,7 @@ const Hero: React.FC<HeroProps> = ({ post }) => {
           src={post.image}
           alt="post"
           fill
-          className="select-none absolute object-cover lg:rounded-lg"
+          className="absolute select-none object-cover lg:rounded-lg"
         />
         <div className="absolute left-0 top-0 h-fit w-fit bg-zinc-800 px-4 py-2 font-semibold text-white md:text-lg lg:rounded-tl-lg">
           <p>Featured Post</p>
@@ -36,15 +36,18 @@ const Hero: React.FC<HeroProps> = ({ post }) => {
             >
               {post.title}
             </p>
-            <div className="flex h-fit max-w-[600px] flex-wrap gap-2">
-              {post.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-md bg-zinc-800 px-2 py-1 tracking-wider text-bg md:text-lg"
-                >
-                  {tag}
-                </span>
-              ))}
+            <div className="">
+              <p>
+                {post.tags.map((tag) => (
+                  <span
+                    onClick={() => router.push(`/explore/tags/${tag}`)}
+                    key={tag}
+                    className="cursor-pointer font-josefin text-neutral-800 transition-colors duration-300 hover:text-black md:text-lg lg:text-xl"
+                  >
+                    | {tag}{" "}
+                  </span>
+                ))}
+              </p>
             </div>
             <p className="sm:text-lg md:text-xl lg:text-2xl">
               By {post.author.name}
