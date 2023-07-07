@@ -8,6 +8,7 @@ import Button from "./Button";
 import PostDeleteButton from "./PostDeleteButton";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import MoreOptionsMenu from "./MoreOptionsMenu";
 
 interface PostCardProps {
   main?: boolean;
@@ -49,7 +50,7 @@ const PostCard: FC<PostCardProps> = ({
       className={`w-full max-w-[800px] transition duration-500 ${
         horizontal &&
         "md:flex md:h-full md:min-w-[350px] md:flex-grow lg:min-w-[500px]"
-      } ${dashboard && "flex flex-col justify-between"}`}
+      }`}
     >
       <div className="relative aspect-[5/4] w-full overflow-hidden rounded-lg shadow-sm transition duration-300">
         <Image
@@ -58,6 +59,7 @@ const PostCard: FC<PostCardProps> = ({
           alt=""
           className="absolute rounded-lg object-cover"
         />
+        {dashboard && <MoreOptionsMenu post={post} onDelete={handleDelete} />}
       </div>
 
       {/* Post Info */}
@@ -84,25 +86,6 @@ const PostCard: FC<PostCardProps> = ({
           </p>
         ) : null}
       </div>
-
-      {dashboard && (
-        <div className="z-10 flex w-full flex-col items-end gap-1">
-          {/* <Button label="Delete post" outline small onClick={() => {}} /> */}
-          <PostDeleteButton onDelete={handleDelete} />
-          {post.published ? (
-            <Button
-              label="Save as draft"
-              outline
-              small
-              onClick={() => {
-                handleDelete();
-              }}
-            />
-          ) : (
-            <Button label="Move to Drafts" outline small onClick={() => {}} />
-          )}
-        </div>
-      )}
     </div>
   );
 };
