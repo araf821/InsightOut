@@ -8,6 +8,7 @@ import {
 } from "react-icons/hi";
 import Button from "./Button";
 import { SafePost } from "../types";
+import { IoCloseOutline } from "react-icons/io5";
 
 interface MoreOptionsMenuProps {
   className?: string;
@@ -25,15 +26,28 @@ const MoreOptionsMenu: FC<MoreOptionsMenuProps> = ({
 
   return (
     <>
-      <HiOutlineMenu
-        onClick={() => setIsOpen((prev) => !prev)}
-        className={`absolute right-0 top-0 z-10 scale-105 cursor-pointer rounded-bl-md px-1 text-4xl text-white transition duration-500 ${
+      <div
+        className={`absolute right-0 top-0 z-10 scale-105 cursor-pointer rounded-bl-md p-1 text-3xl text-white transition duration-500 ${
           isOpen ? "" : "bg-zinc-900"
         }
         `}
-      />
+      >
+        <div className="relative h-7 w-7">
+          <IoCloseOutline
+            onClick={() => setIsOpen(false)}
+            className={`absolute right-0 top-0 transition duration-500 ${
+              isOpen ? "scale-x-100 scale-y-100" : "scale-x-0 scale-y-0"
+            }`}
+          />
+          <HiOutlineMenu
+            onClick={() => setIsOpen(true)}
+            className={`absolute right-0 top-0 transition duration-500 ${
+              !isOpen ? "scale-x-100 scale-y-100" : "scale-x-0 scale-y-0"
+            }`}
+          />
+        </div>
+      </div>
       <div
-        onClick={() => {}}
         className={`absolute bottom-0 left-0 right-0 top-0 origin-top-right bg-zinc-900/90 transition duration-500
       ${
         isOpen

@@ -38,7 +38,7 @@ const Button: React.FC<ButtonProps> = ({
       }
       ${
         small
-          ? "px-2 py-1 text-sm font-semibold md:text-base lg:text-lg"
+          ? "px-2 py-1 text-sm md:text-base lg:text-lg"
           : "px-4 py-2 text-lg md:text-xl lg:gap-4 lg:text-2xl"
       }
       ${className}
