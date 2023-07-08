@@ -60,7 +60,8 @@ const DashboardClient: FC<DashboardClientProps> = ({
               Member Since: {dateFormat(userCreated)}
             </p>
             <p className="text-xl font-light">
-              Posts published: {postsFromUser.length}
+              Posts published:{" "}
+              {postsFromUser.filter((post) => post.published).length}
             </p>
           </div>
         </div>

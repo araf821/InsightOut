@@ -23,28 +23,28 @@ const MoreOptionsMenu: FC<MoreOptionsMenuProps> = ({
   return (
     <>
       <div
-        className={`absolute right-0 top-0 z-10 scale-105 cursor-pointer rounded-bl-md p-1 text-3xl text-white transition duration-500 ${
+        className={`absolute right-0 top-0 z-10 scale-105 rounded-bl-md p-1 text-3xl text-white transition duration-300 ${
           !isOpen && "bg-zinc-900"
         }
         `}
       >
-        <div className="relative h-7 w-7">
+        <div className="relative h-7 w-7 cursor-pointer">
           <IoCloseOutline
             onClick={() => setIsOpen(false)}
-            className={`absolute right-0 top-0 origin-right transition duration-500 ${
+            className={`absolute right-0 top-0 origin-right transition duration-300 ${
               isOpen ? "scale-x-100 scale-y-100" : "scale-x-0 scale-y-0"
             }`}
           />
           <HiOutlineMenu
             onClick={() => setIsOpen(true)}
-            className={`absolute right-0 top-0 origin-right transition duration-500 ${
+            className={`absolute right-0 top-0 origin-right transition duration-300 ${
               !isOpen ? "scale-x-100 scale-y-100" : "scale-x-0 scale-y-0"
             }`}
           />
         </div>
       </div>
       <div
-        className={`absolute bottom-0 left-0 right-0 top-0 flex origin-top-right flex-col items-center justify-center bg-zinc-900/90 px-8 py-8 transition duration-500
+        className={`absolute bottom-0 left-0 right-0 top-0 flex origin-top-right flex-col items-center justify-center bg-zinc-900/80 px-8 py-8 transition duration-300
       ${
         isOpen
           ? "scale-x-100 scale-y-100"
@@ -53,7 +53,7 @@ const MoreOptionsMenu: FC<MoreOptionsMenuProps> = ({
         `}
       >
         <div
-          className={`grid w-full gap-8 text-center text-bg transition duration-500 ${
+          className={`grid w-full gap-8 text-center text-bg transition duration-300 ${
             isOpen ? "scale-x-100 scale-y-100" : "scale-x-0 scale-y-0"
           }`}
         >
@@ -70,7 +70,7 @@ const MoreOptionsMenu: FC<MoreOptionsMenuProps> = ({
                   Cancel
                 </button>
                 <button
-                  className="hover:scale0 w-full border-none bg-accent py-1 text-sm outline -outline-offset-4 outline-accent transition-all hover:outline-offset-2 focus:outline-offset-2 md:text-base lg:text-lg"
+                  className="hover:scale0 w-full border-none bg-accent py-1 text-sm text-black outline -outline-offset-4 outline-accent transition-all hover:outline-offset-2 focus:outline-offset-2 md:text-base lg:text-lg"
                   onClick={onDelete}
                 >
                   Confirm
@@ -82,7 +82,7 @@ const MoreOptionsMenu: FC<MoreOptionsMenuProps> = ({
               <p className="font-merri md:text-xl">Post Options</p>
               <div className="space-y-2">
                 <button
-                  className="hover:scale0 w-full border-none bg-accent py-1 text-sm outline -outline-offset-4 outline-accent transition-all hover:outline-offset-2 focus:outline-offset-2 md:text-base lg:text-lg"
+                  className="hover:scale0 w-full border-none bg-accent py-1 text-sm text-black outline -outline-offset-4 outline-accent transition-all hover:outline-offset-2 focus:outline-offset-2 md:text-base lg:text-lg"
                   onClick={() => setConfirmationModal(true)}
                 >
                   Delete Post

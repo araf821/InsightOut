@@ -1,4 +1,4 @@
 const ExplorePage = () => {
-  return <div>ExplorePage</div>;
+  return <main>ExplorePage</main>;
 };
 export default ExplorePage;

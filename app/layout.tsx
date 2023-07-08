@@ -6,7 +6,6 @@ import ToasterProvider from "./providers/ToasterProvider";
 import Providers from "./components/Providers";
 import Sidebar from "./components/sidebar/Sidebar";
 import Footer from "./components/Footer";
-import Modal from "./components/modals/Modal";
 
 const merri = Merriweather({
   subsets: ["latin"],

@@ -15,8 +15,8 @@ const NewsletterSection: FC<NewsletterSectionProps> = ({}) => {
           xmlns="http://www.w3.org/2000/svg"
           style={{
             width: "100%",
-            height: 200,
-            transform: "rotate(180deg) scaleX(-1)",
+            height: 100,
+            transform: "rotate(180deg) scaleX(1)",
           }}
         >
           <path d="M1200 120L0 16.48V0h1200v120z" className="fill-primary" />
@@ -25,7 +25,7 @@ const NewsletterSection: FC<NewsletterSectionProps> = ({}) => {
       <section className="relative bg-primary pb-10 lg:pt-10">
         <div className="mx-auto max-w-[1550px] px-4 sm:px-6 md:px-10 xl:px-20">
           <div className="grid grid-cols-1 items-center gap-8 text-center lg:grid-cols-2 lg:gap-12 lg:text-start">
-            <p className="balance flex flex-col font-josefin text-5xl font-bold tracking-tight sm:text-6xl md:gap-2 md:text-7xl leading-tight lg:gap-3 lg:text-left lg:text-7xl xl:text-[80px]">
+            <p className="balance flex flex-col font-josefin text-5xl font-bold leading-tight tracking-tight sm:text-6xl md:gap-2 md:text-7xl lg:gap-3 lg:text-left lg:text-7xl xl:text-[80px]">
               Step Into An Insightful Wonderland
             </p>
             <div className="justify flex flex-col space-y-5">
@@ -33,7 +33,7 @@ const NewsletterSection: FC<NewsletterSectionProps> = ({}) => {
                 <p className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl">
                   <span className="font-semibold">Join Our Newsletter</span>
                 </p>
-                <p className="group mx-auto w-fit lg:mx-0 ">
+                <p className="group mx-auto w-fit text-neutral-900 lg:mx-0 ">
                   We will surely spam you with content that you{" "}
                   <span className="transition duration-500 group-hover:hidden">
                     don&rsquo;t
@@ -72,11 +72,6 @@ const NewsletterSection: FC<NewsletterSectionProps> = ({}) => {
                     Email
                   </label>
                 </div>
-                {/* <input
-                  type="email"
-                  placeholder="OutsightIn@jeemail.com"
-                  className="w-full max-w-[700px] rounded-sm border-b-2 border-zinc-700 px-4 py-2 text-lg text-zinc-800 outline-none focus:border-b-4 sm:text-xl md:text-left md:text-2xl"
-                /> */}
                 <Button
                   special
                   label="Sign Up Now"
@@ -95,8 +90,8 @@ const NewsletterSection: FC<NewsletterSectionProps> = ({}) => {
           xmlns="http://www.w3.org/2000/svg"
           style={{
             width: "100%",
-            height: 200,
-            transform: "scaleX(-1)",
+            height: 100,
+            transform: "scaleX(1)",
           }}
         >
           <path className="fill-primary" d="M1200 120L0 16.48V0h1200v120z" />

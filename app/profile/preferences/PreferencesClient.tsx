@@ -89,8 +89,10 @@ const PreferencesClient: FC<PreferencesClientProps> = ({ currentUser }) => {
           Author Name
         </label>
       </div>
-
-      <Button onClick={handleSubmit(onSubmit)} label="Save Changes" small />
+      <div className="space-y-2">
+        <Button onClick={handleSubmit(onSubmit)} label="Save Changes" small />
+        <Button onClick={() => router.back()} label="Back" outline small />
+      </div>
     </div>
   );
 };

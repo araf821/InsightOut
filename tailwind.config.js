@@ -1,5 +1,3 @@
-const { blackA, mauve, violet } = require("@radix-ui/colors");
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -15,9 +13,6 @@ module.exports = {
         ubuntu: ["var(--font-ubuntu)", "sans-serif"],
       },
       colors: {
-        ...blackA,
-        ...mauve,
-        ...violet,
         // accent: "#88063d",
         // primary: "#ea5d68",
         // secondary: "#fbb1d0",
