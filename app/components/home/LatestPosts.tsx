@@ -11,7 +11,7 @@ interface LatestPostsProps {
 }
 
 const LatestPosts: FC<LatestPostsProps> = ({ posts }) => {
-  if (!posts) return null;
+  if (!posts?.length) return null;
 
   return (
     <Container>
@@ -36,6 +36,7 @@ const LatestPosts: FC<LatestPostsProps> = ({ posts }) => {
         <div className="mx-auto max-w-[20rem] pt-6">
           <Button onClick={() => {}} label="View More" />
         </div>
+
       </div>
     </Container>
   );

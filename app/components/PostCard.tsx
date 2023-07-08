@@ -45,6 +45,21 @@ const PostCard: FC<PostCardProps> = ({
       });
   };
 
+  const handleMove = () => {
+    setIsLoading(true);
+
+    axios
+      .put(`/api/post/${post.id}`)
+      .then(() => {
+        toast.success(`${post.published ? "Moved to drafts!" : "Published!"}`);
+        router.refresh();
+      })
+      .catch(() => {
+        toast.error("Something went wrong.");
+      })
+      .finally(() => setIsLoading(false));
+  };
+
   return (
     <div
       className={`w-full max-w-[800px] transition duration-500 ${
@@ -59,7 +74,13 @@ const PostCard: FC<PostCardProps> = ({
           alt=""
           className="absolute rounded-lg object-cover"
         />
-        {dashboard && <MoreOptionsMenu post={post} onDelete={handleDelete} />}
+        {dashboard && (
+          <MoreOptionsMenu
+            post={post}
+            onMove={handleMove}
+            onDelete={handleDelete}
+          />
+        )}
       </div>
 
       {/* Post Info */}

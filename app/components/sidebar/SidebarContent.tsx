@@ -58,13 +58,6 @@ const SidebarContent: FC<SidebarContentProps> = ({ currentUser }) => {
             router.push("/profile/dashboard");
           }}
         />
-        <SidebarButton
-          title="Preferences"
-          onClick={() => {
-            router.push("/profile/preferences");
-            closeSidebar();
-          }}
-        />
         <hr className="rounded-full border-zinc-800" />
         <p className="text-center sm:text-lg lg:text-xl">
           Signed in as {currentUser.name}
@@ -75,9 +68,9 @@ const SidebarContent: FC<SidebarContentProps> = ({ currentUser }) => {
   }
 
   return (
-    <section className="sidebar-content mx-auto max-w-[800px] px-4 py-8 md:px-0">
+    <section className="sidebar-content space-y-2 mx-auto max-w-[800px] px-4 py-8 md:px-0">
       {body}
-      <hr className="my-4 rounded-full border-zinc-800" />
+      {/* {/* <hr className="my-4 rounded-full border-zinc-800" /> */}
       <SidebarButton
         title="Help and FAQs"
         onClick={() => router.push("/help")}
