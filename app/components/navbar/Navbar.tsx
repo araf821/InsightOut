@@ -3,13 +3,33 @@
 import Logo from "../texts/Logo";
 import Container from "../Container";
 import NavButtonsContainer from "./NavButtonsContainer";
+import { motion } from "framer-motion";
 
 interface NavbarProps {}
 
 const Navbar: React.FC<NavbarProps> = ({}) => {
   return (
-    <nav
-      className={`z-30 w-full origin-top bg-bg text-center capitalize shadow-md transition`}
+    <motion.nav
+      variants={{
+        hidden: {
+          opacity: 0,
+          y: -50,
+          transition: {
+            type: "spring",
+          },
+        },
+        show: {
+          opacity: 1,
+          y: 0,
+          transition: {
+            type: "spring",
+            delay: 0.1,
+          },
+        },
+      }}
+      initial="hidden"
+      whileInView="show"
+      className={`z-30 w-full origin-top bg-bg text-center capitalize shadow-md`}
     >
       {/* Logo and slogan container */}
       <div className="grid place-items-center">
@@ -25,7 +45,7 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
           <NavButtonsContainer />
         </Container>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 export default Navbar;

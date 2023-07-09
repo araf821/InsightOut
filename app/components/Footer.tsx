@@ -5,8 +5,8 @@ import Container from "./Container";
 import Logo from "./texts/Logo";
 import FooterLink from "./FooterLink";
 import { FaAirbnb, FaGithub, FaInstagram, FaTwitter } from "react-icons/fa";
-import { TbBrandHeadlessui, TbBrandNetflix } from "react-icons/tb";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 interface FooterProps {}
 
@@ -15,7 +15,30 @@ const Footer: FC<FooterProps> = ({}) => {
 
   return (
     <Container>
-      <footer className="flex w-full flex-col items-center justify-center gap-8 rounded-xl selection:bg-bg selection:text-zinc-800 bg-zinc-800 px-4 py-16">
+      <motion.footer
+        variants={{
+          hidden: {
+            opacity: 0,
+            y: 50,
+            transition: {
+              type: "tween",
+              stiffness: 300,
+              damping: 10,
+            },
+          },
+          show: {
+            opacity: 1,
+            y: 0,
+            transition: {
+              type: "tween",
+              stiffness: 80,
+            },
+          },
+        }}
+        initial="hidden"
+        whileInView="show"
+        className="flex w-full flex-col items-center justify-center gap-8 rounded-xl bg-zinc-800 px-4 py-16 selection:bg-bg selection:text-zinc-800"
+      >
         <Logo footer />
         <div className="buttons mx-auto flex flex-col gap-3 text-center text-bg/80 sm:flex-row sm:gap-12">
           <FooterLink label="Home" link={() => router.push("/")} />
@@ -37,7 +60,7 @@ const Footer: FC<FooterProps> = ({}) => {
           Copyright @{new Date().getFullYear()} All Rights Reserved | Made with
           🍌
         </p>
-      </footer>
+      </motion.footer>
     </Container>
   );
 };

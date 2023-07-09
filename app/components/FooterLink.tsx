@@ -8,7 +8,7 @@ interface FooterLinkProps {
 const FooterLink: FC<FooterLinkProps> = ({ label, link }) => {
   return (
     <p
-      className="cursor-pointer transition duration-200 hover:text-white md:text-lg xl:text-xl"
+      className="cursor-pointer transition duration-300 hover:text-white md:text-lg xl:text-xl"
       onClick={link}
     >
       {label}

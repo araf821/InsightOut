@@ -5,6 +5,7 @@ import Heading from "@/app/components/Heading";
 import PostCard from "@/app/components/PostCard";
 import { dateFormat } from "@/app/lib/helpers/dateFormat";
 import { SafePost } from "@/app/types";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FC } from "react";
@@ -35,7 +36,31 @@ const DashboardClient: FC<DashboardClientProps> = ({
 
       <div className="my-8 grid grid-cols-1 gap-4 lg:grid-cols-5">
         {/* Author Info */}
-        <div className="relative flex w-full flex-col overflow-hidden rounded-t-lg bg-secondary px-2 py-3 shadow-md sm:flex-row sm:rounded-l-lg lg:col-span-3">
+        <motion.div
+          viewport={{ once: true }}
+          variants={{
+            hidden: {
+              opacity: 0,
+              x: -100,
+              transition: {
+                type: "spring",
+                stiffness: 200,
+                damping: 505,
+              },
+            },
+            show: {
+              opacity: 1,
+              x: 0,
+              transition: {
+                type: "spring",
+                stiffness: 200,
+              },
+            },
+          }}
+          whileInView="show"
+          initial="hidden"
+          className="relative flex w-full flex-col overflow-hidden rounded-t-lg bg-secondary px-2 py-3 shadow-md sm:flex-row sm:rounded-l-lg lg:col-span-3"
+        >
           <span
             onClick={() => router.push("/profile/preferences")}
             className="group absolute right-1 top-2 z-10 grid h-12 w-12 cursor-pointer place-items-center sm:top-1"
@@ -64,10 +89,35 @@ const DashboardClient: FC<DashboardClientProps> = ({
               {postsFromUser.filter((post) => post.published).length}
             </p>
           </div>
-        </div>
+        </motion.div>
 
         {/* Followers/Following Section*/}
-        <div className="relative flex h-full w-full cursor-not-allowed flex-col items-center justify-between gap-2 font-josefin text-neutral-800 md:flex-row lg:col-span-2 lg:flex-col">
+        <motion.div
+          viewport={{ once: true }}
+          variants={{
+            hidden: {
+              opacity: 0,
+              x: 100,
+              transition: {
+                type: "spring",
+                stiffness: 200,
+                damping: 505,
+              },
+            },
+            show: {
+              opacity: 1,
+              x: 0,
+              transition: {
+                type: "spring",
+                stiffness: 200,
+                delay: 0.2,
+              },
+            },
+          }}
+          whileInView="show"
+          initial="hidden"
+          className="relative flex h-full w-full cursor-not-allowed flex-col items-center justify-between gap-2 font-josefin text-neutral-800 md:flex-row lg:col-span-2 lg:flex-col"
+        >
           <div className="absolute right-0 top-0 z-10 rounded-bl-md rounded-tr-md bg-secondary px-2 py-1 text-zinc-800 shadow-md md:text-base">
             Coming Soon
           </div>
@@ -90,7 +140,7 @@ const DashboardClient: FC<DashboardClientProps> = ({
               </span>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Displaying User's Posts */}
@@ -98,9 +148,11 @@ const DashboardClient: FC<DashboardClientProps> = ({
         <>
           <Heading small center title="Published" />
           <section className="grid grid-cols-1 gap-4 py-8 md:grid-cols-2 lg:grid-cols-3">
-            {published.map((post) => (
-              <PostCard dashboard key={post.id} post={post} />
-            ))}
+            {[...published, ...published, ...published, ...published].map(
+              (post, index) => (
+                <PostCard dashboard index={index} key={post.id} post={post} />
+              )
+            )}
           </section>
         </>
       )}
@@ -109,8 +161,8 @@ const DashboardClient: FC<DashboardClientProps> = ({
         <>
           <Heading small center title="Drafts" />
           <section className="grid grid-cols-1 gap-4 py-8 md:grid-cols-2 lg:grid-cols-3">
-            {drafts.map((post) => (
-              <PostCard dashboard key={post.id} post={post} />
+            {drafts.map((post, index) => (
+              <PostCard dashboard index={index} key={post.id} post={post} />
             ))}
           </section>
         </>

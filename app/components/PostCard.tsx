@@ -14,6 +14,7 @@ interface PostCardProps {
   horizontal?: boolean;
   post?: SafePost;
   dashboard?: boolean;
+  index?: number;
 }
 
 const PostCard: FC<PostCardProps> = ({
@@ -21,6 +22,7 @@ const PostCard: FC<PostCardProps> = ({
   horizontal,
   main,
   dashboard,
+  index = 1,
 }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -60,22 +62,33 @@ const PostCard: FC<PostCardProps> = ({
   };
 
   return (
-    <div
+    <motion.div
+      initial={!horizontal && !main && "hidden"}
+      whileInView="show"
+      viewport={{ once: true }}
+      variants={{
+        hidden: {
+          y: 50,
+          x: 0,
+          opacity: 0,
+        },
+        show: {
+          x: 0,
+          y: 0,
+          opacity: 1,
+          transition: {
+            type: "spring",
+            delay: (index % 3) * 0.2,
+            duration: 0.2,
+          },
+        },
+      }}
       className={`w-full max-w-[800px] transition duration-500 ${
         horizontal &&
         "md:flex md:h-full md:min-w-[350px] md:flex-grow lg:min-w-[500px]"
       }`}
     >
-      <motion.div
-        whileHover={{ scale: 1.04 }}
-        transition={{
-          type: "spring",
-          duration: 0.1,
-          stiffness: 200,
-          damping: 5,
-        }}
-        className="relative aspect-[5/4] w-full overflow-hidden rounded-lg shadow-sm"
-      >
+      <div className="relative aspect-[5/4] w-full overflow-hidden rounded-lg shadow-sm">
         <Image
           src={post.image}
           fill
@@ -89,7 +102,7 @@ const PostCard: FC<PostCardProps> = ({
             onDelete={handleDelete}
           />
         )}
-      </motion.div>
+      </div>
 
       {/* Post Info */}
       <div
@@ -114,7 +127,7 @@ const PostCard: FC<PostCardProps> = ({
           </p>
         ) : null}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

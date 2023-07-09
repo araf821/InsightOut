@@ -1,6 +1,7 @@
 "use client";
 
 import { SafePost } from "@/app/types";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -16,7 +17,22 @@ const Hero: React.FC<HeroProps> = ({ post }) => {
   }
 
   return (
-    <section className="mx-auto w-full max-w-[1750px] py-8">
+    <motion.section
+      whileInView="show"
+      initial="hidden"
+      variants={{
+        hidden: {
+          opacity: 0,
+        },
+        show: {
+          opacity: 1,
+          transition: {
+            duration: 0.75,
+          },
+        },
+      }}
+      className="mx-auto w-full max-w-[1750px] py-8"
+    >
       <div className="relative mx-auto aspect-[2/3] w-full max-w-[1024px] overflow-hidden shadow-xl md:aspect-[4/3] lg:aspect-[5/3]">
         <Image
           src={post.image}
@@ -55,7 +71,7 @@ const Hero: React.FC<HeroProps> = ({ post }) => {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
