@@ -1,14 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { SafePost } from "../types";
 import { useRouter } from "next/navigation";
-import Button from "./Button";
-import PostDeleteButton from "./PostDeleteButton";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import MoreOptionsMenu from "./MoreOptionsMenu";
+import { motion } from "framer-motion";
 
 interface PostCardProps {
   main?: boolean;
@@ -67,7 +66,16 @@ const PostCard: FC<PostCardProps> = ({
         "md:flex md:h-full md:min-w-[350px] md:flex-grow lg:min-w-[500px]"
       }`}
     >
-      <div className="relative aspect-[5/4] w-full overflow-hidden rounded-lg shadow-sm transition duration-300">
+      <motion.div
+        whileHover={{ scale: 1.04 }}
+        transition={{
+          type: "spring",
+          duration: 0.1,
+          stiffness: 200,
+          damping: 5,
+        }}
+        className="relative aspect-[5/4] w-full overflow-hidden rounded-lg shadow-sm"
+      >
         <Image
           src={post.image}
           fill
@@ -81,13 +89,12 @@ const PostCard: FC<PostCardProps> = ({
             onDelete={handleDelete}
           />
         )}
-      </div>
+      </motion.div>
 
       {/* Post Info */}
       <div
         className={`h-fit w-full p-2 text-center capitalize ${
-          horizontal &&
-          "md:h-fit md:space-y-3 md:p-0 md:pl-2 md:text-start"
+          horizontal && "md:h-fit md:space-y-3 md:p-0 md:pl-2 md:text-start"
         }`}
       >
         <p

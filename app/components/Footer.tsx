@@ -15,7 +15,7 @@ const Footer: FC<FooterProps> = ({}) => {
 
   return (
     <Container>
-      <footer className="flex w-full flex-col items-center justify-center gap-8 rounded-lg bg-zinc-800 px-4 py-16">
+      <footer className="flex w-full flex-col items-center justify-center gap-8 rounded-xl selection:bg-bg selection:text-zinc-800 bg-zinc-800 px-4 py-16">
         <Logo footer />
         <div className="buttons mx-auto flex flex-col gap-3 text-center text-bg/80 sm:flex-row sm:gap-12">
           <FooterLink label="Home" link={() => router.push("/")} />

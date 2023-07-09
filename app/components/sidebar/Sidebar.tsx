@@ -26,10 +26,20 @@ const Sidebar: FC<SidebarProps> = ({ currentUser }) => {
   );
 
   // Disable scrolling if the sidebar is open
-  if (isOpen) {
-    document.body.classList.add(`overflow-hidden`);
-  } else {
-    document.body.classList.remove("overflow-hidden");
+
+  const hideScrollbar = () => {
+    setTimeout(() => {
+      document.body.classList.add("overflow-hidden");
+    }, 500);
+  };
+
+  if (typeof document !== "undefined") {
+    if (isOpen) {
+      // document.body.classList.add(`overflow-hidden`);
+      hideScrollbar();
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
   }
 
   return (
