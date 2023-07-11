@@ -2,13 +2,24 @@
 
 import { FC } from "react";
 import Button from "../Button";
+import { motion } from "framer-motion";
 
 interface NewsletterSectionProps {}
 
 const NewsletterSection: FC<NewsletterSectionProps> = ({}) => {
   return (
-    <div className="relative">
-      <div className="absolute top-0 -z-10 w-full -translate-y-full overflow-hidden">
+    <motion.div
+      viewport={{ once: true }}
+      initial={{ opacity: 0 }}
+      whileInView={{
+        opacity: 1,
+        transition: {
+          duration: 0.75,
+        },
+      }}
+      className="relative"
+    >
+      {/* <div className="absolute top-0 -z-10 w-full -translate-y-full overflow-hidden">
         <svg
           preserveAspectRatio="none"
           viewBox="0 0 1200 120"
@@ -21,19 +32,21 @@ const NewsletterSection: FC<NewsletterSectionProps> = ({}) => {
         >
           <path d="M1200 120L0 16.48V0h1200v120z" className="fill-primary" />
         </svg>
-      </div>
-      <section className="relative bg-primary pb-10 lg:pt-10">
-        <div className="mx-auto max-w-[1550px] px-4 sm:px-6 md:px-10 xl:px-20">
+      </div> */}
+      <section
+        className="relative bg-gradient-to-b from-accent via-[#000000] to-primary pb-12 pt-36 -translate-y-24 text-bg shadow-[0_0_30px] shadow-zinc-700 lg:bg-gradient-to-r"
+      >
+        <div className=" mx-auto max-w-[1550px] px-4 sm:px-6 md:px-10 xl:px-20">
           <div className="grid grid-cols-1 items-center gap-8 text-center lg:grid-cols-2 lg:gap-12 lg:text-start">
             <p className="balance flex flex-col font-josefin text-5xl font-bold leading-tight tracking-tight sm:text-6xl md:gap-2 md:text-7xl lg:gap-3 lg:text-left lg:text-7xl xl:text-[80px]">
               Step Into An Insightful Wonderland
             </p>
-            <div className="justify flex flex-col space-y-5">
+            <div className="justify flex flex-col space-y-5 bg-gradient-to-b lg:bg-gradient-to-r from-bg via-accent to-accent bg-clip-text text-transparent">
               <div>
                 <p className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl">
                   <span className="font-semibold">Join Our Newsletter</span>
                 </p>
-                <p className="group mx-auto w-fit text-neutral-900 lg:mx-0 ">
+                <p className="text--900 group mx-auto w-fit lg:mx-0 ">
                   We will surely spam you with content that you{" "}
                   <span className="transition duration-500 group-hover:hidden">
                     don&rsquo;t
@@ -83,7 +96,7 @@ const NewsletterSection: FC<NewsletterSectionProps> = ({}) => {
           </div>
         </div>
       </section>
-      <div>
+      {/* <div>
         <svg
           preserveAspectRatio="none"
           viewBox="0 0 1200 120"
@@ -96,8 +109,8 @@ const NewsletterSection: FC<NewsletterSectionProps> = ({}) => {
         >
           <path className="fill-primary" d="M1200 120L0 16.48V0h1200v120z" />
         </svg>
-      </div>
-    </div>
+      </div> */}
+    </motion.div>
   );
 };
 

@@ -68,22 +68,24 @@ const PostCard: FC<PostCardProps> = ({
       viewport={{ once: true }}
       variants={{
         hidden: {
-          y: 50,
+          // y: 50,
           x: 0,
+          scale: 0,
           opacity: 0,
         },
         show: {
           x: 0,
           y: 0,
+          scale: 1,
           opacity: 1,
           transition: {
             type: "spring",
-            delay: (index % 3) * 0.2,
+            // delay:  (index % 3) * 0.1,
             duration: 0.2,
           },
         },
       }}
-      className={`w-full max-w-[800px] transition duration-500 ${
+      className={`w-full max-w-[800px] transition duration-500 sm:delay-200 lg:delay-[0.2] ${
         horizontal &&
         "md:flex md:h-full md:min-w-[350px] md:flex-grow lg:min-w-[500px]"
       }`}

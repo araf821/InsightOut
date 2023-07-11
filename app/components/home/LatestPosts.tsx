@@ -6,6 +6,7 @@ import Button from "../Button";
 import { SafePost } from "@/app/types";
 import PostCard from "../PostCard";
 import Heading from "../Heading";
+import { motion } from "framer-motion";
 
 interface LatestPostsProps {
   posts: SafePost[] | null;
@@ -16,11 +17,23 @@ const LatestPosts: FC<LatestPostsProps> = ({ posts }) => {
 
   return (
     <Container>
-      <div className="pb-12 pt-4">
+      <motion.div
+        viewport={{ once: true }}
+        whileInView={{
+          opacity: 1,
+          transition: {
+            duration: 0.75,
+          },
+        }}
+        initial={{
+          opacity: 0,
+        }}
+        className="pb-12 -mt-12"
+      >
         <Heading title="Latest Posts" />
 
         {/* Cards container */}
-        <div className="mt-4 flex flex-col gap-6 bg-bg md:flex-row md:justify-between md:rounded-md md:bg-secondary md:p-2 md:shadow-lg lg:gap-8 lg:p-3 xl:p-4">
+        <div className="mt-4 flex flex-col gap-6 from-secondary via-black to-secondary md:flex-row md:justify-between md:rounded-md md:bg-secondary md:p-2 md:shadow-lg lg:gap-8 lg:p-3 xl:p-4">
           <div className="h-full w-full">
             <PostCard index={1} main post={posts[0]} />
           </div>
@@ -34,7 +47,7 @@ const LatestPosts: FC<LatestPostsProps> = ({ posts }) => {
         <div className="mx-auto max-w-[20rem] pt-6">
           <Button onClick={() => {}} label="View More" />
         </div>
-      </div>
+      </motion.div>
     </Container>
   );
 };

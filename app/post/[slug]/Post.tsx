@@ -16,7 +16,7 @@ const Post: FC<PostProps> = ({ post }) => {
 
   return (
     <article className="my-8 flex w-full flex-col gap-4">
-      <Heading title={post.title} bold />
+      <Heading post title={post.title} bold />
       <hr />
       <div className="relative aspect-[16/10] w-full">
         <Image
