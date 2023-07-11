@@ -6,6 +6,7 @@ import PostCard from "../components/PostCard";
 import Button from "../components/Button";
 import { useRouter, useSearchParams } from "next/navigation";
 import queryString from "query-string";
+import { motion } from "framer-motion";
 
 interface SearchBarProps {
   posts: SafePost[] | null;
@@ -13,20 +14,10 @@ interface SearchBarProps {
 
 const Search: FC<SearchBarProps> = ({ posts }) => {
   const [keyword, setKeyword] = useState("");
+  const [tags, setTags] = useState<string[]>([])
+
   const router = useRouter();
   const params = useSearchParams();
-
-  // const handleSearch = () => {
-  //   const url = queryString.stringifyUrl(
-  //     {
-  //       url: "/explore",
-  //       query: { search: searchQuery },
-  //     },
-  //     { skipNull: true }
-  //   );
-  //   // Update the query parameters in the URL
-  //   router.push(url);
-  // };
 
   const handleSearch = useCallback(async () => {
     let currentQuery: any = {};
@@ -43,7 +34,7 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
     const url = queryString.stringifyUrl(
       {
         url: "/explore",
-        query: { keyword },
+        query: updatedQuery,
       },
       { skipNull: true }
     );
@@ -53,7 +44,11 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
   return (
     <section>
       {/* Search bar */}
-      <div className="relative mb-8 w-full">
+      <motion.div
+        initial={{ y: 100, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1, transition: { duration: 0.5 } }}
+        className="relative mb-8 w-full"
+      >
         <input
           id="name"
           type="text"
@@ -68,7 +63,7 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
         >
           Search
         </label>
-      </div>
+      </motion.div>
 
       {/* Search results */}
       <div

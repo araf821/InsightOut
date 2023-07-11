@@ -1,7 +1,6 @@
 import Container from "../components/Container";
 import Search from "./Search";
 import Heading from "../components/Heading";
-import getAllPosts from "../actions/getAllPosts";
 import getSearchResults, { IPostParams } from "../actions/getSearchResults";
 
 interface ExploreProps {

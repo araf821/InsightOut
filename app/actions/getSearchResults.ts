@@ -8,18 +8,23 @@ export default async function getSearchResults(params: IPostParams) {
   try {
     const { keyword } = params;
 
-    let query: any = {};
-
-    if (keyword) {
-      query.OR = [
-        { title: { contains: keyword } },
-        { content: { contains: keyword, mode: "insensitive" } },
-        { tags: { has: keyword, mode: "insensitive" } },
-      ];
-    }
-
     const posts = await prismaClient.post.findMany({
-      where: query,
+      where: {
+        OR: [
+          {
+            title: {
+              contains: keyword,
+              mode: "insensitive",
+            },
+          },
+          {
+            content: {
+              contains: keyword,
+              mode: "insensitive",
+            },
+          },
+        ],
+      },
       orderBy: {
         createdAt: "desc",
       },
