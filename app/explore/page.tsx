@@ -1,11 +1,15 @@
-import { FC } from "react";
 import Container from "../components/Container";
 import Search from "./Search";
 import Heading from "../components/Heading";
 import getAllPosts from "../actions/getAllPosts";
+import getSearchResults, { IPostParams } from "../actions/getSearchResults";
 
-const page = async ({}) => {
-  const posts = await getAllPosts();
+interface ExploreProps {
+  searchParams: IPostParams;
+}
+
+const page = async ({ searchParams }: ExploreProps) => {
+  let posts = await getSearchResults(searchParams);
 
   return (
     <Container>

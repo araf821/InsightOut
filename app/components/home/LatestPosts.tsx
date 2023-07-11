@@ -45,7 +45,7 @@ const LatestPosts: FC<LatestPostsProps> = ({ posts }) => {
 
         {/* View More button */}
         <div className="mx-auto max-w-[20rem] pt-6">
-          <Button onClick={() => {}} label="View More" />
+          <Button onClick={() => {}} outline label="View More" />
         </div>
       </motion.div>
     </Container>

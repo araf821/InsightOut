@@ -44,7 +44,7 @@ const Sidebar: FC<SidebarProps> = ({ currentUser }) => {
 
   return (
     <div
-      className={`fixed inset-0 left-0 top-0 z-40 h-screen w-screen -translate-x-full transform   duration-500  ${
+      className={`fixed inset-0 left-0 top-0 z-[999] h-screen w-screen -translate-x-full transform   duration-500  ${
         isOpen && "translate-x-0"
       }`}
     >
