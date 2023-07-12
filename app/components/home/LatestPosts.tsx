@@ -21,11 +21,13 @@ const LatestPosts: FC<LatestPostsProps> = ({ posts }) => {
         viewport={{ once: true }}
         whileInView={{
           opacity: 1,
+          y: 0,
           transition: {
             duration: 0.75,
           },
         }}
         initial={{
+          y: 100,
           opacity: 0,
         }}
         className="pb-12 -mt-12"

@@ -29,7 +29,7 @@ const Heading: React.FC<HeadingProps> = ({
         {post ? (
           <span>{title}</span>
         ) : (
-          <div>
+          <>
             {Array.from(title).map((letter, index) => (
               <motion.span
                 viewport={{ once: true }}
@@ -50,7 +50,7 @@ const Heading: React.FC<HeadingProps> = ({
                 {letter === " " ? "\u00A0" : letter}
               </motion.span>
             ))}
-          </div>
+          </>
         )}
         {/* {title} */}
       </p>

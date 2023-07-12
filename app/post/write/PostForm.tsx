@@ -15,6 +15,7 @@ import Button from "@/app/components/Button";
 import TitleInput from "./TitleInput";
 import { SafeUser } from "@/app/types";
 import getPostTemplate from "@/app/actions/openai/generatePostTemplate";
+import { motion } from "framer-motion";
 
 interface PostFormProps {
   currentUser: SafeUser | null;
@@ -151,7 +152,11 @@ const PostForm: FC<PostFormProps> = ({}) => {
   };
 
   return (
-    <form className="flex w-full max-w-[1280px] flex-col gap-4 rounded-md sm:border sm:px-4 sm:py-6 sm:shadow-lg">
+    <motion.form
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1, transition: { duration: 0.75 } }}
+      className="flex w-full max-w-[1280px] flex-col gap-4 rounded-md sm:border sm:px-4 sm:py-6 sm:shadow-lg"
+    >
       {/* Title */}
       <TitleInput
         id="title"
@@ -209,7 +214,7 @@ const PostForm: FC<PostFormProps> = ({}) => {
           className="md:max-w-[400px]"
         />
       </div>
-    </form>
+    </motion.form>
   );
 };
 

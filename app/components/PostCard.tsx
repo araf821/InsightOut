@@ -68,20 +68,15 @@ const PostCard: FC<PostCardProps> = ({
       viewport={{ once: true }}
       variants={{
         hidden: {
-          // y: 50,
-          x: 0,
-          scale: 0,
-          opacity: 0,
+          filter: "blur(4px)",
         },
         show: {
-          x: 0,
-          y: 0,
+          filter: "blur(0px)",
           scale: 1,
           opacity: 1,
           transition: {
-            type: "spring",
-            // delay:  (index % 3) * 0.1,
-            duration: 0.2,
+            ease: "easeIn",
+            duration: 0.5,
           },
         },
       }}

@@ -18,3 +18,14 @@ export type SafePost = Omit<Post, "createdAt" | "updatedAt"> & {
     image: string | null;
   };
 };
+
+// export type SafePostWithCommentCount = Omit<Post, "createdAt" | "updatedAt"> & {
+//   createdAt: string;
+//   updatedAt: string;
+//   author: {
+//     id: string;
+//     name: string | null;
+//     image: string | null;
+//   };
+
+// }
