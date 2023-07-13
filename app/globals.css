@@ -72,3 +72,23 @@ body,
     transform: translate(0, 0) rotate(180deg);
   }
 }
+
+::-webkit-scrollbar {
+  width: 1.25em;
+}
+
+::-webkit-scrollbar-track {
+  /* background: white; */
+  background: #27272a;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 0.3rem solid #27272a;
+  background: linear-gradient(#e52b50, rgba(0, 0, 0, 0.1), #4685ff);
+  /* background-color: #27272a; */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  /* background: black; */
+  background: linear-gradient(#b92341, rgba(0, 0, 0, 0.1), #3767c7);
+}
