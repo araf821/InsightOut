@@ -9,8 +9,8 @@ export default async function getSearchResults(params: IPostParams) {
   try {
     const { keyword, tag } = params;
 
-    if (keyword === "" && tag === "") {
-      return [];
+    if (!keyword && !tag) {
+      return null;
     }
 
     const posts = await prismaClient.post.findMany({

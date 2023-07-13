@@ -37,6 +37,8 @@ export const options = [
   { label: "Art", value: "art" },
   { label: "Science", value: "science" },
   { label: "Lifestyle", value: "lifestyle" },
+  { label: "News", value: "news" },
+  { label: "Education", value: "education" },
 ];
 
 const PostForm: FC<PostFormProps> = ({}) => {

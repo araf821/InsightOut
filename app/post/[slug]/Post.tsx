@@ -56,7 +56,7 @@ const Post: FC<PostProps> = ({ post }) => {
         <p>
           {post.tags.map((tag) => (
             <span
-              onClick={() => router.push(`/explore/tags/${tag}`)}
+              onClick={() => router.push(`/explore/?keyword=&tag=${tag}`)}
               key={tag}
               className="cursor-pointer font-josefin text-neutral-600 transition-colors duration-300 hover:text-black md:text-lg lg:text-2xl"
             >

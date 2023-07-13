@@ -7,12 +7,14 @@ import { SafePost } from "@/app/types";
 import PostCard from "../PostCard";
 import Heading from "../Heading";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 interface LatestPostsProps {
   posts: SafePost[] | null;
 }
 
 const LatestPosts: FC<LatestPostsProps> = ({ posts }) => {
+  const router = useRouter();
   if (!posts?.length) return null;
 
   return (
@@ -30,7 +32,7 @@ const LatestPosts: FC<LatestPostsProps> = ({ posts }) => {
           y: 100,
           opacity: 0,
         }}
-        className="pb-12 -mt-12"
+        className="-mt-12 pb-12"
       >
         <Heading title="Latest Posts" />
 
@@ -47,7 +49,11 @@ const LatestPosts: FC<LatestPostsProps> = ({ posts }) => {
 
         {/* View More button */}
         <div className="mx-auto max-w-[20rem] pt-6">
-          <Button onClick={() => {}} outline label="View More" />
+          <Button
+            onClick={() => router.push("/explore")}
+            outline
+            label="View More"
+          />
         </div>
       </motion.div>
     </Container>

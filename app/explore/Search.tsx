@@ -83,12 +83,22 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
           >
             <AiFillFilter className="text-3xl" />
           </div>
-          <Button
-            icon={FaSearch}
-            className="h-full sm:col-span-1"
-            outline
-            onClick={handleSearch}
-          />
+          {selectedTag || keyword ? (
+            <Button
+              icon={FaSearch}
+              className="h-full sm:col-span-1"
+              special
+              onClick={handleSearch}
+            />
+          ) : (
+            <Button
+              icon={FaSearch}
+              className="h-full sm:col-span-1"
+              special
+              disabled
+              onClick={handleSearch}
+            />
+          )}
         </div>
       </div>
 
@@ -116,6 +126,7 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
                     selectedTag === tag.label
                       ? setSelectedTag("")
                       : setSelectedTag(tag.label);
+                      
                   }}
                   className={`${
                     tag.label === selectedTag
@@ -137,10 +148,10 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
         <section className="space-y-2 py-4">
           <hr />
           <p className="font-josefin font-light sm:text-lg md:text-xl">
-            {posts.length} Results Found
+            {posts.length} {posts.length > 1 ? "Results" : "Result"} Found
           </p>
           <div
-            className={`grid w-full origin-top grid-cols-1 gap-6 transition duration-1000 md:grid-cols-2 lg:grid-cols-3 `}
+            className={`grid w-full origin-top grid-cols-1 gap-6 transition duration-1000 md:grid-cols-2 lg:grid-cols-3`}
           >
             {posts?.map((post) => (
               <PostCard post={post} key={post.id} />
@@ -148,9 +159,11 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
           </div>
         </section>
       ) : (
-        <div className="my-4 grid h-32 w-full text-center place-content-center rounded-lg text-lg lg:text-2xl">
-          No posts found under the search criteria.
-        </div>
+        posts?.length === 0 && (
+          <div className="my-4 grid h-32 w-full place-content-center rounded-lg text-center text-lg lg:text-2xl">
+            No results found under the search criteria.
+          </div>
+        )
       )}
     </motion.section>
   );

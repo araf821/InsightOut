@@ -1,6 +1,6 @@
 import prismaClient from "../lib/prismadb";
 
-export default async function getTrendingPosts(count: number) {
+export default async function getTrendingPosts(count?: number) {
   try {
     const posts = await prismaClient.post.findMany({
       where: {
