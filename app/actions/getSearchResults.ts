@@ -2,31 +2,47 @@ import prismaClient from "../lib/prismadb";
 
 export interface IPostParams {
   keyword?: string;
+  tag?: string;
 }
 
 export default async function getSearchResults(params: IPostParams) {
   try {
-    const { keyword } = params;
+    const { keyword, tag } = params;
 
-    if (keyword === "") {
+    if (keyword === "" && tag === "") {
       return [];
     }
 
     const posts = await prismaClient.post.findMany({
       where: {
-        OR: [
+        AND: [
           {
-            title: {
-              contains: keyword,
-              mode: "insensitive",
-            },
+            OR: [
+              keyword
+                ? {
+                    title: {
+                      contains: keyword,
+                      mode: "insensitive",
+                    },
+                  }
+                : {},
+              keyword
+                ? {
+                    content: {
+                      contains: keyword,
+                      mode: "insensitive",
+                    },
+                  }
+                : {},
+            ],
           },
-          {
-            content: {
-              contains: keyword,
-              mode: "insensitive",
-            },
-          },
+          tag
+            ? {
+                tags: {
+                  has: tag,
+                },
+              }
+            : {},
         ],
       },
       orderBy: {

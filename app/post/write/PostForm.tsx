@@ -21,7 +21,7 @@ interface PostFormProps {
   currentUser: SafeUser | null;
 }
 
-const options = [
+export const options = [
   { label: "Technology", value: "technology" },
   { label: "Health", value: "health" },
   { label: "Travel", value: "travel" },

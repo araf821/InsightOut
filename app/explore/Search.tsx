@@ -7,6 +7,9 @@ import Button from "../components/Button";
 import { useRouter, useSearchParams } from "next/navigation";
 import queryString from "query-string";
 import { AnimatePresence, motion } from "framer-motion";
+import { AiFillFilter } from "react-icons/ai";
+import { options } from "../post/write/PostForm";
+import { FaSearch } from "react-icons/fa";
 
 interface SearchBarProps {
   posts: SafePost[] | null;
@@ -15,7 +18,7 @@ interface SearchBarProps {
 const Search: FC<SearchBarProps> = ({ posts }) => {
   const [keyword, setKeyword] = useState<string>("");
   const [isFiltersOpen, setIsFiltersOpen] = useState<boolean>(false);
-  const [tags, setTags] = useState<string[]>([]);
+  const [selectedTag, setSelectedTag] = useState<string>("");
 
   const router = useRouter();
   const params = useSearchParams();
@@ -30,6 +33,7 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
     const updatedQuery: any = {
       ...currentQuery,
       keyword,
+      tag: selectedTag,
     };
 
     const url = queryString.stringifyUrl(
@@ -40,12 +44,12 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
       { skipNull: true }
     );
     router.push(url);
-  }, [params, keyword, router]);
+  }, [params, keyword, selectedTag, router]);
 
   return (
     <motion.section animate={{ height: "auto" }}>
       {/* Search bar */}
-      <div className="relative mb-4 grid w-full gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+      <div className="relative grid w-full gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -68,44 +72,86 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
             Search
           </label>
         </form>
-        <Button
-          label="Search"
-          className="sm:col-span-1"
-          special
-          onClick={handleSearch}
-        />
+        <div className="flex items-center gap-1.5">
+          <div
+            className={`grid h-full cursor-pointer place-items-center rounded-sm p-2 shadow-inner transition duration-500 hover:text-accent hover:shadow-accent ${
+              isFiltersOpen
+                ? "text-accent shadow-accent"
+                : "text-zinc-700 shadow-zinc-600"
+            }`}
+            onClick={() => setIsFiltersOpen((isOpen) => !isOpen)}
+          >
+            <AiFillFilter className="text-3xl" />
+          </div>
+          <Button
+            icon={FaSearch}
+            className="h-full sm:col-span-1"
+            outline
+            onClick={handleSearch}
+          />
+        </div>
       </div>
 
       {/* Filters */}
-      <div className="border-2 w-fit border-zinc-400 text-zinc-600 hover:text-zinc-800 px-2 transition duration-300 hover:border-zinc-800">
-        Filters
-      </div>
 
       <AnimatePresence>
         {isFiltersOpen && (
           <motion.div
-            className="w-full border-2 px-2"
+            className="mt-2 w-full font-josefin"
             initial={{ height: 0, opacity: 0 }}
-            exit={{ height: 0, opacity: 0 }}
+            exit={{ height: 0, opacity: 0, transition: { duration: 0.2 } }}
             animate={{
               height: "auto",
               opacity: 1,
               transition: { duration: 0.3 },
             }}
           >
-            <p className="text-lg font-semibold">Tags</p>
+            <p className="text-xl font-semibold text-zinc-700">Filters</p>
+            <hr />
+            <p className="py-2">TAGS</p>
+            <div className="max-w-96 grid grid-cols-2 items-center gap-x-2 gap-y-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+              {options.map((tag) => (
+                <span
+                  onClick={() => {
+                    selectedTag === tag.label
+                      ? setSelectedTag("")
+                      : setSelectedTag(tag.label);
+                  }}
+                  className={`${
+                    tag.label === selectedTag
+                      ? "scale-105 bg-primary text-white opacity-100"
+                      : "hover:translate-x-1 hover:bg-blue-200"
+                  } cursor-pointer py-1 text-lg font-light transition duration-300 lg:text-xl`}
+                  key={tag.label}
+                >
+                  | {tag.label}
+                </span>
+              ))}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
 
       {/* Search results */}
-      <div
-        className={`mt-8 grid w-full origin-top grid-cols-3 gap-6 transition duration-1000 `}
-      >
-        {posts?.map((post) => (
-          <PostCard post={post} key={post.id} />
-        ))}
-      </div>
+      {posts?.length ? (
+        <section className="space-y-2 py-4">
+          <hr />
+          <p className="font-josefin font-light sm:text-lg md:text-xl">
+            {posts.length} Results Found
+          </p>
+          <div
+            className={`grid w-full origin-top grid-cols-1 gap-6 transition duration-1000 md:grid-cols-2 lg:grid-cols-3 `}
+          >
+            {posts?.map((post) => (
+              <PostCard post={post} key={post.id} />
+            ))}
+          </div>
+        </section>
+      ) : (
+        <div className="my-4 grid h-32 w-full text-center place-content-center rounded-lg text-lg lg:text-2xl">
+          No posts found under the search criteria.
+        </div>
+      )}
     </motion.section>
   );
 };

@@ -14,6 +14,7 @@ const page = async ({ searchParams }: ExploreProps) => {
     <Container>
       <main className="space-y-4 py-8">
         <Search posts={posts} />
+        <hr />
         <Heading title="Trending Posts" />
       </main>
     </Container>
