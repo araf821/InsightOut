@@ -1,17 +1,19 @@
 import Container from "../components/Container";
 import Search from "./Search";
-import Heading from "../components/Heading";
 import getSearchResults, { IPostParams } from "../actions/getSearchResults";
 import TrendingPosts from "./TrendingPosts";
 import getTrendingPosts from "../actions/getTrendingPosts";
+import getTopUsers from "../actions/users/getTopUsers";
+import TopAuthors from "./TopAuthors";
 
 interface ExploreProps {
   searchParams: IPostParams;
 }
 
 const page = async ({ searchParams }: ExploreProps) => {
-  let searchResults = await getSearchResults(searchParams);
+  const searchResults = await getSearchResults(searchParams);
   const trendingPosts = await getTrendingPosts(3);
+  const topAuthors = await getTopUsers(4);
 
   return (
     <Container>
@@ -19,7 +21,7 @@ const page = async ({ searchParams }: ExploreProps) => {
         <Search posts={searchResults} />
         <hr />
         <TrendingPosts posts={trendingPosts} />
-        
+        <TopAuthors authors={topAuthors} />
       </main>
     </Container>
   );
