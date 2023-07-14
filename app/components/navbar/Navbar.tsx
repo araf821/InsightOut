@@ -23,7 +23,7 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
           y: 0,
           transition: {
             type: "spring",
-            delay: 0.1,
+            delay: 0.05,
           },
         },
       }}

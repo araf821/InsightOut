@@ -45,7 +45,7 @@ const DashboardClient: FC<DashboardClientProps> = ({
               transition: {
                 type: "spring",
                 stiffness: 200,
-                damping: 505,
+                damping: 500,
               },
             },
             show: {

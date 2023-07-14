@@ -64,7 +64,20 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
     <motion.section animate={{ height: "auto" }}>
       {/* Search bar */}
       <div className="relative grid w-full gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-        <form
+        <motion.form
+          viewport={{ once: true }}
+          whileInView={{
+            opacity: 1,
+            x: 0,
+            transition: {
+              type: "spring",
+              stiffness: 200,
+            },
+          }}
+          initial={{
+            opacity: 0,
+            x: -100,
+          }}
           onSubmit={(e) => {
             e.preventDefault();
             handleSearch();
@@ -85,8 +98,24 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
           >
             Search
           </label>
-        </form>
-        <div className="flex items-center gap-1.5">
+        </motion.form>
+        <motion.div
+          viewport={{ once: true }}
+          whileInView={{
+            opacity: 1,
+            x: 0,
+            transition: {
+              type: "spring",
+              stiffness: 200,
+              delay: 0.2
+            },
+          }}
+          initial={{
+            opacity: 0,
+            x: 100,
+          }}
+          className="flex items-center gap-1.5"
+        >
           <div
             className={`grid h-full cursor-pointer place-items-center rounded-sm p-2 shadow-inner transition duration-500 hover:text-accent hover:shadow-accent ${
               isFiltersOpen
@@ -113,7 +142,7 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
               onClick={handleSearch}
             />
           )}
-        </div>
+        </motion.div>
       </div>
 
       {/* Filters */}
