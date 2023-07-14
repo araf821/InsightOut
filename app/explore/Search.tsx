@@ -107,7 +107,7 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
             transition: {
               type: "spring",
               stiffness: 200,
-              delay: 0.2
+              delay: 0.2,
             },
           }}
           initial={{

@@ -2,7 +2,22 @@
 
 ### [Coming Soon]
 
-A full-stack blog site created with Next.js, MongoDB, Prisma, OAuth, TailwindCSS and more!
+A full stack blog platform!
+
+This will be by biggest project thus far by a huge margin! Thanks for checking it out :))
+
+## Technologies Used
+
+- Next.js 13's app directory
+- TypeScript
+- TailwindCSS
+- MongoDB
+- Prisma
+- Cloudinary
+- GPT3.5 Turbo from OpenAI
+- Framer Motion
+- OAuth
+- All UI components created from scratch
 
 ## Features
 
