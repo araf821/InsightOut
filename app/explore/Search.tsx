@@ -10,24 +10,38 @@ import { AnimatePresence, motion } from "framer-motion";
 import { AiFillFilter } from "react-icons/ai";
 import { options } from "../post/write/PostForm";
 import { FaSearch } from "react-icons/fa";
+import { GrClear } from "react-icons/gr";
 
 interface SearchBarProps {
   posts: SafePost[] | null;
 }
 
 const Search: FC<SearchBarProps> = ({ posts }) => {
-  const [keyword, setKeyword] = useState<string>("");
-  const [isFiltersOpen, setIsFiltersOpen] = useState<boolean>(false);
-  const [selectedTag, setSelectedTag] = useState<string>("");
+  const params = useSearchParams();
+
+  const [isFiltersOpen, setIsFiltersOpen] = useState<boolean>(
+    params?.get("tag") ? true : false
+  );
+  const [keyword, setKeyword] = useState<string>(params?.get("keyword") || "");
+  const [selectedTag, setSelectedTag] = useState<string>(
+    params?.get("tag") || ""
+  );
 
   const router = useRouter();
-  const params = useSearchParams();
 
   const handleSearch = useCallback(async () => {
     let currentQuery: any = {};
 
     if (params) {
       currentQuery = queryString.parse(params.toString());
+    }
+
+    if (
+      (params?.get("tag") === selectedTag &&
+        params?.get("keyword") === keyword) ||
+      (!keyword.trim().length && selectedTag === "")
+    ) {
+      return;
     }
 
     const updatedQuery: any = {
@@ -103,7 +117,6 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
       </div>
 
       {/* Filters */}
-
       <AnimatePresence>
         {isFiltersOpen && (
           <motion.div
@@ -126,7 +139,6 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
                     selectedTag === tag.label
                       ? setSelectedTag("")
                       : setSelectedTag(tag.label);
-                      
                   }}
                   className={`${
                     tag.label === selectedTag
@@ -147,9 +159,19 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
       {posts?.length ? (
         <section className="space-y-2 py-4">
           <hr />
+          <button
+            onClick={() => {
+              router.push("/explore");
+            }}
+            className="flex w-fit items-center gap-2 text-base font-light text-zinc-600 transition hover:-translate-y-1 hover:text-black"
+          >
+            <GrClear />
+            Clear Search Criteria
+          </button>
           <p className="font-josefin font-light sm:text-lg md:text-xl">
             {posts.length} {posts.length > 1 ? "Results" : "Result"} Found
           </p>
+
           <div
             className={`grid w-full origin-top grid-cols-1 gap-6 transition duration-1000 md:grid-cols-2 lg:grid-cols-3`}
           >
@@ -161,7 +183,16 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
       ) : (
         posts?.length === 0 && (
           <div className="my-4 grid h-32 w-full place-content-center rounded-lg text-center text-lg lg:text-2xl">
-            No results found under the search criteria.
+            No results match the search criteria.
+            <button
+              onClick={() => {
+                router.push("/explore");
+              }}
+              className="mx-auto flex w-fit items-center gap-1 text-base font-light text-zinc-600 transition hover:-translate-y-1 hover:text-black"
+            >
+              <GrClear />
+              Clear Search Criteria
+            </button>
           </div>
         )
       )}

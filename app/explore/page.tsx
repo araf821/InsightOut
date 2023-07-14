@@ -13,7 +13,7 @@ interface ExploreProps {
 const page = async ({ searchParams }: ExploreProps) => {
   const searchResults = await getSearchResults(searchParams);
   const trendingPosts = await getTrendingPosts(3);
-  const topAuthors = await getTopUsers(4);
+  const topAuthors = await getTopUsers(6);
 
   return (
     <Container>
@@ -21,7 +21,10 @@ const page = async ({ searchParams }: ExploreProps) => {
         <Search posts={searchResults} />
         <hr />
         <TrendingPosts posts={trendingPosts} />
+        <hr />
         <TopAuthors authors={topAuthors} />
+        <hr />
+        {/* <LatestInNews posts={latestInNews} /> */}
       </main>
     </Container>
   );

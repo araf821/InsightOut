@@ -56,6 +56,7 @@ const Heading: React.FC<HeadingProps> = ({
       </p>
       <motion.hr
         initial={{ opacity: 0 }}
+        viewport={{ once: true }}
         whileInView={{ opacity: 1 }}
         className={`${center && "mx-auto"} w-12 border-4 border-accent md:w-20`}
       />

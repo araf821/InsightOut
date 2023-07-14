@@ -1,7 +1,10 @@
+"use client";
+
 import { FC } from "react";
-import { SafeUser, UserWithPosts } from "../types";
+import { UserWithPosts } from "../types";
 import Heading from "../components/Heading";
 import AuthorCard from "../components/AuthorCard";
+import { motion } from "framer-motion";
 
 interface TopUserProps {
   authors: UserWithPosts[] | null;
@@ -13,14 +16,14 @@ const TopAuthors: FC<TopUserProps> = ({ authors }) => {
   }
 
   return (
-    <section className="w-full py-4">
+    <motion.section>
       <Heading title="Top Authors" />
-      <div className="mt-4 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6 lg:gap-8">
-        {authors.map((author) => (
-          <AuthorCard key={author.id} author={author} />
+      <div className="my-4 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6 lg:gap-8 xl:grid-cols-6">
+        {authors.map((author, index) => (
+          <AuthorCard key={author.id} author={author} index={index} />
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 };
 

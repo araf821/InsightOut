@@ -13,7 +13,8 @@ const TrendingPosts: FC<TrendingPostsProps> = ({ posts }) => {
   }
 
   return (
-    <section>
+    <section
+    >
       <Heading title="Trending Posts" />
       <div className="my-4 grid w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {posts.map((post) => (
