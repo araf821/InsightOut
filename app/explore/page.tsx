@@ -5,6 +5,8 @@ import TrendingPosts from "./TrendingPosts";
 import getTrendingPosts from "../actions/getTrendingPosts";
 import getTopUsers from "../actions/users/getTopUsers";
 import TopAuthors from "./TopAuthors";
+import getPostsByTag from "../actions/getPostsByTag";
+import LatestInEntertainment from "./LatestInEntertainment";
 
 interface ExploreProps {
   searchParams: IPostParams;
@@ -14,7 +16,8 @@ const page = async ({ searchParams }: ExploreProps) => {
   const searchResults = await getSearchResults(searchParams);
   const trendingPosts = await getTrendingPosts(3);
   const topAuthors = await getTopUsers(6);
-
+  const latestInEntertainment = await getPostsByTag("entertainment", 3);
+  
   return (
     <Container>
       <main className="space-y-4 py-8">
@@ -24,7 +27,7 @@ const page = async ({ searchParams }: ExploreProps) => {
         <hr />
         <TopAuthors authors={topAuthors} />
         <hr />
-        {/* <LatestInNews posts={latestInNews} /> */}
+        <LatestInEntertainment posts={latestInEntertainment} />
       </main>
     </Container>
   );
