@@ -186,7 +186,11 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
 
       {/* Search results */}
       {posts?.length ? (
-        <section className="space-y-2 py-4">
+        <motion.section
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1, transition: { duration: 0.5} }}
+          className="space-y-2 py-4"
+        >
           <hr />
           <p className="flex justify-between">
             <span className="font-josefin font-light sm:text-lg md:text-xl">
@@ -210,7 +214,7 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
               <PostCard post={post} key={post.id} />
             ))}
           </div>
-        </section>
+        </motion.section>
       ) : (
         posts?.length === 0 && (
           <div className="my-4 grid h-32 w-full place-content-center rounded-lg text-center text-lg lg:text-2xl">

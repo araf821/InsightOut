@@ -12,6 +12,9 @@ const getPostsByTag = async (tag: string, count: number, postId?: string) => {
           id: postId,
         },
       },
+      orderBy: {
+        createdAt: "desc",
+      },
       include: {
         author: true,
       },

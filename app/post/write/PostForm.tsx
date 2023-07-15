@@ -2,7 +2,7 @@
 
 import PostGeneration from "./PostGeneration";
 import ImageUpload from "@/app/components/inputs/ImageUpload";
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import MultiSelect from "./MultiSelect";
 import PostInput from "@/app/components/inputs/PostInput";
 import slugify from "slugify";
@@ -23,22 +23,23 @@ interface PostFormProps {
 
 export const options = [
   { label: "Technology", value: "technology" },
+  { label: "Lifestyle", value: "lifestyle" },
+  { label: "Entertainment", value: "entertainment" },
+  { label: "Home", value: "home" },
   { label: "Health", value: "health" },
   { label: "Travel", value: "travel" },
   { label: "Food", value: "food" },
-  { label: "Anime", value: "anime" },
   { label: "Gaming", value: "gaming" },
   { label: "Movies", value: "movies" },
-  { label: "Entertainment", value: "entertainment" },
+  { label: "Anime", value: "anime" },
   { label: "Fashion", value: "fashion" },
   { label: "Fitness", value: "fitness" },
   { label: "Sports", value: "sports" },
   { label: "Business", value: "business" },
   { label: "Art", value: "art" },
   { label: "Science", value: "science" },
-  { label: "Lifestyle", value: "lifestyle" },
-  { label: "News", value: "news" },
   { label: "Education", value: "education" },
+  { label: "News", value: "news" },
 ];
 
 const PostForm: FC<PostFormProps> = ({}) => {

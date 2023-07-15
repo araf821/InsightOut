@@ -8,7 +8,7 @@ import TopAuthors from "./TopAuthors";
 import getPostsByTag from "../actions/getPostsByTag";
 import LatestInEntertainment from "./LatestInEntertainment";
 import LatestInTechnology from "./LatestInTechnology";
-import LatestInNews from "./LatestInNews";
+import LatestInLifestyle from "./LatestInLifestyle";
 
 interface ExploreProps {
   searchParams: IPostParams;
@@ -20,7 +20,7 @@ const page = async ({ searchParams }: ExploreProps) => {
   const topAuthors = await getTopUsers(6);
   const latestInEntertainment = await getPostsByTag("entertainment", 3);
   const latestInTechnology = await getPostsByTag("technology", 3);
-  const latestInNews = await getPostsByTag("news", 3);
+  const latestInLifestyle = await getPostsByTag("lifestyle", 3);
   
   return (
     <Container>
@@ -35,7 +35,7 @@ const page = async ({ searchParams }: ExploreProps) => {
         <hr />
         <LatestInTechnology posts={latestInTechnology} />
         <hr />
-        <LatestInNews posts={latestInNews} />
+        <LatestInLifestyle posts={latestInLifestyle} />
       </main>
     </Container>
   );

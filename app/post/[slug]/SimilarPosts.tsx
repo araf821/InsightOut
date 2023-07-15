@@ -6,10 +6,14 @@ import { SafePost } from "@/app/types";
 import { FC } from "react";
 
 interface SimilarPostsProps {
-  posts: SafePost[];
+  posts: SafePost[] | null;
 }
 
 const SimilarPosts: FC<SimilarPostsProps> = ({ posts }) => {
+  if (!posts?.length) {
+    return null;
+  }
+
   return (
     <section className="">
       <Heading title="Similar Posts" small />

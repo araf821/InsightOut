@@ -27,7 +27,7 @@ const TitleInput: FC<TitleInputProps> = ({
         autoComplete="off"
         type="text"
         disabled={disabled}
-        maxLength={75}
+        maxLength={100}
         required
         {...register(id, { required })}
         placeholder="Title"
@@ -36,7 +36,7 @@ const TitleInput: FC<TitleInputProps> = ({
       ${errors[id] ? "focus:border-red-700" : "focus:border-zinc-800"}`}
       />
       <span className="absolute bottom-0 right-0 text-xs md:text-sm text-neutral-500">
-        Max Characters: 75
+        Max Characters: 100
       </span>
     </div>
   );

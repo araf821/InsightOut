@@ -33,17 +33,7 @@ const PostPage = async ({ params }: { params: IParams }) => {
     <main className="single-post-page">
       <Container>
         <Post post={post} />
-
-        {suggestedPosts?.length ? (
-          // <div>
-          //   {suggestedPosts.map((post) => (
-          //     <PostCard key={post.id} post={post} />
-          //   ))}
-          // </div>
-          <SimilarPosts posts={suggestedPosts} />
-        ) : (
-          <div>No related posts</div>
-        )}
+        <SimilarPosts posts={suggestedPosts} />
 
         {postsFromAuthor?.length && (
           <MoreFromAuthor
