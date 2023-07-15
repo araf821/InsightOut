@@ -19,9 +19,7 @@ interface SearchBarProps {
 const Search: FC<SearchBarProps> = ({ posts }) => {
   const params = useSearchParams();
 
-  const [isFiltersOpen, setIsFiltersOpen] = useState<boolean>(
-    params?.get("tag") ? true : false
-  );
+  const [isFiltersOpen, setIsFiltersOpen] = useState<boolean>(false);
   const [keyword, setKeyword] = useState<string>(params?.get("keyword") || "");
   const [selectedTag, setSelectedTag] = useState<string>(
     params?.get("tag") || ""
@@ -173,7 +171,7 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
                     tag.label === selectedTag
                       ? "scale-105 bg-primary text-white opacity-100"
                       : "hover:translate-x-1 hover:bg-blue-200"
-                  } cursor-pointer py-1 text-lg font-light transition duration-300 lg:text-xl`}
+                  } cursor-pointer py-0 text-lg font-light transition duration-300 lg:text-xl`}
                   key={tag.label}
                 >
                   | {tag.label}
@@ -188,7 +186,7 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
       {posts?.length ? (
         <motion.section
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1, transition: { duration: 0.5} }}
+          whileInView={{ opacity: 1, transition: { duration: 0.5 } }}
           className="space-y-2 py-4"
         >
           <hr />

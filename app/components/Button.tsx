@@ -28,10 +28,10 @@ const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       disabled={disabled}
       type="button"
-      className={`group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-sm border-2 outline-none ring-offset-2 transition-all duration-300 focus:ring-0 disabled:cursor-not-allowed disabled:opacity-70
+      className={`active:scale-90 group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-sm border-2 outline-none ring-offset-2 transition-all duration-300 focus:ring-0 disabled:cursor-not-allowed disabled:opacity-70
       ${
         special
-          ? "border-zinc-800 bg-accent text-black outline-offset-[-6px] hover:outline-zinc-800 focus:"
+          ? "border-zinc-800 bg-accent text-black outline-offset-[-6px] hover:outline-zinc-800"
           : outline
           ? "border-zinc-800 bg-bg text-zinc-800 hover:outline-zinc-800 focus:ring-zinc-800"
           : "border-primary bg-primary outline-2 hover:outline-primary focus:ring-primary"

@@ -148,11 +148,9 @@ const DashboardClient: FC<DashboardClientProps> = ({
         <>
           <Heading small center title="Published" />
           <section className="grid grid-cols-1 gap-4 py-8 md:grid-cols-2 lg:grid-cols-3">
-            {[...published, ...published, ...published, ...published].map(
-              (post, index) => (
-                <PostCard dashboard index={index} key={post.id} post={post} />
-              )
-            )}
+            {published.map((post, index) => (
+              <PostCard dashboard index={index} key={post.id} post={post} />
+            ))}
           </section>
         </>
       )}

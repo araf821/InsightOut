@@ -1,7 +1,6 @@
 import Container from "@/app/components/Container";
 import PostForm from "./PostForm";
 import getCurrentUser from "@/app/actions/getCurrentUser";
-import Chat from "./Chat";
 import Heading from "@/app/components/Heading";
 
 const WritePage = async () => {
@@ -17,9 +16,6 @@ const WritePage = async () => {
         <div className="my-6 flex w-full flex-col justify-between gap-6 xl:flex-row">
           {/* Form */}
           <PostForm currentUser={currentUser} />
-
-          {/* AD */}
-          <Chat />
         </div>
       </div>
     </Container>
