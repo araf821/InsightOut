@@ -188,17 +188,19 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
       {posts?.length ? (
         <section className="space-y-2 py-4">
           <hr />
-          <button
-            onClick={() => {
-              router.push("/explore");
-            }}
-            className="flex w-fit items-center gap-2 text-base font-light text-zinc-600 transition hover:-translate-y-1 hover:text-black"
-          >
-            <GrClear />
-            Clear Search Criteria
-          </button>
-          <p className="font-josefin font-light sm:text-lg md:text-xl">
-            {posts.length} {posts.length > 1 ? "Results" : "Result"} Found
+          <p className="flex justify-between">
+            <span className="font-josefin font-light sm:text-lg md:text-xl">
+              {posts.length} {posts.length > 1 ? "Results" : "Result"} Found
+            </span>
+            <button
+              onClick={() => {
+                router.push("/explore");
+              }}
+              className="flex w-fit items-center gap-1 text-sm font-light text-zinc-600 transition hover:scale-110 hover:text-black md:text-base"
+            >
+              <GrClear />
+              Clear Search
+            </button>
           </p>
 
           <div

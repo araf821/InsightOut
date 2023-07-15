@@ -8,6 +8,7 @@ interface HeadingProps {
   small?: boolean;
   bold?: boolean;
   post?: boolean;
+  white?: boolean;
 }
 
 const Heading: React.FC<HeadingProps> = ({
@@ -16,6 +17,7 @@ const Heading: React.FC<HeadingProps> = ({
   small,
   bold,
   post,
+  white,
 }) => {
   return (
     <div>
@@ -24,7 +26,9 @@ const Heading: React.FC<HeadingProps> = ({
           small
             ? "text-2xl sm:text-3xl lg:text-4xl"
             : "text-4xl sm:text-5xl lg:text-6xl"
-        } balance font-josefin ${bold ? "font-bold" : "font-semibold"}`}
+        } balance overflow font-josefin ${
+          bold ? "font-bold" : "font-semibold"
+        } ${white ? "text-white" : ""}`}
       >
         {post ? (
           <span>{title}</span>
@@ -47,7 +51,7 @@ const Heading: React.FC<HeadingProps> = ({
                 }}
                 key={index}
               >
-                {letter === " " ? "\u00A0" : letter}
+                {letter === " " ? "\u00A0" : letter === "*" ? "\n" : letter}
               </motion.span>
             ))}
           </>

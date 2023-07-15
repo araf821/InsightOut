@@ -52,8 +52,8 @@ const AuthorCard: FC<AuthorCardProps> = ({ author, index = 0 }) => {
         />
       </div>
       <div className="mx-auto mt-2 space-y-0.5 text-center font-josefin">
-        <p className="text-xl font-semibold">{author.name}</p>
-        <p className="text-lg text-zinc-700">
+        <p className="text-xl font-semibold text-bg">{author.name}</p>
+        <p className="md:text-lg text-bg/80">
           Posts Published: {postsPublished.length}
         </p>
       </div>
