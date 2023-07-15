@@ -3,16 +3,16 @@ import { SafePost } from "../types";
 import Heading from "../components/Heading";
 import PostCard from "../components/PostCard";
 
-interface LatestInEntertainmentProps {
+interface LatestInTechnologyProps {
   posts: SafePost[] | null;
 }
 
-const LatestInEntertainment: FC<LatestInEntertainmentProps> = ({ posts }) => {
+const LatestInTechnology: FC<LatestInTechnologyProps> = ({ posts }) => {
   if (!posts?.length) return null;
 
   return (
     <section>
-      <Heading small title="Latest In*Entertainment" />
+      <Heading small title="Latest In*Technology" />
       <div className="my-4 grid w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {posts.map((post) => (
           <PostCard post={post} key={post.id} />
@@ -22,4 +22,4 @@ const LatestInEntertainment: FC<LatestInEntertainmentProps> = ({ posts }) => {
   );
 };
 
-export default LatestInEntertainment;
+export default LatestInTechnology;

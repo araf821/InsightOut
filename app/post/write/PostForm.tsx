@@ -49,8 +49,8 @@ const PostForm: FC<PostFormProps> = ({}) => {
   const router = useRouter();
 
   const handleGenerate = async (title: string) => {
-    if (title === "") {
-      toast.error("You literally didn't come up with a title yet.");
+    if (title.replaceAll(" ", "").length < 10) {
+      toast.error("Please come up with a longer title.");
     } else {
       setIsLoading(true);
       const data = await getPostTemplate(title);
