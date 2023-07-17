@@ -8,6 +8,7 @@ interface IParams {
 
 export async function PUT(request: Request, { params }: { params: IParams }) {
   const currentUser = await getCurrentUser();
+
   if (!currentUser) {
     return NextResponse.error();
   }
@@ -27,38 +28,22 @@ export async function PUT(request: Request, { params }: { params: IParams }) {
     throw new Error("Post not found.");
   }
 
+  const body = await request.json();
+  const { title, content, imgSrc: image, tags, published, slug } = body;
+
   const updatedPost = await prismaClient.post.update({
     where: {
       id: postId,
     },
     data: {
-      published: !post.published, // Toggle the published status
+      title,
+      content,
+      image,
+      tags,
+      published,
+      slug,
     },
   });
 
   return NextResponse.json(updatedPost);
-}
-
-export async function DELETE(
-  request: Request,
-  { params }: { params: IParams }
-) {
-  const currentUser = await getCurrentUser();
-
-  if (!currentUser) {
-    return NextResponse.error();
-  }
-
-  const { postId } = params;
-  if (!postId || typeof postId !== "string") {
-    throw new Error("Invalid listing ID.");
-  }
-
-  const deletedPost = await prismaClient.post.deleteMany({
-    where: {
-      id: postId,
-    },
-  });
-
-  return NextResponse.json(deletedPost);
 }

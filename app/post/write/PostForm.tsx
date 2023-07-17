@@ -13,12 +13,13 @@ import { toast } from "react-hot-toast";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Button from "@/app/components/Button";
 import TitleInput from "./TitleInput";
-import { SafeUser } from "@/app/types";
+import { SafePost, SafeUser } from "@/app/types";
 import getPostTemplate from "@/app/actions/openai/generatePostTemplate";
 import { motion } from "framer-motion";
 
 interface PostFormProps {
   currentUser: SafeUser | null;
+  post?: SafePost | null;
 }
 
 export const options = [
@@ -42,11 +43,15 @@ export const options = [
   { label: "News", value: "news" },
 ];
 
-const PostForm: FC<PostFormProps> = ({}) => {
+const PostForm: FC<PostFormProps> = ({ post }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [postTags, setPostTags] = useState<SelectOption[]>([]);
-  const [generatedContent, setGeneratedContent] = useState("");
+  const [postTags, setPostTags] = useState<SelectOption[]>(
+    post
+      ? post.tags.map((tag) => ({ label: tag, value: tag.toLowerCase() }))
+      : []
+  );
 
+  const [generatedContent, setGeneratedContent] = useState("");
   const router = useRouter();
 
   const handleGenerate = async (title: string) => {
@@ -69,12 +74,12 @@ const PostForm: FC<PostFormProps> = ({}) => {
     setValue,
   } = useForm<FieldValues>({
     defaultValues: {
-      imgSrc: "",
-      title: "",
-      content: "",
-      slug: "",
+      imgSrc: post?.image || "",
+      title: post?.title || "",
+      content: post?.content || "",
+      slug: post?.slug || "",
       tags: [],
-      published: false,
+      published: post?.published || false,
     },
   });
 
@@ -143,6 +148,38 @@ const PostForm: FC<PostFormProps> = ({}) => {
       });
   };
 
+  const onUpdate: SubmitHandler<FieldValues> = (data) => {
+    if (imgSrc === "") {
+      toast.error("You better add an image!");
+      return;
+    }
+
+    if (postTags.length < 1) {
+      toast.error("WHERE ARE THE TAGS?!");
+      return;
+    }
+
+    setIsLoading(true);
+
+    axios
+      .put(`/api/post/update/${post?.id}`, {
+        ...data,
+        slug: slugify(data.title),
+        tags: postTags.map((tag) => tag.label),
+      })
+      .then(() => {
+        toast.success("Updated Post!");
+        router.push("/profile/dashboard");
+        reset();
+      })
+      .catch(() => {
+        toast.error("Something went wrong.");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
   const imgSrc = watch("imgSrc");
   const title = watch("title");
 
@@ -176,7 +213,7 @@ const PostForm: FC<PostFormProps> = ({}) => {
           className="px-32 py-20 sm:px-44 sm:py-28 md:px-56 md:py-36 lg:px-80 lg:py-48"
         />
       </div>
-      
+
       {/* Tags */}
       <MultiSelect
         options={options}
@@ -203,19 +240,23 @@ const PostForm: FC<PostFormProps> = ({}) => {
       />
 
       {/* Buttons */}
-      <div className="flex flex-col items-center justify-between gap-4 md:flex-row md:gap-12">
-        <Button
-          onClick={handleSubmit(onDraft)}
-          label="Save As Draft"
-          outline
-          className="md:max-w-[400px]"
-        />
-        <Button
-          onClick={handleSubmit(onPublish)}
-          label="Publish Post"
-          className="md:max-w-[400px]"
-        />
-      </div>
+      {post ? (
+        <Button onClick={handleSubmit(onUpdate)} label="Update" />
+      ) : (
+        <div className="flex flex-col items-center justify-between gap-4 md:flex-row md:gap-12">
+          <Button
+            onClick={handleSubmit(onDraft)}
+            label="Save As Draft"
+            outline
+            className="md:max-w-[400px]"
+          />
+          <Button
+            onClick={handleSubmit(onPublish)}
+            label="Publish Post"
+            className="md:max-w-[400px]"
+          />
+        </div>
+      )}
     </motion.form>
   );
 };

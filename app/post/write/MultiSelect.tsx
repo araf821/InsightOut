@@ -44,7 +44,7 @@ const MultiSelect: FC<MultiSelectProps> = ({ options, value, onChange }) => {
       className="relative flex w-full items-center justify-between rounded-md border-2 border-neutral-300 bg-white px-3 py-2"
     >
       <span className="flex flex-wrap gap-2 overflow-x-auto">
-        {value.length === 0 ? (
+        {value?.length === 0 ? (
           <span className="text-neutral-500">Tags</span>
         ) : (
           value?.map((val) => (
