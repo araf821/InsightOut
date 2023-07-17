@@ -176,8 +176,7 @@ const PostForm: FC<PostFormProps> = ({}) => {
           className="px-32 py-20 sm:px-44 sm:py-28 md:px-56 md:py-36 lg:px-80 lg:py-48"
         />
       </div>
-      {/* <ToolbarComponent /> */}
-
+      
       {/* Tags */}
       <MultiSelect
         options={options}

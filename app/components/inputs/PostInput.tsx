@@ -35,6 +35,7 @@ const PostInput: React.FC<PostInputProps> = ({
         cols={10}
         required
         {...register(id)}
+        minLength={250}
         maxLength={5000}
         onChange={handleChange}
         disabled={disabled}

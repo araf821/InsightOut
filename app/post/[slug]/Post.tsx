@@ -6,6 +6,7 @@ import { SafePost } from "@/app/types";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FC } from "react";
+import PostContent from "./PostContent";
 
 interface PostProps {
   post: SafePost;
@@ -49,7 +50,8 @@ const Post: FC<PostProps> = ({ post }) => {
         </div>
       </section>
       <hr />
-      <p className="whitespace-pre-line md:text-lg">{post.content}</p>
+      <PostContent content={post.content} />
+      {/* <p className="whitespace-pre-line">{"# Post content"}</p> */}
       <hr />
       <div className="space-y-1">
         <p className="font-josefin md:text-lg lg:text-xl">Tags</p>

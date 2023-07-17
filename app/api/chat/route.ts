@@ -10,11 +10,19 @@ export const runtime = "edge";
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
+  console.log(messages);
 
   const response = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
     stream: true,
-    messages,
+    messages: [
+      {
+        role: "system",
+        content:
+          "You are a chatbot named Bebibot embedded onto a blog site.",
+      },
+      ...messages,
+    ],
   });
 
   const stream = OpenAIStream(response);

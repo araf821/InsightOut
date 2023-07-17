@@ -1,5 +1,4 @@
-import getCurrentUser from "@/app/actions/getCurrentUser";
-import Input from "@/app/components/inputs/Input";
+import getCurrentUser from "@/app/actions/users/getCurrentUser";
 import PreferencesClient from "./PreferencesClient";
 
 const ProfilePreferences = async () => {
