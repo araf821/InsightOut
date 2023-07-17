@@ -6,6 +6,7 @@ import SimilarPosts from "./SimilarPosts";
 import Post from "./Post";
 import getPostsByAuthor from "@/app/actions/getPostsByAuthor";
 import MoreFromAuthor from "./MoreFromAuthor";
+import getCurrentUser from "@/app/actions/users/getCurrentUser";
 
 interface IParams {
   slug: string;
@@ -13,6 +14,7 @@ interface IParams {
 
 const PostPage = async ({ params }: { params: IParams }) => {
   const { slug } = params;
+  const currentUser = await getCurrentUser();
 
   const post = await getPostBySlug(decodeURIComponent(slug));
 
@@ -32,7 +34,7 @@ const PostPage = async ({ params }: { params: IParams }) => {
   return (
     <main className="single-post-page">
       <Container>
-        <Post post={post} />
+        <Post currentUser={currentUser} post={post} />
         <SimilarPosts posts={suggestedPosts} />
 
         {postsFromAuthor?.length && (

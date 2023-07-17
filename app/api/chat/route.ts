@@ -18,8 +18,7 @@ export async function POST(req: Request) {
     messages: [
       {
         role: "system",
-        content:
-          "You are a chatbot named Bebibot embedded onto a blog site.",
+        content: "You are a chatbot named Bebibot embedded onto a blog site.",
       },
       ...messages,
     ],

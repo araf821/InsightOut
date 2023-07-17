@@ -2,21 +2,39 @@
 
 import Heading from "@/app/components/Heading";
 import { dateFormat } from "@/app/lib/helpers/dateFormat";
-import { SafePost } from "@/app/types";
+import { SafePost, SafeUser } from "@/app/types";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FC } from "react";
 import PostContent from "./PostContent";
+import { FaEdit } from "react-icons/fa";
 
 interface PostProps {
   post: SafePost;
+  currentUser: SafeUser | null;
 }
 
-const Post: FC<PostProps> = ({ post }) => {
+const Post: FC<PostProps> = ({ post, currentUser }) => {
   const router = useRouter();
 
+  let editButton = null;
+  if (currentUser?.id === post.authorId) {
+    editButton = (
+      <>
+        <hr />
+        <button
+          onClick={() => router.push(`/post/${post.slug}/update`)}
+          className="w-fit font-semibold text-neutral-600 transition duration-200 hover:translate-x-2 flex gap-1 items-center hover:text-neutral-900 md:text-lg lg:text-xl"
+        >
+          <FaEdit />
+          Edit Post
+        </button>
+      </>
+    );
+  }
+
   return (
-    <article className="my-8 flex w-full flex-col gap-4">
+    <article className="mb-4 mt-8 flex w-full flex-col gap-4">
       <Heading post title={post.title} bold />
       <hr />
       <div className="relative aspect-[16/10] w-full">
@@ -50,8 +68,8 @@ const Post: FC<PostProps> = ({ post }) => {
         </div>
       </section>
       <hr />
+      {/* {currentUser?.id === post.authorId ? <p>Edit This Post</p> : <p>asdf</p>} */}
       <PostContent content={post.content} />
-      {/* <p className="whitespace-pre-line">{"# Post content"}</p> */}
       <hr />
       <div className="space-y-1">
         <p className="font-josefin md:text-lg lg:text-xl">Tags</p>
@@ -67,6 +85,7 @@ const Post: FC<PostProps> = ({ post }) => {
           ))}
         </p>
       </div>
+      {editButton}
       <hr />
     </article>
   );

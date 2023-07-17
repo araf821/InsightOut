@@ -2,7 +2,6 @@
 
 import { FC, useState } from "react";
 import { HiOutlineMenu } from "react-icons/hi";
-import Button from "./Button";
 import { SafePost } from "../types";
 import { IoCloseOutline } from "react-icons/io5";
 
@@ -10,12 +9,14 @@ interface MoreOptionsMenuProps {
   post: SafePost;
   onDelete: () => void;
   onMove: () => void;
+  onUpdate: () => void;
 }
 
 const MoreOptionsMenu: FC<MoreOptionsMenuProps> = ({
   post,
   onDelete,
   onMove,
+  onUpdate,
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [confirmationModal, setConfirmationModal] = useState<boolean>(false);
@@ -64,13 +65,13 @@ const MoreOptionsMenu: FC<MoreOptionsMenuProps> = ({
               </p>
               <div className="space-y-2">
                 <button
-                  className="hover:scale0 w-full border-none bg-primary py-1 text-sm outline -outline-offset-4 outline-primary transition-all hover:outline-offset-2 focus:outline-offset-2 md:text-base lg:text-lg"
+                  className="w-full border-2 border-white py-1.5 text-sm font-semibold text-white transition duration-300 hover:bg-white hover:text-zinc-800 active:scale-90 sm:text-base md:text-lg"
                   onClick={() => setConfirmationModal(false)}
                 >
                   Cancel
                 </button>
                 <button
-                  className="hover:scale0 w-full border-none bg-accent py-1 text-sm text-black outline -outline-offset-4 outline-accent transition-all hover:outline-offset-2 focus:outline-offset-2 md:text-base lg:text-lg"
+                  className="w-full border-2 border-accent py-1.5 text-sm font-semibold text-accent transition duration-300 hover:bg-accent hover:text-zinc-800 active:scale-90 sm:text-base md:text-lg"
                   onClick={onDelete}
                 >
                   Confirm
@@ -82,26 +83,32 @@ const MoreOptionsMenu: FC<MoreOptionsMenuProps> = ({
               <p className="font-merri md:text-xl">Post Options</p>
               <div className="space-y-2">
                 <button
-                  className="hover:scale0 w-full border-none bg-accent py-1 text-sm text-black outline -outline-offset-4 outline-accent transition-all hover:outline-offset-2 focus:outline-offset-2 md:text-base lg:text-lg"
+                  className="w-full border-2 border-accent py-1.5 text-sm font-semibold text-accent transition duration-300 hover:bg-accent hover:text-zinc-800 active:scale-90 sm:text-base md:text-lg"
                   onClick={() => setConfirmationModal(true)}
                 >
                   Delete Post
                 </button>
                 {post.published ? (
                   <button
-                    className="hover:scale0 w-full border-none bg-primary py-1 text-sm outline -outline-offset-4 outline-primary transition-all hover:outline-offset-2 focus:outline-offset-2 md:text-base lg:text-lg"
+                    className="w-full border-2 border-white py-1.5 text-sm font-semibold text-white transition duration-300 hover:bg-white hover:text-zinc-800 active:scale-90 sm:text-base md:text-lg"
                     onClick={onMove}
                   >
                     Mark As Draft
                   </button>
                 ) : (
                   <button
-                    className="hover:scale0 w-full border-none bg-primary py-1 text-sm outline -outline-offset-4 outline-primary transition-all hover:outline-offset-2 focus:outline-offset-2 md:text-base lg:text-lg"
+                    className="w-full border-2 border-white py-1.5 text-sm font-semibold text-white transition duration-300 hover:bg-white hover:text-zinc-800 active:scale-90 sm:text-base md:text-lg"
                     onClick={onMove}
                   >
                     Mark As Published
                   </button>
                 )}
+                <button
+                  className="w-full border-2 border-white py-1.5 text-sm font-semibold text-white transition duration-300 hover:bg-white hover:text-zinc-800 active:scale-90 sm:text-base md:text-lg"
+                  onClick={onUpdate}
+                >
+                  Update Post
+                </button>
               </div>
             </>
           )}
