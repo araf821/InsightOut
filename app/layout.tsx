@@ -6,6 +6,7 @@ import ToasterProvider from "./providers/ToasterProvider";
 import Providers from "./components/Providers";
 import Sidebar from "./components/sidebar/Sidebar";
 import Footer from "./components/Footer";
+import ChatComponent from "./components/chat/ChatComponent";
 
 const merri = Merriweather({
   subsets: ["latin"],
@@ -42,6 +43,7 @@ export default async function RootLayout({
         className={`selection:bg-zinc-800 selection:text-white ${merri.variable} ${josefin.variable} ${ubuntu.variable} overflow-x-hidden bg-bg font-merri`}
       >
         <Providers>
+          <ChatComponent />
           <ToasterProvider />
           <Sidebar currentUser={currentUser} />
           <Navbar />

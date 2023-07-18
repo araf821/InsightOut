@@ -1,6 +1,5 @@
 import getLatestPosts from "./actions/getLatestPosts";
 import getPostByTitle from "./actions/getPostByTitle";
-import Chat from "./components/chat/Chat";
 import Hero from "./components/home/Hero";
 import Intro from "./components/home/Intro";
 import LatestPosts from "./components/home/LatestPosts";
@@ -31,7 +30,6 @@ export default async function Home() {
       <Hero post={featuredPost} />
       <NewsletterSection />
       <LatestPosts posts={latestPosts} />
-      <Chat />
     </div>
   );
 }
