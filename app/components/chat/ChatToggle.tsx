@@ -26,6 +26,7 @@ export const ChatToggle: React.FC<ChatToggleProps> = ({ toggle }) => (
     }}
     className="absolute bottom-2 right-2 h-12 w-12 cursor-pointer overflow-hidden rounded-full bg-accent shadow-[0_0_15px_1px] shadow-accent outline outline-offset-4 outline-accent lg:h-16 lg:w-16"
     onClick={toggle}
+    title="Open Chat"
   >
     <Image
       src="/images/bebibot.png"
