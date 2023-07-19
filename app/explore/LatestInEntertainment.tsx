@@ -2,6 +2,7 @@ import { FC } from "react";
 import { SafePost } from "../types";
 import Heading from "../components/Heading";
 import PostCard from "../components/PostCard";
+import CardsContainer from "../components/CardsContainer";
 
 interface LatestInEntertainmentProps {
   posts: SafePost[] | null;
@@ -13,11 +14,11 @@ const LatestInEntertainment: FC<LatestInEntertainmentProps> = ({ posts }) => {
   return (
     <section>
       <Heading small title="Latest In*Entertainment" />
-      <div className="my-4 grid w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <CardsContainer>
         {posts.map((post) => (
           <PostCard post={post} key={post.id} />
         ))}
-      </div>
+      </CardsContainer>
     </section>
   );
 };

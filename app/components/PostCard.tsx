@@ -63,12 +63,12 @@ const PostCard: FC<PostCardProps> = ({
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{
-        opacity: 1,
-        transition: { opacity: { duration: 1 } },
-      }}
-      viewport={{ once: true }}
+      // initial={{ opacity: 0 }}
+      // whileInView={{
+      //   opacity: 1,
+      //   // transition: { opacity: { duration: 0.5 } },
+      // }}
+      // viewport={{ once: true }}
       className={`w-full max-w-[800px] transition duration-500 sm:delay-200 lg:delay-[0.2] ${
         horizontal &&
         "md:flex md:h-full md:min-w-[350px] md:flex-grow lg:min-w-[500px]"

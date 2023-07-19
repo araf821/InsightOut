@@ -16,7 +16,7 @@ const NavButton: FC<NavButtonProps> = ({ icon: Icon, title, onClick }) => {
       {Icon && <Icon />}
       <span className="absolute right-0 h-20 w-4 translate-x-12 rotate-12 bg-white/20 transition duration-1000 group-hover:-translate-x-[600px]"></span>
       <span className="absolute left-0 h-20 w-4 -translate-x-12 rotate-12 bg-white/20 transition duration-1000 group-hover:translate-x-[600px]"></span>
-      <p className="hidden translate-y-0.5 items-center md:flex">{title}</p>
+      <p className="hidden items-center md:flex">{title}</p>
     </button>
   );
 };

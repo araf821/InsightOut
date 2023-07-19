@@ -2,6 +2,7 @@ import { FC } from "react";
 import Heading from "../components/Heading";
 import { SafePost } from "../types";
 import PostCard from "../components/PostCard";
+import CardsContainer from "../components/CardsContainer";
 
 interface TrendingPostsProps {
   posts: SafePost[] | null;
@@ -13,14 +14,13 @@ const TrendingPosts: FC<TrendingPostsProps> = ({ posts }) => {
   }
 
   return (
-    <section
-    >
+    <section>
       <Heading small title="Trending Posts" />
-      <div className="my-4 grid w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <CardsContainer>
         {posts.map((post) => (
           <PostCard post={post} key={post.id} />
         ))}
-      </div>
+      </CardsContainer>
     </section>
   );
 };
