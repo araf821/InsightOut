@@ -2,35 +2,32 @@
 
 import { useDimensions } from "@/app/hooks/useDimensions";
 import { motion, useCycle } from "framer-motion";
-import Image from "next/image";
 import { FC, useRef, useState } from "react";
 import { IoClose } from "react-icons/io5";
-import { MenuItem } from "./Item";
-import { MenuToggle } from "./MenuToggle";
+import { ChatToggle } from "./ChatToggle";
+import { ChatBox } from "./ChatBox";
 
 interface ChatComponentProps {}
 
-const sidebar = {
-  open: (height = 400) => ({
-    clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
+const chatBoxBackground = {
+  open: (height = 500) => ({
+    clipPath: `circle(${height * 2 + 200}px at 90% 90%)`,
     transition: {
       type: "spring",
       stiffness: 20,
-      restDelta: 1,
+      restDelta: 2,
     },
   }),
   closed: {
-    clipPath: "circle(30px at 40px 40px)",
+    clipPath: "circle(0px at 90% 90%)",
     transition: {
-      delay: 0.5,
+      delay: 0.1,
       type: "spring",
       stiffness: 400,
       damping: 40,
     },
   },
 };
-
-const itemIds = [0, 1, 2, 3, 4];
 
 const variants = {
   open: {
@@ -88,18 +85,27 @@ const ChatComponent: FC<ChatComponentProps> = ({}) => {
   //   }
 
   return (
+    // Chat component resides at the bottom right corner of the screen at all times
     <motion.div
       initial={false}
       animate={isOpen ? "open" : "closed"}
       custom={height}
       ref={containerRef}
-      className={`fixed bottom-4 right-4 z-[9999] overflow-hidden lg:bottom-8 lg:right-12 xl:bottom-12 xl:right-20 
-      
-      `}
+      className="fixed bottom-4 right-4 z-[9999] h-[450px] w-[90%] sm:w-[400px] overflow-hidden rounded-lg lg:bottom-8 lg:right-8"
     >
       {/* {body} */}
-      <motion.div variants={sidebar} />
-      <motion.div variants={variants}>
+      <section className="relative h-full w-full">
+        {/* Chat box, initially scaled down and hidden */}
+        <motion.div
+          variants={chatBoxBackground}
+          className="absolute bottom-0 right-0 h-full w-full bg-black"
+        />
+
+        <ChatBox toggle={() => toggleOpen()} />
+        <ChatToggle toggle={() => toggleOpen()} />
+      </section>
+
+      {/* <motion.div variants={variants}>
         <div
           onClick={() => toggleOpen()}
           title="Close Chat"
@@ -108,7 +114,7 @@ const ChatComponent: FC<ChatComponentProps> = ({}) => {
           <p className="md:text-lg">Chat with Bebibot</p>
           <IoClose className="text-xl" />
         </div>
-      </motion.div>
+      </motion.div> */}
       {/* <div
         onClick={() => toggleOpen()}
         className="relative aspect-square overflow-hidden rounded-full outline outline-offset-4 outline-accent"
@@ -120,7 +126,6 @@ const ChatComponent: FC<ChatComponentProps> = ({}) => {
           className="object-cover"
         />
       </div> */}
-      <MenuToggle toggle={() => toggleOpen()} />
     </motion.div>
   );
 };
