@@ -3,23 +3,26 @@
 import { FC } from "react";
 
 import { useChat } from "ai/react";
-import ChatInput from "./ChatInput";
 import { BsSend } from "react-icons/bs";
 
 interface ChatMessagesProps {}
 
 const ChatMessages: FC<ChatMessagesProps> = ({}) => {
-  const { messages, handleInputChange, input, handleSubmit } = useChat();
+  const { messages, handleInputChange, input, handleSubmit, isLoading } =
+    useChat();
   const inverseMessages = [...messages].reverse();
 
   return (
     <div className="h-[450px] w-full">
       <div className="flex h-[325px] flex-col-reverse gap-2 overflow-y-auto">
         {inverseMessages.map((m) => (
-          <div key={m.id} className={`p-2 flex ${m.role === "user" ? "justify-end" : ""}`}>
+          <div
+            key={m.id}
+            className={`flex p-2 ${m.role === "user" ? "justify-end" : ""}`}
+          >
             <p
-              className={`max-w-[300px] rounded-md p-1.5 ${
-                m.role === "user" ? "bg-primary" : "bg-neutral-200"
+              className={`max-w-[300px] break-words rounded-md px-2.5 py-1.5 ${
+                m.role === "user" ? "bg-accent text-black" : "bg-neutral-200"
               }`}
             >
               {m.content}
@@ -27,24 +30,30 @@ const ChatMessages: FC<ChatMessagesProps> = ({}) => {
           </div>
         ))}
       </div>
-      <ChatInput />
-
-      <form
-        className="fixed bottom-0 mx-auto mb-4 w-full px-2"
-        onSubmit={handleSubmit}
-      >
-        <div className="flex gap-2 rounded-xl bg-white px-3 py-2">
-          <input
-            className="w-full border-none outline-none"
-            placeholder="Need ideas?"
-            value={input}
-            onChange={handleInputChange}
-          />
-          <button type="submit">
-            <BsSend className="text-xl text-primary transition duration-200 hover:scale-110 hover:text-blue-600" />
-          </button>
-        </div>
-      </form>
+      {messages.length &&
+      messages[messages.length - 1].role.toString() !== "user" &&
+      isLoading ? (
+        <p className="fixed bottom-0 mb-4 w-full text-center font-josefin text-xl font-semibold">
+          Bebibot is typing...
+        </p>
+      ) : (
+        <form
+          className="fixed bottom-0 mx-auto w-full px-2"
+          onSubmit={handleSubmit}
+        >
+          <div className="flex gap-2 rounded-xl bg-white px-3 py-2">
+            <input
+              className="w-full border-none outline-none"
+              placeholder="Need ideas?"
+              value={input}
+              onChange={handleInputChange}
+            />
+            <button type="submit">
+              <BsSend className="text-xl text-primary transition duration-200 hover:scale-110 hover:text-blue-600" />
+            </button>
+          </div>
+        </form>
+      )}
     </div>
   );
 };
