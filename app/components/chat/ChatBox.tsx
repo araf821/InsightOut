@@ -4,7 +4,7 @@ import { IoClose } from "react-icons/io5";
 import ChatMessages from "./ChatMessages";
 
 const variants = {
-  open: (height = 500) => ({
+  open: (height = 700) => ({
     clipPath: `circle(${height * 2 + 200}px at 90% 90%)`,
     transition: {
       type: "spring",
@@ -30,7 +30,7 @@ interface ChatBoxProps {
 export const ChatBox: FC<ChatBoxProps> = ({ toggle }) => {
   return (
     <motion.div
-      className="absolute left-0 top-0 h-[450px] w-full bg-secondary"
+      className="absolute left-0 top-0 h-[450px] w-full backdrop-blur-2xl bg-white/20 lg:h-[700px]"
       variants={variants}
     >
       <div

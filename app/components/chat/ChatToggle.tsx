@@ -24,7 +24,7 @@ export const ChatToggle: React.FC<ChatToggleProps> = ({ toggle }) => (
         },
       },
     }}
-    className="absolute bottom-2 right-2 h-12 w-12 cursor-pointer overflow-hidden rounded-full bg-accent shadow-[0_0_15px_1px] shadow-accent outline outline-offset-4 outline-accent lg:h-16 lg:w-16"
+    className="pointer-events-auto absolute bottom-2 right-2 z-[9999] h-12 w-12 cursor-pointer overflow-hidden rounded-full shadow-[0_0_15px_1px] shadow-zinc-600 outline outline-offset-4 outline-accent lg:h-16 lg:w-16"
     onClick={toggle}
     title="Open Chat"
   >
@@ -32,7 +32,7 @@ export const ChatToggle: React.FC<ChatToggleProps> = ({ toggle }) => (
       src="/images/bebibot.png"
       alt="chatbot profile picture"
       fill
-      className="object-cover"
+      className="object-cover transition duration-500 hover:scale-[1.75]"
     />
   </motion.button>
 );

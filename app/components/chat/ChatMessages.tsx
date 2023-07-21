@@ -13,16 +13,23 @@ const ChatMessages: FC<ChatMessagesProps> = ({}) => {
   const inverseMessages = [...messages].reverse();
 
   return (
-    <div className="h-[450px] w-full">
-      <div className="flex h-[325px] flex-col-reverse gap-2 overflow-y-auto">
+    <div className="h-[450px] w-full lg:h-[700px]">
+      {!messages.length ? (
+        <p className="flex-none py-36 text-center px-8 text-xl font-semibold">This is the beginning of your chat with Bebibot!</p>
+      ) : null}
+      <div className="flex h-[325px] flex-col-reverse gap-2 overflow-y-auto lg:h-[575px]">
         {inverseMessages.map((m) => (
           <div
             key={m.id}
-            className={`flex p-2 ${m.role === "user" ? "justify-end" : ""}`}
+            className={`flex p-2 lg:px-4 ${
+              m.role === "user" ? "justify-end" : ""
+            }`}
           >
             <p
-              className={`max-w-[300px] break-words rounded-md px-2.5 py-1.5 ${
-                m.role === "user" ? "bg-accent text-black" : "bg-neutral-200"
+              className={`max-w-[300px] break-words rounded-md px-2.5 py-1.5 lg:max-w-[500px] ${
+                m.role === "user"
+                  ? "bg-accent text-black shadow-[0_0_10px_2px] shadow-black/20"
+                  : "bg-neutral-200 shadow-[0_0_10px_2px] shadow-black/10"
               }`}
             >
               {m.content}
@@ -38,18 +45,19 @@ const ChatMessages: FC<ChatMessagesProps> = ({}) => {
         </p>
       ) : (
         <form
-          className="fixed bottom-0 mx-auto w-full px-2"
+          className="fixed bottom-0 mx-auto w-full px-2 py-4"
           onSubmit={handleSubmit}
         >
-          <div className="flex gap-2 rounded-xl bg-white px-3 py-2">
+          <div className="flex gap-2 rounded-xl bg-white px-3 py-2.5">
             <input
               className="w-full border-none outline-none"
+              autoFocus
               placeholder="Need ideas?"
               value={input}
               onChange={handleInputChange}
             />
             <button type="submit">
-              <BsSend className="text-xl text-primary transition duration-200 hover:scale-110 hover:text-blue-600" />
+              <BsSend className="text-xl text-primary transition duration-200 hover:scale-125 hover:text-blue-600" />
             </button>
           </div>
         </form>
@@ -59,39 +67,3 @@ const ChatMessages: FC<ChatMessagesProps> = ({}) => {
 };
 
 export default ChatMessages;
-
-// <div className="relative overflow-y-auto flex flex-col justify-between px-4 py-2">
-//   {/* Chat Box */}
-//   <div className="flex-1 flex-grow">
-//     {messages.map((message) => (
-//       <div key={message.id}>
-//         <div
-//           className={`flex items-end ${
-//             message.role === "user" ? "justify-end" : ""
-//           }`}
-//         >
-//           <div
-//             className={`mx-2 flex max-w-xs flex-col space-y-2 overflow-x-hidden
-//           ${
-//             message.role === "user"
-//               ? "order-1 items-end"
-//               : "order-2 items-start"
-//           }`}
-//           >
-//             <p
-//               className={`rounded-lg px-4 py-2
-//               ${
-//                 message.role === "user"
-//                   ? "bg-primary text-black"
-//                   : "bg-gray-200 text-gray-900"
-//               }`}
-//             >
-//               {message.content}
-//             </p>
-//           </div>
-//         </div>
-//       </div>
-//     ))}
-//   </div>
-//   <ChatInput />
-// </div>
