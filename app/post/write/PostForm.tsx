@@ -16,6 +16,7 @@ import TitleInput from "./TitleInput";
 import { SafePost, SafeUser } from "@/app/types";
 import getPostTemplate from "@/app/actions/openai/generatePostTemplate";
 import { motion } from "framer-motion";
+import PostPreview from "./PostPreview";
 
 interface PostFormProps {
   currentUser: SafeUser | null;
@@ -44,6 +45,7 @@ export const options = [
 ];
 
 const PostForm: FC<PostFormProps> = ({ post }) => {
+  const [preview, setPreview] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [postTags, setPostTags] = useState<SelectOption[]>(
     post
@@ -182,6 +184,7 @@ const PostForm: FC<PostFormProps> = ({ post }) => {
 
   const imgSrc = watch("imgSrc");
   const title = watch("title");
+  const content = watch("content");
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -228,16 +231,46 @@ const PostForm: FC<PostFormProps> = ({ post }) => {
         handleGenerate={() => handleGenerate(title)}
       />
 
+      <div className="flex gap-2">
+        <button
+          type="button"
+          onClick={() => setPreview(false)}
+          className={`w-36 border-2 border-zinc-800 p-1 shadow-md transition duration-200 hover:bg-zinc-800 hover:text-white ${
+            preview
+              ? "hover:-translate-y-1 hover:bg-zinc-800 hover:text-white"
+              : "bg-zinc-800 text-white hover:opacity-80"
+          }
+          `}
+        >
+          Write
+        </button>
+        <button
+          type="button"
+          onClick={() => setPreview(true)}
+          className={`w-36 border-2 border-zinc-800 p-1 shadow-md transition duration-200 ${
+            !preview
+              ? "hover:-translate-y-1 hover:bg-zinc-800 hover:text-white"
+              : "bg-zinc-800 text-white hover:opacity-80"
+          }`}
+        >
+          Preview
+        </button>
+      </div>
+
       {/* Post Content */}
-      <PostInput
-        id="content"
-        errors={errors}
-        placeholder="Post Content"
-        register={register}
-        required
-        disabled={isLoading}
-        className={`duration-300 focus:shadow-lg md:text-lg lg:text-xl`}
-      />
+      {preview ? (
+        <PostPreview content={content} />
+      ) : (
+        <PostInput
+          id="content"
+          errors={errors}
+          placeholder="Post Content"
+          register={register}
+          required
+          disabled={isLoading}
+          className={`duration-300 focus:shadow-lg md:text-lg lg:text-xl`}
+        />
+      )}
 
       {/* Buttons */}
       {post ? (
