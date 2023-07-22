@@ -41,7 +41,7 @@ const NewsletterSection: FC<NewsletterSectionProps> = ({}) => {
             </p>
             <div className="flex flex-col space-y-5 text-white">
               <div>
-                <p className="text-3xl pb-1 sm:text-3xl md:text-4xl lg:text-5xl">
+                <p className="pb-1 text-3xl sm:text-3xl md:text-4xl lg:text-5xl">
                   <span className="font- uppercase">Join Our Newsletter</span>
                 </p>
                 <p className="text--900 group mx-auto w-fit lg:mx-0 ">
@@ -54,12 +54,12 @@ const NewsletterSection: FC<NewsletterSectionProps> = ({}) => {
               </div>
               <div className="space-y-4">
                 {/* Name Input */}
-                <div className="relative mx-auto w-full max-w-[700px]">
+                <div className="mx-auto w-full max-w-[700px]">
                   <input
                     id="name"
                     type="text"
                     placeholder=" "
-                    className={`peer w-full rounded-md border-2 px-4 py-4`}
+                    className={`peer w-full rounded-md border-2 px-4 py-4 text-black`}
                     required
                   />
                   <label
@@ -74,7 +74,7 @@ const NewsletterSection: FC<NewsletterSectionProps> = ({}) => {
                     id="name"
                     type="email"
                     placeholder=" "
-                    className={`peer w-full rounded-md border-2 px-4 py-4`}
+                    className={`peer w-full rounded-md border-2 px-4 py-4 text-black`}
                     required
                   />
                   <label

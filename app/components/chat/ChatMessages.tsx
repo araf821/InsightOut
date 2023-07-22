@@ -12,12 +12,22 @@ const ChatMessages: FC<ChatMessagesProps> = ({}) => {
     useChat();
   const inverseMessages = [...messages].reverse();
 
+  const messagesBox = document.getElementById("chat-messages");
+  if (messagesBox) {
+    messagesBox.scrollTop = messagesBox.scrollHeight;
+  }
+
   return (
     <div className="h-[450px] w-full lg:h-[700px]">
       {!messages.length ? (
-        <p className="flex-none py-36 text-center px-8 text-xl font-semibold">This is the beginning of your chat with Bebibot!</p>
+        <p className="flex-none px-8 py-36 text-center font-josefin text-xl font-semibold text-neutral-700 lg:px-20 lg:py-64">
+          This is the beginning of your chat with Bebibot!
+        </p>
       ) : null}
-      <div className="flex h-[325px] flex-col-reverse gap-2 overflow-y-auto lg:h-[575px]">
+      <div
+        className="flex h-[325px] flex-col-reverse gap-2 overflow-y-auto lg:h-[575px]"
+        id="chat-messages"
+      >
         {inverseMessages.map((m) => (
           <div
             key={m.id}
@@ -26,7 +36,7 @@ const ChatMessages: FC<ChatMessagesProps> = ({}) => {
             }`}
           >
             <p
-              className={`max-w-[300px] break-words rounded-md px-2.5 py-1.5 lg:max-w-[500px] ${
+              className={`max-w-[300px] break-words rounded-md px-2.5 py-1.5 text-lg lg:max-w-[500px] ${
                 m.role === "user"
                   ? "bg-accent text-black shadow-[0_0_10px_2px] shadow-black/20"
                   : "bg-neutral-200 shadow-[0_0_10px_2px] shadow-black/10"
@@ -45,10 +55,10 @@ const ChatMessages: FC<ChatMessagesProps> = ({}) => {
         </p>
       ) : (
         <form
-          className="fixed bottom-0 mx-auto w-full px-2 py-4"
+          className="fixed bottom-0 mx-auto w-full px-2 py-4 lg:px-4"
           onSubmit={handleSubmit}
         >
-          <div className="flex gap-2 rounded-xl bg-white px-3 py-2.5">
+          <div className="flex gap-2 rounded-lg border-2 bg-white px-3 py-2.5 shadow-xl">
             <input
               className="w-full border-none outline-none"
               autoFocus

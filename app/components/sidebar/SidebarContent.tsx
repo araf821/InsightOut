@@ -23,24 +23,24 @@ const SidebarContent: FC<SidebarContentProps> = ({ currentUser }) => {
     body = (
       <div className="flex flex-col gap-4">
         <p className="text-center font-semibold sm:text-lg lg:text-xl">
-          Login to view your dashboard.
+          Sign in to view your dashboard.
         </p>
         <SidebarButton
-          title="Login with Google"
+          title="Sign In with Google"
           onClick={() => {
             signIn("google");
           }}
           icon={FcGoogle}
         />
         <SidebarButton
-          title="Login with Github"
+          title="Sign In with Github"
           onClick={() => {
             signIn("github");
           }}
           icon={FaGithub}
         />
         <SidebarButton
-          title="Login with Discord"
+          title="Sign In with Discord"
           onClick={() => {
             signIn("discord");
           }}
@@ -68,9 +68,9 @@ const SidebarContent: FC<SidebarContentProps> = ({ currentUser }) => {
   }
 
   return (
-    <section className="sidebar-content space-y-2 mx-auto max-w-[800px] px-4 py-8 md:px-0">
+    <section className="sidebar-content mx-auto max-w-[800px] space-y-2 px-4 py-8 md:px-0">
       {body}
-      {/* {/* <hr className="my-4 rounded-full border-zinc-800" /> */}
+      <hr className="my-4 rounded-full border-zinc-800" />
       <SidebarButton
         title="Help and FAQs"
         onClick={() => router.push("/help")}

@@ -36,7 +36,7 @@ export const ChatBox: FC<ChatBoxProps> = ({ toggle }) => {
       <div
         onClick={toggle}
         title="Close Chat"
-        className="flex cursor-pointer flex-row items-center justify-between bg-zinc-800 px-4 py-2.5 text-white"
+        className="flex cursor-pointer flex-row items-center justify-between backdrop-blur-none bg-secondary/30 px-4 py-2.5 text-black"
       >
         <p className="md:text-lg">Chat with Bebibot</p>
         <IoClose className="text-xl" />
