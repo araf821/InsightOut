@@ -130,7 +130,6 @@ const ChatMessages: FC<ChatMessagesProps> = ({}) => {
             />
             <input
               className="w-full border-none outline-none"
-              autoFocus
               placeholder="Need ideas?"
               value={input}
               onChange={handleInputChange}

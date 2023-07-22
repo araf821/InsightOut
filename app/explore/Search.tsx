@@ -86,10 +86,9 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
             id="name"
             type="text"
             placeholder=" "
-            autoFocus
             onChange={(e) => setKeyword(e.target.value)}
             value={keyword}
-            className={`peer w-full rounded-md border-2 px-4 py-3`}
+            className={`peer w-full rounded-md border-2 px-4 py-3 outline-none focus:border-zinc-800`}
           />
           <label
             className={`absolute left-3 top-3 origin-left -translate-y-6 scale-75  select-none rounded-md bg-bg px-2 text-neutral-500 transition peer-placeholder-shown:left-3 peer-placeholder-shown:-translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-6 peer-focus:text-neutral-800`}
@@ -124,27 +123,13 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
           >
             <AiFillFilter className="text-3xl" />
           </div>
-          {/* <Button
-              icon={FaSearch}
-              className="h-full sm:col-span-1"
-              outline
-              disabled={selectedTag || keyword ? false : true}
-              onClick={handleSearch}
-            /> */}
           <button
             disabled={selectedTag || keyword ? false : true}
             onClick={handleSearch}
-            className="f-full my-0.5 disabled:cursor-not-allowed disabled:opacity-70 w-full self-stretch border-2 border-zinc-800 p-2 outline-none transition duration-300 hover:bg-zinc-800 hover:text-white sm:col-span-1"
+            className="f-full my-0.5 w-full self-stretch border-2 border-zinc-800 p-2 outline-none transition duration-300 hover:bg-zinc-800 hover:text-white disabled:cursor-not-allowed disabled:opacity-70 sm:col-span-1"
           >
             <FaSearch className="mx-auto text-xl" />
           </button>
-          {/* <Button
-              icon={FaSearch}
-              className="h-full sm:col-span-1"
-              special
-              disabled
-              onClick={handleSearch}
-            /> */}
         </motion.div>
       </div>
 

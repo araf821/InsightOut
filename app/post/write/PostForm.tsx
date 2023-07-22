@@ -241,7 +241,10 @@ const PostForm: FC<PostFormProps> = ({ post }) => {
 
       {/* Buttons */}
       {post ? (
-        <Button onClick={handleSubmit(onUpdate)} label="Update" />
+        <div className="flex flex-col items-center justify-between gap-4 md:flex-row md:gap-12">
+          <Button onClick={() => router.back()} outline label="Back" />
+          <Button onClick={handleSubmit(onUpdate)} label="Update" />
+        </div>
       ) : (
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row md:gap-12">
           <Button
