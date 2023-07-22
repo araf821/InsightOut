@@ -32,7 +32,7 @@ export const ChatBox: FC<ChatBoxProps> = ({ toggle }) => {
 
   return (
     <motion.div
-      className="absolute left-0 top-0 h-[450px] w-full bg-white/20 backdrop-blur-2xl lg:h-[700px]"
+      className="absolute left-0 top-0 h-[450px] w-full bg-white/20 backdrop-blur-lg lg:h-[700px]"
       variants={variants}
     >
       <div

@@ -3,7 +3,7 @@
 import { FC, useEffect, useRef, useState } from "react";
 
 import { useChat } from "ai/react";
-import { BsSend } from "react-icons/bs";
+import { BsArrowRight, BsSend } from "react-icons/bs";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 
 interface ChatMessagesProps {}
@@ -17,6 +17,7 @@ const ChatMessages: FC<ChatMessagesProps> = ({}) => {
     isLoading,
     setMessages,
     reload,
+    append,
   } = useChat();
   const inverseMessages = [...messages].reverse();
   const scrollDownRef = useRef<HTMLDivElement | null>(null);
@@ -37,14 +38,44 @@ const ChatMessages: FC<ChatMessagesProps> = ({}) => {
   const clearChat = () => {
     setMessages([]);
     reload();
+    setIsOpen(false);
+  };
+
+  const initiateCommand = (message: string) => {
+    append({ content: message, role: "user" });
   };
 
   return (
     <div className="h-[450px] w-full lg:h-[700px]">
       {!messages.length ? (
-        <p className="flex-none px-8 py-36 text-center font-josefin text-xl font-semibold text-neutral-700 lg:px-20 lg:py-64">
-          This is the beginning of your chat with Bebibot!
-        </p>
+        <section className="flex-none px-8 py-36 text-center text-lg text-black lg:px-20 lg:py-64">
+          Start chatting with Bebibot!
+          <div className="mt-1.5 flex flex-col gap-1 text-base text-neutral-800">
+            <p
+              onClick={() =>
+                initiateCommand("Help me generate some ideas for a blog post!")
+              }
+              className="mx-auto flex cursor-pointer items-center gap-1 rounded-md bg-primary px-1.5 py-0.5 shadow-lg transition duration-200 hover:translate-x-1 hover:text-black"
+            >
+              Generate Ideas
+              <BsArrowRight />
+            </p>
+            <p
+              onClick={() => initiateCommand("I need help with grammar on the blog post I'm writing.")}
+              className="mx-auto flex cursor-pointer items-center gap-1 rounded-md bg-primary px-1.5 py-0.5 shadow-lg transition duration-200 hover:translate-x-1 hover:text-black"
+            >
+              Help with Grammer
+              <BsArrowRight />
+            </p>
+            <p
+              onClick={() => initiateCommand("Hello Bebibot! Let's be friends!")}
+              className="mx-auto flex cursor-pointer items-center gap-1 rounded-md bg-primary px-1.5 py-0.5 shadow-lg transition duration-200 hover:translate-x-1 hover:text-black"
+            >
+              General Chat
+              <BsArrowRight />
+            </p>
+          </div>
+        </section>
       ) : null}
       <div
         ref={scrollDownRef}
