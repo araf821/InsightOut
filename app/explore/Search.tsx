@@ -115,31 +115,36 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
           className="flex items-center gap-1.5"
         >
           <div
-            className={`grid h-full cursor-pointer place-items-center rounded-sm p-2 shadow-inner transition duration-500 hover:text-accent hover:shadow-accent ${
+            className={`grid h-full cursor-pointer place-items-center rounded-sm p-2  transition duration-300 hover:text-accent hover:shadow-accent active:shadow-inner ${
               isFiltersOpen
-                ? "text-accent shadow-accent"
+                ? "text-accent shadow-inner shadow-accent"
                 : "text-zinc-700 shadow-zinc-600"
             }`}
             onClick={() => setIsFiltersOpen((isOpen) => !isOpen)}
           >
             <AiFillFilter className="text-3xl" />
           </div>
-          {selectedTag || keyword ? (
-            <Button
+          {/* <Button
               icon={FaSearch}
               className="h-full sm:col-span-1"
-              special
+              outline
+              disabled={selectedTag || keyword ? false : true}
               onClick={handleSearch}
-            />
-          ) : (
-            <Button
+            /> */}
+          <button
+            disabled={selectedTag || keyword ? false : true}
+            onClick={handleSearch}
+            className="f-full my-0.5 disabled:cursor-not-allowed disabled:opacity-70 w-full self-stretch border-2 border-zinc-800 p-2 outline-none transition duration-300 hover:bg-zinc-800 hover:text-white sm:col-span-1"
+          >
+            <FaSearch className="mx-auto text-xl" />
+          </button>
+          {/* <Button
               icon={FaSearch}
               className="h-full sm:col-span-1"
               special
               disabled
               onClick={handleSearch}
-            />
-          )}
+            /> */}
         </motion.div>
       </div>
 

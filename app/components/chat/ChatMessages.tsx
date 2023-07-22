@@ -1,21 +1,43 @@
 "use client";
 
-import { FC } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 
 import { useChat } from "ai/react";
 import { BsSend } from "react-icons/bs";
+import { HiOutlineMenuAlt2 } from "react-icons/hi";
 
 interface ChatMessagesProps {}
 
 const ChatMessages: FC<ChatMessagesProps> = ({}) => {
-  const { messages, handleInputChange, input, handleSubmit, isLoading } =
-    useChat();
+  const {
+    messages,
+    handleInputChange,
+    input,
+    handleSubmit,
+    isLoading,
+    setMessages,
+    reload,
+  } = useChat();
   const inverseMessages = [...messages].reverse();
+  const scrollDownRef = useRef<HTMLDivElement | null>(null);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const messagesBox = document.getElementById("chat-messages");
-  if (messagesBox) {
-    messagesBox.scrollTop = messagesBox.scrollHeight;
-  }
+  const scrollToBottom = () => {
+    if (scrollDownRef.current) {
+      scrollDownRef.current.scrollTop = scrollDownRef.current.scrollHeight;
+    }
+  };
+
+  useEffect(() => {
+    if (!isLoading) {
+      scrollToBottom();
+    }
+  }, [isLoading]);
+
+  const clearChat = () => {
+    setMessages([]);
+    reload();
+  };
 
   return (
     <div className="h-[450px] w-full lg:h-[700px]">
@@ -25,8 +47,8 @@ const ChatMessages: FC<ChatMessagesProps> = ({}) => {
         </p>
       ) : null}
       <div
-        className="flex h-[325px] flex-col-reverse gap-2 overflow-y-auto lg:h-[575px]"
-        id="chat-messages"
+        ref={scrollDownRef}
+        className="scrolling-touch flex h-[325px] flex-grow flex-col-reverse gap-2 overflow-y-auto lg:h-[575px]"
       >
         {inverseMessages.map((m) => (
           <div
@@ -36,7 +58,7 @@ const ChatMessages: FC<ChatMessagesProps> = ({}) => {
             }`}
           >
             <p
-              className={`max-w-[300px] break-words rounded-md px-2.5 py-1.5 text-lg lg:max-w-[500px] ${
+              className={`max-w-[300px] rounded-md px-2.5 py-1.5 font-sans lg:max-w-[500px] lg:text-lg ${
                 m.role === "user"
                   ? "bg-accent text-black shadow-[0_0_10px_2px] shadow-black/20"
                   : "bg-neutral-200 shadow-[0_0_10px_2px] shadow-black/10"
@@ -58,7 +80,23 @@ const ChatMessages: FC<ChatMessagesProps> = ({}) => {
           className="fixed bottom-0 mx-auto w-full px-2 py-4 lg:px-4"
           onSubmit={handleSubmit}
         >
-          <div className="flex gap-2 rounded-lg border-2 bg-white px-3 py-2.5 shadow-xl">
+          <div
+            className={`absolute bottom-6 left-11 w-40 origin-left rounded-md bg-bg shadow-md transition duration-300 hover:-translate-y-1 lg:left-14 ${
+              isOpen ? "scale-x-100" : "scale-x-0"
+            }`}
+          >
+            <p
+              onClick={clearChat}
+              className="cursor-pointer rounded-md px-2 py-1 transition duration-200 hover:bg-bg"
+            >
+              Clear Chat
+            </p>
+          </div>
+          <div className="flex items-center gap-2 rounded-lg border-2 bg-white px-3 py-2.5 shadow-xl">
+            <HiOutlineMenuAlt2
+              onClick={() => setIsOpen((isOpen) => !isOpen)}
+              className="cursor-pointer text-xl font-bold transition duration-300 hover:scale-125"
+            />
             <input
               className="w-full border-none outline-none"
               autoFocus
@@ -66,7 +104,14 @@ const ChatMessages: FC<ChatMessagesProps> = ({}) => {
               value={input}
               onChange={handleInputChange}
             />
-            <button type="submit">
+            <button
+              onClick={() => {
+                if (isOpen) {
+                  clearChat();
+                }
+              }}
+              type="submit"
+            >
               <BsSend className="text-xl text-primary transition duration-200 hover:scale-125 hover:text-blue-600" />
             </button>
           </div>

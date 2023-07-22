@@ -2,9 +2,10 @@
 
 import { useDimensions } from "@/app/hooks/useDimensions";
 import { motion, useCycle } from "framer-motion";
-import { FC, useRef } from "react";
+import { FC, useEffect, useRef } from "react";
 import { ChatToggle } from "./ChatToggle";
 import { ChatBox } from "./ChatBox";
+import { usePathname } from "next/navigation";
 
 interface ChatComponentProps {}
 
@@ -22,19 +23,17 @@ const variants = {
   },
 };
 
-// const variants = {
-//   open: {
-//     transition: { staggerChildren: 0.07, delayChildren: 0.2 },
-//   },
-//   closed: {
-//     transition: { staggerChildren: 0.05, staggerDirection: -1 },
-//   },
-// };
-
 const ChatComponent: FC<ChatComponentProps> = ({}) => {
   const [isOpen, toggleOpen] = useCycle(false, true);
   const containerRef = useRef(null);
   const { height } = useDimensions(containerRef);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (isOpen) {
+      toggleOpen();
+    }
+  }, [pathname]);
 
   return (
     // Chat component resides at the bottom right corner of the screen at all times
