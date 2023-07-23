@@ -15,8 +15,8 @@ const LatestInTechnology: FC<LatestInTechnologyProps> = ({ posts }) => {
     <section>
       <Heading small title="Latest In*Technology" />
       <CardsContainer>
-        {posts.map((post) => (
-          <PostCard post={post} key={post.id} />
+        {posts.map((post, index) => (
+          <PostCard index={index} post={post} key={post.id} />
         ))}
       </CardsContainer>
     </section>

@@ -17,8 +17,8 @@ const TrendingPosts: FC<TrendingPostsProps> = ({ posts }) => {
     <section>
       <Heading small title="Trending Posts" />
       <CardsContainer>
-        {posts.map((post) => (
-          <PostCard post={post} key={post.id} />
+        {posts.map((post, index) => (
+          <PostCard post={post} key={post.id} index={index} />
         ))}
       </CardsContainer>
     </section>

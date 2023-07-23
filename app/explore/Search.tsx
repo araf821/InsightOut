@@ -3,7 +3,6 @@
 import { FC, useCallback, useState } from "react";
 import { SafePost } from "../types";
 import PostCard from "../components/PostCard";
-import Button from "../components/Button";
 import { useRouter, useSearchParams } from "next/navigation";
 import queryString from "query-string";
 import { AnimatePresence, motion } from "framer-motion";
@@ -198,8 +197,8 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
           <div
             className={`grid w-full origin-top grid-cols-1 gap-6 transition duration-1000 md:grid-cols-2 lg:grid-cols-3`}
           >
-            {posts?.map((post) => (
-              <PostCard post={post} key={post.id} />
+            {posts?.map((post, index) => (
+              <PostCard post={post} key={post.id} index={index} />
             ))}
           </div>
         </motion.section>

@@ -92,7 +92,7 @@ const ChatMessages: FC<ChatMessagesProps> = ({}) => {
               className={`max-w-[300px] rounded-md px-2.5 py-1.5 font-sans lg:max-w-[500px] lg:text-lg ${
                 m.role === "user"
                   ? "bg-accent text-black shadow-[0_0_10px_2px] shadow-black/20"
-                  : "bg-neutral-200 shadow-[0_0_10px_2px] shadow-black/10"
+                  : "bg-bg shadow-[0_0_10px_2px] shadow-black/10"
               }`}
             >
               {m.content}

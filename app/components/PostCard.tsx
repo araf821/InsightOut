@@ -8,6 +8,7 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import MoreOptionsMenu from "./MoreOptionsMenu";
 import { motion } from "framer-motion";
+import { postCardVariants } from "../lib/anim";
 
 interface PostCardProps {
   main?: boolean;
@@ -22,7 +23,7 @@ const PostCard: FC<PostCardProps> = ({
   horizontal,
   main,
   dashboard,
-  index = 1,
+  index = 0,
 }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -63,23 +64,23 @@ const PostCard: FC<PostCardProps> = ({
 
   return (
     <motion.div
-      // initial={{ opacity: 0 }}
-      // whileInView={{
-      //   opacity: 1,
-      //   // transition: { opacity: { duration: 0.5 } },
-      // }}
-      // viewport={{ once: true }}
-      className={`w-full max-w-[800px] transition duration-500 sm:delay-200 lg:delay-[0.2] ${
+      variants={postCardVariants(index)}
+      initial="hidden"
+      whileInView="visible"
+      whileTap={{ scale: 0.9 }}
+      className={`w-full max-w-[800px] ${
         horizontal &&
         "md:flex md:h-full md:min-w-[350px] md:flex-grow lg:min-w-[500px]"
       }`}
     >
-      <div className="relative aspect-[5/4] w-full overflow-hidden rounded-lg shadow-sm">
+      <div
+        className={`relative aspect-[5/4] w-full overflow-hidden rounded-lg shadow-sm`}
+      >
         <Image
           src={post.image}
           fill
-          alt=""
-          className="absolute rounded-lg object-cover"
+          alt="post image"
+          className={`absolute rounded-lg object-cover`}
         />
         {dashboard && (
           <MoreOptionsMenu

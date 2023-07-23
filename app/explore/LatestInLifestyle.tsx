@@ -15,8 +15,8 @@ const LatestInLifestyle: FC<LatestInLifestyleProps> = ({ posts }) => {
     <section>
       <Heading small title="Latest In Lifestyle" />
       <CardsContainer>
-        {posts.map((post) => (
-          <PostCard post={post} key={post.id} />
+        {posts.map((post, index) => (
+          <PostCard post={post} key={post.id} index={index} />
         ))}
       </CardsContainer>
     </section>

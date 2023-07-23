@@ -39,11 +39,11 @@ const LatestPosts: FC<LatestPostsProps> = ({ posts }) => {
         {/* Cards container */}
         <div className="mt-4 flex flex-col gap-6 from-secondary via-black to-secondary md:flex-row md:justify-between md:rounded-md md:bg-secondary md:p-2 md:shadow-lg lg:gap-8 lg:p-3 xl:p-4">
           <div className="h-full w-full">
-            <PostCard index={1} main post={posts[0]} />
+            <PostCard main post={posts[0]} />
           </div>
           <div className="flex h-fit w-full max-w-[753px] flex-col gap-4">
-            <PostCard index={1} horizontal post={posts[1]} />
-            <PostCard index={1} horizontal post={posts[2]} />
+            <PostCard horizontal post={posts[1]} />
+            <PostCard horizontal post={posts[2]} />
           </div>
         </div>
 
