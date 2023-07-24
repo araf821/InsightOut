@@ -58,7 +58,7 @@ const PostContent: FC<PostContentProps> = ({ content }) => {
       </div>
       <hr />
       {showMarkdown ? (
-        <ReactMarkdown className="prose-base md:prose-lg prose-headings:font-josefin prose-headings:font-semibold prose-a:text-blue-600 text-justify">
+        <ReactMarkdown className="max-w-none prose prose-base break-words text-justify md:prose-lg prose-headings:font-josefin prose-headings:font-semibold prose-a:text-blue-600 prose-a:hover:text-blue-700">
           {content}
         </ReactMarkdown>
       ) : ( 

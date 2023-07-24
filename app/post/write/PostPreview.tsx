@@ -12,7 +12,7 @@ const PostPreview: FC<PostPreviewProps> = ({ content }) => {
   }
 
   return (
-    <ReactMarkdown className="prose-base rounded-md border-2 border-neutral-300 p-2 text-justify shadow-inner md:prose-lg prose-headings:font-josefin prose-headings:font-semibold prose-a:text-blue-600 prose-code:b">
+    <ReactMarkdown className="max-w-[918px] prose prose-base break-words rounded-md border-2 border-neutral-300 p-2 text-justify shadow-inner md:prose-lg prose-headings:font-josefin prose-headings:font-semibold prose-a:text-blue-600 prose-a:hover:text-blue-700">
       {content}
     </ReactMarkdown>
   );
