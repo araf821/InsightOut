@@ -1,7 +1,7 @@
-import Container from "@/app/components/Container";
 import PostForm from "./PostForm";
-import Heading from "@/app/components/Heading";
 import getCurrentUser from "@/app/actions/users/getCurrentUser";
+import Container from "@/components/Container";
+import Heading from "@/components/Heading";
 
 const WritePage = async () => {
   const currentUser = await getCurrentUser();

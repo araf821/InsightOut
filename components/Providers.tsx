@@ -1,8 +1,8 @@
 "use client";
 
+import { SidebarProvider } from "@/app/context/sidebar_context";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { FC, ReactNode } from "react";
-import { SidebarProvider } from "../context/sidebar_context";
 
 interface ProvidersProps {
   children: ReactNode;

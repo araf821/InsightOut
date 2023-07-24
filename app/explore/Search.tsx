@@ -2,7 +2,6 @@
 
 import { FC, useCallback, useState } from "react";
 import { SafePost } from "../types";
-import PostCard from "../components/PostCard";
 import { useRouter, useSearchParams } from "next/navigation";
 import queryString from "query-string";
 import { AnimatePresence, motion } from "framer-motion";
@@ -10,6 +9,7 @@ import { AiFillFilter } from "react-icons/ai";
 import { options } from "../post/write/PostForm";
 import { FaSearch } from "react-icons/fa";
 import { GrClear } from "react-icons/gr";
+import PostCard from "@/components/PostCard";
 
 interface SearchBarProps {
   posts: SafePost[] | null;
@@ -58,7 +58,12 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
   }, [params, keyword, selectedTag, router]);
 
   return (
-    <motion.section animate={{ height: "auto" }}>
+    <motion.section
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      animate={{ height: "auto" }}
+      viewport={{ once: true }}
+    >
       {/* Search bar */}
       <div className="relative grid w-full gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         <motion.form
@@ -197,8 +202,8 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
           <div
             className={`grid w-full origin-top grid-cols-1 gap-6 transition duration-1000 md:grid-cols-2 lg:grid-cols-3`}
           >
-            {posts?.map((post, index) => (
-              <PostCard post={post} key={post.id} index={index} />
+            {posts?.map((post) => (
+              <PostCard post={post} key={post.id} />
             ))}
           </div>
         </motion.section>
@@ -218,6 +223,7 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
           </div>
         )
       )}
+      <hr className="mt-4" />
     </motion.section>
   );
 };

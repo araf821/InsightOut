@@ -1,12 +1,12 @@
 import { Josefin_Sans, Merriweather, Ubuntu } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/navbar/Navbar";
 import getCurrentUser from "./actions/users/getCurrentUser";
 import ToasterProvider from "./providers/ToasterProvider";
-import Providers from "./components/Providers";
-import Sidebar from "./components/sidebar/Sidebar";
-import Footer from "./components/Footer";
-import ChatComponent from "./components/chat/ChatComponent";
+import Providers from "@/components/Providers";
+import ChatComponent from "@/components/chat/ChatComponent";
+import Sidebar from "@/components/sidebar/Sidebar";
+import Navbar from "@/components/navbar/Navbar";
+import Footer from "@/components/Footer";
 
 const merri = Merriweather({
   subsets: ["latin"],

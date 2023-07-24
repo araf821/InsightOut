@@ -1,4 +1,4 @@
-import EmptyState from "@/app/components/EmptyState";
+import EmptyState from "@/components/EmptyState";
 import { FC } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
@@ -12,7 +12,7 @@ const PostPreview: FC<PostPreviewProps> = ({ content }) => {
   }
 
   return (
-    <ReactMarkdown className="prose-base rounded-md border-2 border-neutral-300 p-2 text-justify shadow-inner md:prose-lg prose-headings:font-josefin prose-headings:font-semibold prose-a:text-blue-600">
+    <ReactMarkdown className="prose-base rounded-md border-2 border-neutral-300 p-2 text-justify shadow-inner md:prose-lg prose-headings:font-josefin prose-headings:font-semibold prose-a:text-blue-600 prose-code:b">
       {content}
     </ReactMarkdown>
   );

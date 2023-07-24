@@ -1,4 +1,3 @@
-import Container from "../components/Container";
 import Search from "./Search";
 import getSearchResults, { IPostParams } from "../actions/getSearchResults";
 import TrendingPosts from "./TrendingPosts";
@@ -9,6 +8,7 @@ import getPostsByTag from "../actions/getPostsByTag";
 import LatestInEntertainment from "./LatestInEntertainment";
 import LatestInTechnology from "./LatestInTechnology";
 import LatestInLifestyle from "./LatestInLifestyle";
+import Container from "@/components/Container";
 
 interface ExploreProps {
   searchParams: IPostParams;
@@ -26,9 +26,7 @@ const page = async ({ searchParams }: ExploreProps) => {
     <Container>
       <main className="space-y-4 py-8">
         <Search posts={searchResults} />
-        <hr />
         <TrendingPosts posts={trendingPosts} />
-        <hr />
         <TopAuthors authors={topAuthors} />
         <hr />
         <LatestInEntertainment posts={latestInEntertainment} />

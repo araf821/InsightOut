@@ -1,8 +1,8 @@
 "use client";
 
-import Heading from "@/app/components/Heading";
-import PostCard from "@/app/components/PostCard";
 import { SafePost } from "@/app/types";
+import Heading from "@/components/Heading";
+import PostCard from "@/components/PostCard";
 import { FC } from "react";
 
 interface SimilarPostsProps {

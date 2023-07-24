@@ -2,13 +2,13 @@
 
 import Image from "next/image";
 import { FC, useState } from "react";
-import { SafePost } from "../types";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import MoreOptionsMenu from "./MoreOptionsMenu";
 import { motion } from "framer-motion";
-import { postCardVariants } from "../lib/anim";
+import { SafePost } from "@/app/types";
+import { postCardVariants } from "@/app/lib/anim";
 
 interface PostCardProps {
   main?: boolean;
@@ -67,7 +67,6 @@ const PostCard: FC<PostCardProps> = ({
       variants={postCardVariants(index)}
       initial="hidden"
       whileInView="visible"
-      whileTap={{ scale: 0.9 }}
       className={`w-full max-w-[800px] ${
         horizontal &&
         "md:flex md:h-full md:min-w-[350px] md:flex-grow lg:min-w-[500px]"

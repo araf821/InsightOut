@@ -54,7 +54,7 @@ const NewsletterSection: FC<NewsletterSectionProps> = ({}) => {
               </div>
               <div className="space-y-4">
                 {/* Name Input */}
-                <div className="mx-auto w-full max-w-[700px]">
+                <div className="relative mx-auto w-full max-w-[700px]">
                   <input
                     id="name"
                     type="text"

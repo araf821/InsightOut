@@ -1,22 +1,22 @@
 "use client";
 
 import PostGeneration from "./PostGeneration";
-import ImageUpload from "@/app/components/inputs/ImageUpload";
 import { FC, useState } from "react";
 import MultiSelect from "./MultiSelect";
-import PostInput from "@/app/components/inputs/PostInput";
 import slugify from "slugify";
 import { useRouter } from "next/navigation";
 import { SelectOption } from "./SingleSelect";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import Button from "@/app/components/Button";
 import TitleInput from "./TitleInput";
 import { SafePost, SafeUser } from "@/app/types";
 import getPostTemplate from "@/app/actions/openai/generatePostTemplate";
 import { motion } from "framer-motion";
 import PostPreview from "./PostPreview";
+import ImageUpload from "@/components/inputs/ImageUpload";
+import Button from "@/components/Button";
+import PostInput from "@/components/inputs/PostInput";
 
 interface PostFormProps {
   currentUser: SafeUser | null;

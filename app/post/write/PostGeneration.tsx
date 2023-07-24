@@ -1,10 +1,10 @@
 "use client";
 
-import Button from "@/app/components/Button";
 import { FC } from "react";
 import { AiTwotoneCopy } from "react-icons/ai";
 import TemplateLoader from "./TemplateLoader";
 import { toast } from "react-hot-toast";
+import Button from "@/components/Button";
 
 interface PostGenerationProps {
   isLoading: boolean;

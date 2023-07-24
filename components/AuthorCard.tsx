@@ -1,11 +1,11 @@
 "use client";
 
 import { FC, useCallback } from "react";
-import { UserWithPosts } from "../types";
 import Image from "next/image";
 import { FaUserPlus } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { toast } from "react-hot-toast";
+import { UserWithPosts } from "@/app/types";
 
 interface AuthorCardProps {
   author: UserWithPosts;

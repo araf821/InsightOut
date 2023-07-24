@@ -1,9 +1,9 @@
+import Intro from "@/components/home/Intro";
 import getLatestPosts from "./actions/getLatestPosts";
 import getPostByTitle from "./actions/getPostByTitle";
-import Hero from "./components/home/Hero";
-import Intro from "./components/home/Intro";
-import LatestPosts from "./components/home/LatestPosts";
-import NewsletterSection from "./components/home/NewsletterSection";
+import Hero from "@/components/home/Hero";
+import NewsletterSection from "@/components/home/NewsletterSection";
+import LatestPosts from "@/components/home/LatestPosts";
 
 export const revalidate = 60;
 

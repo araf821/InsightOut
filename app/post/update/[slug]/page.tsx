@@ -1,7 +1,7 @@
-import Container from "@/app/components/Container";
 import PostForm from "../../write/PostForm";
 import getCurrentUser from "@/app/actions/users/getCurrentUser";
 import getPostBySlug from "@/app/actions/getPostBySlug";
+import Container from "@/components/Container";
 
 interface IParams {
   slug: string;

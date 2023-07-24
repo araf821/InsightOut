@@ -1,8 +1,8 @@
 import getPostsByUser from "@/app/actions/getPostsByUser";
-import Container from "@/app/components/Container";
 import { SafePost } from "@/app/types";
 import DashboardClient from "./DashboardClient";
 import getCurrentUser from "@/app/actions/users/getCurrentUser";
+import Container from "@/components/Container";
 
 const Dashboard = async ({}) => {
   const currentUser = await getCurrentUser();

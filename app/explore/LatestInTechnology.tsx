@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { SafePost } from "../types";
-import Heading from "../components/Heading";
-import PostCard from "../components/PostCard";
-import CardsContainer from "../components/CardsContainer";
+import Heading from "@/components/Heading";
+import CardsContainer from "@/components/CardsContainer";
+import PostCard from "@/components/PostCard";
 
 interface LatestInTechnologyProps {
   posts: SafePost[] | null;

@@ -2,7 +2,7 @@ import { z } from "zod";
 
 import { FC, useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-import EmptyState from "@/app/components/EmptyState";
+import EmptyState from "@/components/EmptyState";
 
 interface PostContentProps {
   content: string;

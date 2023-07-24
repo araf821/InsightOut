@@ -1,12 +1,12 @@
 import getPostBySlug from "@/app/actions/getPostBySlug";
 import getPostsByTag from "@/app/actions/getPostsByTag";
-import Container from "@/app/components/Container";
-import EmptyState from "@/app/components/EmptyState";
 import SimilarPosts from "./SimilarPosts";
 import Post from "./Post";
 import getPostsByAuthor from "@/app/actions/getPostsByAuthor";
 import MoreFromAuthor from "./MoreFromAuthor";
 import getCurrentUser from "@/app/actions/users/getCurrentUser";
+import EmptyState from "@/components/EmptyState";
+import Container from "@/components/Container";
 
 interface IParams {
   slug: string;

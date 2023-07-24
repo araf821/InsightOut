@@ -1,8 +1,8 @@
 "use client";
 
+import { SafePost } from "@/app/types";
 import { FC, useState } from "react";
 import { HiOutlineMenu } from "react-icons/hi";
-import { SafePost } from "../types";
 import { IoCloseOutline } from "react-icons/io5";
 
 interface MoreOptionsMenuProps {

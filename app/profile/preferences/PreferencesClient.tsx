@@ -1,8 +1,8 @@
 "use client";
 
-import Button from "@/app/components/Button";
-import ImageUpload from "@/app/components/inputs/ImageUpload";
 import { SafeUser } from "@/app/types";
+import Button from "@/components/Button";
+import ImageUpload from "@/components/inputs/ImageUpload";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { FC } from "react";

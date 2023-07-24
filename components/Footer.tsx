@@ -4,7 +4,7 @@ import { FC } from "react";
 import Container from "./Container";
 import Logo from "./texts/Logo";
 import FooterLink from "./FooterLink";
-import { FaAirbnb, FaGithub, FaInstagram, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaInstagram, FaTwitter } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 

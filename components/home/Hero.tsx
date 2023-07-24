@@ -53,23 +53,19 @@ const Hero: React.FC<HeroProps> = ({ post }) => {
             >
               {post.title}
             </p>
-            <div className="">
-              <p>
-                {post.tags.map((tag) => (
-                  <span
-                    onClick={() =>
-                      router.push(`/explore/?keyword=&tag=${tag}`)
-                    }
-                    key={tag}
-                    className="cursor-pointer font-josefin text-neutral-800 transition-colors duration-300 hover:text-black md:text-lg lg:text-xl"
-                  >
-                    | {tag}{" "}
-                  </span>
-                ))}
-              </p>
-            </div>
             <p className="sm:text-lg md:text-xl lg:text-2xl">
               By {post.author.name}
+            </p>
+            <p>
+              {post.tags.map((tag) => (
+                <span
+                  onClick={() => router.push(`/explore/?keyword=&tag=${tag}`)}
+                  key={tag}
+                  className="cursor-pointer font-josefin text-neutral-800 transition-colors duration-300 hover:text-black md:text-lg lg:text-xl"
+                >
+                  | {tag}{" "}
+                </span>
+              ))}
             </p>
           </div>
         </div>
