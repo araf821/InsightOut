@@ -17,6 +17,7 @@ import PostPreview from "./PostPreview";
 import ImageUpload from "@/components/inputs/ImageUpload";
 import Button from "@/components/Button";
 import PostInput from "@/components/inputs/PostInput";
+import Loader from "@/components/Loader";
 
 interface PostFormProps {
   currentUser: SafeUser | null;
@@ -47,6 +48,7 @@ export const options = [
 const PostForm: FC<PostFormProps> = ({ post }) => {
   const [preview, setPreview] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
   const [postTags, setPostTags] = useState<SelectOption[]>(
     post
       ? post.tags.map((tag) => ({ label: tag, value: tag.toLowerCase() }))
@@ -60,10 +62,10 @@ const PostForm: FC<PostFormProps> = ({ post }) => {
     if (title.replaceAll(" ", "").length < 10) {
       toast.error("Please come up with a longer title.");
     } else {
-      setIsLoading(true);
+      setIsGenerating(true);
       const data = await getPostTemplate(title);
       setGeneratedContent(data.content);
-      setIsLoading(false);
+      setIsGenerating(false);
     }
   };
 
@@ -194,6 +196,10 @@ const PostForm: FC<PostFormProps> = ({ post }) => {
     });
   };
 
+  if (isLoading) {
+    return <Loader />;
+  }
+
   return (
     <motion.form
       initial={{ opacity: 0 }}
@@ -224,9 +230,13 @@ const PostForm: FC<PostFormProps> = ({ post }) => {
         onChange={(tag) => setPostTags(tag)}
       />
 
+      <p className="-mt-3 text-sm text-neutral-600">
+        *Tip: Select the most relevant tag as the first.
+      </p>
+
       {/* Generate template prompt */}
       <PostGeneration
-        isLoading={isLoading}
+        isLoading={isGenerating}
         generatedContent={generatedContent}
         handleGenerate={() => handleGenerate(title)}
       />

@@ -2,12 +2,7 @@
 
 import Loader from "@/components/Loader";
 
-
 const loading = () => {
-  return (
-    <div>
-      <Loader />
-    </div>
-  );
+  return <Loader />;
 };
 export default loading;
