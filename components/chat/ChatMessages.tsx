@@ -21,6 +21,7 @@ const ChatMessages: FC<ChatMessagesProps> = ({}) => {
   } = useChat();
   const inverseMessages = [...messages].reverse();
   const scrollDownRef = useRef<HTMLDivElement | null>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
 
   const scrollToBottom = () => {
@@ -33,6 +34,10 @@ const ChatMessages: FC<ChatMessagesProps> = ({}) => {
     if (!isLoading) {
       scrollToBottom();
     }
+  }, [isLoading]);
+
+  useEffect(() => {
+    inputRef.current?.focus();
   }, [isLoading]);
 
   const clearChat = () => {
@@ -61,14 +66,20 @@ const ChatMessages: FC<ChatMessagesProps> = ({}) => {
               <BsArrowRight />
             </p>
             <p
-              onClick={() => initiateCommand("I need help with grammar on the blog post I'm writing.")}
+              onClick={() =>
+                initiateCommand(
+                  "I need help with grammar on the blog post I'm writing."
+                )
+              }
               className="mx-auto flex cursor-pointer items-center gap-1 rounded-md bg-primary px-1.5 py-0.5 shadow-lg transition duration-200 hover:translate-x-1 hover:text-black"
             >
               Help with Grammer
               <BsArrowRight />
             </p>
             <p
-              onClick={() => initiateCommand("Hello Bebibot! Let's be friends!")}
+              onClick={() =>
+                initiateCommand("Hello Bebibot! Let's be friends!")
+              }
               className="mx-auto flex cursor-pointer items-center gap-1 rounded-md bg-primary px-1.5 py-0.5 shadow-lg transition duration-200 hover:translate-x-1 hover:text-black"
             >
               General Chat
@@ -133,6 +144,7 @@ const ChatMessages: FC<ChatMessagesProps> = ({}) => {
               placeholder="Need ideas?"
               value={input}
               onChange={handleInputChange}
+              ref={inputRef}
             />
             <button
               onClick={() => {

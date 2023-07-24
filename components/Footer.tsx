@@ -7,6 +7,7 @@ import FooterLink from "./FooterLink";
 import { FaGithub, FaInstagram, FaTwitter } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 interface FooterProps {}
 
@@ -56,6 +57,24 @@ const Footer: FC<FooterProps> = ({}) => {
           />
           <FaInstagram className="cursor-pointer text-3xl transition duration-200 hover:rotate-12 hover:scale-105 md:text-4xl" />
         </div>
+        <a
+          href="https://www.buymeacoffee.com/araf821"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="relative -mb-6 h-12 w-full lg:h-16"
+        >
+          <Image
+            src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png"
+            alt="Buy Me A Coffee"
+            fill
+            className="object-contain"
+          />
+          {/* <img
+            src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png"
+            alt="Buy Me A Coffee"
+            style={{ height: "60px", width: "217px" }}
+          /> */}
+        </a>
         <p className="-mb-8 mt-8 text-center text-sm text-bg">
           Copyright @{new Date().getFullYear()} All Rights Reserved | Made with
           🍌
