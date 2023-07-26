@@ -17,8 +17,8 @@ const Sidebar: FC<SidebarProps> = ({ currentUser }) => {
   const { isOpen, closeSidebar } = useSidebarContext();
 
   const header = (
-    <div className="w-full bg-bg px-4 py-5 shadow-md">
-      <div className="mx-auto flex max-w-[800px] items-center justify-between">
+    <div className="w-full h-[10vh] bg-bg px-4 py-5 shadow-md">
+      <div className="mx-auto h-full flex max-w-[800px] items-center justify-between">
         <Logo sidebar />
         <button onClick={closeSidebar}>
           <IoIosCloseCircle className="text-3xl text-zinc-800 transition duration-300 hover:rotate-90 hover:scale-125" />

@@ -17,7 +17,7 @@ const Logo: React.FC<LogoProps> = ({ sidebar, footer }) => {
       tabIndex={0}
       className={`max-w-min translate-y-1 cursor-pointer select-none font-josefin font-bold ${
         sidebar
-          ? "text-[36px] sm:text-[44px] md:text-[50px] lg:text-5xl xl:text-[56px]"
+          ? "text-[36px] md:text-[50px]"
           : "xl:[4rem] text-4xl sm:text-5xl lg:text-[3.5rem]"
       } ${footer ? "text-bg" : "text-zinc-800"}`}
       onClick={() => {
