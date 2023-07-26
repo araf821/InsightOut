@@ -68,13 +68,17 @@ const SidebarContent: FC<SidebarContentProps> = ({ currentUser }) => {
   }
 
   return (
-    <section className="sidebar-content mx-auto max-w-[800px] space-y-2 px-4 py-8 md:px-0">
+    <section className="relative sidebar-content mx-4 max-w-[800px] space-y-2 px-4 py-8 md:px-0">
       {body}
-      <hr className="my-4 rounded-full border-zinc-800" />
-      <SidebarButton
-        title="Help and FAQs"
-        onClick={() => router.push("/help")}
-      />
+      <hr className="my-4 rounded-full border-neutral-400" />
+
+      {/* Sidebar Footer */}
+      <div className="">
+        <SidebarButton
+          title="Help and FAQs"
+          onClick={() => router.push("/help")}
+        />
+      </div>
     </section>
   );
 };

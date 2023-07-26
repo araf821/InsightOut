@@ -61,7 +61,7 @@ const Footer: FC<FooterProps> = ({}) => {
           href="https://www.buymeacoffee.com/araf821"
           target="_blank"
           rel="noopener noreferrer"
-          className="relative -mb-6 h-12 w-full lg:h-16"
+          className="relative -mb-6 h-12 mx-auto w-44 lg:h-16"
         >
           <Image
             src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png"
