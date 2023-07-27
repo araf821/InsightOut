@@ -1,7 +1,8 @@
 "use client";
 
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 interface PostInputProps {
   id: string;
@@ -22,10 +23,38 @@ const PostInput: React.FC<PostInputProps> = ({
   register,
 }) => {
   const [count, setCount] = useState(0);
+  const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCount(e.target.value.length);
   };
+
+  const handleUnload = () => {
+    // Optionally, you can show a different warning message when navigating to a different route within the app
+    // (e.g., "You have unsaved changes. Are you sure you want to leave this page?")
+
+    // Show the warning alert when navigating away from the page
+    return "You have unsaved changes. Are you sure you want to leave this page?";
+  };
+
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+      e.returnValue = ""; // Some browsers require a non-empty string here
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    window.addEventListener("unload", handleUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+      window.removeEventListener("unload", handleUnload);
+    };
+  }, []);
+
+  useEffect(() => {
+    handleUnload();
+  }, [router]);
 
   return (
     <div className="relative">

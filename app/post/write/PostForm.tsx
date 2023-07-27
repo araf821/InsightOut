@@ -204,7 +204,7 @@ const PostForm: FC<PostFormProps> = ({ post }) => {
     <motion.form
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1, transition: { duration: 0.75 } }}
-      className="flex w-full max-w-[1280px] flex-col gap-4 rounded-md sm:border sm:px-4 sm:py-6 sm:shadow-lg"
+      className="flex h-fit w-full max-w-[1280px] flex-shrink flex-col gap-4 rounded-md sm:border sm:px-4 sm:py-6 sm:shadow-lg"
     >
       {/* Title */}
       <TitleInput

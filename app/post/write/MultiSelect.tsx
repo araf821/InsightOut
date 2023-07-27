@@ -93,7 +93,7 @@ const MultiSelect: FC<MultiSelectProps> = ({ options, value, onChange }) => {
               setIsOpen(false);
             }}
             className={`cursor-pointer list-none px-3 py-2.5 transition-colors hover:bg-primary 
-            ${isSelected(option) && "bg-bg"}`}
+            ${isSelected(option) && "bg-blue-200"}`}
           >
             {option.label}
           </li>
