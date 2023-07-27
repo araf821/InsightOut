@@ -43,9 +43,9 @@ const Footer: FC<FooterProps> = ({}) => {
         <Logo footer />
         <div className="buttons mx-auto flex flex-col gap-3 text-center text-bg/80 sm:flex-row sm:gap-12">
           <FooterLink label="Home" link={() => router.push("/")} />
-          <FooterLink label="About" link={() => {}} />
+          <FooterLink label="About" link={() => router.push("/about")} />
           <FooterLink label="Contact" link={() => {}} />
-          <FooterLink label="Careers" link={() => router.push("/careers")} />
+          <FooterLink label="Careers" link={() => {}} />
         </div>
         <div className="social-links mx-auto flex gap-6 text-center text-bg sm:gap-12">
           <FaTwitter className="cursor-pointer text-3xl transition duration-200 hover:rotate-12 hover:scale-105 md:text-4xl" />
@@ -57,11 +57,15 @@ const Footer: FC<FooterProps> = ({}) => {
           />
           <FaInstagram className="cursor-pointer text-3xl transition duration-200 hover:rotate-12 hover:scale-105 md:text-4xl" />
         </div>
-        <a
+        <motion.a
+          whileHover={{ scale: 1.1 }}
+          whileTap={{
+            scale: 0.9,
+          }}
           href="https://www.buymeacoffee.com/araf821"
           target="_blank"
           rel="noopener noreferrer"
-          className="relative -mb-6 h-12 mx-auto w-44 lg:h-16"
+          className="relative mx-auto -mb-6 h-12 w-44 lg:h-16"
         >
           <Image
             src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png"
@@ -69,12 +73,7 @@ const Footer: FC<FooterProps> = ({}) => {
             fill
             className="object-contain"
           />
-          {/* <img
-            src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png"
-            alt="Buy Me A Coffee"
-            style={{ height: "60px", width: "217px" }}
-          /> */}
-        </a>
+        </motion.a>
         <p className="-mb-8 mt-8 text-center text-sm text-bg">
           Copyright @{new Date().getFullYear()} All Rights Reserved | Made with
           🍌

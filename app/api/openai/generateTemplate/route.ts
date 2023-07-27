@@ -34,7 +34,7 @@ export async function POST(request: Request) {
 
             *conclusion para*"
             
-            Each paragraph should just have one starting sentence, that's it. Please keep it short. Don't include the " or the *. Make it so that the blog post is incomplete, but a good starting point for anyone who isn't sure where to start with their idea.
+            Each paragraph should just have one starting sentence, that's it. Please keep it short. Make it so that the blog post is incomplete, but a good starting point for anyone who isn't sure where to start with their idea. Markdown is supported!
             `,
           },
           {

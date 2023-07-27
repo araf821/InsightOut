@@ -53,14 +53,14 @@ const ChatMessages: FC<ChatMessagesProps> = ({}) => {
   return (
     <div className="h-[450px] w-full lg:h-[700px]">
       {!messages.length ? (
-        <section className="flex-none px-8 py-36 text-center text-lg text-black lg:px-20 lg:py-64">
+        <section className="flex-none px-8 py-24 text-center text-lg text-black lg:px-20 lg:py-56">
           Start chatting with Bebibot!
-          <div className="mt-1.5 flex flex-col gap-1 text-base text-neutral-800">
+          <div className="mt-1.5 flex flex-col gap-1.5 lg:gap-2.5 text-base text-neutral-200">
             <p
               onClick={() =>
                 initiateCommand("Help me generate some ideas for a blog post!")
               }
-              className="mx-auto flex cursor-pointer items-center gap-1 rounded-md bg-primary px-1.5 py-0.5 shadow-lg transition duration-200 hover:translate-x-1 hover:text-black"
+              className="mx-auto flex cursor-pointer items-center gap-1 rounded-md bg-primary py-1.5 px-3 shadow-lg transition duration-200 hover:translate-x-1 hover:text-white"
             >
               Generate Ideas
               <BsArrowRight />
@@ -71,7 +71,7 @@ const ChatMessages: FC<ChatMessagesProps> = ({}) => {
                   "I need help with grammar on the blog post I'm writing."
                 )
               }
-              className="mx-auto flex cursor-pointer items-center gap-1 rounded-md bg-primary px-1.5 py-0.5 shadow-lg transition duration-200 hover:translate-x-1 hover:text-black"
+              className="mx-auto flex cursor-pointer items-center gap-1 rounded-md bg-primary py-1.5 px-3 shadow-lg transition duration-200 hover:translate-x-1 hover:text-white"
             >
               Help with Grammer
               <BsArrowRight />
@@ -80,7 +80,7 @@ const ChatMessages: FC<ChatMessagesProps> = ({}) => {
               onClick={() =>
                 initiateCommand("Hello Bebibot! Let's be friends!")
               }
-              className="mx-auto flex cursor-pointer items-center gap-1 rounded-md bg-primary px-1.5 py-0.5 shadow-lg transition duration-200 hover:translate-x-1 hover:text-black"
+              className="mx-auto flex cursor-pointer items-center gap-1 rounded-md bg-primary py-1.5 px-3 shadow-lg transition duration-200 hover:translate-x-1 hover:text-white"
             >
               General Chat
               <BsArrowRight />

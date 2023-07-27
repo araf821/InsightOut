@@ -8,7 +8,7 @@ interface PostPreviewProps {
 
 const PostPreview: FC<PostPreviewProps> = ({ content }) => {
   if (content === "") {
-    return <EmptyState title="Nothing to preview." />;
+    return <EmptyState title="Nothing to preview." subtitle="Please write something first." />;
   }
 
   return (

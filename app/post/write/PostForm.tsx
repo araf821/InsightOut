@@ -230,8 +230,8 @@ const PostForm: FC<PostFormProps> = ({ post }) => {
         onChange={(tag) => setPostTags(tag)}
       />
 
-      <p className="-mt-3 text-sm text-neutral-600">
-        *Tip: Select the most relevant tag as the first.
+      <p className="-mt-3 rounded-md border border-zinc-300 p-1.5 text-xs text-neutral-600 shadow-sm sm:text-xs">
+        *Tip: Select the most relevant tag first.
       </p>
 
       {/* Generate template prompt */}
@@ -274,7 +274,7 @@ const PostForm: FC<PostFormProps> = ({ post }) => {
         <PostInput
           id="content"
           errors={errors}
-          placeholder="Post Content"
+          placeholder="### Markdown is supported"
           register={register}
           required
           disabled={isLoading}

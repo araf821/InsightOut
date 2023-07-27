@@ -28,7 +28,7 @@ export const postCardVariants = (index: number) => ({
 
 export const sidebarBackgroundVariants = {
   hidden: {
-    opacity: 0,
+    opacity: 1,
     backdropFilter: "blur(0px)",
     transition: {
       duration: 0.3,
@@ -45,8 +45,8 @@ export const sidebarBackgroundVariants = {
 
 export const sidebarVariants = {
   hidden: {
-    x: 600,
-    opacity: 0,
+    x: 769,
+    opacity: 1,
     transition: {
       duration: 0.4,
       opacity: {

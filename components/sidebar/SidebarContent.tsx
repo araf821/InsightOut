@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 import { FaDiscord, FaGithub } from "react-icons/fa";
 import { useSidebarContext } from "@/app/context/sidebar_context";
+import SidebarFooterLink from "./SidebarFooterLink";
 
 interface SidebarContentProps {
   currentUser: SafeUser | null;
@@ -70,10 +71,10 @@ const SidebarContent: FC<SidebarContentProps> = ({ currentUser }) => {
   }
 
   return (
-    <section className="sidebar-content relative mx-4 h-[85vh] max-w-[800px] space-y-2 px-4 py-8 md:px-0">
+    <section className="sidebar-content relative mx-4 h-[87vh] max-w-[800px] space-y-2 px-4 py-8 md:px-0">
       {body}
       {/* Sidebar Footer */}
-      <div className="absolute bottom-0 left-0 flex w-full flex-col gap-2 rounded-lg border-2 border-zinc-800 p-2 shadow-2xl">
+      <div className="absolute md:bottom-0 bottom-24 left-0 flex w-full flex-col gap-2 rounded-lg border-2 border-zinc-800 p-2 shadow-2xl">
         {currentUser ? (
           <>
             <p className="text-center sm:text-lg lg:text-xl">
@@ -84,15 +85,12 @@ const SidebarContent: FC<SidebarContentProps> = ({ currentUser }) => {
         ) : null}
         <div className="flex flex-col gap-1.5 rounded-md bg-zinc-800 p-4">
           <div className="flex flex-col items-center justify-center gap-2.5 font-semibold tracking-wider text-neutral-300 transition md:text-lg ">
-            <p className="cursor-pointer duration-500 hover:scale-110 hover:text-white">
-              About
-            </p>
-            <p className="cursor-pointer duration-500 hover:scale-110 hover:text-white">
-              Help and FAQs
-            </p>
-            <p className="cursor-pointer duration-500 hover:scale-110 hover:text-white">
-              Contact
-            </p>
+            <SidebarFooterLink
+              label="About Us"
+              onClick={() => router.push("/about")}
+            />
+            <SidebarFooterLink label="Contact" />
+            <SidebarFooterLink label="Help and FAQs" />
           </div>
         </div>
       </div>

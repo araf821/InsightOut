@@ -59,7 +59,7 @@ const Sidebar: FC<SidebarProps> = ({ currentUser }) => {
           variants={sidebarVariants}
           initial={false}
           animate={isOpen ? "visible" : "hidden"}
-          className="absolute right-0 top-0 z-50 h-full w-full bg-primary shadow-2xl md:max-w-[400px] xl:max-w-[500px]"
+          className="absolute right-0 top-0 z-50 h-full w-full bg-primary shadow-2xl md:max-w-[500px]"
         >
           <div className="mx-auto flex flex-col items-center">{header}</div>
           <SidebarContent currentUser={currentUser} />
