@@ -143,6 +143,7 @@ const ChatMessages: FC<ChatMessagesProps> = ({}) => {
               className="w-full border-none outline-none"
               placeholder="Need ideas?"
               value={input}
+              min={1}
               onChange={handleInputChange}
               ref={inputRef}
             />

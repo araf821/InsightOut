@@ -46,21 +46,17 @@ export const sidebarBackgroundVariants = {
 export const sidebarVariants = {
   hidden: {
     x: 769,
-    opacity: 1,
     transition: {
-      duration: 0.4,
-      opacity: {
-        duration: 0.6,
-      }
+      duration: 0.6,
     },
   },
   visible: {
     x: 0,
     opacity: 1,
     transition: {
-      duration: 0.4,
+      duration: 0.5,
       type: "spring",
-      damping: 15,
+      damping: 20,
       stiffness: 200 ,
       ease: "easeInOut",
     },

@@ -9,6 +9,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaDiscord, FaGithub } from "react-icons/fa";
 import { useSidebarContext } from "@/app/context/sidebar_context";
 import SidebarFooterLink from "./SidebarFooterLink";
+import TroubleSigningIn from "./TroubleSigningIn";
 
 interface SidebarContentProps {
   currentUser: SafeUser | null;
@@ -22,7 +23,7 @@ const SidebarContent: FC<SidebarContentProps> = ({ currentUser }) => {
 
   if (!currentUser) {
     body = (
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-2">
         <p className="text-center font-semibold sm:text-lg lg:text-xl">
           Sign in to view your dashboard.
         </p>
@@ -47,11 +48,12 @@ const SidebarContent: FC<SidebarContentProps> = ({ currentUser }) => {
           }}
           icon={FaDiscord}
         />
+        <TroubleSigningIn />
       </div>
     );
   } else {
     body = (
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-2">
         <SidebarButton
           title="Dashboard"
           onClick={() => {
@@ -74,7 +76,7 @@ const SidebarContent: FC<SidebarContentProps> = ({ currentUser }) => {
     <section className="sidebar-content relative mx-4 h-[87vh] max-w-[800px] space-y-2 px-4 py-8 md:px-0">
       {body}
       {/* Sidebar Footer */}
-      <div className="absolute md:bottom-0 bottom-24 left-0 flex w-full flex-col gap-2 rounded-lg border-2 border-zinc-800 p-2 shadow-2xl">
+      <div className="absolute bottom-24 left-0 flex w-full flex-col gap-2 rounded-lg border-2 border-zinc-800 p-2 shadow-2xl md:bottom-0">
         {currentUser ? (
           <>
             <p className="text-center sm:text-lg lg:text-xl">
