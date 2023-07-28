@@ -6,9 +6,15 @@ import Heading from "@/components/Heading";
 import PostCard from "@/components/PostCard";
 import CardsContainer from "@/components/CardsContainer";
 import getTrendingPosts from "@/app/actions/getTrendingPosts";
+import EmptyState from "@/components/EmptyState";
 
 const WritePage = async () => {
   const currentUser = await getCurrentUser();
+
+  if (!currentUser) {
+    return <EmptyState title="You're not logged in." subtitle="Please sign in to start writing!"/>;
+  }
+
   const markdownGuide = await getPostByTitle(
     "Guide to Writing Markdown: Basic Syntax and Usage"
   );

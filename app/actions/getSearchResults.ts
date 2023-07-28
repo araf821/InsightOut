@@ -43,6 +43,9 @@ export default async function getSearchResults(params: IPostParams) {
                 },
               }
             : {},
+          {
+            published: true,
+          },
         ],
       },
       orderBy: {
