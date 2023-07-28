@@ -89,10 +89,25 @@ const SidebarContent: FC<SidebarContentProps> = ({ currentUser }) => {
           <div className="flex flex-col items-center justify-center gap-2.5 font-semibold tracking-wider text-neutral-300 transition md:text-lg ">
             <SidebarFooterLink
               label="About Us"
-              onClick={() => router.push("/about")}
+              onClick={() => {
+                closeSidebar();
+                router.push("/about");
+              }}
             />
-            <SidebarFooterLink label="Contact" />
-            <SidebarFooterLink label="Help and FAQs" />
+            <SidebarFooterLink
+              label="Contact"
+              onClick={() => {
+                closeSidebar();
+                router.push("/contact");
+              }}
+            />
+            <SidebarFooterLink
+              label="Help and FAQs"
+              onClick={() => {
+                closeSidebar();
+                router.push("/help");
+              }}
+            />
           </div>
         </div>
       </div>
