@@ -43,7 +43,7 @@ export default async function RootLayout({
         className={`break-words selection:bg-zinc-800 selection:text-white ${merri.variable} ${josefin.variable} ${ubuntu.variable} overflow-x-hidden bg-bg font-merri`}
       >
         <Providers>
-          <ChatComponent />
+          <ChatComponent userImage={currentUser?.image || ""} />
           <ToasterProvider />
           <Sidebar currentUser={currentUser} />
           <Navbar />

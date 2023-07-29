@@ -24,7 +24,7 @@ const ContactForm: FC<ContactFormProps> = ({}) => {
     return (
       <EmptyState
         title="Thanks for your submission!"
-        subtitle="You'll be able to submit another message again after 24 hours."
+        subtitle="You'll be able to submit another message again after 6 hours."
       />
     );
   }

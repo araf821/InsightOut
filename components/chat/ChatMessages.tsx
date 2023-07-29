@@ -3,12 +3,17 @@
 import { FC, useEffect, useRef, useState } from "react";
 
 import { useChat } from "ai/react";
-import { BsArrowRight, BsSend } from "react-icons/bs";
+import { BsSend } from "react-icons/bs";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
+import ChatCommand from "./ChatCommand";
+import Avatar from "../Avatar";
+import { AnimatePresence } from "framer-motion";
 
-interface ChatMessagesProps {}
+interface ChatMessagesProps {
+  userImage: string;
+}
 
-const ChatMessages: FC<ChatMessagesProps> = ({}) => {
+const ChatMessages: FC<ChatMessagesProps> = ({ userImage }) => {
   const {
     messages,
     handleInputChange,
@@ -53,38 +58,36 @@ const ChatMessages: FC<ChatMessagesProps> = ({}) => {
   return (
     <div className="h-[450px] w-full lg:h-[700px]">
       {!messages.length ? (
-        <section className="flex-none px-8 py-24 text-center text-lg text-black lg:px-20 lg:py-56">
-          Start chatting with Bebibot!
-          <div className="mt-1.5 flex flex-col gap-1.5 lg:gap-2.5 text-base text-neutral-200">
-            <p
-              onClick={() =>
-                initiateCommand("Help me generate some ideas for a blog post!")
-              }
-              className="mx-auto flex cursor-pointer items-center gap-1 rounded-md bg-primary py-1.5 px-3 shadow-lg transition duration-200 hover:translate-x-1 hover:text-white"
-            >
-              Generate Ideas
-              <BsArrowRight />
-            </p>
-            <p
-              onClick={() =>
-                initiateCommand(
-                  "I need help with grammar on the blog post I'm writing."
-                )
-              }
-              className="mx-auto flex cursor-pointer items-center gap-1 rounded-md bg-primary py-1.5 px-3 shadow-lg transition duration-200 hover:translate-x-1 hover:text-white"
-            >
-              Help with Grammer
-              <BsArrowRight />
-            </p>
-            <p
-              onClick={() =>
-                initiateCommand("Hello Bebibot! Let's be friends!")
-              }
-              className="mx-auto flex cursor-pointer items-center gap-1 rounded-md bg-primary py-1.5 px-3 shadow-lg transition duration-200 hover:translate-x-1 hover:text-white"
-            >
-              General Chat
-              <BsArrowRight />
-            </p>
+        <section className="grid h-[325px] place-items-center text-center lg:h-[600px] ">
+          <div className="rounded-md saturate-200 bg-white/30 p-6 shadow-[0_8px_32px_5px_#ffffff1e] backdrop-blur-lg">
+            <div className="mt-1.5 flex flex-col gap-1.5 text-neutral-200 lg:gap-2.5">
+              <p className="text-lg text-black">Start chatting with Bebibot!</p>
+
+              <ChatCommand
+                label="Generate Ideas"
+                onClick={() =>
+                  initiateCommand(
+                    "Help me generate some ideas for a blog post!"
+                  )
+                }
+              />
+
+              <ChatCommand
+                label="Help With Grammar"
+                onClick={() =>
+                  initiateCommand(
+                    "I need help with grammar on the blog post I'm writing."
+                  )
+                }
+              />
+
+              <ChatCommand
+                label="General Chat"
+                onClick={() =>
+                  initiateCommand("Hello Bebibot! Let's be friends!")
+                }
+              />
+            </div>
           </div>
         </section>
       ) : null}
@@ -99,22 +102,36 @@ const ChatMessages: FC<ChatMessagesProps> = ({}) => {
               m.role === "user" ? "justify-end" : ""
             }`}
           >
-            <p
-              className={`max-w-[300px] rounded-md px-2.5 py-1.5 font-sans lg:max-w-[500px] lg:text-lg ${
-                m.role === "user"
-                  ? "bg-accent text-black shadow-[0_0_10px_2px] shadow-black/20"
-                  : "bg-bg shadow-[0_0_10px_2px] shadow-black/10"
-              }`}
-            >
-              {m.content}
-            </p>
+            <AnimatePresence>
+              <div
+                className={`flex gap-1.5 ${
+                  m.role === "user" ? "flex-row-reverse" : ""
+                }`}
+              >
+                <div className="mt-1 h-fit">
+                  <Avatar
+                    src={m.role === "user" ? userImage : "/images/bebibot.png"}
+                  />
+                </div>
+                <p
+                  className={`max-w-[265px] rounded-md px-2.5 py-1.5 font-sans lg:max-w-[500px] lg:text-lg ${
+                    m.role === "user"
+                      ? "bg-accent text-black shadow-[0_0_10px_2px] shadow-black/20"
+                      : "bg-white/40 text-white shadow-[0_0_10px_2px] shadow-black/10 saturate-200 backdrop-blur-lg"
+                  }`}
+                >
+                  {m.content}
+                </p>
+              </div>
+            </AnimatePresence>
           </div>
         ))}
       </div>
+
       {messages.length &&
       messages[messages.length - 1].role.toString() !== "user" &&
       isLoading ? (
-        <p className="fixed bottom-0 mb-4 w-full text-center font-josefin text-xl font-semibold">
+        <p className="fixed bottom-0 mb-4 w-full text-center font-josefin text-xl font-semibold text-white">
           Bebibot is typing...
         </p>
       ) : (
