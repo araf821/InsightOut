@@ -34,26 +34,27 @@ const LatestPosts: FC<LatestPostsProps> = ({ posts }) => {
         }}
         className="-mt-12 pb-12"
       >
-        <Heading title="Latest Posts" />
+        <div className="pointer-events-auto flex w-full items-center justify-between">
+          <Heading title="Latest Posts" />
+
+          {/* View More button */}
+          <button
+            onClick={() => router.push("/explore")}
+            className="z-10 mr-4 hidden cursor-pointer text-zinc-700 transition duration-200 hover:translate-x-2 hover:text-black md:block md:text-lg"
+          >
+            View More
+          </button>
+        </div>
 
         {/* Cards container */}
-        <div className="mt-4 flex flex-col gap-6 from-secondary via-black to-secondary md:flex-row md:justify-between md:rounded-md md:bg-secondary md:p-2 md:shadow-lg lg:gap-8 lg:p-3 xl:p-4">
+        <div className="mt-4 flex flex-col gap-6 md:flex-row md:justify-between md:rounded-md md:p-2 md:shadow-lg lg:gap-10 lg:p-3 xl:p-4">
           <div className="h-full w-full">
             <PostCard main post={posts[0]} />
           </div>
-          <div className="flex h-fit w-full max-w-[753px] flex-col gap-4">
+          <div className="flex h-fit w-full max-w-[700px] flex-col gap-4">
             <PostCard horizontal post={posts[1]} />
             <PostCard horizontal post={posts[2]} />
           </div>
-        </div>
-
-        {/* View More button */}
-        <div className="mx-auto max-w-[20rem] pt-6">
-          <Button
-            onClick={() => router.push("/explore")}
-            outline
-            label="View More"
-          />
         </div>
       </motion.div>
     </Container>

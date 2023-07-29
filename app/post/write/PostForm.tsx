@@ -58,13 +58,24 @@ const PostForm: FC<PostFormProps> = ({ post }) => {
   const [generatedContent, setGeneratedContent] = useState("");
   const router = useRouter();
 
+  const handleRateLimiting = () => {
+    toast.error("Templates are generated once every 60 seconds.");
+  };
+
   const handleGenerate = async (title: string) => {
     if (title.replaceAll(" ", "").length < 10) {
       toast.error("Please come up with a longer title.");
     } else {
       setIsGenerating(true);
       const data = await getPostTemplate(title);
-      setGeneratedContent(data.content);
+      setGeneratedContent((prev) => {
+        if (!data.content) {
+          handleRateLimiting();
+          return prev;
+        }
+        return data.content;
+      });
+
       setIsGenerating(false);
     }
   };

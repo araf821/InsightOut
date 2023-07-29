@@ -1,5 +1,6 @@
+import { templateRateLimiter } from "@/app/lib/rate-limiter";
 import { AxiosResponse } from "axios";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { Configuration, CreateChatCompletionResponse, OpenAIApi } from "openai";
 
 const configuration = new Configuration({
@@ -7,9 +8,20 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
     const { title } = await request.json();
+    const ip = request.ip ?? "127.0.0.1";
+    const { success } = await templateRateLimiter.limit(ip);
+
+    if (!success) {
+      return NextResponse.json(
+        {
+          message: "You can only generate a template once every 60 seconds.",
+        },
+        { status: 429 }
+      );
+    }
 
     //@ts-ignore
     const aiResponse: AxiosResponse<CreateChatCompletionResponse, any> =
@@ -20,7 +32,7 @@ export async function POST(request: Request) {
         messages: [
           {
             role: "user",
-            content: `Create a blog post template based on this title: ${title}.
+            content: `Create a blog post template based on this title in markdown format: ${title}.
 
             Generate in this format:
             

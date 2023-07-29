@@ -44,8 +44,8 @@ const Footer: FC<FooterProps> = ({}) => {
         <div className="buttons mx-auto flex flex-col gap-3 text-center text-bg/80 sm:flex-row sm:gap-12">
           <FooterLink label="Home" link={() => router.push("/")} />
           <FooterLink label="About" link={() => router.push("/about")} />
-          <FooterLink label="Contact" link={() => {}} />
-          <FooterLink label="Careers" link={() => {}} />
+          <FooterLink label="Contact" link={() => router.push("/contact")} />
+          <FooterLink label="Help" link={() => router.push("/help")} />
         </div>
         <div className="social-links mx-auto flex gap-6 text-center text-bg sm:gap-12">
           <FaTwitter className="cursor-pointer text-3xl transition duration-200 hover:rotate-12 hover:scale-105 md:text-4xl" />
