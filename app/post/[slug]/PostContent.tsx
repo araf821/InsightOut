@@ -10,7 +10,7 @@ interface PostContentProps {
 
 const PostContent: FC<PostContentProps> = ({ content }) => {
   const [showMarkdown, setShowMarkdown] = useState<boolean>(true);
-  const contentSchema = z.string().min(250).max(5000);
+  const contentSchema = z.string().min(500).max(5000);
 
   const validateContent = (content: string) => {
     try {

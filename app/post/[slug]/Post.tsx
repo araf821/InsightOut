@@ -35,7 +35,7 @@ const Post: FC<PostProps> = ({ post, currentUser }) => {
 
   return (
     <article className="mb-4 mt-8 flex w-full flex-col gap-4">
-      <Heading post title={post.title} bold />
+      <Heading post title={post.title} />
       <hr />
       <div className="relative aspect-[16/10] w-full">
         <Image

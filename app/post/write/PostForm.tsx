@@ -16,8 +16,8 @@ import { motion } from "framer-motion";
 import PostPreview from "./PostPreview";
 import ImageUpload from "@/components/inputs/ImageUpload";
 import Button from "@/components/Button";
-import PostInput from "@/components/inputs/PostInput";
 import Loader from "@/components/Loader";
+import ContentInput from "./ContentInput";
 
 interface PostFormProps {
   currentUser: SafeUser | null;
@@ -184,7 +184,7 @@ const PostForm: FC<PostFormProps> = ({ post }) => {
       })
       .then(() => {
         toast.success("Updated Post!");
-        router.push("/profile/dashboard");
+        router.back();
         reset();
       })
       .catch(() => {
@@ -282,7 +282,7 @@ const PostForm: FC<PostFormProps> = ({ post }) => {
       {preview ? (
         <PostPreview content={content} />
       ) : (
-        <PostInput
+        <ContentInput
           id="content"
           errors={errors}
           placeholder="### Markdown is supported"

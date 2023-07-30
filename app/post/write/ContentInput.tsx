@@ -4,7 +4,7 @@ import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-interface PostInputProps {
+interface ContentInputProps {
   id: string;
   placeholder: string;
   required?: boolean;
@@ -14,7 +14,7 @@ interface PostInputProps {
   className?: string;
 }
 
-const PostInput: React.FC<PostInputProps> = ({
+const ContentInput: React.FC<ContentInputProps> = ({
   id,
   placeholder,
   errors,
@@ -64,7 +64,7 @@ const PostInput: React.FC<PostInputProps> = ({
         cols={10}
         required
         {...register(id)}
-        minLength={250}
+        minLength={500}
         maxLength={5000}
         onChange={handleChange}
         disabled={disabled}
@@ -80,4 +80,4 @@ const PostInput: React.FC<PostInputProps> = ({
     </div>
   );
 };
-export default PostInput;
+export default ContentInput;

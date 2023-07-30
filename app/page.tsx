@@ -10,7 +10,7 @@ export const revalidate = 60;
 export default async function Home() {
   const latestPosts = await getLatestPosts(3);
   const featuredPost = await getPostByTitle(
-    "Exploring the Grand Line: Unveiling One Piece's Enigmatic World"
+    "Epic Journey and Timeless Legacy: Why One Piece Is the Greatest Anime Ever Created"
   );
 
   return (

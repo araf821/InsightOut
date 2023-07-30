@@ -2,7 +2,6 @@
 
 import { FC } from "react";
 import Container from "../Container";
-import Button from "../Button";
 import { SafePost } from "@/app/types";
 import PostCard from "../PostCard";
 import Heading from "../Heading";

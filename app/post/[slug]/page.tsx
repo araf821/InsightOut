@@ -7,6 +7,7 @@ import MoreFromAuthor from "./MoreFromAuthor";
 import getCurrentUser from "@/app/actions/users/getCurrentUser";
 import EmptyState from "@/components/EmptyState";
 import Container from "@/components/Container";
+import PostCard from "@/components/PostCard";
 
 interface IParams {
   slug: string;
@@ -35,8 +36,8 @@ const PostPage = async ({ params }: { params: IParams }) => {
     <main className="single-post-page">
       <Container>
         <Post currentUser={currentUser} post={post} />
-        <SimilarPosts posts={suggestedPosts} />
 
+        <SimilarPosts posts={suggestedPosts} />
         {postsFromAuthor?.length && (
           <MoreFromAuthor
             posts={postsFromAuthor}
