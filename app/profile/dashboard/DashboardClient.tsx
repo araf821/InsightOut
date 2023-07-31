@@ -62,7 +62,7 @@ const DashboardClient: FC<DashboardClientProps> = ({
           className="relative flex w-full flex-col overflow-hidden rounded-t-lg bg-secondary px-2 py-3 shadow-md sm:flex-row sm:rounded-l-lg lg:col-span-3"
         >
           <span
-            onClick={() => router.push("/profile/preferences")}
+            onClick={() => router.push("/profile/settings")}
             className="group absolute right-1 top-2 z-10 grid h-12 w-12 cursor-pointer place-items-center sm:top-1"
           >
             <FaUserEdit className="text-2xl text-neutral-200 opacity-80 transition group-hover:scale-110 group-hover:opacity-100 sm:text-neutral-800" />

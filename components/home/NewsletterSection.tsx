@@ -1,12 +1,15 @@
 "use client";
 
-import { FC } from "react";
+import { FC, useState } from "react";
 import Button from "../Button";
 import { motion } from "framer-motion";
+import { toast } from "react-hot-toast";
 
 interface NewsletterSectionProps {}
 
 const NewsletterSection: FC<NewsletterSectionProps> = ({}) => {
+  const [emailInput, setEmailInput] = useState("");
+
   return (
     <motion.div
       viewport={{ once: true }}
@@ -19,20 +22,6 @@ const NewsletterSection: FC<NewsletterSectionProps> = ({}) => {
       }}
       className="relative"
     >
-      {/* <div className="absolute top-0 -z-10 w-full -translate-y-full overflow-hidden">
-        <svg
-          preserveAspectRatio="none"
-          viewBox="0 0 1200 120"
-          xmlns="http://www.w3.org/2000/svg"
-          style={{
-            width: "100%",
-            height: 100,
-            transform: "rotate(180deg) scaleX(1)",
-          }}
-        >
-          <path d="M1200 120L0 16.48V0h1200v120z" className="fill-primary" />
-        </svg>
-      </div> */}
       <section className="relative -translate-y-24 bg-gradient-to-b from-accent via-[#000000] to-primary pb-12 pt-36 text-bg shadow-[0_0_30px] shadow-zinc-700 lg:bg-gradient-to-r">
         <div className=" mx-auto max-w-[1550px] px-4 sm:px-6 md:px-10 xl:px-20">
           <div className="grid grid-cols-1 items-center gap-8 text-center lg:grid-cols-2 lg:gap-12 lg:text-start">
@@ -63,7 +52,7 @@ const NewsletterSection: FC<NewsletterSectionProps> = ({}) => {
                     required
                   />
                   <label
-                    className={`absolute pointer-events-none left-3 top-4 origin-left -translate-y-6 scale-75  select-none rounded-md bg-bg px-2 text-neutral-500 transition peer-placeholder-shown:left-3 peer-placeholder-shown:-translate-y-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:bg-bg peer-focus:-translate-y-7 peer-focus:border-2 peer-focus:border-zinc-800 peer-focus:text-neutral-900`}
+                    className={`pointer-events-none absolute left-3 top-4 origin-left -translate-y-6 scale-75  select-none rounded-md bg-bg px-2 text-neutral-500 transition peer-placeholder-shown:left-3 peer-placeholder-shown:-translate-y-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:bg-bg peer-focus:-translate-y-7 peer-focus:border-2 peer-focus:border-zinc-800 peer-focus:text-neutral-900`}
                   >
                     Name
                   </label>
@@ -74,11 +63,15 @@ const NewsletterSection: FC<NewsletterSectionProps> = ({}) => {
                     id="name"
                     type="email"
                     placeholder=" "
+                    value={emailInput}
+                    onChange={(e) => {
+                      setEmailInput(e.target.value);
+                    }}
                     className={`peer w-full rounded-md border-2 px-4 py-4 text-black`}
                     required
                   />
                   <label
-                    className={`absolute pointer-events-none left-3 top-4 origin-left -translate-y-6 scale-75  select-none rounded-md bg-bg px-2 text-neutral-500 transition peer-placeholder-shown:left-3 peer-placeholder-shown:-translate-y-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:bg-bg peer-focus:-translate-y-7 peer-focus:border-2 peer-focus:border-zinc-800 peer-focus:text-neutral-900`}
+                    className={`pointer-events-none absolute left-3 top-4 origin-left -translate-y-6 scale-75  select-none rounded-md bg-bg px-2 text-neutral-500 transition peer-placeholder-shown:left-3 peer-placeholder-shown:-translate-y-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:bg-bg peer-focus:-translate-y-7 peer-focus:border-2 peer-focus:border-zinc-800 peer-focus:text-neutral-900`}
                   >
                     Email
                   </label>
@@ -87,7 +80,9 @@ const NewsletterSection: FC<NewsletterSectionProps> = ({}) => {
                   special
                   label="Sign Up Now"
                   className="mx-auto max-w-[700px] border-accent"
-                  onClick={() => {}}
+                  onClick={() => {
+                    toast.success("Coming soon!");
+                  }}
                 />
               </div>
             </div>

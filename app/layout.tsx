@@ -40,7 +40,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`break-words selection:bg-zinc-800 selection:text-white ${merri.variable} ${josefin.variable} ${ubuntu.variable} overflow-x-hidden bg-bg font-merri`}
+        className={`break-words selection:bg-zinc-800 selection:text-white ${merri.variable} ${josefin.variable} ${ubuntu.variable} overflow-x-hidden font-merri`}
       >
         <Providers>
           <ChatComponent userImage={currentUser?.image || ""} />

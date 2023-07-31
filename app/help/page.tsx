@@ -1,4 +1,11 @@
+import EmptyState from "@/components/EmptyState";
+
 const HelpPage = () => {
-  return <div>HelpPage</div>;
+  return (
+    <EmptyState
+      title="Page Under Construction"
+      subtitle="Please check back later."
+    />
+  );
 };
 export default HelpPage;

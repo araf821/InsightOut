@@ -4,16 +4,17 @@ import { SafeUser } from "@/app/types";
 import Button from "@/components/Button";
 import ImageUpload from "@/components/inputs/ImageUpload";
 import axios from "axios";
+import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { FC } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 
-interface PreferencesClientProps {
+interface SettingsClientProps {
   currentUser: SafeUser;
 }
 
-const PreferencesClient: FC<PreferencesClientProps> = ({ currentUser }) => {
+const SettingsClient: FC<SettingsClientProps> = ({ currentUser }) => {
   const router = useRouter();
 
   const {
@@ -62,7 +63,12 @@ const PreferencesClient: FC<PreferencesClientProps> = ({ currentUser }) => {
   };
 
   return (
-    <div className="my-6 flex w-full flex-col gap-4 rounded-md px-4 py-6 shadow-[0px_0px_20px_10px_rgba(0,0,0,0.1)]">
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1, transition: { duration: 0.5 } }}
+      viewport={{ once: true }}
+      className="my-6 flex w-full flex-col gap-4 rounded-md px-4 py-6 shadow-[0px_0px_20px_10px_rgba(0,0,0,0.1)]"
+    >
       <div className="mx-auto">
         <ImageUpload
           onChange={(value) => setCustomValue("image", value)}
@@ -84,7 +90,7 @@ const PreferencesClient: FC<PreferencesClientProps> = ({ currentUser }) => {
           {...register("name")}
         />
         <label
-          className={`absolute pointer-events-none left-3 top-3 origin-left -translate-y-6 scale-75  select-none rounded-md bg-bg px-2 text-neutral-500 transition peer-placeholder-shown:left-3 peer-placeholder-shown:-translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-6 peer-focus:text-neutral-800`}
+          className={`pointer-events-none absolute left-3 top-3 origin-left -translate-y-6 scale-75  select-none rounded-md bg-bg px-2 text-neutral-500 transition peer-placeholder-shown:left-3 peer-placeholder-shown:-translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-6 peer-focus:text-neutral-800`}
         >
           Author Name
         </label>
@@ -93,8 +99,8 @@ const PreferencesClient: FC<PreferencesClientProps> = ({ currentUser }) => {
         <Button onClick={handleSubmit(onSubmit)} label="Save Changes" small />
         <Button onClick={() => router.back()} label="Back" outline small />
       </div>
-    </div>
+    </motion.div>
   );
 };
 
-export default PreferencesClient;
+export default SettingsClient;
