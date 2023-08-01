@@ -57,7 +57,7 @@ export const sidebarVariants = {
       duration: 0.5,
       type: "spring",
       damping: 20,
-      stiffness: 200 ,
+      stiffness: 200,
       ease: "easeInOut",
     },
   },

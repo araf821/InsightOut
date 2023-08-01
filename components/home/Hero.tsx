@@ -49,7 +49,7 @@ const Hero: React.FC<HeroProps> = ({ post }) => {
             <p
               tabIndex={0}
               onClick={() => router.push(`/post/${post.slug}`)}
-              className="cursor-pointer font-josefin text-2xl hover:underline focus:underline sm:text-3xl md:text-4xl lg:text-5xl"
+              className="cursor-pointer font-josefin text-2xl font-bold hover:underline focus:underline sm:text-3xl md:text-4xl md:font-semibold lg:text-5xl lg:font-normal"
             >
               {post.title}
             </p>

@@ -8,23 +8,35 @@ import Heading from "@/components/Heading";
 import Container from "@/components/Container";
 import { toast } from "react-hot-toast";
 import { motion } from "framer-motion";
+import Disclaimer from "./Disclaimer";
 
 interface ContactFormProps {}
 
 const ContactForm: FC<ContactFormProps> = ({}) => {
   const formRef = useRef<HTMLFormElement | null>(null);
   const [isMessageSent, setIsMessageSent] = useState<boolean>(false);
+  var now = new Date().getTime();
 
   useEffect(() => {
-    const storedIsMessageSent = localStorage.getItem("isMessageSent");
-    setIsMessageSent(storedIsMessageSent === "true");
+    const sentMessageTime = localStorage.getItem("sentMessageTime");
+    if (sentMessageTime) {
+      console.log(now, Date.parse(sentMessageTime));
+
+      if (now - Date.parse(sentMessageTime) > 3 * 60 * 60 * 1000) {
+        // Delete the local storage after 3 hours
+        localStorage.removeItem("sentMessageTime");
+      } else {
+        setIsMessageSent(true);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (isMessageSent) {
     return (
       <EmptyState
         title="Thanks for your submission!"
-        subtitle="You'll be able to submit another message again after 6 hours."
+        subtitle="You'll be able to submit another message again after 3 hours."
       />
     );
   }
@@ -52,14 +64,13 @@ const ContactForm: FC<ContactFormProps> = ({}) => {
       )
       .then(
         () => {
-          localStorage.setItem("isMessageSent", "true");
+          localStorage.setItem("sentMessageTime", "" + now);
           setIsMessageSent(true);
 
-          // Clear the local storage after 6 hours to allow for resubmission
-          setTimeout(() => {
-            localStorage.removeItem("isMessageSent");
-            setIsMessageSent(false);
-          }, 6 * 60 * 60 * 1000); // 6 hours in milliseconds
+          // setTimeout(() => {
+          //   localStorage.removeItem("isMessageSent");
+          //   setIsMessageSent(false);
+          // }, 6 * 60 * 60 * 1000); // 6 hours in milliseconds
         },
         (error) => {
           console.log(error.text);
@@ -72,14 +83,14 @@ const ContactForm: FC<ContactFormProps> = ({}) => {
       <motion.main
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1, transition: { duration: 0.5 } }}
-        className="mx-auto my-12 max-w-[800px] rounded-lg border-2 p-4 shadow-lg"
+        className="mx-auto my-12 max-w-[800px] space-y-4 rounded-lg border-2 p-4 shadow-lg"
       >
         <Heading title="Contact" />
 
         <form
           ref={formRef}
           onSubmit={sendEmail}
-          className="flex flex-col justify-center gap-4 py-6 "
+          className="flex flex-col justify-center gap-4"
         >
           <div className="relative">
             <input
@@ -127,7 +138,7 @@ const ContactForm: FC<ContactFormProps> = ({}) => {
               Message
             </label>
           </div>
-          {/* <Button onClick={sendEmail} label="Send Message" /> */}
+
           <button
             type="submit"
             className="border-2 border-zinc-800 p-2 transition duration-300 hover:bg-zinc-800 hover:text-white md:text-lg"
@@ -135,6 +146,10 @@ const ContactForm: FC<ContactFormProps> = ({}) => {
             Send Message
           </button>
         </form>
+        <Disclaimer
+          title="Disclaimer"
+          content={`> You'll only be able to send a message every few hours.\n> Feel free to report a bug or leave any feedback through this form!`}
+        />
       </motion.main>
     </Container>
   );
