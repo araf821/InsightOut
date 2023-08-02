@@ -10,6 +10,7 @@ import { options } from "../post/write/PostForm";
 import { FaSearch } from "react-icons/fa";
 import { GrClear } from "react-icons/gr";
 import PostCard from "@/components/PostCard";
+import Button from "@/components/Button";
 
 interface SearchBarProps {
   posts: SafePost[] | null;
@@ -24,7 +25,7 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
     params?.get("tag") || ""
   );
 
-  // Pagination stuff
+  // Pagination
   const [displayed, setDisplayed] = useState<number>(6);
 
   const router = useRouter();
@@ -58,11 +59,18 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
       { skipNull: true }
     );
     router.push(url);
+    setDisplayed(6);
   }, [params, keyword, selectedTag, router]);
   console.log("Posts: ", posts);
 
   const handleLoadMore = () => {
-    setDisplayed((prev) => prev + 9);
+    setDisplayed((prev) => {
+      if (posts && prev + 6 > posts?.length) {
+        return posts.length;
+      }
+
+      return prev + 6;
+    });
   };
 
   return (
@@ -231,6 +239,14 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
           </div>
         )
       )}
+      {posts && displayed < posts?.length ? (
+        <Button
+          onClick={handleLoadMore}
+          label="Load More"
+          className="mx-auto max-w-[400px]"
+          outline
+        />
+      ) : null}
       <hr className="mt-4" />
     </motion.section>
   );
