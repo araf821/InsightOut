@@ -12,7 +12,6 @@ const UpdatePage = async ({ params }: { params: IParams }) => {
 
   const currentUser = await getCurrentUser();
   const post = await getPostBySlug(decodeURIComponent(slug));
-  console.log(post);
 
   return (
     <Container>

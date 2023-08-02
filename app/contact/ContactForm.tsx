@@ -20,9 +20,7 @@ const ContactForm: FC<ContactFormProps> = ({}) => {
   useEffect(() => {
     const sentMessageTime = localStorage.getItem("sentMessageTime");
     if (sentMessageTime) {
-      console.log(now, Date.parse(sentMessageTime));
-
-      if (now - Date.parse(sentMessageTime) > 3 * 60 * 60 * 1000) {
+      if (now - parseInt(sentMessageTime) > 3 * 60 * 60 * 1000) {
         // Delete the local storage after 3 hours
         localStorage.removeItem("sentMessageTime");
       } else {
@@ -48,7 +46,6 @@ const ContactForm: FC<ContactFormProps> = ({}) => {
       return;
     }
 
-    console.log(formRef);
     //@ts-ignore
     if (formRef.current[2].value.length < 50) {
       toast.error("Message is too short!");
@@ -66,11 +63,6 @@ const ContactForm: FC<ContactFormProps> = ({}) => {
         () => {
           localStorage.setItem("sentMessageTime", "" + now);
           setIsMessageSent(true);
-
-          // setTimeout(() => {
-          //   localStorage.removeItem("isMessageSent");
-          //   setIsMessageSent(false);
-          // }, 6 * 60 * 60 * 1000); // 6 hours in milliseconds
         },
         (error) => {
           console.log(error.text);

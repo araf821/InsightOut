@@ -61,7 +61,6 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
     router.push(url);
     setDisplayed(6);
   }, [params, keyword, selectedTag, router]);
-  console.log("Posts: ", posts);
 
   const handleLoadMore = () => {
     setDisplayed((prev) => {
