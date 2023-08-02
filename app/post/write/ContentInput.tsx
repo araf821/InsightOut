@@ -30,9 +30,6 @@ const ContentInput: React.FC<ContentInputProps> = ({
   };
 
   const handleUnload = () => {
-    // Optionally, you can show a different warning message when navigating to a different route within the app
-    // (e.g., "You have unsaved changes. Are you sure you want to leave this page?")
-
     // Show the warning alert when navigating away from the page
     return "You have unsaved changes. Are you sure you want to leave this page?";
   };

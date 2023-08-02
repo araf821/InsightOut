@@ -15,13 +15,22 @@ interface ExploreProps {
 }
 
 const page = async ({ searchParams }: ExploreProps) => {
-  const searchResults = await getSearchResults(searchParams);
-  const trendingPosts = await getTrendingPosts(3);
-  const topAuthors = await getTopUsers(6);
-  const latestInEntertainment = await getPostsByTag("entertainment", 3);
-  const latestInTechnology = await getPostsByTag("technology", 3);
-  const latestInLifestyle = await getPostsByTag("lifestyle", 3);
-  
+  const [
+    searchResults,
+    trendingPosts,
+    topAuthors,
+    latestInEntertainment,
+    latestInTechnology,
+    latestInLifestyle,
+  ] = await Promise.all([
+    getSearchResults(searchParams),
+    getTrendingPosts(3),
+    getTopUsers(6),
+    getPostsByTag("entertainment", 3),
+    getPostsByTag("technology", 3),
+    getPostsByTag("lifestyle", 3),
+  ]);
+
   return (
     <Container>
       <main className="space-y-4 py-8">

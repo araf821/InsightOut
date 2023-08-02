@@ -48,14 +48,14 @@ const Footer: FC<FooterProps> = ({}) => {
           <FooterLink label="Help" link={() => router.push("/help")} />
         </div>
         <div className="social-links mx-auto flex gap-6 text-center text-bg sm:gap-12">
-          <FaTwitter className="cursor-pointer text-3xl transition duration-200 hover:rotate-12 hover:scale-105 md:text-4xl" />
+          <FaTwitter className="cursor-pointer text-3xl transition duration-200 hover:rotate-12 hover:scale-105 active:scale-90 md:text-4xl" />
           <FaGithub
             onClick={() => {
-              router.push("https://airbee-enbee.vercel.app");
+              router.push("https://github.com/araf821/Blog-Site");
             }}
-            className="cursor-pointer text-3xl transition duration-200 hover:rotate-12 hover:scale-105 md:text-4xl"
+            className="cursor-pointer text-3xl transition duration-200 hover:rotate-12 hover:scale-105 active:scale-90 md:text-4xl"
           />
-          <FaInstagram className="cursor-pointer text-3xl transition duration-200 hover:rotate-12 hover:scale-105 md:text-4xl" />
+          <FaInstagram className="cursor-pointer text-3xl transition duration-200 hover:rotate-12 hover:scale-105 active:scale-90 md:text-4xl" />
         </div>
         <motion.a
           whileHover={{ scale: 1.1 }}

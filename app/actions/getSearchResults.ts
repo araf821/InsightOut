@@ -5,7 +5,9 @@ export interface IPostParams {
   tag?: string;
 }
 
-export default async function getSearchResults(params: IPostParams) {
+export default async function getSearchResults(
+  params: IPostParams,
+) {
   try {
     const { keyword, tag } = params;
 

@@ -5,7 +5,6 @@ import { motion, useCycle } from "framer-motion";
 import { FC, useRef } from "react";
 import { ChatToggle } from "./ChatToggle";
 import { ChatBox } from "./ChatBox";
-import { SafeUser } from "@/app/types";
 
 interface ChatComponentProps {
   userImage: string;

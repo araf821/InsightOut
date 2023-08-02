@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { FC, useState } from "react";
+import { FC, Suspense, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-hot-toast";
@@ -63,62 +63,75 @@ const PostCard: FC<PostCardProps> = ({
   };
 
   return (
-    <motion.div
-      variants={postCardVariants(index)}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      className={`w-full max-w-[800px] ${
-        horizontal &&
-        "md:flex md:h-full md:min-w-[350px] md:flex-grow lg:min-w-[500px]"
-      }`}
-    >
-      <div
-        className={`relative aspect-[5/4] w-full overflow-hidden rounded-lg shadow-sm`}
-      >
-        <Image
-          src={post.image}
-          fill
-          alt="post image"
-          className={`absolute rounded-lg object-cover`}
-        />
-        {dashboard && (
-          <MoreOptionsMenu
-            post={post}
-            onMove={handleMove}
-            onDelete={handleDelete}
-            onUpdate={() => {
-              router.push(`/post/update/${post.slug}`);
-            }}
-          />
-        )}
-      </div>
-
-      {/* Post Info */}
-      <div
-        className={`h-fit w-full p-2 text-center capitalize ${
-          horizontal && "md:h-fit md:space-y-3 md:p-0 md:pl-2 md:text-start"
+    <Suspense fallback={<PostCardLoader />}>
+      <motion.div
+        variants={postCardVariants(index)}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className={`w-full max-w-[800px] ${
+          horizontal &&
+          "md:flex md:h-full md:min-w-[350px] md:flex-grow lg:min-w-[500px]"
         }`}
       >
-        <p
-          className={`font-josefin text-2xl font-bold ${
-            horizontal && "md:text-xl lg:text-[26px] xl:text-3xl"
-          }
-          ${main && "lg:text-[26px] xl:text-3xl"}`}
-          onClick={() => router.push(`/post/${post.slug}`)}
+        <div
+          className={`relative aspect-[5/4] w-full overflow-hidden rounded-lg shadow-sm`}
         >
-          <span className="cursor-pointer underline-offset-4 hover:underline">
-            {post.title}
-          </span>
-        </p>
-        {post ? (
-          <p className={`text-lg font-light ${horizontal && "xl:text-xl"}`}>
-            {post.author.name}
+          <Image
+            src={post.image}
+            fill
+            alt="post image"
+            className={`absolute rounded-lg object-cover`}
+          />
+          {dashboard && (
+            <MoreOptionsMenu
+              post={post}
+              onMove={handleMove}
+              onDelete={handleDelete}
+              onUpdate={() => {
+                router.push(`/post/update/${post.slug}`);
+              }}
+            />
+          )}
+        </div>
+
+        {/* Post Info */}
+        <div
+          className={`h-fit w-full p-2 text-center capitalize ${
+            horizontal && "md:h-fit md:space-y-3 md:p-0 md:pl-2 md:text-start"
+          }`}
+        >
+          <p
+            className={`font-josefin text-2xl font-bold ${
+              horizontal && "md:text-xl lg:text-[26px] xl:text-3xl"
+            }
+          ${main && "lg:text-[26px] xl:text-3xl"}`}
+            onClick={() => router.push(`/post/${post.slug}`)}
+          >
+            <span className="cursor-pointer underline-offset-4 hover:underline">
+              {post.title}
+            </span>
           </p>
-        ) : null}
-      </div>
-    </motion.div>
+          {post ? (
+            <p className={`text-lg font-light ${horizontal && "xl:text-xl"}`}>
+              {post.author.name}
+            </p>
+          ) : null}
+        </div>
+      </motion.div>
+    </Suspense>
   );
 };
 
 export default PostCard;
+
+const PostCardLoader = () => {
+  return (
+    <div className={`flex w-full max-w-[800px] animate-pulse flex-col gap-2`}>
+      <div className="aspect-[5/4] h-full w-full bg-neutral-500">
+        <div className="h-8 w-full bg-neutral-500"></div>
+        <div className="mx-auto h-4 w-[60px] bg-neutral-500"></div>
+      </div>
+    </div>
+  );
+};

@@ -24,6 +24,9 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
     params?.get("tag") || ""
   );
 
+  // Pagination stuff
+  const [displayed, setDisplayed] = useState<number>(6);
+
   const router = useRouter();
 
   const handleSearch = useCallback(async () => {
@@ -56,6 +59,11 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
     );
     router.push(url);
   }, [params, keyword, selectedTag, router]);
+  console.log("Posts: ", posts);
+
+  const handleLoadMore = () => {
+    setDisplayed((prev) => prev + 9);
+  };
 
   return (
     <motion.section
@@ -202,7 +210,7 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
           <div
             className={`grid w-full origin-top grid-cols-1 gap-6 transition duration-1000 md:grid-cols-2 lg:grid-cols-3`}
           >
-            {posts?.map((post) => (
+            {posts.slice(0, displayed)?.map((post) => (
               <PostCard post={post} key={post.id} />
             ))}
           </div>
