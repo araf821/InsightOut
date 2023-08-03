@@ -71,6 +71,7 @@ const Post: FC<PostProps> = ({ post, currentUser }) => {
         <Image
           src={post.image}
           alt="post image"
+          sizes="(max-width: 768px) 100vw, 80vw"
           fill
           className="rounded-md object-cover"
         />

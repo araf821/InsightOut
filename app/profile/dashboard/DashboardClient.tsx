@@ -4,8 +4,10 @@ import { dateFormat } from "@/app/lib/helpers/dateFormat";
 import { SafePost } from "@/app/types";
 import Button from "@/components/Button";
 import Heading from "@/components/Heading";
+import Loader from "@/components/Loader";
 import PostCard from "@/components/PostCard";
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FC } from "react";
@@ -19,6 +21,14 @@ interface DashboardClientProps {
   userImage: string | null;
 }
 
+
+const DynamicPostCard = dynamic(() => import("@/components/PostCard"), {
+  loading: () => (
+    <div className="h-full w-full animate-pulse bg-neutral-400"></div>
+  ),
+  ssr: false,
+});
+
 const DashboardClient: FC<DashboardClientProps> = ({
   postsFromUser,
   userName,
@@ -29,6 +39,7 @@ const DashboardClient: FC<DashboardClientProps> = ({
 
   const published = postsFromUser.filter((post) => post.published);
   const drafts = postsFromUser.filter((post) => !post.published);
+
 
   return (
     <section className="py-8">
@@ -149,7 +160,7 @@ const DashboardClient: FC<DashboardClientProps> = ({
           <Heading small center title="Published" />
           <section className="grid grid-cols-1 gap-4 py-8 md:grid-cols-2 lg:grid-cols-3">
             {published.map((post, index) => (
-              <PostCard dashboard index={index} key={post.id} post={post} />
+              <DynamicPostCard dashboard index={index} key={post.id} post={post} />
             ))}
           </section>
         </>

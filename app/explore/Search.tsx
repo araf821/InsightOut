@@ -9,9 +9,8 @@ import { AiFillFilter } from "react-icons/ai";
 import { options } from "../post/write/PostForm";
 import { FaSearch } from "react-icons/fa";
 import { GrClear } from "react-icons/gr";
-import PostCard from "@/components/PostCard";
 import Button from "@/components/Button";
-import Loader from "@/components/Loader";
+import SearchResults from "./SearchResults";
 
 interface SearchBarProps {
   posts: SafePost[] | null;
@@ -194,35 +193,7 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
 
       {/* Search results */}
       {posts?.length ? (
-          <motion.section
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1, transition: { duration: 0.5 } }}
-            className="space-y-2 py-4"
-          >
-            <hr />
-            <p className="flex justify-between">
-              <span className="font-josefin font-light sm:text-lg md:text-xl">
-                {posts.length} {posts.length > 1 ? "Results" : "Result"} Found
-              </span>
-              <button
-                onClick={() => {
-                  router.push("/explore");
-                }}
-                className="flex w-fit items-center gap-1 text-sm font-light text-zinc-600 transition hover:scale-110 hover:text-black md:text-base"
-              >
-                <GrClear />
-                Clear Search
-              </button>
-            </p>
-
-            <div
-              className={`grid w-full origin-top grid-cols-1 gap-6 transition duration-1000 md:grid-cols-2 lg:grid-cols-3`}
-            >
-              {posts.slice(0, displayed)?.map((post) => (
-                <PostCard post={post} key={post.id} />
-              ))}
-            </div>
-          </motion.section>
+        <SearchResults posts={posts} displayed={displayed} />
       ) : (
         posts?.length === 0 && (
           <div className="my-4 grid h-32 w-full place-content-center rounded-lg text-center text-lg lg:text-2xl">
