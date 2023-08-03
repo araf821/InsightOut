@@ -7,7 +7,6 @@ import MoreFromAuthor from "./MoreFromAuthor";
 import getCurrentUser from "@/app/actions/users/getCurrentUser";
 import EmptyState from "@/components/EmptyState";
 import Container from "@/components/Container";
-import PostCard from "@/components/PostCard";
 
 interface IParams {
   slug: string;

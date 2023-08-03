@@ -34,6 +34,7 @@ model Post {
   tags      String[]
   comments  Comment[]
   published Boolean   @default(false)
+  views     Int       @default(0)
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   author    User      @relation(fields: [authorId], references: [id])

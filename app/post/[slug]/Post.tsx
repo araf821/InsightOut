@@ -8,6 +8,9 @@ import { FC } from "react";
 import PostContent from "./PostContent";
 import { FaEdit } from "react-icons/fa";
 import Heading from "@/components/Heading";
+import { AiFillEye } from "react-icons/ai";
+import { motion } from "framer-motion";
+import { singlePostVariants } from "@/app/lib/anim";
 
 interface PostProps {
   post: SafePost;
@@ -34,8 +37,35 @@ const Post: FC<PostProps> = ({ post, currentUser }) => {
   }
 
   return (
-    <article className="mb-4 mt-8 flex w-full flex-col gap-4">
+    <motion.article
+      variants={singlePostVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      className="mb-4 mt-8 flex w-full flex-col gap-4"
+    >
       <Heading post title={post.title} />
+      <hr />
+      <div className="flex items-center justify-between">
+        <p>
+          {post.tags.map((tag) => (
+            <span
+              onClick={() => router.push(`/explore/?keyword=&tag=${tag}`)}
+              key={tag}
+              className="cursor-pointer font-josefin text-neutral-600 transition-colors duration-300 hover:text-black md:text-lg lg:text-2xl"
+            >
+              | {tag}{" "}
+            </span>
+          ))}
+        </p>
+        <div
+          title="post view count"
+          className="flex items-center gap-1 text-lg text-neutral-700 sm:text-xl md:text-2xl"
+        >
+          <AiFillEye />
+          <span>{post.views}</span>
+        </div>
+      </div>
       <hr />
       <div className="relative aspect-[16/10] w-full">
         <Image
@@ -70,24 +100,10 @@ const Post: FC<PostProps> = ({ post, currentUser }) => {
       <hr />
       {/* {currentUser?.id === post.authorId ? <p>Edit This Post</p> : <p>asdf</p>} */}
       <PostContent content={post.content} />
-      <hr />
-      <div className="space-y-1">
-        <p className="font-josefin md:text-lg lg:text-xl">Tags</p>
-        <p>
-          {post.tags.map((tag) => (
-            <span
-              onClick={() => router.push(`/explore/?keyword=&tag=${tag}`)}
-              key={tag}
-              className="cursor-pointer font-josefin text-neutral-600 transition-colors duration-300 hover:text-black md:text-lg lg:text-2xl"
-            >
-              | {tag}{" "}
-            </span>
-          ))}
-        </p>
-      </div>
+
       {editButton}
       <hr />
-    </article>
+    </motion.article>
   );
 };
 
