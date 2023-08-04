@@ -48,7 +48,7 @@ export default async function RootLayout({
           <Sidebar currentUser={currentUser} />
           <Navbar />
           {children}
-          <div className="pb-6">
+          <div className="xl:pb-6">
             <Footer />
           </div>
         </Providers>

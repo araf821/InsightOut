@@ -68,7 +68,7 @@ const PostCard: FC<PostCardProps> = ({
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
-      className={`w-full max-w-[800px] ${
+      className={`post-card w-full max-w-[800px] ${
         horizontal &&
         "md:flex md:h-full md:min-w-[350px] md:flex-grow lg:min-w-[500px]"
       }`}

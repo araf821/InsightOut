@@ -61,19 +61,19 @@ const Intro = () => {
             >
               <SocialProof
                 icon={<FaTwitter />}
-                followers="1,135,985"
+                followers="0"
                 type="Followers"
                 className="xl:max-w-[350px]"
               />
               <SocialProof
                 icon={<FaInstagram />}
-                followers="646,481,332"
+                followers="0"
                 type="Followers"
                 className="xl:max-w-[450px]"
               />
               <SocialProof
                 icon={<FaYoutube />}
-                followers="30,323,754"
+                followers="0"
                 type="Subscribers"
               />
             </motion.div>

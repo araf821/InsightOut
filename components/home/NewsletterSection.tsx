@@ -34,29 +34,10 @@ const NewsletterSection: FC<NewsletterSectionProps> = ({}) => {
                   <span className="font- uppercase">Join Our Newsletter</span>
                 </p>
                 <p className="text--900 group mx-auto w-fit lg:mx-0 ">
-                  We will surely spam you with content that you{" "}
-                  <span className="transition duration-500 group-hover:hidden">
-                    don&rsquo;t
-                  </span>{" "}
-                  love.
+                 Join us for the Latest Updates and Exclusive Content!
                 </p>
               </div>
               <div className="space-y-4">
-                {/* Name Input */}
-                <div className="relative mx-auto w-full max-w-[700px]">
-                  <input
-                    id="name"
-                    type="text"
-                    placeholder=" "
-                    className={`peer w-full rounded-md border-2 px-4 py-4 text-black`}
-                    required
-                  />
-                  <label
-                    className={`pointer-events-none absolute left-3 top-4 origin-left -translate-y-6 scale-75  select-none rounded-md bg-bg px-2 text-neutral-500 transition peer-placeholder-shown:left-3 peer-placeholder-shown:-translate-y-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:bg-bg peer-focus:-translate-y-7 peer-focus:border-2 peer-focus:border-zinc-800 peer-focus:text-neutral-900`}
-                  >
-                    Name
-                  </label>
-                </div>
                 {/* Email Input */}
                 <div className="relative mx-auto w-full max-w-[700px]">
                   <input

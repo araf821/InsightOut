@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { FC } from "react";
 
 interface FooterLinkProps {
@@ -6,13 +7,15 @@ interface FooterLinkProps {
 }
 
 const FooterLink: FC<FooterLinkProps> = ({ label, link }) => {
+  
   return (
-    <p
-      className="cursor-pointer transition duration-300 hover:text-white md:text-lg xl:text-xl"
+    <motion.p 
+    whileHover={{scale: 1.2, color: 'white'}}
+      className="cursor-pointer text-neutral-300 md:text-lg xl:text-xl"
       onClick={link}
     >
       {label}
-    </p>
+    </motion.p>
   );
 };
 
