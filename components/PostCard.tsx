@@ -88,6 +88,7 @@ const PostCard: FC<PostCardProps> = ({
             post={post}
             onMove={handleMove}
             onDelete={handleDelete}
+            isLoading={isLoading}
             onUpdate={() => {
               router.push(`/post/update/${post.slug}`);
             }}
