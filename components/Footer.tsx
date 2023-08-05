@@ -1,7 +1,6 @@
 "use client";
 
 import { FC } from "react";
-import Container from "./Container";
 import Logo from "./texts/Logo";
 import FooterLink from "./FooterLink";
 import { FaGithub, FaInstagram, FaTwitter } from "react-icons/fa";
@@ -19,7 +18,7 @@ const Footer: FC<FooterProps> = ({}) => {
       variants={{
         hidden: {
           opacity: 0,
-          y: 50,
+          y: 100,
           transition: {
             type: "tween",
             stiffness: 300,
@@ -32,14 +31,15 @@ const Footer: FC<FooterProps> = ({}) => {
           transition: {
             type: "tween",
             stiffness: 80,
+            duration: 0.5,
           },
         },
       }}
       initial="hidden"
       whileInView="show"
-      className="mx-auto 2xl:px-20 max-w-[1536px] selection:bg-bg selection:text-zinc-800"
+      className="mx-auto max-w-[1536px] selection:bg-bg selection:text-zinc-800 2xl:px-20"
     >
-      <div className="flex flex-col items-center justify-center gap-8 bg-zinc-800 py-16  2xl:rounded-xl">
+      <motion.div className="flex flex-col items-center justify-center gap-8 bg-zinc-800 py-16  2xl:rounded-xl">
         <Logo footer />
         <div className="buttons mx-auto flex flex-col gap-3 text-center text-bg/80 sm:flex-row sm:gap-12 lg:gap-20 xl:gap-24 2xl:gap-28">
           <FooterLink label="Home" link={() => router.push("/")} />
@@ -81,7 +81,7 @@ const Footer: FC<FooterProps> = ({}) => {
           Copyright @{new Date().getFullYear()} All Rights Reserved | Made with
           🍌
         </p>
-      </div>
+      </motion.div>
     </motion.footer>
   );
 };

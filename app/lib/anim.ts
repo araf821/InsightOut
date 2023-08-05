@@ -73,5 +73,6 @@ export const singlePostVariants = {
     y: 0,
     opacity: 1,
     transition: { duration: 0.5 },
+    ease: "cubic-bezier( .42, 0, 0.93, 0.18 )",
   },
 };

@@ -32,7 +32,7 @@ export async function PUT(request: Request, { params }: { params: IParams }) {
       id: postId,
     },
     data: {
-      published: !post.published, // Toggle the published status
+      published: !post.published,
     },
   });
 

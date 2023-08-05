@@ -2,16 +2,11 @@
 
 import { dateFormat } from "@/app/lib/helpers/dateFormat";
 import { SafePost } from "@/app/types";
-import Button from "@/components/Button";
 import Heading from "@/components/Heading";
-import Loader from "@/components/Loader";
-import PostCard from "@/components/PostCard";
 import { motion } from "framer-motion";
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FC } from "react";
-import { BsPenFill } from "react-icons/bs";
 import { FaUserEdit } from "react-icons/fa";
 import Connections from "./Connections";
 import UserPosts from "./UserPosts";
@@ -65,14 +60,6 @@ const DashboardClient: FC<DashboardClientProps> = ({
           initial="hidden"
           className="relative flex w-full flex-col overflow-hidden rounded-t-lg bg-secondary px-2 py-3 shadow-md sm:flex-row sm:rounded-l-lg lg:col-span-3"
         >
-          {/* <motion.span
-            whileHover={{ scale: 1.2, opacity: 1 }}
-            
-            className="group absolute right-1 top-2 z-10 grid h-12 w-12 cursor-pointer place-items-center rounded-xl sm:top-1"
-          >
-            <FaUserEdit className="text-2xl text-neutral-200 opacity-80 sm:text-neutral-800" />
-          </motion.span> */}
-          {/* Image component */}
           <div className="relative  aspect-square w-full sm:max-w-[200px] md:h-[200px]">
             <Image
               src={userImage || "/images/placeholder.jpg"}

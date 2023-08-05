@@ -8,9 +8,9 @@ import { FC } from "react";
 import PostContent from "./PostContent";
 import { FaEdit } from "react-icons/fa";
 import Heading from "@/components/Heading";
-import { AiFillEye } from "react-icons/ai";
 import { motion } from "framer-motion";
 import { singlePostVariants } from "@/app/lib/anim";
+import PostViews from "./PostViews";
 
 interface PostProps {
   post: SafePost;
@@ -58,13 +58,7 @@ const Post: FC<PostProps> = ({ post, currentUser }) => {
             </span>
           ))}
         </p>
-        <div
-          title="post view count"
-          className="flex items-center gap-1 text-lg text-neutral-700 sm:text-xl md:text-2xl"
-        >
-          <AiFillEye />
-          <span>{post.views}</span>
-        </div>
+        <PostViews views={post.views} postId={post.id} />
       </div>
       <hr />
       <div className="relative aspect-[16/10] w-full">
