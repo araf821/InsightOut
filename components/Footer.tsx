@@ -14,32 +14,32 @@ const Footer: FC<FooterProps> = ({}) => {
   const router = useRouter();
 
   return (
-    <motion.footer
-      variants={{
-        hidden: {
-          opacity: 0,
-          y: 100,
-          transition: {
-            type: "tween",
-            stiffness: 300,
-            damping: 10,
+    <motion.footer className="mx-auto max-w-[1536px] selection:bg-bg selection:text-zinc-800 2xl:px-20">
+      <motion.div
+        variants={{
+          hidden: {
+            opacity: 1,
+            y: 100,
+            scaleX: 0.3,
+            transition: {
+              type: "spring",
+            },
           },
-        },
-        show: {
-          opacity: 1,
-          y: 0,
-          transition: {
-            type: "tween",
-            stiffness: 80,
-            duration: 0.5,
+          show: {
+            opacity: 1,
+            y: 0,
+            scaleX: 1,
+            transition: {
+              duration: 0.3,
+              type: "tween",
+              delay: 0.1,
+            },
           },
-        },
-      }}
-      initial="hidden"
-      whileInView="show"
-      className="mx-auto max-w-[1536px] selection:bg-bg selection:text-zinc-800 2xl:px-20"
-    >
-      <motion.div className="flex flex-col items-center justify-center gap-8 bg-zinc-800 py-16  2xl:rounded-xl">
+        }}
+        initial="hidden"
+        whileInView="show"
+        className="flex flex-col items-center justify-center gap-8 bg-zinc-800 py-16  2xl:rounded-xl"
+      >
         <Logo footer />
         <div className="buttons mx-auto flex flex-col gap-3 text-center text-bg/80 sm:flex-row sm:gap-12 lg:gap-20 xl:gap-24 2xl:gap-28">
           <FooterLink label="Home" link={() => router.push("/")} />

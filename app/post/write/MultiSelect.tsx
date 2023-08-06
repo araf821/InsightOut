@@ -3,7 +3,7 @@
 import { FC, useState } from "react";
 import { IoIosCloseCircle } from "react-icons/io";
 import { AiOutlineCaretDown } from "react-icons/ai";
-import { SelectOption } from "./SingleSelect";
+import { SelectOption } from "../../../components/SingleSelect";
 import { toast } from "react-hot-toast";
 
 interface MultiSelectProps {

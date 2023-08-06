@@ -19,6 +19,7 @@ interface SearchBarProps {
 const Search: FC<SearchBarProps> = ({ posts }) => {
   const params = useSearchParams();
 
+  const [results, setResults] = useState<SafePost[] | null>(posts);
   const [isFiltersOpen, setIsFiltersOpen] = useState<boolean>(false);
   const [keyword, setKeyword] = useState<string>(params?.get("keyword") || "");
   const [selectedTag, setSelectedTag] = useState<string>(
@@ -60,6 +61,7 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
     );
     router.push(url);
     setDisplayed(6);
+    setIsFiltersOpen(false);
   }, [params, keyword, selectedTag, router]);
 
   const handleLoadMore = () => {
@@ -110,7 +112,7 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
             className={`peer w-full rounded-md border-2 px-4 py-3 outline-none focus:border-zinc-800`}
           />
           <label
-            className={`absolute left-3 top-3 origin-left -translate-y-6 scale-75  select-none rounded-md bg-bg px-2 text-neutral-500 transition peer-placeholder-shown:left-3 peer-placeholder-shown:-translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-6 peer-focus:text-neutral-800`}
+            className={`pointer-events-none absolute left-3 top-3 origin-left -translate-y-6 scale-75  select-none rounded-md bg-bg px-2 text-neutral-500 transition peer-placeholder-shown:left-3 peer-placeholder-shown:-translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-6 peer-focus:text-neutral-800`}
           >
             Search
           </label>
@@ -214,9 +216,23 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
         <Button
           onClick={handleLoadMore}
           label="Load More"
+          small
           className="mx-auto max-w-[400px]"
-          outline
         />
+      ) : posts ? (
+        <div className="space-y-1.5">
+          {posts.length ? (
+            <p className="mx-auto w-fit font-josefin text-neutral-600 lg:text-lg">
+              - End of results -
+            </p>
+          ) : null}
+          <Button
+            onClick={() => router.push("/explore/all-posts")}
+            label="View All Posts"
+            small
+            className="mx-auto max-w-[400px]"
+          />
+        </div>
       ) : null}
       <hr className="mt-4" />
     </motion.section>

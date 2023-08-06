@@ -5,7 +5,7 @@ import { FC, useState } from "react";
 import MultiSelect from "./MultiSelect";
 import slugify from "slugify";
 import { useRouter } from "next/navigation";
-import { SelectOption } from "./SingleSelect";
+import { SelectOption } from "../../../components/SingleSelect";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";

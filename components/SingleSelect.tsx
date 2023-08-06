@@ -10,24 +10,24 @@ export type SelectOption = {
 };
 
 interface SingleSelectProps {
-  options: SelectOption[];
-  value?: SelectOption;
-  onChange: (value: SelectOption | undefined) => void;
+  options: string[];
+  selected?: string;
+  onChange: (value: string) => void;
 }
 
-const SingleSelect: FC<SingleSelectProps> = ({ options, value, onChange }) => {
+const SingleSelect: FC<SingleSelectProps> = ({
+  options,
+  selected,
+  onChange,
+}) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  function clearOptions() {
-    onChange(undefined);
+  function selectOption(option: string) {
+    if (option !== selected) onChange(option);
   }
 
-  function selectOption(option: SelectOption) {
-    if (option !== value) onChange(option);
-  }
-
-  function isSelected(option: SelectOption) {
-    return option === value;
+  function isSelected(option: string) {
+    return option === selected;
   }
 
   return (
@@ -37,19 +37,8 @@ const SingleSelect: FC<SingleSelectProps> = ({ options, value, onChange }) => {
       tabIndex={6}
       className="relative flex w-full items-center justify-between rounded-md border-2 border-neutral-300 bg-white px-3 py-1.5"
     >
-      <span>{value?.label}</span>
+      <span>{selected}</span>
       <div className="flex items-center justify-center gap-2">
-        <button
-          type="button"
-          className="cursor-pointer border-none bg-none p-2 text-2xl outline-none"
-          onClick={(e) => {
-            e.stopPropagation();
-            clearOptions();
-          }}
-        >
-          <IoIosCloseCircle />
-        </button>
-        <div className="w-0.5 self-stretch bg-neutral-400" />
         <div className="cursor-pointer">
           <AiOutlineCaretDown />
         </div>
@@ -68,9 +57,9 @@ const SingleSelect: FC<SingleSelectProps> = ({ options, value, onChange }) => {
               setIsOpen(false);
             }}
             className={`cursor-pointer list-none px-3 py-2.5 transition-colors 
-            ${isSelected(option) ? "bg-bg hover:bg-bg" : "hover:bg-primary"}`}
+            ${isSelected(option) ? "bg-primary/60" : "hover:bg-primary"}`}
           >
-            {option.label}
+            {option}
           </li>
         ))}
       </ul>

@@ -12,7 +12,7 @@ interface ChatComponentProps {
 
 const variants = {
   open: {
-    boxShadow: "0px 0px 20px 0px #525252",
+    boxShadow: "0px 0px 20px 0px #0030dacc",
     transition: {
       boxShadow: { delay: 0.3, duration: 0.3 },
     },

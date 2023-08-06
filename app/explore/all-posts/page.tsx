@@ -10,7 +10,7 @@ const AllPostsPage = async () => {
   return (
     <main className="py-8 xl:py-12">
       <Container>
-        <AllPostsClient posts={[...allPosts, ...allPosts, ...allPosts]} />
+        <AllPostsClient posts={allPosts} />
       </Container>
     </main>
   );

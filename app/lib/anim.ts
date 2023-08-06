@@ -20,7 +20,7 @@ export const postCardVariants = (index: number) => ({
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.3,
+      duration: 0.5,
     },
   },
 });
@@ -73,6 +73,6 @@ export const singlePostVariants = {
     y: 0,
     opacity: 1,
     transition: { duration: 0.5 },
-    ease: "cubic-bezier( .42, 0, 0.93, 0.18 )",
+    ease: "ease-in",
   },
 };
