@@ -9,6 +9,9 @@ const getAllPosts = async () => {
       include: {
         author: true,
       },
+      orderBy: {
+        createdAt: "desc",
+      },
     });
 
     const safePosts = posts.map((post) => ({

@@ -1,12 +1,25 @@
 import getCurrentUser from "@/app/actions/users/getCurrentUser";
 import prismaClient from "@/app/lib/prismadb";
-import { NextResponse } from "next/server";
+import { postLimiter } from "@/app/lib/rate-limiter";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
     return NextResponse.error();
+  }
+
+  const ip = request.ip ?? "127.0.0.1";
+  const { success } = await postLimiter.limit(ip);
+
+  if (!success) {
+    return NextResponse.json(
+      {
+        message: "You're writing too many posts!",
+      },
+      { status: 429 }
+    );
   }
 
   const body = await request.json();

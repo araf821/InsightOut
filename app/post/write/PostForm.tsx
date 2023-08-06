@@ -99,6 +99,11 @@ const PostForm: FC<PostFormProps> = ({ post }) => {
   });
 
   const onPublish: SubmitHandler<FieldValues> = (data) => {
+    if (content.length < 500) {
+      toast.error("Content length must be 500 characters.");
+      return;
+    }
+
     if (imgSrc === "") {
       toast.error("You better add an image!");
       return;
@@ -123,8 +128,14 @@ const PostForm: FC<PostFormProps> = ({ post }) => {
         router.push("/explore");
         reset();
       })
-      .catch(() => {
-        toast.error("Something went wrong.");
+      .catch((error) => {
+        if (error) {
+          toast.error(
+            "You're writing too many posts! Please wait and try again later."
+          );
+        } else {
+          toast.error("Something went wrong.");
+        }
       })
       .finally(() => {
         setIsLoading(false);
@@ -132,6 +143,11 @@ const PostForm: FC<PostFormProps> = ({ post }) => {
   };
 
   const onDraft: SubmitHandler<FieldValues> = (data) => {
+    if (content.length < 500) {
+      toast.error("Content length must be 500 characters.");
+      return;
+    }
+
     if (imgSrc === "") {
       toast.error("You better add an image!");
       return;
@@ -164,6 +180,11 @@ const PostForm: FC<PostFormProps> = ({ post }) => {
   };
 
   const onUpdate: SubmitHandler<FieldValues> = (data) => {
+    if (content.length < 500) {
+      toast.error("Content length must be 500 characters.");
+      return;
+    }
+
     if (imgSrc === "") {
       toast.error("You better add an image!");
       return;

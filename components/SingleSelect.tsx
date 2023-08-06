@@ -35,7 +35,7 @@ const SingleSelect: FC<SingleSelectProps> = ({
       onBlur={() => setIsOpen(false)}
       onClick={() => setIsOpen((prev) => !prev)}
       tabIndex={6}
-      className="relative flex w-full items-center justify-between rounded-md border-2 border-neutral-300 bg-white px-3 py-1.5"
+      className="relative z-30 flex w-full items-center justify-between rounded-md border-2 border-neutral-300 bg-white px-3 py-1.5"
     >
       <span>{selected}</span>
       <div className="flex items-center justify-center gap-2">

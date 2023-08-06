@@ -18,7 +18,7 @@ const Footer: FC<FooterProps> = ({}) => {
       <motion.div
         variants={{
           hidden: {
-            opacity: 1,
+            opacity: 0,
             y: 100,
             scaleX: 0.3,
             transition: {
@@ -30,7 +30,7 @@ const Footer: FC<FooterProps> = ({}) => {
             y: 0,
             scaleX: 1,
             transition: {
-              duration: 0.3,
+              duration: 0.4,
               type: "tween",
               delay: 0.1,
             },

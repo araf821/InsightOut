@@ -7,23 +7,29 @@ import Heading from "@/components/Heading";
 import PostCard from "@/components/PostCard";
 import { FC, useEffect, useState } from "react";
 import SingleSelect from "../../../components/SingleSelect";
+import { useRouter } from "next/navigation";
 
-const options = ["Latest Posts", "Oldest Posts", "Most Comments"];
+const options = [
+  "Latest Posts",
+  "Oldest Posts",
+  "Most Popular",
+  "Least Popular",
+  "Sort by Name [A-Z]",
+  "Sort by Name [Z-A]",
+];
 
 interface AllPostsClientProps {
   posts: SafePost[] | null;
 }
 
 const AllPostsClient: FC<AllPostsClientProps> = ({ posts }) => {
+  const router = useRouter();
+
   const [displayed, setDisplayed] = useState(6);
   const [allPosts, setAllPosts] = useState<SafePost[] | null | undefined>(
-    () => {
-      return posts?.sort(
-        (a, b) =>
-          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-      );
-    }
+    posts
   );
+
   const [selectedOption, setSelected] = useState<string>(options[0]);
 
   const handleScroll = () => {
@@ -53,29 +59,39 @@ const AllPostsClient: FC<AllPostsClientProps> = ({ posts }) => {
     };
   }, []);
 
+  // SORTING FUNCTIONALITY
   useEffect(() => {
-    if (!posts) {
+    if (!allPosts) {
       return;
     }
 
-    let newPosts: SafePost[] = [];
+    let newPosts: SafePost[] = [...allPosts];
 
     if (selectedOption === "Latest Posts") {
-      newPosts = posts?.sort(
+      newPosts = allPosts?.sort(
         (current, next) =>
-          new Date(current.createdAt).getTime() -
-          new Date(next.createdAt).getTime()
+        new Date(next.createdAt).getTime() -
+        new Date(current.createdAt).getTime()
       );
     } else if (selectedOption === "Oldest Posts") {
-      newPosts = posts?.sort(
+      newPosts = allPosts?.sort(
         (current, next) =>
-          new Date(next.createdAt).getTime() -
-          new Date(current.createdAt).getTime()
+        new Date(current.createdAt).getTime() -
+        new Date(next.createdAt).getTime()
       );
+    } else if (selectedOption === "Most Popular") {
+      newPosts = allPosts.sort((a, b) => b.views - a.views);
+    } else if (selectedOption === "Least Popular") {
+      newPosts = allPosts.sort((a, b) => a.views - b.views);
+    } else if (selectedOption === "Sort by Name [A-Z]") {
+      newPosts = allPosts.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (selectedOption === "Sort by Name [Z-A]") {
+      newPosts = allPosts.sort((a, b) => b.title.localeCompare(a.title));
     }
 
     setAllPosts(newPosts);
-  }, [selectedOption]);
+    router.refresh();
+  }, [allPosts, router, selectedOption]);
 
   if (!allPosts || !allPosts?.length) {
     return (
@@ -91,14 +107,11 @@ const AllPostsClient: FC<AllPostsClientProps> = ({ posts }) => {
       <Heading title="All Posts" />
 
       {/* Sort Component */}
-      <div className="flex gap-1.5">
-        {/* <p>Sort by: </p> */}
-        <SingleSelect
-          onChange={(option) => setSelected(option)}
-          options={options}
-          selected={selectedOption}
-        />
-      </div>
+      <SingleSelect
+        onChange={(option) => setSelected(option)}
+        options={options}
+        selected={selectedOption}
+      />
 
       <CardsContainer>
         {allPosts.slice(0, displayed).map((post) => (
