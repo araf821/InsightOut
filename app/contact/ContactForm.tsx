@@ -139,7 +139,7 @@ const ContactForm: FC<ContactFormProps> = ({}) => {
           </button>
         </form>
         <Disclaimer
-          title="Disclaimer"
+          title="For Your Information"
           content={`> You'll only be able to send a message every few hours.\n> Feel free to report a bug or leave any feedback through this form!`}
         />
       </motion.main>

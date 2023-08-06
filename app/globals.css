@@ -93,3 +93,25 @@ body,
   background: #4685ff;
   /* background: linear-gradient(#b92341, rgba(0, 0, 0, 0.1), #3767c7); */
 }
+
+.parent-bg:hover .moving-bg {
+  background: #27272a;
+}
+
+.moving-bg {
+  background: linear-gradient(-45deg, #e52b50, #4685ff, #000);
+  background-size: 250% 250%;
+  animation: gradient 5s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

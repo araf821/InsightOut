@@ -4,10 +4,12 @@ import getPostByTitle from "./actions/getPostByTitle";
 import Hero from "@/components/home/Hero";
 import NewsletterSection from "@/components/home/NewsletterSection";
 import LatestPosts from "@/components/home/LatestPosts";
+import getStats from "./actions/getStats";
 
 export const revalidate = 60;
 
 export default async function Home() {
+  const stats = await getStats();
   const latestPosts = await getLatestPosts(3);
   const featuredPost = await getPostByTitle(
     "Epic Journey and Timeless Legacy: Why One Piece Is the Greatest Anime Ever Created"
@@ -26,7 +28,7 @@ export default async function Home() {
           <path d="M1200 120L0 16.48V0h1200v120z" />
         </svg>
       </div>
-      <Intro />
+      <Intro stats={stats} />
       <Hero post={featuredPost} />
       <NewsletterSection />
       <LatestPosts posts={latestPosts} />

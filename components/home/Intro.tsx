@@ -2,11 +2,19 @@
 
 import { FaTwitter, FaYoutube, FaInstagram } from "react-icons/fa";
 import Container from "../Container";
-import SocialProof from "./SocialProof";
 import DynamicTextEffect from "../texts/DynamicTextEffect";
 import { motion } from "framer-motion";
+import StatCard from "./StatCard";
 
-const Intro = () => {
+interface IntroProps {
+  stats: {
+    userCount: number;
+    postCount: number;
+    totalViews: number;
+  };
+}
+
+const Intro: React.FC<IntroProps> = ({ stats }) => {
   return (
     <section className="w-full pb-8 pt-10">
       <Container>
@@ -57,24 +65,24 @@ const Intro = () => {
               }}
               initial="hidden"
               whileInView="show"
-              className="flex w-full max-w-[550px] flex-col items-center justify-center gap-6 lg:gap-8 xl:items-end"
+              className="flex w-full max-w-[550px] flex-col items-center justify-center gap-4 lg:gap-4 xl:items-end"
             >
-              <SocialProof
+              <StatCard
                 icon={<FaTwitter />}
-                followers="0"
-                type="Followers"
+                value={stats.userCount}
+                type="Users Joined"
                 className="xl:max-w-[350px]"
               />
-              <SocialProof
+              <StatCard
                 icon={<FaInstagram />}
-                followers="0"
-                type="Followers"
+                value={stats.postCount}
+                type="Posts Written"
                 className="xl:max-w-[450px]"
               />
-              <SocialProof
+              <StatCard
                 icon={<FaYoutube />}
-                followers="0"
-                type="Subscribers"
+                value={stats.totalViews}
+                type="Post Views"
               />
             </motion.div>
           </div>
