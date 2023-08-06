@@ -1,10 +1,12 @@
 "use client";
 
-import { FaTwitter, FaYoutube, FaInstagram } from "react-icons/fa";
+import { FaTwitter, FaUserAlt, FaYoutube, FaInstagram } from "react-icons/fa";
 import Container from "../Container";
 import DynamicTextEffect from "../texts/DynamicTextEffect";
 import { motion } from "framer-motion";
 import StatCard from "./StatCard";
+import { BsPenFill } from "react-icons/bs";
+import { AiFillEye } from "react-icons/ai";
 
 interface IntroProps {
   stats: {
@@ -68,19 +70,19 @@ const Intro: React.FC<IntroProps> = ({ stats }) => {
               className="flex w-full max-w-[550px] flex-col items-center justify-center gap-4 lg:gap-4 xl:items-end"
             >
               <StatCard
-                icon={<FaTwitter />}
+                icon={<FaUserAlt />}
                 value={stats.userCount}
                 type="Users Joined"
                 className="xl:max-w-[350px]"
               />
               <StatCard
-                icon={<FaInstagram />}
+                icon={<BsPenFill />}
                 value={stats.postCount}
                 type="Posts Written"
                 className="xl:max-w-[450px]"
               />
               <StatCard
-                icon={<FaYoutube />}
+                icon={<AiFillEye />}
                 value={stats.totalViews}
                 type="Post Views"
               />

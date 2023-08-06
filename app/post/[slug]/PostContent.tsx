@@ -58,10 +58,10 @@ const PostContent: FC<PostContentProps> = ({ content }) => {
       </div>
       <hr />
       {showMarkdown ? (
-        <ReactMarkdown className="max-w-none prose-code:whitespace-pre-wrap prose break-words md:prose-lg prose-headings:font-josefin prose-headings:text-left prose-headings:font-semibold prose-a:text-blue-600 prose-a:hover:text-primary">
+        <ReactMarkdown className="prose prose-base max-w-none break-words md:prose-lg prose-headings:text-left prose-headings:font-josefin prose-headings:font-semibold prose-a:text-blue-600 prose-a:hover:text-primary prose-code:whitespace-pre-wrap">
           {content}
         </ReactMarkdown>
-      ) : ( 
+      ) : (
         <div className="whitespace-pre-line md:text-lg">{content}</div>
       )}
     </>
