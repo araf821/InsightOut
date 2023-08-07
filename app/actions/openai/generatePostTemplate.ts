@@ -4,7 +4,6 @@ const getPostTemplate = async (title: string) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        //@ts-ignore
         title: title,
       }),
     });
