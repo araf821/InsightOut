@@ -222,7 +222,7 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
           className="mx-auto max-w-[400px]"
         />
       ) : posts ? (
-        <div className="space-y-1.5">
+        <div className="space-y-1.5 pb-2">
           {posts.length ? (
             <p className="mx-auto w-fit font-josefin text-neutral-600 lg:text-lg">
               - End of results -

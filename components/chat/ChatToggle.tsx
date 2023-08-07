@@ -32,6 +32,8 @@ export const ChatToggle: React.FC<ChatToggleProps> = ({ toggle }) => (
       src="/images/bebibot.webp"
       alt="chatbot profile picture"
       fill
+      quality={20}
+      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
       className="object-cover transition duration-500 hover:scale-[1.75]"
     />
   </motion.button>

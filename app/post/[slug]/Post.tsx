@@ -43,7 +43,7 @@ const Post: FC<PostProps> = ({ post, currentUser }) => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
-      className="mb-4 mt-8 flex w-full flex-col gap-4"
+      className="mb-4 mt-8 flex w-full max-w-[950px] mx-auto flex-col gap-4"
     >
       <Heading post title={post.title} />
       <hr />
@@ -79,6 +79,7 @@ const Post: FC<PostProps> = ({ post, currentUser }) => {
             src={post.author.image || "/images/placeholder.jpg"}
             alt="author profile picture"
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="rounded-lg object-cover"
           />
         </div>

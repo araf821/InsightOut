@@ -1,14 +1,19 @@
+'use client'
+
 import { FC } from "react";
 import { SafePost } from "../types";
 import Heading from "@/components/Heading";
 import CardsContainer from "@/components/CardsContainer";
 import PostCard from "@/components/PostCard";
+import Button from "@/components/Button";
+import { useRouter } from "next/navigation";
 
 interface LatestInLifestyleProps {
   posts: SafePost[] | null;
 }
 
 const LatestInLifestyle: FC<LatestInLifestyleProps> = ({ posts }) => {
+  const router = useRouter();
   if (!posts?.length) return null;
 
   return (
@@ -19,6 +24,8 @@ const LatestInLifestyle: FC<LatestInLifestyleProps> = ({ posts }) => {
           <PostCard post={post} key={`${post.id}life`} index={index} />
         ))}
       </CardsContainer>
+      <hr className="pb-6" />
+      <Button onClick={() => router.push("/explore/all-posts")} label="View All Posts" small className="mx-auto max-w-[400px]" />
     </section>
   );
 };

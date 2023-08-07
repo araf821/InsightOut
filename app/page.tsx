@@ -6,8 +6,6 @@ import NewsletterSection from "@/components/home/NewsletterSection";
 import LatestPosts from "@/components/home/LatestPosts";
 import getStats from "./actions/getStats";
 
-export const revalidate = 60;
-
 export default async function Home() {
   const [stats, latestPosts, featuredPost] = await Promise.all([
     getStats(),

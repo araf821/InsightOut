@@ -7,6 +7,7 @@ import { FaGithub, FaInstagram, FaTwitter } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 interface FooterProps {}
 
@@ -49,7 +50,11 @@ const Footer: FC<FooterProps> = ({}) => {
         </div>
         <div className="social-links mx-auto flex gap-6 text-center text-bg sm:gap-12">
           <FaTwitter className="cursor-pointer text-3xl transition duration-200 hover:rotate-12 hover:scale-105 active:scale-90 md:text-4xl" />
-          <a href="https://github.com/araf821/Blog-Site">
+          <Link
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://github.com/araf821/Blog-Site"
+          >
             <FaGithub
               // below code does not seem to work, sending infinite requests to github
               // onClick={() => {
@@ -57,14 +62,10 @@ const Footer: FC<FooterProps> = ({}) => {
               // }}
               className="cursor-pointer text-3xl transition duration-200 hover:rotate-12 hover:scale-105 active:scale-90 md:text-4xl"
             />
-          </a>
+          </Link>
           <FaInstagram className="cursor-pointer text-3xl transition duration-200 hover:rotate-12 hover:scale-105 active:scale-90 md:text-4xl" />
         </div>
-        <motion.a
-          whileHover={{ scale: 1.1 }}
-          whileTap={{
-            scale: 0.9,
-          }}
+        <Link
           href="https://www.buymeacoffee.com/araf821"
           target="_blank"
           rel="noopener noreferrer"
@@ -74,10 +75,11 @@ const Footer: FC<FooterProps> = ({}) => {
             src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png"
             alt="Buy Me A Coffee"
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-contain"
           />
-        </motion.a>
-        <p className="-mb-8 mt-8 text-center text-sm text-bg">
+        </Link>
+        <p className="-mb-8 mt-8 text-center font-josefin text-sm text-bg md:text-base">
           Copyright @{new Date().getFullYear()} All Rights Reserved | Made with
           🍌
         </p>

@@ -52,6 +52,7 @@ const AuthorCard: FC<AuthorCardProps> = ({ author, index = 0 }) => {
           src={author.image || "/images/placeholder.jpg"}
           alt="author's profile photo"
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="absolute w-full rounded-xl object-cover"
         />
       </div>

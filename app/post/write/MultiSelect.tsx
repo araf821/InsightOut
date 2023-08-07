@@ -55,7 +55,7 @@ const MultiSelect: FC<MultiSelectProps> = ({ options, value, onChange }) => {
                 selectOption(val);
               }}
               key={val.value}
-              className="flex items-center justify-center font-semibold gap-2 rounded-md border-2 border-zinc-800 px-2 py-1 text-sm md:text-base group"
+              className="flex text-neutral-800 items-center justify-center gap-2 rounded-md border-2 border-zinc-700 px-2 py-1 text-sm md:text-base group"
             >
               {val.label}
               <IoIosCloseCircle className="text-lg md:text-xl transition-transform group-hover:scale-110" />

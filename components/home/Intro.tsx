@@ -1,6 +1,6 @@
 "use client";
 
-import { FaTwitter, FaUserAlt, FaYoutube, FaInstagram } from "react-icons/fa";
+import { FaUserAlt } from "react-icons/fa";
 import Container from "../Container";
 import DynamicTextEffect from "../texts/DynamicTextEffect";
 import { motion } from "framer-motion";

@@ -65,7 +65,7 @@ const ContactForm: FC<ContactFormProps> = ({}) => {
           setIsMessageSent(true);
         },
         (error) => {
-          console.log(error.text);
+          return;
         }
       );
   };

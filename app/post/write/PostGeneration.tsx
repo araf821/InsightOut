@@ -28,7 +28,7 @@ const PostGeneration: FC<PostGenerationProps> = ({
         Need a starting template for your post?
       </p>
       <div className="mb-2 mt-1 space-y-4 px-3 py-1.5">
-        <p className="balance text-center text-sm font-semibold tracking-tight text-zinc-700 md:text-base">
+        <p className="balance text-center text-sm tracking-tight text-neutral-900 md:text-base">
           Based on the title you&rsquo;ve given above, you can generate a short
           template for your post if you&rsquo;d like.
         </p>

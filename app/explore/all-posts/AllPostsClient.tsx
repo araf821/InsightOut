@@ -36,7 +36,6 @@ const AllPostsClient: FC<AllPostsClientProps> = ({ posts }) => {
     // Check if the user has scrolled to the bottom
     const lastPostElement = document.querySelector(".post-card:last-child");
     if (!lastPostElement) {
-      console.log("doesn't exist");
       return;
     }
     const lastPostDistance = lastPostElement.getBoundingClientRect().bottom;
@@ -45,7 +44,6 @@ const AllPostsClient: FC<AllPostsClientProps> = ({ posts }) => {
     if (lastPostDistance <= window.innerHeight + threshold) {
       // Load more posts when the last post is within the threshold from the bottom of the viewport
       setDisplayed((prevNumber) => prevNumber + 6);
-      console.log("increment");
     }
   };
 
