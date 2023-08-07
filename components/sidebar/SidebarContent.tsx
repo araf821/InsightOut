@@ -62,7 +62,7 @@ const SidebarContent: FC<SidebarContentProps> = ({ currentUser }) => {
           }}
         />
         <SidebarButton
-          title="Profile Settings"
+          title="Settings"
           onClick={() => {
             closeSidebar();
             router.push("/profile/settings");

@@ -1,9 +1,7 @@
 import { motion } from "framer-motion";
-import { FC, useState } from "react";
+import { FC } from "react";
 import { IoClose } from "react-icons/io5";
 import ChatMessages from "./ChatMessages";
-import { HiOutlineMenuAlt2 } from "react-icons/hi";
-import { SafeUser } from "@/app/types";
 
 const variants = {
   open: (height = 700) => ({
@@ -26,17 +24,16 @@ const variants = {
 };
 
 interface ChatBoxProps {
-  userImage: string;
   toggle: () => void;
 }
 
-export const ChatBox: FC<ChatBoxProps> = ({ toggle, userImage }) => {
+export const ChatBox: FC<ChatBoxProps> = ({ toggle }) => {
   return (
     <motion.div
-      className="absolute left-0 top-0 h-[450px] w-full bg-gradient-to-b saturate-200 from-zinc-900 via-blue-950/90 to-zinc-900 lg:h-[700px]"
+      className="absolute left-0 top-0 h-[450px] w-full bg-gradient-to-b from-zinc-900 via-blue-950/90 to-zinc-900 saturate-200 lg:h-[700px]"
       variants={variants}
     >
-      <div className="flex flex-row items-center justify-between px-4 py-2.5 text-white bg-primary/10">
+      <div className="flex flex-row items-center justify-between bg-primary/10 px-4 py-2.5 text-white">
         <p className="md:text-lg">Chat with Bebibot</p>
         <IoClose
           title="Close Chat"
@@ -44,7 +41,7 @@ export const ChatBox: FC<ChatBoxProps> = ({ toggle, userImage }) => {
           onClick={toggle}
         />
       </div>
-      <ChatMessages userImage={userImage} />
+      <ChatMessages />
     </motion.div>
   );
 };

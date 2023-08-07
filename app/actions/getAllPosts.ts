@@ -1,5 +1,7 @@
 import prismaClient from "../lib/prismadb";
 
+export const revalidate = 500;
+
 const getAllPosts = async () => {
   try {
     const posts = await prismaClient.post.findMany({

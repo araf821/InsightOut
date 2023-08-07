@@ -1,77 +1,96 @@
 "use client";
 
-import { SafePost } from "@/app/types";
+import { FaUserAlt } from "react-icons/fa";
+import Container from "../Container";
+import DynamicTextEffect from "../texts/DynamicTextEffect";
 import { motion } from "framer-motion";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
+import StatCard from "./StatCard";
+import { BsPenFill } from "react-icons/bs";
+import { AiFillEye } from "react-icons/ai";
 
 interface HeroProps {
-  post: SafePost | null;
+  stats: {
+    userCount: number;
+    postCount: number;
+    totalViews: number;
+  };
 }
 
-const Hero: React.FC<HeroProps> = ({ post }) => {
-  const router = useRouter();
-
-  if (!post) {
-    return null;
-  }
-
+const Hero: React.FC<HeroProps> = ({ stats }) => {
   return (
-    <motion.section
-      whileInView="show"
-      initial="hidden"
-      viewport={{ once: true }}
-      variants={{
-        hidden: {
-          opacity: 0,
-        },
-        show: {
-          opacity: 1,
-          transition: {
-            duration: 0.75,
-          },
-        },
-      }}
-      className="z-50 mx-auto w-full max-w-[1750px] py-8"
-    >
-      <div className="relative z-50 mx-auto aspect-[2/3] w-full max-w-[1024px] overflow-hidden shadow-2xl shadow-zinc-700 md:aspect-[4/3] lg:aspect-[5/3]">
-        <Image
-          src={post.image}
-          alt="post"
-          fill
-          className="absolute select-none object-cover lg:rounded-lg"
-        />
-        <div className="absolute left-0 top-0 h-fit w-fit bg-zinc-800 px-4 py-2 font-semibold text-white md:text-lg lg:rounded-tl-lg">
-          <p>Featured Post</p>
-        </div>
-        <div className="absolute bottom-0 z-50 h-fit w-full bg-bg/20 px-4 py-3 shadow-xl backdrop-blur-md lg:rounded-b-lg lg:py-5">
-          <div className="flex flex-col gap-3">
-            <p
-              tabIndex={0}
-              onClick={() => router.push(`/post/${post.slug}`)}
-              className="cursor-pointer font-josefin text-2xl font-bold hover:underline focus:underline sm:text-3xl md:text-4xl md:font-semibold lg:text-5xl lg:font-normal"
+    <section className="w-full pb-8 pt-10">
+      <Container>
+        <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-4 lg:flex-row lg:gap-12 xl:gap-0">
+          <motion.div
+            viewport={{ once: true }}
+            whileInView="show"
+            initial="hidden"
+            variants={{
+              hidden: {
+                opacity: 0,
+                x: -300,
+              },
+              show: {
+                opacity: 1,
+                x: 0,
+                transition: {
+                  duration: 0.75,
+                  type: "spring",
+                },
+              },
+            }}
+            className="flex w-full flex-col items-center gap-4 text-zinc-800"
+          >
+            <p className="balance bg-gradient-to-br from-primary via-zinc-700 to-accent bg-clip-text text-center font-josefin text-4xl font-bold text-transparent sm:text-5xl md:text-6xl lg:text-left xl:text-[68px]">
+              Welcome to the Insight<span className="">Out</span> Blog
+            </p>
+            <hr className="mx-auto -mt-0 w-20 self-start border-4 border-accent lg:mx-0" />
+            <DynamicTextEffect />
+          </motion.div>
+          <div className="flex w-full flex-col items-center gap-4">
+            {/* Social Proof Section */}
+            <motion.div
+              viewport={{ once: true }}
+              variants={{
+                hidden: {
+                  opacity: 0,
+                  x: 300,
+                },
+                show: {
+                  opacity: 1,
+                  x: 0,
+                  transition: {
+                    type: "spring",
+                    duration: 0.75,
+                  },
+                },
+              }}
+              initial="hidden"
+              whileInView="show"
+              className="flex w-full max-w-[550px] flex-col items-center justify-center gap-4 lg:gap-4 xl:items-end"
             >
-              {post.title}
-            </p>
-            <p className="sm:text-lg md:text-xl lg:text-2xl">
-              By {post.author.name}
-            </p>
-            <p>
-              {post.tags.map((tag) => (
-                <span
-                  onClick={() => router.push(`/explore/?keyword=&tag=${tag}`)}
-                  key={tag}
-                  className="cursor-pointer font-josefin text-neutral-800 transition-colors duration-300 hover:text-black md:text-lg lg:text-xl"
-                >
-                  | {tag}{" "}
-                </span>
-              ))}
-            </p>
+              <StatCard
+                icon={<FaUserAlt />}
+                value={stats.userCount}
+                type="Users Joined"
+                className="xl:max-w-[350px]"
+              />
+              <StatCard
+                icon={<BsPenFill />}
+                value={stats.postCount}
+                type="Posts Written"
+                className="xl:max-w-[450px]"
+              />
+              <StatCard
+                icon={<AiFillEye />}
+                value={stats.totalViews}
+                type="Post Views"
+              />
+            </motion.div>
           </div>
         </div>
-      </div>
-    </motion.section>
+      </Container>
+    </section>
   );
 };
-
 export default Hero;

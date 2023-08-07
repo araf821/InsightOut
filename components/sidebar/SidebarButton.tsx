@@ -23,7 +23,7 @@ const SidebarButton: FC<SidebarButtonProps> = ({
       <span className="ease absolute left-0 top-0 h-0 w-full bg-zinc-800 transition-all delay-200 duration-300 group-hover:h-full"></span>
       <span className="ease absolute bottom-0 left-0 h-0 w-full bg-zinc-800 transition-all delay-200 duration-300 group-hover:h-full"></span>
       <span className="ease relative transition-colors delay-150 duration-500 group-hover:text-white">
-        <p className="flex items-center justify-center gap-4 text-xl font-bold md:text-2xl">
+        <p className="flex items-center justify-center gap-4 text-xl font-josefin translate-y-0.5 font-semibold md:text-2xl">
           {Icon && <Icon />}
           {title}
         </p>

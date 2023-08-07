@@ -7,7 +7,7 @@ import PostCard from "../PostCard";
 import Heading from "../Heading";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import Toast from "../Toast";
+import Button from "../Button";
 
 interface LatestPostsProps {
   posts: SafePost[] | null;
@@ -32,7 +32,7 @@ const LatestPosts: FC<LatestPostsProps> = ({ posts }) => {
           y: 100,
           opacity: 0,
         }}
-        className="-mt-12 pb-12"
+        className="-mt-12 pb-8"
       >
         <Heading title="Latest Posts" />
 
@@ -46,16 +46,12 @@ const LatestPosts: FC<LatestPostsProps> = ({ posts }) => {
             <PostCard horizontal post={posts[2]} />
           </div>
         </div>
+        <Button
+          onClick={() => router.push("/explore/all-posts")}
+          label="View All Posts"
+          className="my-4"
+        />
       </motion.div>
-      <button
-        onClick={() => {
-          Toast({
-            message: "Sure! 8:30pm works great!",
-          });
-        }}
-      >
-        Show Custom Toast
-      </button>
     </Container>
   );
 };

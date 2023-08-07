@@ -1,17 +1,13 @@
 "use client";
 
-import { FC, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { useChat } from "ai/react";
 import { BsSend } from "react-icons/bs";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import ChatCommand from "./ChatCommand";
 
-interface ChatMessagesProps {
-  userImage: string;
-}
-
-const ChatMessages: FC<ChatMessagesProps> = ({ userImage }) => {
+const ChatMessages = () => {
   const {
     messages,
     handleInputChange,

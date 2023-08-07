@@ -18,7 +18,6 @@ import ImageUpload from "@/components/inputs/ImageUpload";
 import Button from "@/components/Button";
 import Loader from "@/components/Loader";
 import ContentInput from "./ContentInput";
-import Toast from "@/components/Toast";
 
 interface PostFormProps {
   currentUser: SafeUser | null;

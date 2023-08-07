@@ -85,7 +85,7 @@ const SettingsClient: FC<SettingsClientProps> = ({ currentUser }) => {
           type="text"
           defaultValue={currentUser.name as string}
           placeholder=" "
-          className={`peer w-full rounded-md border-2 px-4 py-3`}
+          className={`peer w-full rounded-md border-2 px-4 py-3 outline-none focus:border-zinc-800`}
           required
           {...register("name")}
         />

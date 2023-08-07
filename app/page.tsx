@@ -1,10 +1,10 @@
-import Intro from "@/components/home/Intro";
 import getLatestPosts from "./actions/getLatestPosts";
-import getPostByTitle from "./actions/getPostByTitle";
-import Hero from "@/components/home/Hero";
 import NewsletterSection from "@/components/home/NewsletterSection";
 import LatestPosts from "@/components/home/LatestPosts";
 import getStats from "./actions/getStats";
+import getPostByTitle from "./actions/getPostByTitle";
+import FeaturedPost from "@/components/home/FeaturedPost";
+import Hero from "@/components/home/Hero";
 
 export default async function Home() {
   const [stats, latestPosts, featuredPost] = await Promise.all([
@@ -28,8 +28,8 @@ export default async function Home() {
           <path d="M1200 120L0 16.48V0h1200v120z" />
         </svg>
       </div>
-      <Intro stats={stats} />
-      <Hero post={featuredPost} />
+      <Hero stats={stats} />
+      <FeaturedPost post={featuredPost} />
       <NewsletterSection />
       <LatestPosts posts={latestPosts} />
     </div>

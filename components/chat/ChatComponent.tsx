@@ -2,13 +2,9 @@
 
 import { useDimensions } from "@/app/hooks/useDimensions";
 import { motion, useCycle } from "framer-motion";
-import { FC, useRef } from "react";
+import { useRef } from "react";
 import { ChatToggle } from "./ChatToggle";
 import { ChatBox } from "./ChatBox";
-
-interface ChatComponentProps {
-  userImage: string;
-}
 
 const variants = {
   open: {
@@ -24,7 +20,7 @@ const variants = {
   },
 };
 
-const ChatComponent: FC<ChatComponentProps> = ({ userImage }) => {
+const ChatComponent = () => {
   const [isOpen, toggleOpen] = useCycle(false, true);
   const containerRef = useRef(null);
   const { height } = useDimensions(containerRef);
@@ -50,7 +46,7 @@ const ChatComponent: FC<ChatComponentProps> = ({ userImage }) => {
       }`}
     >
       <section className="relative h-full w-full">
-        <ChatBox userImage={userImage} toggle={() => toggleOpen()} />
+        <ChatBox toggle={() => toggleOpen()} />
         <ChatToggle toggle={() => toggleOpen()} />
       </section>
     </motion.div>
