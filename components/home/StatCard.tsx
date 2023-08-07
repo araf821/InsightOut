@@ -19,7 +19,7 @@ const StatCard: FC<StatCardProps> = ({
     >
       {/* Background */}
       <div
-        className={`moving-bg group-hover: absolute left-0 top-0 -z-10 h-full w-full rounded-md transition duration-300`}
+        className={`moving-bg bg-gradient-to-br group-hover: absolute left-0 top-0 -z-10 h-full w-full rounded-md transition duration-300`}
       />
 
       {/* For future ref */}

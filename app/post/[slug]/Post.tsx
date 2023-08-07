@@ -26,6 +26,7 @@ const Post: FC<PostProps> = ({ post, currentUser }) => {
       <>
         <hr />
         <button
+          aria-label="edit post button"
           onClick={() => router.push(`/post/update/${post.slug}`)}
           className="flex w-fit items-center gap-1 font-semibold text-neutral-600 transition duration-200 hover:translate-x-2 hover:text-neutral-900 md:text-lg lg:text-xl"
         >

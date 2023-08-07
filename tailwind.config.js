@@ -10,7 +10,6 @@ module.exports = {
       fontFamily: {
         josefin: ["var(--font-josefin)", "sans-serif"],
         merri: ["var(--font-merri)", "serif"],
-        ubuntu: ["var(--font-ubuntu)", "sans-serif"],
       },
       colors: {
         // accent: "#88063d",

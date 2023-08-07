@@ -3,6 +3,7 @@
 import { FC, useState } from "react";
 import { IoIosCloseCircle } from "react-icons/io";
 import { AiOutlineCaretDown } from "react-icons/ai";
+import { motion } from "framer-motion";
 
 export type SelectOption = {
   label: string;
@@ -31,7 +32,10 @@ const SingleSelect: FC<SingleSelectProps> = ({
   }
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1, transition: { duration: 0.5 } }}
+      viewport={{ once: true }}
       onBlur={() => setIsOpen(false)}
       onClick={() => setIsOpen((prev) => !prev)}
       tabIndex={6}
@@ -63,7 +67,7 @@ const SingleSelect: FC<SingleSelectProps> = ({
           </li>
         ))}
       </ul>
-    </div>
+    </motion.div>
   );
 };
 

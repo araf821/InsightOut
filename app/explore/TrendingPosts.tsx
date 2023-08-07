@@ -20,7 +20,7 @@ const TrendingPosts: FC<TrendingPostsProps> = ({ posts }) => {
       <Heading small title="Trending Posts" />
       <CardsContainer>
         {posts.map((post, index) => (
-          <PostCard post={post} key={post.id} index={index} />
+          <PostCard post={post} key={`${post.id}trending`} index={index} />
         ))}
       </CardsContainer>
       <motion.hr

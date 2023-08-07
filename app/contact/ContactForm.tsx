@@ -132,6 +132,7 @@ const ContactForm: FC<ContactFormProps> = ({}) => {
           </div>
 
           <button
+            aria-label="submit button"
             type="submit"
             className="border-2 border-zinc-800 p-2 transition duration-300 hover:bg-zinc-800 hover:text-white md:text-lg"
           >

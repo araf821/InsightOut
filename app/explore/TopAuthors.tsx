@@ -28,7 +28,7 @@ const TopAuthors: FC<TopUserProps> = ({ authors }) => {
           className={`mx-auto grid w-full grid-cols-2 gap-4 gap-y-8 sm:grid-cols-3 md:grid-cols-4 md:gap-6 lg:gap-8
           xl:grid-cols-6`}
         >
-          {[...authors, authors[0], authors[0]].map((author, index) => (
+          {authors.map((author, index) => (
             <AuthorCard key={author.id} author={author} index={index} />
           ))}
         </div>

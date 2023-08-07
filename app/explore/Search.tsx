@@ -145,6 +145,7 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
             <AiFillFilter className="text-3xl" />
           </div>
           <button
+            aria-label="search button"
             disabled={selectedTag || keyword ? false : true}
             onClick={handleSearch}
             className="f-full my-0.5 w-full self-stretch border-2 border-zinc-800 p-2 outline-none transition duration-300 hover:bg-zinc-800 hover:text-white disabled:cursor-not-allowed disabled:opacity-70 sm:col-span-1"
@@ -201,6 +202,7 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
           <div className="my-4 grid h-32 w-full place-content-center rounded-lg text-center text-lg lg:text-2xl">
             No results match the search criteria.
             <button
+              aria-label="clear search button"
               onClick={() => {
                 router.push("/explore");
               }}

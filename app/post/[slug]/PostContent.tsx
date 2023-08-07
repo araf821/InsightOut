@@ -35,6 +35,7 @@ const PostContent: FC<PostContentProps> = ({ content }) => {
     <>
       <div className="flex gap-2">
         <button
+          aria-label="show markdown button"
           onClick={() => setShowMarkdown(true)}
           className={`w-36 border-2 border-zinc-800 p-1 shadow-md transition duration-200 hover:bg-zinc-800 hover:text-white ${
             !showMarkdown
@@ -46,6 +47,7 @@ const PostContent: FC<PostContentProps> = ({ content }) => {
           Markdown
         </button>
         <button
+          aria-label="show plain text button"
           onClick={() => setShowMarkdown(false)}
           className={`w-36 border-2 border-zinc-800 p-1 shadow-md transition duration-200 ${
             showMarkdown

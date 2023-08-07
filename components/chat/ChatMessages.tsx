@@ -6,9 +6,6 @@ import { useChat } from "ai/react";
 import { BsSend } from "react-icons/bs";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import ChatCommand from "./ChatCommand";
-import Avatar from "../Avatar";
-import { AnimatePresence } from "framer-motion";
-import Loader from "../Loader";
 
 interface ChatMessagesProps {
   userImage: string;
@@ -103,28 +100,15 @@ const ChatMessages: FC<ChatMessagesProps> = ({ userImage }) => {
               m.role === "user" ? "justify-end" : ""
             }`}
           >
-            <AnimatePresence>
-              <div
-                className={`flex gap-1.5 ${
-                  m.role === "user" ? "flex-row-reverse" : ""
-                }`}
-              >
-                <div className="mt-1 h-fit">
-                  <Avatar
-                    src={m.role === "user" ? userImage : "/images/bebibot.png"}
-                  />
-                </div>
-                <p
-                  className={`max-w-[265px] rounded-md px-2.5 py-1.5 font-sans lg:max-w-[500px] lg:text-lg ${
-                    m.role === "user"
-                      ? "bg-primary text-white shadow-[0_0_10px_2px] shadow-black/20"
-                      : "bg-white/40 text-white shadow-[0_0_10px_2px] shadow-black/10 saturate-200 backdrop-blur-lg"
-                  }`}
-                >
-                  {m.content}
-                </p>
-              </div>
-            </AnimatePresence>
+            <p
+              className={`max-w-[265px] rounded-md px-2.5 py-1.5 font-sans lg:max-w-[500px] lg:text-lg ${
+                m.role === "user"
+                  ? "bg-primary text-white shadow-[0_0_10px_2px] shadow-black/20"
+                  : "bg-white/40 text-white shadow-[0_0_10px_2px] shadow-black/10 saturate-200 backdrop-blur-lg"
+              }`}
+            >
+              {m.content}
+            </p>
           </div>
         ))}
       </div>
@@ -141,7 +125,7 @@ const ChatMessages: FC<ChatMessagesProps> = ({ userImage }) => {
           onSubmit={handleSubmit}
         >
           <div
-            className={`absolute bottom-14 z-10 left-3 w-40 origin-bottom-left rounded-md bg-primary shadow-md transition duration-300 hover:-translate-y-1 lg:left-4 ${
+            className={`absolute bottom-14 left-3 z-10 w-40 origin-bottom-left rounded-md bg-primary shadow-md transition duration-300 hover:-translate-y-1 lg:left-4 ${
               isOpen ? "scale-x-100 scale-y-100" : "scale-x-0 scale-y-0"
             }`}
           >
@@ -161,7 +145,7 @@ const ChatMessages: FC<ChatMessagesProps> = ({ userImage }) => {
               className="absolute left-2 top-3 cursor-pointer text-xl font-bold text-white transition duration-300 hover:scale-125"
             />
             <input
-              className="w-full rounded-md border-2 border-primary/50 bg-transparent p-2 pl-8 text-white shadow-[0_0_20px_10px] focus:shadow-primary/30 shadow-primary/20 outline-none focus:border-primary"
+              className="w-full rounded-md border-2 border-primary/50 bg-transparent p-2 pl-8 text-white shadow-[0_0_20px_10px] shadow-primary/20 outline-none focus:border-primary focus:shadow-primary/30"
               placeholder="Need ideas?"
               value={input}
               min={1}

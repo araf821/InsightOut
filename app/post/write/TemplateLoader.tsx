@@ -26,7 +26,7 @@ const TemplateLoader: FC<TemplateLoaderProps> = ({}) => {
     <div className="min-h-44 grid h-56 place-items-center">
       {/* <span className="loader" /> */}
       <HashLoader size={60} color="#E52B50" />
-      <p className="text-light -mt-20 font-merri md:text-lg">{loadingText}</p>
+      <p className="text-light -mt-20 md:text-lg">{loadingText}</p>
     </div>
   );
 };

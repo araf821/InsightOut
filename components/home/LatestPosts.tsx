@@ -7,6 +7,7 @@ import PostCard from "../PostCard";
 import Heading from "../Heading";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import Toast from "../Toast";
 
 interface LatestPostsProps {
   posts: SafePost[] | null;
@@ -33,17 +34,7 @@ const LatestPosts: FC<LatestPostsProps> = ({ posts }) => {
         }}
         className="-mt-12 pb-12"
       >
-        <div className="pointer-events-auto flex w-full items-center justify-between">
-          <Heading title="Latest Posts" />
-
-          {/* View More button */}
-          <button
-            onClick={() => router.push("/explore")}
-            className="z-10 mr-4 hidden cursor-pointer text-zinc-700 transition duration-200 hover:translate-x-2 hover:text-black md:block md:text-lg"
-          >
-            View More
-          </button>
-        </div>
+        <Heading title="Latest Posts" />
 
         {/* Cards container */}
         <div className="mt-4 flex flex-col gap-6 md:flex-row md:justify-between md:rounded-md md:p-2 md:shadow-lg lg:gap-10 lg:p-3 xl:p-4">
@@ -56,6 +47,15 @@ const LatestPosts: FC<LatestPostsProps> = ({ posts }) => {
           </div>
         </div>
       </motion.div>
+      <button
+        onClick={() => {
+          Toast({
+            message: "Sure! 8:30pm works great!",
+          });
+        }}
+      >
+        Show Custom Toast
+      </button>
     </Container>
   );
 };

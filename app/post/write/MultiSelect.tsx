@@ -49,6 +49,7 @@ const MultiSelect: FC<MultiSelectProps> = ({ options, value, onChange }) => {
         ) : (
           value?.map((val) => (
             <button
+              aria-label="select dropdown option"
               onClick={(e) => {
                 e.stopPropagation();
                 selectOption(val);
@@ -64,6 +65,7 @@ const MultiSelect: FC<MultiSelectProps> = ({ options, value, onChange }) => {
       </span>
       <div className="flex items-center justify-center gap-2 self-stretch">
         <button
+          aria-label="clear selected tags"
           type="button"
           className="hidden cursor-pointer border-none bg-none p-2 text-2xl outline-none sm:block"
           onClick={(e) => {

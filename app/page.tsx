@@ -9,11 +9,13 @@ import getStats from "./actions/getStats";
 export const revalidate = 60;
 
 export default async function Home() {
-  const stats = await getStats();
-  const latestPosts = await getLatestPosts(3);
-  const featuredPost = await getPostByTitle(
-    "Epic Journey and Timeless Legacy: Why One Piece Is the Greatest Anime Ever Created"
-  );
+  const [stats, latestPosts, featuredPost] = await Promise.all([
+    getStats(),
+    getLatestPosts(3),
+    getPostByTitle(
+      "Epic Journey and Timeless Legacy: Why One Piece Is the Greatest Anime Ever Created"
+    ),
+  ]);
 
   return (
     <div className="relative">

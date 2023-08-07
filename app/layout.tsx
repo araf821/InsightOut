@@ -1,4 +1,3 @@
-import { Josefin_Sans, Merriweather, Ubuntu } from "next/font/google";
 import "./globals.css";
 import getCurrentUser from "./actions/users/getCurrentUser";
 import ToasterProvider from "./providers/ToasterProvider";
@@ -7,27 +6,11 @@ import ChatComponent from "@/components/chat/ChatComponent";
 import Sidebar from "@/components/sidebar/Sidebar";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/Footer";
-
-const merri = Merriweather({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-merri",
-});
-
-const ubuntu = Ubuntu({
-  subsets: ["latin"],
-  weight: ["300", "400", "700"],
-  variable: "--font-ubuntu",
-});
-
-const josefin = Josefin_Sans({
-  subsets: ["latin"],
-  variable: "--font-josefin",
-});
+import { josefin, merri } from "./fonts";
 
 export const metadata = {
-  title: "InsightOut",
-  description: "Next Level Blogging.",
+  title: "Insight Out",
+  description: "Discover New Insights.",
 };
 
 export default async function RootLayout({
@@ -38,9 +21,12 @@ export default async function RootLayout({
   const currentUser = await getCurrentUser();
 
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className={`${merri.variable} ${josefin.variable}`}
+    >
       <body
-        className={`break-words selection:bg-zinc-800 selection:text-white ${merri.variable} ${josefin.variable} ${ubuntu.variable} overflow-x-hidden font-merri`}
+        className={`overflow-x-hidden break-words font-merri selection:bg-zinc-800 selection:text-white`}
       >
         <Providers>
           <ChatComponent userImage={currentUser?.image || ""} />
@@ -48,7 +34,7 @@ export default async function RootLayout({
           <Sidebar currentUser={currentUser} />
           <Navbar />
           {children}
-          <div className="2xl:pb-6 mx-auto w-full">
+          <div className="mx-auto w-full 2xl:pb-6">
             <Footer />
           </div>
         </Providers>

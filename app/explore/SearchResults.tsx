@@ -32,6 +32,7 @@ const SearchResults: FC<SearchResultsProps> = ({ posts, displayed }) => {
           {posts.length} {posts.length > 1 ? "Results" : "Result"} Found
         </span>
         <button
+          aria-label="clear search button"
           onClick={() => {
             router.push("/explore");
           }}
@@ -46,7 +47,7 @@ const SearchResults: FC<SearchResultsProps> = ({ posts, displayed }) => {
         className={`grid w-full origin-top grid-cols-1 gap-6 transition duration-1000 md:grid-cols-2 lg:grid-cols-3`}
       >
         {posts.slice(0, displayed)?.map((post) => (
-          <DynamicPostCard post={post} key={post.id} />
+          <DynamicPostCard post={post} key={`${post.id}search`} />
         ))}
       </div>
     </motion.section>

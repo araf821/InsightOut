@@ -18,6 +18,7 @@ import ImageUpload from "@/components/inputs/ImageUpload";
 import Button from "@/components/Button";
 import Loader from "@/components/Loader";
 import ContentInput from "./ContentInput";
+import Toast from "@/components/Toast";
 
 interface PostFormProps {
   currentUser: SafeUser | null;
@@ -181,7 +182,6 @@ const PostForm: FC<PostFormProps> = ({ post }) => {
 
   const onUpdate: SubmitHandler<FieldValues> = (data) => {
     if (content.length < 500) {
-      toast.error("Content length must be 500 characters.");
       return;
     }
 
@@ -275,6 +275,7 @@ const PostForm: FC<PostFormProps> = ({ post }) => {
 
       <div className="flex gap-2">
         <button
+          aria-label="hide preview"
           type="button"
           onClick={() => setPreview(false)}
           className={`w-36 border-2 border-zinc-800 p-1 shadow-md transition duration-200 hover:bg-zinc-800 hover:text-white ${
@@ -287,6 +288,7 @@ const PostForm: FC<PostFormProps> = ({ post }) => {
           Write
         </button>
         <button
+          aria-label="show preview"
           type="button"
           onClick={() => setPreview(true)}
           className={`w-36 border-2 border-zinc-800 p-1 shadow-md transition duration-200 ${

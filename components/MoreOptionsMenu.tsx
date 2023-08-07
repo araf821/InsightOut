@@ -79,7 +79,7 @@ const MoreOptionsMenu: FC<MoreOptionsMenuProps> = ({
           >
             {confirmationModal ? (
               <>
-                <p className="font-merri md:text-xl">
+                <p className="md:text-xl">
                   Are you sure you want to delete this post?
                 </p>
                 <div className="space-y-2">

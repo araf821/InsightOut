@@ -34,7 +34,7 @@ const NewsletterSection: FC<NewsletterSectionProps> = ({}) => {
                   <span className="font- uppercase">Join Our Newsletter</span>
                 </p>
                 <p className="text--900 group mx-auto w-fit lg:mx-0 ">
-                 Join us for the Latest Updates and Exclusive Content!
+                  Join us for the Latest Updates and Exclusive Content!
                 </p>
               </div>
               <div className="space-y-4">
@@ -52,6 +52,7 @@ const NewsletterSection: FC<NewsletterSectionProps> = ({}) => {
                     required
                   />
                   <label
+                    htmlFor="name"
                     className={`pointer-events-none absolute left-3 top-4 origin-left -translate-y-6 scale-75  select-none rounded-md bg-bg px-2 text-neutral-500 transition peer-placeholder-shown:left-3 peer-placeholder-shown:-translate-y-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:bg-bg peer-focus:-translate-y-7 peer-focus:border-2 peer-focus:border-zinc-800 peer-focus:text-neutral-900`}
                   >
                     Email
