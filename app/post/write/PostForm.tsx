@@ -100,7 +100,7 @@ const PostForm: FC<PostFormProps> = ({ post }) => {
 
   const onPublish: SubmitHandler<FieldValues> = (data) => {
     if (content.length < 500) {
-      toast.error("Content length must be 500 characters.");
+      toast.error("Content length must be 500 characters or above.");
       return;
     }
 

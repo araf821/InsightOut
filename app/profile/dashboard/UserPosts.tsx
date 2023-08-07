@@ -1,7 +1,10 @@
+"use client";
+
 import { SafePost } from "@/app/types";
 import Button from "@/components/Button";
 import Heading from "@/components/Heading";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
 import { FC } from "react";
 import { BsPenFill } from "react-icons/bs";
 
@@ -18,19 +21,23 @@ const DynamicPostCard = dynamic(() => import("@/components/PostCard"), {
 });
 
 const UserPosts: FC<UserPostsProps> = ({ published, drafts }) => {
+  const router = useRouter();
+
   if (!drafts.length && !published.length) {
     return (
       <section className="flex w-full flex-col items-center gap-4 py-12 ">
-        <p className="font-josefin text-lg font-semibold md:text-xl lg:text-2xl xl:text-3xl">
-          Looks like you have not written any posts yet.
-        </p>
-        <Button
-          onClick={() => {}}
-          label="Start Writing Now!"
-          className="max-w-[500px]"
-          icon={BsPenFill}
-          outline
-        />
+        <div className="grid place-items-center space-y-4 rounded-md border-2 border-zinc-800 p-4">
+          <p className="balance text-center font-josefin text-lg font-semibold md:text-xl lg:text-2xl xl:text-3xl">
+            Looks like you have not written any posts yet.
+          </p>
+          <Button
+            onClick={() => router.push("/post/write")}
+            label="Start Writing Now!"
+            className="max-w-[500px]"
+            icon={BsPenFill}
+            outline
+          />
+        </div>
       </section>
     );
   }
