@@ -11,7 +11,6 @@ import { toast } from "react-hot-toast";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import TitleInput from "./TitleInput";
 import { SafePost, SafeUser } from "@/app/types";
-import getPostTemplate from "@/app/actions/openai/generatePostTemplate";
 import { motion } from "framer-motion";
 import PostPreview from "./PostPreview";
 import ImageUpload from "@/components/inputs/ImageUpload";
@@ -55,42 +54,7 @@ const PostForm: FC<PostFormProps> = ({ post }) => {
       : []
   );
 
-  const [generatedContent, setGeneratedContent] = useState("");
   const router = useRouter();
-
-  const handleRateLimiting = () => {
-    toast(
-      "Template cannot be generated at this time.\n\nWe are working on resolving this issue as soon as possible!",
-      {
-        duration: 6000,
-      }
-    );
-  };
-
-  const handleGenerate = async (title: string) => {
-    if (title.replaceAll(" ", "").length < 10) {
-      toast.error("Please come up with a longer title.");
-      return; // Return early, no state update
-    }
-
-    setIsGenerating(true);
-    const data = await getPostTemplate(title);
-
-    if (!data) {
-      // Handle the case where data is undefined
-      setIsGenerating(false);
-      handleRateLimiting();
-      return;
-    }
-
-    if (!data.content) {
-      handleRateLimiting();
-    } else {
-      setGeneratedContent(data.content);
-    }
-
-    setIsGenerating(false);
-  };
 
   const {
     register,
@@ -278,11 +242,7 @@ const PostForm: FC<PostFormProps> = ({ post }) => {
       </p>
 
       {/* Generate template prompt */}
-      <PostGeneration
-        isLoading={isGenerating}
-        generatedContent={generatedContent}
-        handleGenerate={() => handleGenerate(title)}
-      />
+      <PostGeneration title={title} />
 
       <div className="flex gap-2">
         <button

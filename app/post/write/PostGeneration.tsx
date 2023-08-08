@@ -1,22 +1,56 @@
 "use client";
 
-import { FC } from "react";
+import { FC, useState } from "react";
 import { AiTwotoneCopy } from "react-icons/ai";
 import TemplateLoader from "./TemplateLoader";
 import { toast } from "react-hot-toast";
 import Button from "@/components/Button";
+import axios from "axios";
 
 interface PostGenerationProps {
-  isLoading: boolean;
-  handleGenerate: () => void;
-  generatedContent: string;
+  title: string;
 }
 
-const PostGeneration: FC<PostGenerationProps> = ({
-  isLoading,
-  handleGenerate,
-  generatedContent,
-}) => {
+const PostGeneration: FC<PostGenerationProps> = ({ title }) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [content, setContent] = useState("");
+
+  const handleRateLimiting = () => {
+    toast(
+      "Template cannot be generated at this time.\n\nWe are working on resolving this issue as soon as possible!",
+      {
+        duration: 6000,
+      }
+    );
+  };
+
+  const handleGenerate = async () => {
+    if (title.replaceAll(" ", "").length < 10) {
+      toast.error("Please come up with a longer title.");
+      return; // Return early, no state update
+    }
+
+    setIsLoading(true);
+    const response = await axios.post(`/api/openai/generateTemplate`, {
+      title: title,
+    });
+
+    if (!response) {
+      // Handle the case where data is undefined
+      setIsLoading(false);
+      handleRateLimiting();
+      return;
+    }
+
+    if (!response.data) {
+      handleRateLimiting();
+    } else {
+      setContent(response.data);
+    }
+
+    setIsLoading(false);
+  };
+
   const handleCopy = (generatedContent: string) => {
     if (navigator.clipboard) {
       navigator.clipboard
@@ -57,7 +91,7 @@ const PostGeneration: FC<PostGenerationProps> = ({
         {isLoading && <TemplateLoader />}
 
         {/* Generated Content */}
-        {generatedContent ? (
+        {content ? (
           <>
             <textarea
               name="generatedContent"
@@ -65,13 +99,13 @@ const PostGeneration: FC<PostGenerationProps> = ({
               cols={10}
               rows={10}
               disabled
-              value={generatedContent}
+              value={content}
               className="w-full resize-none overflow-x-hidden rounded-md border-2 border-zinc-800 px-3 py-1.5 text-accent disabled:bg-gray-800 md:text-lg"
             />
             <Button
               icon={AiTwotoneCopy}
               label="Copy Content"
-              onClick={() => handleCopy(generatedContent)}
+              onClick={() => handleCopy(content)}
               small
               special
               className="hover:-translate-y-1"
