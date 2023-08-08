@@ -7,7 +7,7 @@ interface TemplateLoaderProps {}
 
 const TemplateLoader: FC<TemplateLoaderProps> = ({}) => {
   const texts = useMemo(
-    () => ["Generating...", "Stealing ideas...", "Almost there!"],
+    () => ["Generating Post...", "Gathering ideas...", "Almost there!"],
     []
   );
   const [loadingText, setLoadingText] = useState(texts[0]);

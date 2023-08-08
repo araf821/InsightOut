@@ -21,6 +21,6 @@ export const viewCountLimiter = new Ratelimit({
 
 export const postLimiter = new Ratelimit({
   redis: Redis.fromEnv(),
-  limiter: Ratelimit.slidingWindow(0, "1 s"),
+  limiter: Ratelimit.slidingWindow(2, "3600 s"),
   prefix: "@upstash/ratelimit",
 });
