@@ -37,12 +37,12 @@ const PostPage = async ({ params }: { params: IParams }) => {
         <Post currentUser={currentUser} post={post} />
 
         <SimilarPosts posts={suggestedPosts} />
-        {postsFromAuthor?.length && (
+        {postsFromAuthor?.length ? (
           <MoreFromAuthor
             posts={postsFromAuthor}
             authorName={`More From ${post.author.name || "Author"}`}
           />
-        )}
+        ) : null}
       </Container>
     </main>
   );

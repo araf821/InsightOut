@@ -40,8 +40,10 @@ const ChatComponent = () => {
                 stiffness: 20,
                 restDelta: 2,
               },
+              opacity: 1
             }),
             closed: {
+              opacity: 0,
               clipPath: "circle(0px at 90% 90%)",
               transition: {
                 delay: 0.1,
