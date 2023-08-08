@@ -6,6 +6,7 @@ import { useChat } from "ai/react";
 import { BsSend } from "react-icons/bs";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import ChatCommand from "./ChatCommand";
+import { AnimatePresence, motion } from "framer-motion";
 
 const ChatMessages = () => {
   const {
@@ -50,9 +51,9 @@ const ChatMessages = () => {
   };
 
   return (
-    <div className="h-[450px] w-full lg:h-[700px]">
+    <>
       {!messages.length ? (
-        <section className="grid h-[325px] place-items-center text-center lg:h-[600px] ">
+        <section className="grid h-full place-items-center text-center">
           <div className="rounded-md bg-white/30 p-6 shadow-[0_8px_32px_5px_#ffffff1e] saturate-200 backdrop-blur-lg">
             <div className="mt-1.5 flex flex-col gap-1.5 text-neutral-200 lg:gap-2.5">
               <p className="text-lg text-black">Start chatting with Bebibot!</p>
@@ -84,40 +85,44 @@ const ChatMessages = () => {
             </div>
           </div>
         </section>
-      ) : null}
-      <div
-        ref={scrollDownRef}
-        className="scrolling-touch flex h-[325px] flex-grow flex-col-reverse gap-2 overflow-y-auto lg:h-[575px]"
-      >
-        {inverseMessages.map((m) => (
-          <div
-            key={m.id}
-            className={`flex p-2 lg:px-4 ${
-              m.role === "user" ? "justify-end" : ""
-            }`}
+      ) : (
+        <AnimatePresence>
+          <motion.div
+            animate={{ height: "auto" }}
+            ref={scrollDownRef}
+            className="scrolling-touch flex flex-grow flex-col-reverse gap-2 overflow-y-auto "
           >
-            <p
-              className={`max-w-[265px] rounded-md px-2.5 py-1.5 font-sans lg:max-w-[500px] lg:text-lg ${
-                m.role === "user"
-                  ? "bg-primary text-white shadow-[0_0_10px_2px] shadow-black/20"
-                  : "bg-white/40 text-white shadow-[0_0_10px_2px] shadow-black/10 saturate-200 backdrop-blur-lg"
-              }`}
-            >
-              {m.content}
-            </p>
-          </div>
-        ))}
-      </div>
+            {inverseMessages.map((m) => (
+              <div
+                key={m.id}
+                className={`flex p-2 lg:px-4 ${
+                  m.role === "user" ? "justify-end" : ""
+                }`}
+              >
+                <p
+                  className={`max-w-[280px] sm:max-w-[525px] md:max-w-[650px] rounded-md px-2.5 py-1.5 font-sans lg:max-w-[525px] lg:text-lg ${
+                    m.role === "user"
+                      ? "bg-primary text-white shadow-[0_0_10px_2px] shadow-black/20"
+                      : "bg-white/40 text-white shadow-[0_0_10px_2px] shadow-black/10 saturate-200 backdrop-blur-lg"
+                  }`}
+                >
+                  {m.content}
+                </p>
+              </div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
+      )}
 
       {messages.length &&
       messages[messages.length - 1].role.toString() !== "user" &&
       isLoading ? (
-        <p className="fixed bottom-0 mb-4 w-full text-center font-josefin text-xl font-semibold text-white">
-          Bebibot is bebibotting...
+        <p className="mx-auto w-full px-2 py-6 text-center text-white lg:px-4">
+          Bebibot is typing...
         </p>
       ) : (
         <form
-          className="fixed bottom-0 mx-auto w-full px-2 py-4 lg:px-4"
+          className="mx-auto w-full px-2 py-4 lg:px-4"
           onSubmit={handleSubmit}
         >
           <div
@@ -141,7 +146,7 @@ const ChatMessages = () => {
               className="absolute left-2 top-3 cursor-pointer text-xl font-bold text-white transition duration-300 hover:scale-125"
             />
             <input
-              className="w-full rounded-md border-2 border-primary/50 bg-transparent p-2 pl-8 text-white shadow-[0_0_20px_10px] shadow-primary/20 outline-none focus:border-primary focus:shadow-primary/30"
+              className="w-full rounded-md border-2 border-primary/50 bg-transparent p-2 pl-8 pr-10 text-white shadow-[0_0_20px_10px] shadow-primary/20 outline-none focus:border-primary focus:shadow-primary/30"
               placeholder="Need ideas?"
               value={input}
               min={1}
@@ -162,7 +167,7 @@ const ChatMessages = () => {
           </div>
         </form>
       )}
-    </div>
+    </>
   );
 };
 
