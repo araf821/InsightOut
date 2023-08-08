@@ -24,7 +24,7 @@ const SidebarContent: FC<SidebarContentProps> = ({ currentUser }) => {
   if (!currentUser) {
     body = (
       <div className="flex flex-col gap-2">
-        <p className="text-center font-semibold sm:text-lg lg:text-xl">
+        <p className="text-center text-lg font-semibold lg:text-xl">
           Sign in to view your dashboard.
         </p>
         <SidebarButton
@@ -73,10 +73,10 @@ const SidebarContent: FC<SidebarContentProps> = ({ currentUser }) => {
   }
 
   return (
-    <section className="sidebar-content relative mx-4 h-[87vh] max-w-[800px] space-y-2 px-4 py-8 md:px-0">
+    <section className="relative mx-4 flex flex-grow flex-col space-y-4 p-4 md:px-0">
       {body}
       {/* Sidebar Footer */}
-      <div className="absolute bottom-24 left-0 flex w-full flex-col gap-2 rounded-lg border-2 border-zinc-800 p-2 shadow-2xl md:bottom-0">
+      <div className="flex w-full flex-col gap-2 rounded-lg border-2 border-zinc-800 p-2 shadow-2xl md:bottom-0">
         {currentUser ? (
           <>
             <p className="text-center sm:text-lg lg:text-xl">

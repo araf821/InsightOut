@@ -51,7 +51,7 @@ const Sidebar: FC<SidebarProps> = ({ currentUser }) => {
       }`}
     >
       <div
-        className={`sidebar-bg h-full w-full
+        className={`flex justify-end sidebar-bg h-full w-full
         ${isOpen && "backdrop-blur-md"}
       `}
       >
@@ -59,9 +59,9 @@ const Sidebar: FC<SidebarProps> = ({ currentUser }) => {
           variants={sidebarVariants}
           initial={false}
           animate={isOpen ? "visible" : "hidden"}
-          className="absolute right-0 top-0 z-50 h-full w-full bg-primary shadow-2xl md:max-w-[500px]"
+          className="z-50 flex flex-col h-full w-full bg-primary shadow-2xl md:max-w-[500px]"
         >
-          <div className="mx-auto flex flex-col items-center">{header}</div>
+          <div className="mx-auto flex flex-col w-full items-center">{header}</div>
           <SidebarContent currentUser={currentUser} />
         </motion.div>
       </div>
