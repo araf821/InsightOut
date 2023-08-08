@@ -59,7 +59,12 @@ const PostForm: FC<PostFormProps> = ({ post }) => {
   const router = useRouter();
 
   const handleRateLimiting = () => {
-    toast.error("Templates are generated once every 60 seconds.");
+    toast(
+      "Template cannot be generated at this time.\n\nWe are working on resolving this issue as soon as possible!",
+      {
+        duration: 6000,
+      }
+    );
   };
 
   const handleGenerate = async (title: string) => {
