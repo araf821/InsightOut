@@ -17,38 +17,39 @@ const PostGeneration: FC<PostGenerationProps> = ({ title }) => {
 
   const handleRateLimiting = () => {
     toast(
-      "Template cannot be generated at this time.\n\nWe are working on resolving this issue as soon as possible!",
+      "You can only generate one template every 60 seconds.\n\nPlease try again later.",
       {
         duration: 6000,
       }
     );
   };
 
-  const handleGenerate = async () => {
+  const handleGenerate = () => {
     if (title.replaceAll(" ", "").length < 10) {
       toast.error("Please come up with a longer title.");
-      return; // Return early, no state update
-    }
-
-    setIsLoading(true);
-    const response = await axios.post(`/api/openai/generateTemplate`, {
-      title: title,
-    });
-
-    if (!response) {
-      // Handle the case where data is undefined
-      setIsLoading(false);
-      handleRateLimiting();
       return;
     }
-
-    if (!response.data) {
-      handleRateLimiting();
-    } else {
-      setContent(response.data);
-    }
-
-    setIsLoading(false);
+  
+    setIsLoading(true);
+  
+    axios
+      .post(`/api/openai/generateTemplate`, {
+        title: title,
+      })
+      .then((response) => {
+        if (!response.data) {
+          handleRateLimiting();
+        } else {
+          setContent(response.data.content);
+        }
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        handleRateLimiting();
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   const handleCopy = (generatedContent: string) => {
