@@ -65,19 +65,26 @@ const PostForm: FC<PostFormProps> = ({ post }) => {
   const handleGenerate = async (title: string) => {
     if (title.replaceAll(" ", "").length < 10) {
       toast.error("Please come up with a longer title.");
-    } else {
-      setIsGenerating(true);
-      const data = await getPostTemplate(title);
-      setGeneratedContent((prev) => {
-        if (!data.content) {
-          handleRateLimiting();
-          return prev;
-        }
-        return data.content;
-      });
-
-      setIsGenerating(false);
+      return; // Return early, no state update
     }
+
+    setIsGenerating(true);
+    const data = await getPostTemplate(title);
+
+    if (!data) {
+      // Handle the case where data is undefined
+      setIsGenerating(false);
+      handleRateLimiting();
+      return;
+    }
+
+    if (!data.content) {
+      handleRateLimiting();
+    } else {
+      setGeneratedContent(data.content);
+    }
+
+    setIsGenerating(false);
   };
 
   const {
@@ -235,7 +242,7 @@ const PostForm: FC<PostFormProps> = ({ post }) => {
     <motion.form
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1, transition: { duration: 0.75 } }}
-      className="flex h-fit w-full max-w-[950px] mx-auto flex-shrink flex-col gap-4 rounded-md sm:border sm:px-4 sm:py-6 sm:shadow-lg"
+      className="mx-auto flex h-fit w-full max-w-[950px] flex-shrink flex-col gap-4 rounded-md sm:border sm:px-4 sm:py-6 sm:shadow-lg"
     >
       {/* Title */}
       <TitleInput

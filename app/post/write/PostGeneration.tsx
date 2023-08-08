@@ -18,8 +18,21 @@ const PostGeneration: FC<PostGenerationProps> = ({
   generatedContent,
 }) => {
   const handleCopy = (generatedContent: string) => {
-    navigator.clipboard.writeText(generatedContent);
-    toast.success("Copied!");
+    if (navigator.clipboard) {
+      navigator.clipboard
+        .writeText(generatedContent)
+        .then(() => {
+          toast.success("Copied!");
+        })
+        .catch((error) => {
+          console.error("Clipboard write failed:", error);
+          toast.error("Copy failed. Please try again.");
+        });
+    } else {
+      // Handle case where clipboard API is not available
+      console.error("Clipboard API is not available.");
+      toast.error("Copy not supported on this device.");
+    }
   };
 
   return (
@@ -44,7 +57,7 @@ const PostGeneration: FC<PostGenerationProps> = ({
         {isLoading && <TemplateLoader />}
 
         {/* Generated Content */}
-        {generatedContent && (
+        {generatedContent ? (
           <>
             <textarea
               name="generatedContent"
@@ -64,7 +77,7 @@ const PostGeneration: FC<PostGenerationProps> = ({
               className="hover:-translate-y-1"
             />
           </>
-        )}
+        ) : null}
       </div>
     </div>
   );
