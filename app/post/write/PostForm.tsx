@@ -17,6 +17,7 @@ import ImageUpload from "@/components/inputs/ImageUpload";
 import Button from "@/components/Button";
 import Loader from "@/components/Loader";
 import ContentInput from "./ContentInput";
+import Disclaimer from "@/app/contact/Disclaimer";
 
 interface PostFormProps {
   currentUser: SafeUser | null;
@@ -287,6 +288,10 @@ const PostForm: FC<PostFormProps> = ({ post }) => {
         />
       )}
 
+      <Disclaimer
+        title="Disclaimer"
+        content="> You can publish/draft up to two posts per hour."
+      />
       {/* Buttons */}
       {post ? (
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row md:gap-12">

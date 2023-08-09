@@ -6,14 +6,15 @@ import { FaCaretDown } from "react-icons/fa";
 
 interface DisclaimerProps {
   title: string;
-  content: string;
+  content: string | React.ReactNode;
+  classNames?: string;
 }
 
-const Disclaimer: FC<DisclaimerProps> = ({ title, content }) => {
+const Disclaimer: FC<DisclaimerProps> = ({ title, content,classNames }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="">
+    <div className={classNames}>
       <p
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-1 text-neutral-500 transition duration-200 hover:text-neutral-800 w-fit cursor-pointer"

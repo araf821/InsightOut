@@ -12,7 +12,7 @@ const WritePage = async () => {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
-    return <EmptyState title="You're not logged in." subtitle="Please sign in to start writing!"/>;
+    // return <EmptyState title="You're not logged in." subtitle="Please sign in to start writing!"/>;
   }
 
   const markdownGuide = await getPostByTitle(
