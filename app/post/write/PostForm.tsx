@@ -1,11 +1,11 @@
 "use client";
 
+import { z } from "zod";
 import PostGeneration from "./PostGeneration";
 import { FC, useState } from "react";
 import MultiSelect from "./MultiSelect";
 import slugify from "slugify";
 import { useRouter } from "next/navigation";
-import { SelectOption } from "../../../components/SingleSelect";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
@@ -24,35 +24,57 @@ interface PostFormProps {
   post?: SafePost | null;
 }
 
+const validTitlePattern = /^[A-Za-z0-9\s]*$/; // Only allow letters, numbers and spaces
+
+export const postSchema = z.object({
+  title: z
+    .string()
+    .min(6, { message: "Title must be at least 6 characters long." })
+    .max(100, { message: "Title can be at most 100 characters long." })
+    .refine((value) => validTitlePattern.test(value), {
+      message: "Title can only contain letters, digits, and spaces.",
+    }),
+  slug: z.string(),
+  content: z
+    .string()
+    .min(500, { message: "Content must be at least 500 characters long." })
+    .max(5000, {
+      message: "Content must be between 500 and 5000 characters long.",
+    }),
+  imgSrc: z.string().url({ message: "Invalid image URL." }),
+  tags: z
+    .array(z.string())
+    .min(1, { message: "Post must have at least one tag." }),
+
+  published: z.boolean(),
+});
+
 export const options = [
-  { label: "Technology", value: "technology" },
-  { label: "Lifestyle", value: "lifestyle" },
-  { label: "Entertainment", value: "entertainment" },
-  { label: "Home", value: "home" },
-  { label: "Health", value: "health" },
-  { label: "Travel", value: "travel" },
-  { label: "Food", value: "food" },
-  { label: "Gaming", value: "gaming" },
-  { label: "Movies", value: "movies" },
-  { label: "Anime", value: "anime" },
-  { label: "Fashion", value: "fashion" },
-  { label: "Fitness", value: "fitness" },
-  { label: "Sports", value: "sports" },
-  { label: "Business", value: "business" },
-  { label: "Art", value: "art" },
-  { label: "Science", value: "science" },
-  { label: "Education", value: "education" },
-  { label: "News", value: "news" },
+  "Technology",
+  "Lifestyle",
+  "Entertainment",
+  "Home",
+  "Health",
+  "Travel",
+  "Food",
+  "Gaming",
+  "Movies",
+  "Anime",
+  "Fashion",
+  "Fitness",
+  "Sports",
+  "Business",
+  "Art",
+  "Science",
+  "Education",
+  "News",
 ];
 
 const PostForm: FC<PostFormProps> = ({ post }) => {
   const [preview, setPreview] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [postTags, setPostTags] = useState<SelectOption[]>(
-    post
-      ? post.tags.map((tag) => ({ label: tag, value: tag.toLowerCase() }))
-      : []
+  const [postTags, setPostTags] = useState<string[]>(
+    post ? post.tags.map((tag) => tag) : []
   );
 
   const router = useRouter();
@@ -76,120 +98,185 @@ const PostForm: FC<PostFormProps> = ({ post }) => {
   });
 
   const onPublish: SubmitHandler<FieldValues> = (data) => {
-    if (content.length < 500) {
-      toast.error("Content length must be 500 characters or above.");
-      return;
+    data.tags = postTags;
+
+    try {
+      const validatedData = postSchema.parse(data);
+
+      // If validation is successful, proceed with publishing
+      setIsLoading(true);
+
+      axios
+        .post("/api/post/post", {
+          ...validatedData,
+          slug: slugify(validatedData.title),
+          published: true,
+        })
+        .then(() => {
+          toast.success("Post published!");
+          router.push("/explore");
+          reset();
+        })
+        .catch((error) => {
+          if (error) {
+            toast.error(
+              "You're writing too many posts! Please wait and try again later."
+            );
+          } else {
+            toast.error("Something went wrong.");
+          }
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    } catch (error: any) {
+      if (error instanceof z.ZodError) {
+        // Handle zod errors
+        toast.custom(
+          (t) => (
+            <div
+              className={`${
+                t.visible ? "animate-enter" : "animate-leave"
+              } pointer-events-auto rounded-lg border-2 border-accent bg-bg px-2 py-1 text-zinc-900 shadow-lg`}
+            >
+              {error.errors.map((err: any, index: number) => (
+                <p
+                  className={`my-1 py-1 ${
+                    index === 0 ? "" : "border-t-2 border-red-400"
+                  }`}
+                  key={index}
+                >
+                  {err.message}
+                </p>
+              ))}
+            </div>
+          ),
+          { duration: 2000 }
+        );
+      } else {
+        // Handle other types of errors
+        toast.error("Something went wrong.");
+      }
     }
-
-    if (imgSrc === "") {
-      toast.error("You better add an image!");
-      return;
-    }
-
-    if (postTags.length < 1) {
-      toast.error("WHERE ARE THE TAGS?!");
-      return;
-    }
-
-    setIsLoading(true);
-
-    axios
-      .post("/api/post/post", {
-        ...data,
-        slug: slugify(data.title),
-        published: true,
-        tags: postTags.map((tag) => tag.label),
-      })
-      .then(() => {
-        toast.success("Post published!");
-        router.push("/explore");
-        reset();
-      })
-      .catch((error) => {
-        if (error) {
-          toast.error(
-            "You're writing too many posts! Please wait and try again later."
-          );
-        } else {
-          toast.error("Something went wrong.");
-        }
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
   };
 
   const onDraft: SubmitHandler<FieldValues> = (data) => {
-    if (content.length < 500) {
-      toast.error("Content length must be 500 characters.");
-      return;
-    }
+    data.tags = postTags;
 
-    if (imgSrc === "") {
-      toast.error("You better add an image!");
-      return;
-    }
+    try {
+      const validatedData = postSchema.parse(data);
 
-    if (postTags.length < 1) {
-      toast.error("WHERE ARE THE TAGS?!");
-      return;
-    }
+      // If validation is successful, proceed with publishing
+      setIsLoading(true);
 
-    setIsLoading(true);
-
-    axios
-      .post("/api/post/post", {
-        ...data,
-        slug: slugify(data.title),
-        tags: postTags.map((tag) => tag.label),
-      })
-      .then(() => {
-        toast.success("Saved as draft!");
-        router.push("/profile/dashboard");
-        reset();
-      })
-      .catch(() => {
+      axios
+        .post("/api/post/post", {
+          ...validatedData,
+          slug: slugify(validatedData.title),
+          published: false,
+        })
+        .then(() => {
+          toast.success("Post published!");
+          router.push("/explore");
+          reset();
+        })
+        .catch((error) => {
+          if (error) {
+            toast.error(
+              "You're writing too many posts! Please wait and try again later."
+            );
+          } else {
+            toast.error("Something went wrong.");
+          }
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    } catch (error: any) {
+      if (error instanceof z.ZodError) {
+        // Handle zod errors
+        toast.custom(
+          (t) => (
+            <div
+              className={`${
+                t.visible ? "animate-enter" : "animate-leave"
+              } pointer-events-auto rounded-lg border-2 border-accent bg-bg px-2 py-1 text-zinc-900 shadow-lg`}
+            >
+              {error.errors.map((err: any, index: number) => (
+                <p
+                  className={`my-1 py-1 ${
+                    index === 0 ? "" : "border-t-2 border-red-400"
+                  }`}
+                  key={index}
+                >
+                  {err.message}
+                </p>
+              ))}
+            </div>
+          ),
+          { duration: 2000 }
+        );
+      } else {
+        // Handle other types of errors
         toast.error("Something went wrong.");
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+      }
+    }
   };
 
   const onUpdate: SubmitHandler<FieldValues> = (data) => {
-    if (content.length < 500) {
-      return;
-    }
+    data.tags = postTags;
 
-    if (imgSrc === "") {
-      toast.error("You better add an image!");
-      return;
-    }
+    try {
+      const validatedData = postSchema.parse(data);
 
-    if (postTags.length < 1) {
-      toast.error("WHERE ARE THE TAGS?!");
-      return;
-    }
+      // If validation is successful, proceed with publishing
+      setIsLoading(true);
 
-    setIsLoading(true);
-
-    axios
-      .put(`/api/post/update/${post?.id}`, {
-        ...data,
-        slug: slugify(data.title),
-        tags: postTags.map((tag) => tag.label),
-      })
-      .then(() => {
-        toast.success("Updated Post!");
-        router.back();
-        reset();
-      })
-      .catch(() => {
+      axios
+        .put(`/api/post/update/${post?.id}`, {
+          ...validatedData,
+          slug: slugify(validatedData.title),
+        })
+        .then(() => {
+          toast.success("Updated Post!");
+          router.back();
+          reset();
+        })
+        .catch(() => {
+          toast.error("Something went wrong.");
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    } catch (error: any) {
+      if (error instanceof z.ZodError) {
+        // Handle zod errors
+        toast.custom(
+          (t) => (
+            <div
+              className={`${
+                t.visible ? "animate-enter" : "animate-leave"
+              } pointer-events-auto rounded-lg border-2 border-accent bg-bg px-2 py-1 text-zinc-900 shadow-lg`}
+            >
+              {error.errors.map((err: any, index: number) => (
+                <p
+                  className={`my-1 py-1 ${
+                    index === 0 ? "" : "border-t-2 border-red-400"
+                  }`}
+                  key={index}
+                >
+                  {err.message}
+                </p>
+              ))}
+            </div>
+          ),
+          { duration: 2000 }
+        );
+      } else {
+        // Handle other types of errors
         toast.error("Something went wrong.");
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+      }
+    }
   };
 
   const imgSrc = watch("imgSrc");

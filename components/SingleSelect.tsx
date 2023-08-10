@@ -1,7 +1,6 @@
 "use client";
 
 import { FC, useState } from "react";
-import { IoIosCloseCircle } from "react-icons/io";
 import { AiOutlineCaretDown } from "react-icons/ai";
 import { motion } from "framer-motion";
 

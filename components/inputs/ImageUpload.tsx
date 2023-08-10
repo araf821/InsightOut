@@ -34,6 +34,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
       options={{
         maxFiles: 1,
         sources: ["unsplash", "local", "camera"],
+        clientAllowedFormats: ["png", "jpg", "jpeg", "webp"],
       }}
     >
       {({ open }) => {

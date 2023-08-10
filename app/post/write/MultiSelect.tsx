@@ -3,13 +3,12 @@
 import { FC, useState } from "react";
 import { IoIosCloseCircle } from "react-icons/io";
 import { AiOutlineCaretDown } from "react-icons/ai";
-import { SelectOption } from "../../../components/SingleSelect";
 import { toast } from "react-hot-toast";
 
 interface MultiSelectProps {
-  options: SelectOption[];
-  value: SelectOption[];
-  onChange: (value: SelectOption[]) => void;
+  options: string[];
+  value: string[];
+  onChange: (value: string[]) => void;
 }
 
 const MultiSelect: FC<MultiSelectProps> = ({ options, value, onChange }) => {
@@ -19,7 +18,7 @@ const MultiSelect: FC<MultiSelectProps> = ({ options, value, onChange }) => {
     onChange([]);
   }
 
-  function selectOption(option: SelectOption) {
+  function selectOption(option: string) {
     if (value?.includes(option)) {
       onChange(value.filter((val) => val !== option));
     } else {
@@ -31,7 +30,7 @@ const MultiSelect: FC<MultiSelectProps> = ({ options, value, onChange }) => {
     }
   }
 
-  function isSelected(option: SelectOption) {
+  function isSelected(option: string) {
     return value?.includes(option);
   }
 
@@ -54,11 +53,11 @@ const MultiSelect: FC<MultiSelectProps> = ({ options, value, onChange }) => {
                 e.stopPropagation();
                 selectOption(val);
               }}
-              key={val.value}
-              className="flex text-neutral-800 items-center justify-center gap-2 rounded-md border-2 border-zinc-700 px-2 py-1 text-sm md:text-base group"
+              key={val}
+              className="group flex items-center justify-center gap-2 rounded-md border-2 border-zinc-700 px-2 py-1 text-sm text-neutral-800 md:text-base"
             >
-              {val.label}
-              <IoIosCloseCircle className="text-lg md:text-xl transition-transform group-hover:scale-110" />
+              {val}
+              <IoIosCloseCircle className="text-lg transition-transform group-hover:scale-110 md:text-xl" />
             </button>
           ))
         )}
@@ -97,7 +96,7 @@ const MultiSelect: FC<MultiSelectProps> = ({ options, value, onChange }) => {
             className={`cursor-pointer list-none px-3 py-2.5 transition-colors hover:bg-primary 
             ${isSelected(option) && "bg-blue-200"}`}
           >
-            {option.label}
+            {option}
           </li>
         ))}
       </ul>
