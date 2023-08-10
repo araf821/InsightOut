@@ -2,7 +2,7 @@
 
 import { FC } from "react";
 import Container from "../Container";
-import { SafePost } from "@/app/types";
+import { SafePost } from "@/types";
 import PostCard from "../PostCard";
 import Heading from "../Heading";
 import { motion } from "framer-motion";

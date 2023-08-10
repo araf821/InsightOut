@@ -1,4 +1,4 @@
-import prismaClient from "../lib/prismadb";
+import prismaClient from "../../lib/prismadb";
 
 const getPostsByTag = async (tag: string, count: number, postId?: string) => {
   try {

@@ -1,4 +1,4 @@
-import prismaClient from "../lib/prismadb";
+import prismaClient from "../../lib/prismadb";
 
 const getPostsByAuthor = async (
   authorId: string,

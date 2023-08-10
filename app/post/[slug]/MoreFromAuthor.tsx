@@ -1,4 +1,4 @@
-import { SafePost } from "@/app/types";
+import { SafePost } from "@/types";
 import Heading from "@/components/Heading";
 import PostCard from "@/components/PostCard";
 import { FC } from "react";

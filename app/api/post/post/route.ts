@@ -1,6 +1,6 @@
 import getCurrentUser from "@/app/actions/users/getCurrentUser";
-import prismaClient from "@/app/lib/prismadb";
-import { postLimiter } from "@/app/lib/rate-limiter";
+import prismaClient from "@/lib/prismadb";
+import { postLimiter } from "@/lib/rate-limiter";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {

@@ -1,6 +1,6 @@
 "use client";
 
-import { SafePost } from "@/app/types";
+import { SafePost } from "@/types";
 import Button from "@/components/Button";
 import Heading from "@/components/Heading";
 import dynamic from "next/dynamic";

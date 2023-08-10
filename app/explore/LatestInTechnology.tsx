@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { SafePost } from "../types";
+import { SafePost } from "../../types";
 import Heading from "@/components/Heading";
 import CardsContainer from "@/components/CardsContainer";
 import PostCard from "@/components/PostCard";

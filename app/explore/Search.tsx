@@ -1,16 +1,16 @@
 "use client";
 
 import { FC, useCallback, useState } from "react";
-import { SafePost } from "../types";
+import { SafePost } from "../../types";
 import { useRouter, useSearchParams } from "next/navigation";
 import queryString from "query-string";
 import { AnimatePresence, motion } from "framer-motion";
 import { AiFillFilter } from "react-icons/ai";
-import { options } from "../post/write/PostForm";
 import { FaSearch } from "react-icons/fa";
 import { GrClear } from "react-icons/gr";
 import Button from "@/components/Button";
 import SearchResults from "./SearchResults";
+import { options } from "@/constants/constants";
 
 interface SearchBarProps {
   posts: SafePost[] | null;
@@ -175,18 +175,18 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
               {options.map((tag) => (
                 <span
                   onClick={() => {
-                    selectedTag === tag.label
+                    selectedTag === tag
                       ? setSelectedTag("")
-                      : setSelectedTag(tag.label);
+                      : setSelectedTag(tag);
                   }}
                   className={`${
-                    tag.label === selectedTag
+                    tag === selectedTag
                       ? "scale-105 bg-primary text-white opacity-100"
                       : "hover:translate-x-1 hover:bg-blue-200"
                   } cursor-pointer py-0 text-lg font-light transition duration-300 lg:text-xl`}
-                  key={tag.label}
+                  key={tag}
                 >
-                  | {tag.label}
+                  | {tag}
                 </span>
               ))}
             </div>

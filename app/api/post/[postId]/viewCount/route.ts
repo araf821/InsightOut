@@ -1,5 +1,5 @@
-import prismaClient from "@/app/lib/prismadb";
-import { viewCountLimiter } from "@/app/lib/rate-limiter";
+import prismaClient from "@/lib/prismadb";
+import { viewCountLimiter } from "@/lib/rate-limiter";
 import { NextRequest, NextResponse } from "next/server";
 
 interface IParams {

@@ -1,6 +1,6 @@
 import { Configuration, OpenAIApi } from "openai-edge";
 import { OpenAIStream, StreamingTextResponse } from "ai";
-import { chatRateLimiter } from "@/app/lib/rate-limiter";
+import { chatRateLimiter } from "@/lib/rate-limiter";
 import { NextRequest, NextResponse } from "next/server";
 
 const config = new Configuration({

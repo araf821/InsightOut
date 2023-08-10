@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 
-import prismaClient from "@/app/lib/prismadb";
+import prismaClient from "@/lib/prismadb";
 import { AuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import DiscordProvider from "next-auth/providers/discord";

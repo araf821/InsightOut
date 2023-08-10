@@ -5,9 +5,9 @@ import { FC } from "react";
 import Logo from "../texts/Logo";
 import { IoIosCloseCircle } from "react-icons/io";
 import SidebarContent from "./SidebarContent";
-import { SafeUser } from "@/app/types";
+import { SafeUser } from "@/types";
 import { motion } from "framer-motion";
-import { sidebarBackgroundVariants, sidebarVariants } from "@/app/lib/anim";
+import { sidebarBackgroundVariants, sidebarVariants } from "@/lib/anim";
 
 interface SidebarProps {
   currentUser: SafeUser | null;

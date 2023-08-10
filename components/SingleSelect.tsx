@@ -4,11 +4,6 @@ import { FC, useState } from "react";
 import { AiOutlineCaretDown } from "react-icons/ai";
 import { motion } from "framer-motion";
 
-export type SelectOption = {
-  label: string;
-  value: any;
-};
-
 interface SingleSelectProps {
   options: string[];
   selected?: string;

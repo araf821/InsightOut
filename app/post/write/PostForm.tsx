@@ -10,7 +10,7 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import TitleInput from "./TitleInput";
-import { SafePost, SafeUser } from "@/app/types";
+import { SafePost, SafeUser } from "@/types";
 import { motion } from "framer-motion";
 import PostPreview from "./PostPreview";
 import ImageUpload from "@/components/inputs/ImageUpload";
@@ -18,6 +18,7 @@ import Button from "@/components/Button";
 import Loader from "@/components/Loader";
 import ContentInput from "./ContentInput";
 import Disclaimer from "@/app/contact/Disclaimer";
+import { options } from "@/constants/constants";
 
 interface PostFormProps {
   currentUser: SafeUser | null;
@@ -48,27 +49,6 @@ export const postSchema = z.object({
 
   published: z.boolean(),
 });
-
-export const options = [
-  "Technology",
-  "Lifestyle",
-  "Entertainment",
-  "Home",
-  "Health",
-  "Travel",
-  "Food",
-  "Gaming",
-  "Movies",
-  "Anime",
-  "Fashion",
-  "Fitness",
-  "Sports",
-  "Business",
-  "Art",
-  "Science",
-  "Education",
-  "News",
-];
 
 const PostForm: FC<PostFormProps> = ({ post }) => {
   const [preview, setPreview] = useState(false);

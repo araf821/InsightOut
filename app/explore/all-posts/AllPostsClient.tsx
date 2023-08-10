@@ -1,6 +1,6 @@
 "use client";
 
-import { SafePost } from "@/app/types";
+import { SafePost } from "@/types";
 import CardsContainer from "@/components/CardsContainer";
 import EmptyState from "@/components/EmptyState";
 import Heading from "@/components/Heading";

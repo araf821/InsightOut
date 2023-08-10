@@ -1,7 +1,7 @@
 "use client";
 
-import { dateFormat } from "@/app/lib/helpers/dateFormat";
-import { SafePost } from "@/app/types";
+import { dateFormat } from "@/lib/helpers/dateFormat";
+import { SafePost } from "@/types";
 import Heading from "@/components/Heading";
 import { motion } from "framer-motion";
 import Image from "next/image";

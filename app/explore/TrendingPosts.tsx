@@ -1,7 +1,7 @@
 'use client'
 
 import { FC } from "react";
-import { SafePost } from "../types";
+import { SafePost } from "../../types";
 import { motion } from "framer-motion";
 import CardsContainer from "@/components/CardsContainer";
 import Heading from "@/components/Heading";

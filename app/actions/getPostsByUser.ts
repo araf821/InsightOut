@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import prismaClient from "../lib/prismadb";
+import prismaClient from "../../lib/prismadb";
 
 const getPostsByUser = async (userId: string, count: number) => {
   try {

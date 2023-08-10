@@ -1,4 +1,4 @@
-import prismaClient from "../lib/prismadb";
+import prismaClient from "../../lib/prismadb";
 
 export default async function getTrendingPosts(count?: number) {
   try {

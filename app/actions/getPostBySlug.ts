@@ -1,4 +1,4 @@
-import prismaClient from "../lib/prismadb";
+import prismaClient from "../../lib/prismadb";
 
 const getPostBySlug = async (slug: string) => {
   try {

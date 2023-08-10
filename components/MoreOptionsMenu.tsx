@@ -1,6 +1,6 @@
 "use client";
 
-import { SafePost } from "@/app/types";
+import { SafePost } from "@/types";
 import { motion } from "framer-motion";
 import { FC, useState } from "react";
 import { HiOutlineMenu } from "react-icons/hi";

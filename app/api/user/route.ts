@@ -1,4 +1,4 @@
-import prismaClient from "@/app/lib/prismadb";
+import prismaClient from "@/lib/prismadb";
 import { NextResponse } from "next/server";
 
 // Update user info

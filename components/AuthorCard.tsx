@@ -5,7 +5,7 @@ import Image from "next/image";
 import { FaUserPlus } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { toast } from "react-hot-toast";
-import { UserWithPosts } from "@/app/types";
+import { UserWithPosts } from "@/types";
 
 interface AuthorCardProps {
   author: UserWithPosts;

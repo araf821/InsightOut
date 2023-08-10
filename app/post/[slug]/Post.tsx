@@ -1,7 +1,7 @@
 "use client";
 
-import { dateFormat } from "@/app/lib/helpers/dateFormat";
-import { SafePost, SafeUser } from "@/app/types";
+import { dateFormat } from "@/lib/helpers/dateFormat";
+import { SafePost, SafeUser } from "@/types";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FC } from "react";
@@ -9,7 +9,7 @@ import PostContent from "./PostContent";
 import { FaEdit } from "react-icons/fa";
 import Heading from "@/components/Heading";
 import { motion } from "framer-motion";
-import { singlePostVariants } from "@/app/lib/anim";
+import { singlePostVariants } from "@/lib/anim";
 import PostViews from "./PostViews";
 
 interface PostProps {

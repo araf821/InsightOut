@@ -1,4 +1,4 @@
-import { templateRateLimiter } from "@/app/lib/rate-limiter";
+import { templateRateLimiter } from "@/lib/rate-limiter";
 import { AxiosResponse } from "axios";
 import { NextRequest, NextResponse } from "next/server";
 import { Configuration, CreateChatCompletionResponse, OpenAIApi } from "openai";

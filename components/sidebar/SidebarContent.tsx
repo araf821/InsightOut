@@ -1,6 +1,6 @@
 "use client";
 
-import { SafeUser } from "@/app/types";
+import { SafeUser } from "@/types";
 import { FC } from "react";
 import SidebarButton from "./SidebarButton";
 import { signIn, signOut } from "next-auth/react";

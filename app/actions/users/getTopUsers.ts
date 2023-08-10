@@ -1,6 +1,6 @@
 // This method will fetch the top {count} authors
 
-import prismaClient from "@/app/lib/prismadb";
+import prismaClient from "@/lib/prismadb";
 
 export default async function getTopUsers(count: number) {
   try {

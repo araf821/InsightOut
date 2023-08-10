@@ -1,6 +1,6 @@
 "use client";
 
-import { SafeUser } from "@/app/types";
+import { SafeUser } from "@/types";
 import Button from "@/components/Button";
 import ImageUpload from "@/components/inputs/ImageUpload";
 import axios from "axios";

@@ -1,7 +1,7 @@
 "use client";
 
 import { FC } from "react";
-import { UserWithPosts } from "../types";
+import { UserWithPosts } from "../../types";
 import { motion } from "framer-motion";
 import AuthorCard from "@/components/AuthorCard";
 

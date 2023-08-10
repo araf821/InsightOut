@@ -7,8 +7,8 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import MoreOptionsMenu from "./MoreOptionsMenu";
 import { motion } from "framer-motion";
-import { SafePost } from "@/app/types";
-import { postCardVariants } from "@/app/lib/anim";
+import { SafePost } from "@/types";
+import { postCardVariants } from "@/lib/anim";
 
 interface PostCardProps {
   main?: boolean;
