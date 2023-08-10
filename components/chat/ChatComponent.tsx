@@ -1,6 +1,6 @@
 "use client";
 
-import { useDimensions } from "@/app/hooks/useDimensions";
+import { useDimensions } from "@/hooks/useDimensions";
 import { motion, useCycle } from "framer-motion";
 import { useRef } from "react";
 import { ChatToggle } from "./ChatToggle";

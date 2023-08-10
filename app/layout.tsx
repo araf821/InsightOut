@@ -1,6 +1,6 @@
 import "./globals.css";
 import getCurrentUser from "./actions/users/getCurrentUser";
-import ToasterProvider from "./providers/ToasterProvider";
+import ToasterProvider from "../providers/ToasterProvider";
 import Providers from "@/components/Providers";
 import ChatComponent from "@/components/chat/ChatComponent";
 import Sidebar from "@/components/sidebar/Sidebar";
