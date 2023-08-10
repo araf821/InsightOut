@@ -1,10 +1,10 @@
 # InsightOut
 
-### [Coming Soon]
+A full-stack blog platform with AI features such as post template generation and a helpful chatbot!
 
-A full-stack blog platform!
+This is my biggest project thus far by a huge margin! Thanks for checking it out :))
 
-This will be my biggest project thus far by a huge margin! Thanks for checking it out :))
+Check it out [here](https://insightout.blog)!
 
 ---
 
@@ -19,8 +19,9 @@ This will be my biggest project thus far by a huge margin! Thanks for checking i
 - GPT3.5 Turbo from OpenAI
 - Framer Motion
 - OAuth
-- Redis
-- Emailjs
+- Redis for rate limiting
+- Emailjs for contact form
+- Zod for input validation
 - All UI components created from scratch
 
 ---
@@ -29,7 +30,7 @@ This will be my biggest project thus far by a huge margin! Thanks for checking i
 
 - Get a generated post template based on your title
 - Get blog ideas/suggestions from a chatbot
-- Create blog posts in with Markdown support
+- Create blog posts with Markdown support
 - Preview blog posts in Markdown while writing them
 - Publish posts or save them as drafts
 - Upload or capture photos to go along with your post
@@ -42,8 +43,13 @@ This will be my biggest project thus far by a huge margin! Thanks for checking i
 - Mark your published post as a draft
 - Search for posts via keyword
 - Filter posts by tags
+- Sort posts by most popular, latest, etc
 - View the most trending posts (ranked by number of comments)
 - View the top users (ranked by number of posts published)
 - Fully functional contact form implemented with Emailjs
-- *Comments* (coming soon)
-- *Followers/Following* (coming soon)
+
+### Upcoming Features
+
+- Following Users
+- Commenting on posts
+- Singing up for a newsletter
