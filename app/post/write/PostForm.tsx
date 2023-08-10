@@ -24,7 +24,7 @@ interface PostFormProps {
   post?: SafePost | null;
 }
 
-const validTitlePattern = /^[A-Za-z0-9\s]*$/; // Only allow letters, numbers and spaces
+const validTitlePattern = /^[A-Za-z0-9\s"'\-:/$@#*()<>{}]*$/; // Only allow letters, numbers and spaces
 
 export const postSchema = z.object({
   title: z
