@@ -53,3 +53,4 @@ Check it out [here](https://insightout.blog)!
 - Following Users
 - Commenting on posts
 - Singing up for a newsletter
+- Upvoting posts/comments
