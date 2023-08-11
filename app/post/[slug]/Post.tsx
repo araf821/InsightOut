@@ -43,7 +43,7 @@ const Post: FC<PostProps> = ({ post, currentUser }) => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
-      className="mb-4 mt-8 flex w-full max-w-[950px] mx-auto flex-col gap-4"
+      className="mx-auto mb-4 mt-8 flex w-full max-w-[950px] flex-col gap-4"
     >
       <Heading post title={post.title} />
       <hr />
@@ -88,9 +88,7 @@ const Post: FC<PostProps> = ({ post, currentUser }) => {
             {post.author.name}
           </p>
           <p className="text-sm  sm:text-base md:text-lg">
-            {post.updatedAt === post.createdAt
-              ? `Published: ${dateFormat(post.updatedAt)}`
-              : `Updated: ${dateFormat(post.updatedAt)}`}
+            Published: ${dateFormat(post.createdAt)}
           </p>
         </div>
       </section>
