@@ -88,14 +88,12 @@ const Post: FC<PostProps> = ({ post, currentUser }) => {
             {post.author.name}
           </p>
           <p className="text-sm  sm:text-base md:text-lg">
-            Published: ${dateFormat(post.createdAt)}
+            Published: {dateFormat(post.createdAt)}
           </p>
         </div>
       </section>
       <hr />
-      {/* {currentUser?.id === post.authorId ? <p>Edit This Post</p> : <p>asdf</p>} */}
       <PostContent content={post.content} />
-
       {editButton}
       <hr />
     </motion.article>

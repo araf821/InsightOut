@@ -103,6 +103,7 @@ const PostGeneration: FC<PostGenerationProps> = ({ title }) => {
               <Button
                 className=""
                 small
+                outline
                 disabled={isLoading}
                 label="Generate Post"
                 onClick={handleGenerate}
