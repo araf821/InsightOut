@@ -1,3 +1,5 @@
+'use client'
+
 import { z } from "zod";
 
 import { FC, useState } from "react";

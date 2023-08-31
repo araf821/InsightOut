@@ -11,9 +11,11 @@ import Heading from "@/components/Heading";
 import { motion } from "framer-motion";
 import { singlePostVariants } from "@/lib/anim";
 import PostViews from "./PostViews";
+import PostComments from "./PostComments";
+import { Comment, Post, User } from "@prisma/client";
 
 interface PostProps {
-  post: SafePost;
+  post: Post & { author: User; comments: Comment[] };
   currentUser: SafeUser | null;
 }
 
@@ -88,7 +90,7 @@ const Post: FC<PostProps> = ({ post, currentUser }) => {
             {post.author.name}
           </p>
           <p className="text-sm  sm:text-base md:text-lg">
-            Published: {dateFormat(post.createdAt)}
+            Published: {dateFormat(post.createdAt.toISOString())}
           </p>
         </div>
       </section>
@@ -96,6 +98,8 @@ const Post: FC<PostProps> = ({ post, currentUser }) => {
       <PostContent content={post.content} />
       {editButton}
       <hr />
+
+      <PostComments comments={post.comments} />
     </motion.article>
   );
 };

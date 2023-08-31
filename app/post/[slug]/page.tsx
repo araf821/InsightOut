@@ -7,16 +7,25 @@ import MoreFromAuthor from "./MoreFromAuthor";
 import getCurrentUser from "@/app/actions/users/getCurrentUser";
 import EmptyState from "@/components/EmptyState";
 import Container from "@/components/Container";
+import prismaClient from "@/lib/prismadb";
+import { redirect } from "next/navigation";
 
-interface IParams {
-  slug: string;
-}
-
-const PostPage = async ({ params }: { params: IParams }) => {
+const PostPage = async ({ params }: { params: { slug: string } }) => {
   const { slug } = params;
   const currentUser = await getCurrentUser();
 
-  const post = await getPostBySlug(decodeURIComponent(slug));
+  const post = await prismaClient.post.findUnique({
+    where: {
+      slug: decodeURIComponent(slug),
+      published: true,
+    },
+    include: {
+      author: true,
+      comments: true,
+    },
+  });
+
+  console.log(post);
 
   if (!post) {
     return (
