@@ -23,8 +23,15 @@ const PostPage = async ({ params }: { params: { slug: string } }) => {
     include: {
       author: true,
       comments: {
+        orderBy: {
+          createdAt: "desc",
+        },
         include: {
-          replies: true,
+          replies: {
+            include: {
+              author: true,
+            },
+          },
           author: true,
         },
       },

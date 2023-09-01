@@ -13,10 +13,13 @@ import CommentForm from "@/components/CommentForm";
 interface PostCommentsProps {
   currentUser: SafeUser | null;
   postId: string;
-  comments: (Comment & { author: User; replies: Comment[] })[];
+  comments: (Comment & {
+    author: User;
+    replies: (Comment & { author: User })[];
+  })[];
 }
 
-const formSchema = z.object({
+export const commentSchema = z.object({
   comment: z
     .string()
     .min(3, { message: "Comment must be between 3 to 252 characters long." })
@@ -29,28 +32,40 @@ const formSchema = z.object({
 const PostComments = ({ currentUser, postId, comments }: PostCommentsProps) => {
   const router = useRouter();
 
-  const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    toast("hello");
+  const onSubmit = async (data: z.infer<typeof commentSchema>) => {
     try {
       await axios.post(`/api/comments/${postId}`, data);
 
+      toast.success("Thanks for commenting!")
       router.refresh();
     } catch (error) {
       console.log(error);
-      toast("failed");
+      toast.error("Something went wrong.");
     }
   };
 
   return (
     <div className="mx-auto mb-6 mt-2 flex max-w-[950px] flex-col gap-4">
       {/* Comment Input Section */}
-      {currentUser ? <CommentForm currentUser={currentUser} onSubmit={onSubmit} /> : null}
+      {currentUser ? (
+        <CommentForm currentUser={currentUser} onSubmit={onSubmit} />
+      ) : null}
 
       {/* Displaying Comments */}
-      <div className="flex flex-col gap-6 border-t-[1px] border-zinc-200 py-4">
-        {comments.map((comment) => (
-          <IndividualComment key={comment.id} currentUser={currentUser} comment={comment} />
-        ))}
+      <div className="flex flex-col gap-4 border-t-[1px] border-zinc-200 py-4">
+        {comments.map((comment) => {
+          if (comment.replyToId) {
+            return;
+          }
+
+          return (
+            <IndividualComment
+              key={comment.id}
+              currentUser={currentUser}
+              comment={comment}
+            />
+          );
+        })}
       </div>
     </div>
   );

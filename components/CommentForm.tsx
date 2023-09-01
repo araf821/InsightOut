@@ -2,7 +2,7 @@
 
 import { validInputPattern } from "@/app/post/write/PostForm";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import Avatar from "./Avatar";
@@ -32,6 +32,12 @@ const CommentForm: FC<CommentFormProps> = ({ currentUser, onSubmit }) => {
       comment: "",
     },
   });
+
+  useEffect(() => {
+    form.reset();
+    setOpen(false);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [onSubmit]);
 
   const isLoading = form.formState.isSubmitting;
 
