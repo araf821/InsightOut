@@ -78,7 +78,7 @@ const CommentForm: FC<CommentFormProps> = ({ currentUser, onSubmit }) => {
                 onClick={form.handleSubmit(onSubmit)}
                 className="max-w-[250px]"
                 small
-                label="Post Comment"
+                label="Submit"
               />
             </div>
           ) : null}

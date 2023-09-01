@@ -25,7 +25,7 @@ interface PostFormProps {
   post?: SafePost | null;
 }
 
-export const validInputPattern = /^[A-Za-z0-9\s"'\-:/$@#*()<>{}]*$/; // Only allow letters, numbers and spaces
+export const validInputPattern = /^[A-Za-z0-9\s"'\-:/$@#*():!.-_<>{}]*$/; // Only allow letters, numbers and spaces
 
 export const postSchema = z.object({
   title: z

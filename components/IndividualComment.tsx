@@ -28,12 +28,16 @@ const IndividualComment: FC<IndividualCommentProps> = ({
 
   const onSubmit = async (data: z.infer<typeof commentSchema>) => {
     try {
+      if (!currentUser) {
+        return toast.error("Please sign in first.");
+      }
+
       await axios.patch(`/api/comments/reply/${comment.id}`, {
         ...data,
         postId: comment.postId,
       });
 
-      toast.success("Reply has been added!")
+      toast.success("Reply has been added!");
       router.refresh();
     } catch (error) {
       console.log(error);
@@ -53,6 +57,18 @@ const IndividualComment: FC<IndividualCommentProps> = ({
             </span>
           </div>
           <p className="break-words text-zinc-800">{comment.content}</p>
+          <div className="space-x-2">
+            <Reply
+              onClick={() => {
+                if (!currentUser) {
+                  return toast.error("Please sign in first.");
+                }
+
+                setOpen(true);
+              }}
+              className="h-5 w-5 cursor-pointer text-zinc-500 transition duration-200 hover:text-zinc-700"
+            />
+          </div>
 
           {/* Replies */}
           <div>
@@ -60,18 +76,12 @@ const IndividualComment: FC<IndividualCommentProps> = ({
               <ReplyComment key={reply.id} reply={reply} />
             ))}
           </div>
+
           {open && currentUser ? (
             <div className="mt-4">
               <CommentForm currentUser={currentUser} onSubmit={onSubmit} />
             </div>
-          ) : (
-            <div className="space-x-2">
-              <Reply
-                onClick={() => setOpen(true)}
-                className="h-5 w-5 cursor-pointer text-zinc-500 transition duration-200 hover:text-zinc-700"
-              />
-            </div>
-          )}
+          ) : null}
         </div>
       </div>
       <hr className="w-full bg-black text-black" />

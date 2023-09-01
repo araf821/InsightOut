@@ -40,7 +40,7 @@ export async function PATCH(
 
     return NextResponse.json(newReply);
   } catch (error) {
-    console.log("Comment Creation Error");
+    console.log("Comment Creation Error", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }

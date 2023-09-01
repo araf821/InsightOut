@@ -34,9 +34,13 @@ const PostComments = ({ currentUser, postId, comments }: PostCommentsProps) => {
 
   const onSubmit = async (data: z.infer<typeof commentSchema>) => {
     try {
+      if (!currentUser) {
+        return toast.error("Please sign in first.");
+      }
+
       await axios.post(`/api/comments/${postId}`, data);
 
-      toast.success("Thanks for commenting!")
+      toast.success("Thanks for commenting!");
       router.refresh();
     } catch (error) {
       console.log(error);
@@ -45,28 +49,34 @@ const PostComments = ({ currentUser, postId, comments }: PostCommentsProps) => {
   };
 
   return (
-    <div className="mx-auto mb-6 mt-2 flex max-w-[950px] flex-col gap-4">
+    <div className="mx-auto mb-4 mt-2 flex max-w-[950px] flex-col gap-4">
       {/* Comment Input Section */}
       {currentUser ? (
         <CommentForm currentUser={currentUser} onSubmit={onSubmit} />
       ) : null}
 
       {/* Displaying Comments */}
-      <div className="flex flex-col gap-4 border-t-[1px] border-zinc-200 py-4">
-        {comments.map((comment) => {
-          if (comment.replyToId) {
-            return;
-          }
+      {!comments.length ? (
+        <div className="mx-auto py-8 text-zinc-700 md:text-lg">
+          Be the first to add a comment!
+        </div>
+      ) : (
+        <div className="flex flex-col gap-4 border-t-[1px] border-zinc-200 py-4">
+          {comments.map((comment) => {
+            if (comment.replyToId) {
+              return;
+            }
 
-          return (
-            <IndividualComment
-              key={comment.id}
-              currentUser={currentUser}
-              comment={comment}
-            />
-          );
-        })}
-      </div>
+            return (
+              <IndividualComment
+                key={comment.id}
+                currentUser={currentUser}
+                comment={comment}
+              />
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };
