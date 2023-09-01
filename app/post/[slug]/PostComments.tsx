@@ -1,25 +1,19 @@
 "use client";
 
-import CommentInput from "@/components/comments/CommentInput";
 import { SafeUser } from "@/types";
-import { Comment } from "@prisma/client";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { Comment, User } from "@prisma/client";
 import { z } from "zod";
-import Avatar from "@/components/Avatar";
-import Button from "@/components/Button";
-import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
 import { validInputPattern } from "../write/PostForm";
-import { useMutation } from "@tanstack/react-query";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import IndividualComment from "@/components/IndividualComment";
+import CommentForm from "@/components/CommentForm";
 
 interface PostCommentsProps {
   currentUser: SafeUser | null;
   postId: string;
-  comments: Comment[];
+  comments: (Comment & { author: User; replies: Comment[] })[];
 }
 
 const formSchema = z.object({
@@ -33,103 +27,31 @@ const formSchema = z.object({
 });
 
 const PostComments = ({ currentUser, postId, comments }: PostCommentsProps) => {
-  const [open, setOpen] = useState(false);
   const router = useRouter();
 
-  const form = useForm({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      comment: "",
-    },
-  });
-
-  const isLoading = form.formState.isSubmitting;
-
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    toast("hello")
+    toast("hello");
     try {
       await axios.post(`/api/comments/${postId}`, data);
 
-      form.reset();
       router.refresh();
-      setOpen(false);
     } catch (error) {
       console.log(error);
-      toast("failed")
+      toast("failed");
     }
   };
-
-  //   const { mutate: postComment } = useMutation({
-  //     mutationFn: async (values: z.infer<typeof formSchema>) => {
-  //       const { data } = await axios.post(`/api/comments/${postId}`, values);
-
-  //       return data;
-  //     },
-  //     onError: (err: Error) => {
-  //       return toast.error(err.message);
-  //     },
-  //     onSuccess: () => {
-  //       toast.success("Comment posted successfully!");
-  //       setOpen(false);
-  //       router.refresh();
-  //     },
-  //   });
 
   return (
     <div className="mx-auto mb-6 mt-2 flex max-w-[950px] flex-col gap-4">
       {/* Comment Input Section */}
-      {currentUser ? (
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          {...form}
-          className="flex flex-col gap-2"
-        >
-          <div className="flex gap-x-2.5">
-            <Avatar src={currentUser.image} classNames="w-8 md:w-12" />
-            <div className="w-full">
-              <textarea
-                onFocus={() => setOpen(true)}
-                className="w-full resize-none rounded-md border-2 border-zinc-300 px-1 py-1.5 outline-none focus:border-zinc-800"
-                disabled={isLoading}
-                rows={open ? 3 : 1}
-                placeholder="Add a comment..."
-                {...form.register("comment")}
-              />
-              {form.formState.errors && open && (
-                <p className="-mt-1.5 mb-2 text-sm text-rose-500">
-                  {form.formState.errors.comment?.message}
-                </p>
-              )}
-              {open ? (
-                <div className="flex justify-end gap-x-2">
-                  <Button
-                    className="max-w-[175px]"
-                    outline
-                    small
-                    onClick={() => {
-                      setOpen(false);
-                    }}
-                    label="Cancel"
-                  />
-                  <Button
-                    onClick={form.handleSubmit(onSubmit)}
-                    className="max-w-[250px]"
-                    small
-                    label="Post Comment"
-                  />
-                </div>
-              ) : null}
-            </div>
-          </div>
-        </form>
-      ) : null}
+      {currentUser ? <CommentForm currentUser={currentUser} onSubmit={onSubmit} /> : null}
 
       {/* Displaying Comments */}
-      {comments.map((comment) => (
-        <div key={comment.id}>
-          <p>{comment.content}</p>
-        </div>
-      ))}
+      <div className="flex flex-col gap-6 border-t-[1px] border-zinc-200 py-4">
+        {comments.map((comment) => (
+          <IndividualComment key={comment.id} currentUser={currentUser} comment={comment} />
+        ))}
+      </div>
     </div>
   );
 };

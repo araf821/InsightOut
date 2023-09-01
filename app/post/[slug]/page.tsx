@@ -22,7 +22,12 @@ const PostPage = async ({ params }: { params: { slug: string } }) => {
     },
     include: {
       author: true,
-      comments: true,
+      comments: {
+        include: {
+          replies: true,
+          author: true,
+        },
+      },
     },
   });
 

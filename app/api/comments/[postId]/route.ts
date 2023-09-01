@@ -19,8 +19,9 @@ export async function POST(
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-
-    console.log(comment);
+    if (comment.length < 3 || comment.length > 252) {
+      return new NextResponse("Invalid Comment", { status: 400 });
+    }
 
     const postedComment = await prismaClient.comment.create({
       data: {
@@ -32,6 +33,7 @@ export async function POST(
 
     return NextResponse.json(postedComment);
   } catch (error) {
-    console.log("Internal Error", { status: 500 });
+    console.log("Comment Creation Error");
+    return new NextResponse("Internal Error", { status: 500 });
   }
 }
