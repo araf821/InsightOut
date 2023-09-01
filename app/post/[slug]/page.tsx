@@ -9,6 +9,7 @@ import EmptyState from "@/components/EmptyState";
 import Container from "@/components/Container";
 import prismaClient from "@/lib/prismadb";
 import { redirect } from "next/navigation";
+import PostComments from "./PostComments";
 
 const PostPage = async ({ params }: { params: { slug: string } }) => {
   const { slug } = params;
@@ -24,8 +25,6 @@ const PostPage = async ({ params }: { params: { slug: string } }) => {
       comments: true,
     },
   });
-
-  console.log(post);
 
   if (!post) {
     return (
@@ -44,6 +43,11 @@ const PostPage = async ({ params }: { params: { slug: string } }) => {
     <main className="single-post-page">
       <Container>
         <Post currentUser={currentUser} post={post} />
+        <PostComments
+          currentUser={currentUser}
+          postId={post.id}
+          comments={post.comments}
+        />
 
         <SimilarPosts posts={suggestedPosts} />
         {postsFromAuthor?.length ? (

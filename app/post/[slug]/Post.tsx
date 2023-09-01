@@ -1,7 +1,7 @@
 "use client";
 
 import { dateFormat } from "@/lib/helpers/dateFormat";
-import { SafePost, SafeUser } from "@/types";
+import { SafeUser } from "@/types";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FC } from "react";
@@ -11,7 +11,6 @@ import Heading from "@/components/Heading";
 import { motion } from "framer-motion";
 import { singlePostVariants } from "@/lib/anim";
 import PostViews from "./PostViews";
-import PostComments from "./PostComments";
 import { Comment, Post, User } from "@prisma/client";
 
 interface PostProps {
@@ -98,8 +97,6 @@ const Post: FC<PostProps> = ({ post, currentUser }) => {
       <PostContent content={post.content} />
       {editButton}
       <hr />
-
-      <PostComments comments={post.comments} />
     </motion.article>
   );
 };
