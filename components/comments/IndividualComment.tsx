@@ -2,12 +2,12 @@
 
 import { Comment, User } from "@prisma/client";
 import { FC, useState } from "react";
-import Avatar from "./Avatar";
+import Avatar from "../Avatar";
 import { dateFormat } from "@/lib/helpers/dateFormat";
 import { Reply, XCircle } from "lucide-react";
 import { SafeUser } from "@/types";
 import CommentForm from "./CommentForm";
-import { commentSchema } from "@/app/post/[slug]/PostComments";
+import { commentSchema } from "./PostComments";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -56,7 +56,13 @@ const IndividualComment: FC<IndividualCommentProps> = ({
               {dateFormat(comment.createdAt.toISOString())}
             </span>
           </div>
-          <p className="break-words text-zinc-800">{comment.content}</p>
+          <p className="break-words text-zinc-800">
+            {comment.deleted ? (
+              <span className="font-bold text-zinc-500">[deleted]</span>
+            ) : (
+              comment.content
+            )}
+          </p>
           <div className="space-x-2">
             <Reply
               onClick={() => {

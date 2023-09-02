@@ -1,6 +1,6 @@
 import { Comment, User } from "@prisma/client";
 import { FC } from "react";
-import Avatar from "./Avatar";
+import Avatar from "../Avatar";
 import { dateFormat } from "@/lib/helpers/dateFormat";
 
 interface ReplyCommentProps {
@@ -18,7 +18,13 @@ const ReplyComment: FC<ReplyCommentProps> = ({ reply }) => {
             {dateFormat(reply.createdAt.toISOString())}
           </span>
         </div>
-        <p className="break-words text-zinc-800">{reply.content}</p>
+        <p className="break-words text-zinc-800">
+          {reply.deleted ? (
+            <span className="font-bold text-zinc-500">[deleted]</span>
+          ) : (
+            reply.content
+          )}
+        </p>
       </div>
     </div>
   );

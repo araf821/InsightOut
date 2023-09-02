@@ -5,9 +5,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FC, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import Avatar from "./Avatar";
-import Button from "./Button";
 import { SafeUser } from "@/types";
+import Avatar from "../Avatar";
+import Button from "../Button";
 
 interface CommentFormProps {
   currentUser: SafeUser;
@@ -20,9 +20,13 @@ const commentSchema = z.object({
     .min(3, { message: "Comment must be between 3 to 252 characters long." })
     .max(252, { message: "Comment must be between 3 to 252 characters long." })
     .refine((value) => validInputPattern.test(value), {
-      message: "Title can only contain letters, digits, and spaces.",
+      message: "Comment can only contain letters, digits, and spaces.",
+    })
+    .refine((value) => !/^\s+$/.test(value), {
+      message: "Comment cannot consist of only spaces.",
     }),
 });
+
 
 const CommentForm: FC<CommentFormProps> = ({ currentUser, onSubmit }) => {
   const [open, setOpen] = useState(false);
@@ -36,7 +40,7 @@ const CommentForm: FC<CommentFormProps> = ({ currentUser, onSubmit }) => {
   useEffect(() => {
     form.reset();
     setOpen(false);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [onSubmit]);
 
   const isLoading = form.formState.isSubmitting;

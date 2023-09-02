@@ -1,4 +1,3 @@
-import getPostBySlug from "@/app/actions/getPostBySlug";
 import getPostsByTag from "@/app/actions/getPostsByTag";
 import SimilarPosts from "./SimilarPosts";
 import Post from "./Post";
@@ -8,8 +7,7 @@ import getCurrentUser from "@/app/actions/users/getCurrentUser";
 import EmptyState from "@/components/EmptyState";
 import Container from "@/components/Container";
 import prismaClient from "@/lib/prismadb";
-import { redirect } from "next/navigation";
-import PostComments from "./PostComments";
+import PostComments from "../../../components/comments/PostComments";
 
 const PostPage = async ({ params }: { params: { slug: string } }) => {
   const { slug } = params;

@@ -19,7 +19,7 @@ export async function POST(
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    if (comment.length < 3 || comment.length > 252) {
+    if (comment.trim().length < 3 || comment.length > 252) {
       return new NextResponse("Invalid Comment", { status: 400 });
     }
 

@@ -3,12 +3,12 @@
 import { SafeUser } from "@/types";
 import { Comment, User } from "@prisma/client";
 import { z } from "zod";
-import { validInputPattern } from "../write/PostForm";
+import { validInputPattern } from "../../app/post/write/PostForm";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import IndividualComment from "@/components/IndividualComment";
-import CommentForm from "@/components/CommentForm";
+import IndividualComment from "@/components/comments/IndividualComment";
+import CommentForm from "@/components/comments/CommentForm";
 
 interface PostCommentsProps {
   currentUser: SafeUser | null;
