@@ -42,6 +42,7 @@ const IndividualReply: FC<IndividualReplyProps> = ({ reply, currentUser }) => {
   return (
     <div key={reply.id} className="flex gap-x-2.5 pt-4">
       <div className="relative">
+        <div className="absolute top-4 sm:top-6 -left-5 md:-left-6 w-3 sm:w-4 border-neutral-300 border-b-2"/>
         <Avatar src={reply.author.image} classNames="w-10 md:w-12" />
       </div>
       <div className="flex w-full flex-col gap-1.5">
@@ -61,7 +62,7 @@ const IndividualReply: FC<IndividualReplyProps> = ({ reply, currentUser }) => {
 
         {currentUser?.id === reply.authorId && !reply.deleted && (
           <button
-            aria-label="comment delete button"
+            aria-label="reply delete button"
             disabled={isLoading}
             onClick={onDelete}
             className="w-fit cursor-pointer text-zinc-500 transition duration-200 hover:text-rose-600 disabled:opacity-60"
