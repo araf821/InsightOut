@@ -61,7 +61,7 @@ model Comment {
   post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId    String   @db.ObjectId
   likes     Like[]
-  deleted   Boolean? @default(false)
+  deleted   Boolean @default(false)
 
   replyToId String?   @db.ObjectId
   replyTo   Comment?  @relation("ReplyTo", fields: [replyToId], references: [id], onDelete: NoAction, onUpdate: NoAction)
