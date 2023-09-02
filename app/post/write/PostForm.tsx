@@ -27,7 +27,7 @@ interface PostFormProps {
 
 export const validTitlePattern = /^[A-Za-z0-9\s]*$/; // only letters, numbers, spaces
 
-export const validInputPattern = /^[A-Za-z0-9\s"'\\\-:/$@#*():!.\/_<>{}\[\]]*$/;
+export const validInputPattern = /^[A-Za-z0-9\s"'\\\-:/$@#*():!.'",\/_<>{}\[\]]*$/;
 
 export const postSchema = z.object({
   title: z
