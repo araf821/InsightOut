@@ -25,14 +25,16 @@ interface PostFormProps {
   post?: SafePost | null;
 }
 
-export const validInputPattern = /^[A-Za-z0-9\s"'\-:/$@#*():!.-/_<>{}]*$/; // Only allow letters, numbers and spaces
+export const validTitlePattern = /^[A-Za-z0-9\s]*$/; // only letters, numbers, spaces
+
+export const validInputPattern = /^[A-Za-z0-9\s"'\\\-:/$@#*():!.\/_<>{}\[\]]*$/;
 
 export const postSchema = z.object({
   title: z
     .string()
     .min(6, { message: "Title must be at least 6 characters long." })
     .max(100, { message: "Title can be at most 100 characters long." })
-    .refine((value) => validInputPattern.test(value), {
+    .refine((value) => validTitlePattern.test(value), {
       message: "Title can only contain letters, digits, and spaces.",
     }),
   slug: z.string(),
