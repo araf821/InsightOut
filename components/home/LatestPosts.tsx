@@ -2,7 +2,6 @@
 
 import { FC } from "react";
 import Container from "../Container";
-import { SafePost } from "@/types";
 import PostCard from "../post/PostCard";
 import Heading from "../Heading";
 import { motion } from "framer-motion";
@@ -11,7 +10,7 @@ import Button from "../Button";
 import { Post, User } from "@prisma/client";
 
 interface LatestPostsProps {
-  posts: (Post & { author: User })[];
+  posts: (Post & { author: User })[] | null;
 }
 
 const LatestPosts: FC<LatestPostsProps> = ({ posts }) => {

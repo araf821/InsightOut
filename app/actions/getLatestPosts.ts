@@ -15,18 +15,7 @@ const getLatestPosts = async (count: number) => {
       },
     });
 
-    const safePosts = posts.map((post) => ({
-      ...post,
-      author: {
-        id: post.author.id,
-        name: post.author.name,
-        image: post.author.image,
-      },
-      createdAt: post.createdAt.toISOString(),
-      updatedAt: post.updatedAt.toISOString(),
-    }));
-
-    return safePosts;
+    return posts;
   } catch (error: any) {
     return null;
   }

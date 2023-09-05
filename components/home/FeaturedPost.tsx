@@ -1,12 +1,13 @@
 "use client";
 
 import { SafePost } from "@/types";
+import { Post, User } from "@prisma/client";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 interface FeaturedPostProps {
-  post: SafePost | null;
+  post: (Post & { author: User }) | null;
 }
 
 const FeaturedPost: React.FC<FeaturedPostProps> = ({ post }) => {
