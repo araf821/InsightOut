@@ -4,9 +4,10 @@ import { SafePost } from "@/types";
 import Heading from "@/components/Heading";
 import PostCard from "@/components/post/PostCard";
 import { FC } from "react";
+import { Post, User } from "@prisma/client";
 
 interface SimilarPostsProps {
-  posts: SafePost[] | null;
+  posts: (Post & { author: User })[];
 }
 
 const SimilarPosts: FC<SimilarPostsProps> = ({ posts }) => {

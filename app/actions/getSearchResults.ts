@@ -5,9 +5,7 @@ export interface IPostParams {
   tag?: string;
 }
 
-export default async function getSearchResults(
-  params: IPostParams,
-) {
+export default async function getSearchResults(params: IPostParams) {
   try {
     const { keyword, tag } = params;
 
@@ -58,18 +56,7 @@ export default async function getSearchResults(
       },
     });
 
-    const safePosts = posts.map((post) => ({
-      ...post,
-      createdAt: post.createdAt.toISOString(),
-      updatedAt: post.updatedAt.toISOString(),
-      author: {
-        id: post.author.id,
-        name: post.author.name,
-        image: post.author.image,
-      },
-    }));
-
-    return safePosts;
+    return posts;
   } catch (e: any) {
     return null;
   }

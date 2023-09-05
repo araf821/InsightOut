@@ -59,7 +59,7 @@ const PostPage = async ({ params }: { params: { slug: string } }) => {
           comments={post.comments}
         />
 
-        <SimilarPosts posts={suggestedPosts} />
+        <SimilarPosts posts={suggestedPosts ?? []} />
         {postsFromAuthor?.length ? (
           <MoreFromAuthor
             posts={postsFromAuthor}

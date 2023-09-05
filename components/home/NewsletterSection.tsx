@@ -20,10 +20,10 @@ const NewsletterSection: FC<NewsletterSectionProps> = ({}) => {
           duration: 0.75,
         },
       }}
-      className="relative"
+      className="pointer-events-none relative"
     >
       <section className="relative -translate-y-24 bg-gradient-to-b from-accent via-[#000000] to-primary pb-16 pt-36 text-bg shadow-[0_0_30px] shadow-zinc-700 lg:bg-gradient-to-r">
-        <div className="mx-auto max-w-[1550px] px-4 sm:px-6 md:px-10 xl:px-20">
+        <div className="pointer-events-auto mx-auto max-w-[1550px] px-4 sm:px-6 md:px-10 xl:px-20">
           <div className="grid grid-cols-1 items-center gap-8 text-center lg:grid-cols-2 lg:gap-12 lg:text-start">
             <p className="balance flex flex-col font-josefin text-5xl font-bold leading-tight tracking-tight sm:text-6xl md:gap-2 md:text-7xl lg:gap-3 lg:text-left lg:text-7xl xl:text-[80px]">
               Step Into An Insightful Wonderland

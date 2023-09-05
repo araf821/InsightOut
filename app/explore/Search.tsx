@@ -11,15 +11,15 @@ import { GrClear } from "react-icons/gr";
 import Button from "@/components/Button";
 import SearchResults from "./SearchResults";
 import { options } from "@/constants/constants";
+import { Post, User } from "@prisma/client";
 
 interface SearchBarProps {
-  posts: SafePost[] | null;
+  posts: (Post & { author: User })[];
 }
 
 const Search: FC<SearchBarProps> = ({ posts }) => {
   const params = useSearchParams();
 
-  const [results, setResults] = useState<SafePost[] | null>(posts);
   const [isFiltersOpen, setIsFiltersOpen] = useState<boolean>(false);
   const [keyword, setKeyword] = useState<string>(params?.get("keyword") || "");
   const [selectedTag, setSelectedTag] = useState<string>(

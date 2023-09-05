@@ -32,7 +32,7 @@ const page = async ({ searchParams }: ExploreProps) => {
   return (
     <Container>
       <main className="space-y-4 py-8">
-        <Search posts={searchResults} />
+        <Search posts={searchResults ?? []} />
         <TrendingPosts posts={trendingPosts.slice(0, 6)} />
         <TopAuthors authors={topAuthors} />
         <hr />

@@ -101,7 +101,7 @@ const PostCard: FC<PostCardProps> = ({
       {/* Post Info */}
       <div
         className={`h-fit w-full space-y-0.5 py-2 capitalize ${
-          horizontal && "md:h-fit md:space-y-3 md:p-0 md:pl-2 md:text-start"
+          horizontal && "md:h-fit md:p-0 md:pl-2"
         }`}
       >
         {!horizontal && !main && (
@@ -118,9 +118,7 @@ const PostCard: FC<PostCardProps> = ({
             {post.title}
           </span>
         </p>
-        <p className={`font-light text-zinc-700 ${horizontal && "xl:text-xl"}`}>
-          {post.author.name}
-        </p>
+        <p className={`font-light text-zinc-700`}>{post.author.name}</p>
       </div>
     </motion.div>
   );

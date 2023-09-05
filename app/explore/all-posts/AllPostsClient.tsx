@@ -8,6 +8,7 @@ import PostCard from "@/components/post/PostCard";
 import { FC, useEffect, useState } from "react";
 import SingleSelect from "../../../components/SingleSelect";
 import { useRouter } from "next/navigation";
+import { Post, User } from "@prisma/client";
 
 const options = [
   "Latest Posts",
@@ -19,16 +20,14 @@ const options = [
 ];
 
 interface AllPostsClientProps {
-  posts: SafePost[] | null;
+  posts: (Post & { author: User })[] | null;
 }
 
 const AllPostsClient: FC<AllPostsClientProps> = ({ posts }) => {
   const router = useRouter();
 
   const [displayed, setDisplayed] = useState(6);
-  const [allPosts, setAllPosts] = useState<SafePost[] | null | undefined>(
-    posts
-  );
+  const [allPosts, setAllPosts] = useState(posts);
 
   const [selectedOption, setSelected] = useState<string>(options[0]);
 
@@ -63,19 +62,19 @@ const AllPostsClient: FC<AllPostsClientProps> = ({ posts }) => {
       return;
     }
 
-    let newPosts: SafePost[] = [...allPosts];
+    let newPosts = [...allPosts];
 
     if (selectedOption === "Latest Posts") {
       newPosts = allPosts?.sort(
         (current, next) =>
-        new Date(next.createdAt).getTime() -
-        new Date(current.createdAt).getTime()
+          new Date(next.createdAt).getTime() -
+          new Date(current.createdAt).getTime()
       );
     } else if (selectedOption === "Oldest Posts") {
       newPosts = allPosts?.sort(
         (current, next) =>
-        new Date(current.createdAt).getTime() -
-        new Date(next.createdAt).getTime()
+          new Date(current.createdAt).getTime() -
+          new Date(next.createdAt).getTime()
       );
     } else if (selectedOption === "Most Popular") {
       newPosts = allPosts.sort((a, b) => b.views - a.views);

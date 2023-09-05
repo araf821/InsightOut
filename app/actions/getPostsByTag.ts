@@ -21,18 +21,7 @@ const getPostsByTag = async (tag: string, count: number, postId?: string) => {
       take: count,
     });
 
-    const safePosts = posts.map((post) => ({
-      ...post,
-      createdAt: post.createdAt.toISOString(),
-      updatedAt: post.updatedAt.toISOString(),
-      author: {
-        id: post.author.id,
-        name: post.author.name,
-        image: post.author.image,
-      },
-    }));
-
-    return safePosts;
+    return posts;
   } catch (error: any) {
     return null;
   }

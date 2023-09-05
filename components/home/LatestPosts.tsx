@@ -8,9 +8,10 @@ import Heading from "../Heading";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import Button from "../Button";
+import { Post, User } from "@prisma/client";
 
 interface LatestPostsProps {
-  posts: SafePost[] | null;
+  posts: (Post & { author: User })[];
 }
 
 const LatestPosts: FC<LatestPostsProps> = ({ posts }) => {

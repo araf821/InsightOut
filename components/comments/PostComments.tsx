@@ -56,8 +56,8 @@ const PostComments = ({ currentUser, postId, comments }: PostCommentsProps) => {
       ) : null}
 
       {/* Displaying Comments */}
-      {!comments.length ? (
-        <div className="mx-auto py-8 text-zinc-700 md:text-lg">
+      {comments.length < 1 ? (
+        <div className="mx-auto py-10 text-zinc-700 md:text-lg">
           Be the first to add a comment!
         </div>
       ) : (

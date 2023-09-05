@@ -15,7 +15,7 @@ const getPostsByAuthor = async (
         },
       },
       orderBy: {
-        createdAt: "desc"
+        createdAt: "desc",
       },
       include: {
         author: true,
@@ -23,18 +23,7 @@ const getPostsByAuthor = async (
       take: count,
     });
 
-    const safePosts = posts.map((post) => ({
-      ...post,
-      createdAt: post.createdAt.toISOString(),
-      updatedAt: post.updatedAt.toISOString(),
-      author: {
-        id: post.author.id,
-        name: post.author.name,
-        image: post.author.image,
-      },
-    }));
-
-    return safePosts;
+    return posts;
   } catch (error: any) {
     return null;
   }
