@@ -1,15 +1,15 @@
 "use client";
 
-import { SafePost } from "@/types";
 import { motion } from "framer-motion";
 import { FC, useState } from "react";
 import { HiOutlineMenu } from "react-icons/hi";
 import { IoCloseOutline } from "react-icons/io5";
 import MoreOptionsButton from "./MoreOptionsButton";
 import { HashLoader } from "react-spinners";
+import { Post } from "@prisma/client";
 
 interface MoreOptionsMenuProps {
-  post: SafePost;
+  post: Post;
   onDelete: () => void;
   onMove: () => void;
   onUpdate: () => void;

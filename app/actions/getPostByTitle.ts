@@ -13,22 +13,7 @@ const getPostByTitle = async (title: string) => {
       },
     });
 
-    if (post) {
-      const safePost = {
-        ...post,
-        author: {
-          id: post.author.id,
-          name: post.author.name,
-          image: post.author.image,
-        },
-        createdAt: post.createdAt.toISOString(),
-        updatedAt: post.updatedAt.toISOString(),
-      };
-
-      return safePost;
-    } else {
-      return null;
-    }
+    return post;
   } catch (error: any) {
     return null;
   }

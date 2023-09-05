@@ -4,7 +4,7 @@ import { SafePost } from "@/types";
 import CardsContainer from "@/components/CardsContainer";
 import EmptyState from "@/components/EmptyState";
 import Heading from "@/components/Heading";
-import PostCard from "@/components/PostCard";
+import PostCard from "@/components/post/PostCard";
 import { FC, useEffect, useState } from "react";
 import SingleSelect from "../../../components/SingleSelect";
 import { useRouter } from "next/navigation";

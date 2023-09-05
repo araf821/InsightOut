@@ -3,7 +3,7 @@
 import { FC } from "react";
 import Container from "../Container";
 import { SafePost } from "@/types";
-import PostCard from "../PostCard";
+import PostCard from "../post/PostCard";
 import Heading from "../Heading";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";

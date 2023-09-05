@@ -10,7 +10,7 @@ interface SearchResultsProps {
   displayed: number;
 }
 
-const DynamicPostCard = dynamic(() => import("@/components/PostCard"), {
+const DynamicPostCard = dynamic(() => import("@/components/post/PostCard"), {
   loading: () => (
     <div className="h-full w-full animate-pulse bg-neutral-400"></div>
   ),

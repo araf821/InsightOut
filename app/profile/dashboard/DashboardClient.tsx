@@ -10,9 +10,10 @@ import { FC } from "react";
 import { FaUserEdit } from "react-icons/fa";
 import Connections from "./Connections";
 import UserPosts from "./UserPosts";
+import { Post, User } from "@prisma/client";
 
 interface DashboardClientProps {
-  postsFromUser: SafePost[];
+  postsFromUser: (Post & { author: User })[] | null;
   userName: string | null;
   userCreated: string;
   userImage: string | null;
@@ -26,8 +27,8 @@ const DashboardClient: FC<DashboardClientProps> = ({
 }) => {
   const router = useRouter();
 
-  const published = postsFromUser.filter((post) => post.published);
-  const drafts = postsFromUser.filter((post) => !post.published);
+  const published = postsFromUser?.filter((post) => post.published) ?? null;
+  const drafts = postsFromUser?.filter((post) => !post.published) ?? null;
 
   return (
     <section className="py-8">
@@ -89,7 +90,7 @@ const DashboardClient: FC<DashboardClientProps> = ({
             </p>
             <p className="text-xl font-light">
               Posts published:{" "}
-              {postsFromUser.filter((post) => post.published).length}
+              {postsFromUser?.filter((post) => post.published).length}
             </p>
           </div>
         </motion.div>

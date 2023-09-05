@@ -1,5 +1,4 @@
 import getPostsByUser from "@/app/actions/getPostsByUser";
-import { SafePost } from "@/types";
 import DashboardClient from "./DashboardClient";
 import getCurrentUser from "@/app/actions/users/getCurrentUser";
 import Container from "@/components/Container";
@@ -11,7 +10,7 @@ const Dashboard = async ({}) => {
   }
 
   //@ts-ignore
-  const postsFromUser: SafePost[] = await getPostsByUser(currentUser.id);
+  const postsFromUser = await getPostsByUser(currentUser.id);
 
   return (
     <Container>

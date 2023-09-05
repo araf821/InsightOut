@@ -5,15 +5,17 @@ import { FC, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import MoreOptionsMenu from "./MoreOptionsMenu";
+import MoreOptionsMenu from "../MoreOptionsMenu";
 import { motion } from "framer-motion";
 import { SafePost } from "@/types";
 import { postCardVariants } from "@/lib/anim";
+import { Post, User } from "@prisma/client";
+import { dateFormat } from "@/lib/helpers/dateFormat";
 
 interface PostCardProps {
   main?: boolean;
   horizontal?: boolean;
-  post?: SafePost;
+  post?: Post & { author: User };
   dashboard?: boolean;
   index?: number;
 }
@@ -74,14 +76,14 @@ const PostCard: FC<PostCardProps> = ({
       }`}
     >
       <div
-        className={`relative aspect-[5/4] w-full overflow-hidden rounded-lg shadow-sm`}
+        className={`relative aspect-[3/2] w-full overflow-hidden rounded-sm shadow-sm`}
       >
         <Image
           src={post.image}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           alt="post image"
-          className={`absolute rounded-lg object-cover`}
+          className={`absolute rounded-sm object-cover`}
         />
         {dashboard && (
           <MoreOptionsMenu
@@ -98,26 +100,27 @@ const PostCard: FC<PostCardProps> = ({
 
       {/* Post Info */}
       <div
-        className={`h-fit w-full p-2 text-center capitalize ${
+        className={`h-fit w-full space-y-0.5 py-2 capitalize ${
           horizontal && "md:h-fit md:space-y-3 md:p-0 md:pl-2 md:text-start"
         }`}
       >
+        {!horizontal && !main && (
+          <span className="text-sm text-zinc-600">
+            {dateFormat(post.createdAt.toISOString())}
+          </span>
+        )}
         <p
-          className={`font-josefin text-2xl font-bold ${
-            horizontal && "md:text-xl lg:text-[26px] xl:text-3xl"
-          }
-          ${main && "lg:text-[26px] xl:text-3xl"}`}
+          className={`font-josefin text-xl font-bold md:text-2xl
+          ${(main || horizontal) && "md:text-xl xl:text-2xl"}`}
           onClick={() => router.push(`/post/${post.slug}`)}
         >
           <span className="cursor-pointer underline-offset-4 hover:underline">
             {post.title}
           </span>
         </p>
-        {post ? (
-          <p className={`text-lg font-light ${horizontal && "xl:text-xl"}`}>
-            {post.author.name}
-          </p>
-        ) : null}
+        <p className={`font-light text-zinc-700 ${horizontal && "xl:text-xl"}`}>
+          {post.author.name}
+        </p>
       </div>
     </motion.div>
   );

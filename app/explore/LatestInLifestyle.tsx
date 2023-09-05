@@ -1,15 +1,16 @@
-'use client'
+"use client";
 
 import { FC } from "react";
 import { SafePost } from "../../types";
 import Heading from "@/components/Heading";
 import CardsContainer from "@/components/CardsContainer";
-import PostCard from "@/components/PostCard";
+import PostCard from "@/components/post/PostCard";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
+import { Post, User } from "@prisma/client";
 
 interface LatestInLifestyleProps {
-  posts: SafePost[] | null;
+  posts: (Post & { author: User })[] | null;
 }
 
 const LatestInLifestyle: FC<LatestInLifestyleProps> = ({ posts }) => {
@@ -25,7 +26,12 @@ const LatestInLifestyle: FC<LatestInLifestyleProps> = ({ posts }) => {
         ))}
       </CardsContainer>
       <hr className="pb-6" />
-      <Button onClick={() => router.push("/explore/all-posts")} label="View All Posts" small className="mx-auto max-w-[400px]" />
+      <Button
+        onClick={() => router.push("/explore/all-posts")}
+        label="View All Posts"
+        small
+        className="mx-auto max-w-[400px]"
+      />
     </section>
   );
 };

@@ -3,7 +3,7 @@ import PostForm from "./PostForm";
 import getCurrentUser from "@/app/actions/users/getCurrentUser";
 import Container from "@/components/Container";
 import Heading from "@/components/Heading";
-import PostCard from "@/components/PostCard";
+import PostCard from "@/components/post/PostCard";
 import CardsContainer from "@/components/CardsContainer";
 import getTrendingPosts from "@/app/actions/getTrendingPosts";
 import EmptyState from "@/components/EmptyState";

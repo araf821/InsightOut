@@ -1,11 +1,11 @@
 import { FC } from "react";
-import { SafePost } from "../../types";
 import Heading from "@/components/Heading";
 import CardsContainer from "@/components/CardsContainer";
-import PostCard from "@/components/PostCard";
+import PostCard from "@/components/post/PostCard";
+import { Post, User } from "@prisma/client";
 
 interface LatestInTechnologyProps {
-  posts: SafePost[] | null;
+  posts: (Post & { author: User })[] | null;
 }
 
 const LatestInTechnology: FC<LatestInTechnologyProps> = ({ posts }) => {

@@ -1,14 +1,14 @@
 'use client'
 
 import { FC } from "react";
-import { SafePost } from "../../types";
 import { motion } from "framer-motion";
 import CardsContainer from "@/components/CardsContainer";
 import Heading from "@/components/Heading";
-import PostCard from "@/components/PostCard";
+import PostCard from "@/components/post/PostCard";
+import { Post, User } from "@prisma/client";
 
 interface TrendingPostsProps {
-  posts: SafePost[] | null;
+  posts: (Post & {author: User})[] | null;
 }
 
 const TrendingPosts: FC<TrendingPostsProps> = ({ posts }) => {

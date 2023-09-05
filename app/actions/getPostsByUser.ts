@@ -16,20 +16,9 @@ const getPostsByUser = async (userId: string, count: number) => {
       take: count,
     });
 
-    const safePosts = posts.map((post) => ({
-      ...post,
-      createdAt: post.createdAt.toISOString(),
-      updatedAt: post.updatedAt.toISOString(),
-      author: {
-        id: post.author.id,
-        name: post.author.name,
-        image: post.author.image,
-      },
-    }));
-
-    return safePosts;
+    return posts;
   } catch (error: any) {
-    return new NextResponse(error);
+    return null;
   }
 };
 
