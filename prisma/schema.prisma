@@ -40,6 +40,8 @@ model Connection {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@unique([followingId, followerId])
 }
 
 model Post {

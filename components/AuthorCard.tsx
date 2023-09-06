@@ -1,11 +1,15 @@
 "use client";
 
-import { FC, useCallback } from "react";
+import { FC } from "react";
 import Image from "next/image";
 import { FaUserPlus } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { toast } from "react-hot-toast";
 import { UserWithPosts } from "@/types";
+import { useMutation } from "@tanstack/react-query";
+import qs from "query-string";
+import axios from "axios";
+import { Loader2 } from "lucide-react";
 
 interface AuthorCardProps {
   author: UserWithPosts;
@@ -17,9 +21,29 @@ const AuthorCard: FC<AuthorCardProps> = ({ author, index = 0 }) => {
     if (post.published) return post;
   });
 
-  const handleFollow = useCallback(() => {
-    toast.error("Feature coming soon!");
-  }, []);
+  const { mutate: handleFollow, isLoading } = useMutation({
+    mutationFn: async () => {
+      const url = qs.stringifyUrl({
+        url: "/api/following",
+        query: {
+          toFollowId: author.id,
+        },
+      });
+
+      await axios.post(url);
+    },
+    onError: (error: Error) => {
+      if (error.message === "Request failed with status code 400") {
+        return toast.error("Can't follow yourself!");
+      }
+
+      if (error.message === "Request failed with status code 401") {
+        return toast.error("Unauthorized.");
+      }
+
+      return toast.error("Something went wrong.");
+    },
+  });
 
   return (
     <motion.div
@@ -43,11 +67,15 @@ const AuthorCard: FC<AuthorCardProps> = ({ author, index = 0 }) => {
       className="aspect-[5/6] w-full"
     >
       <div className="relative aspect-square overflow-hidden">
-        <FaUserPlus
-          onClick={handleFollow}
-          title="Follow User"
-          className="absolute right-2 top-2 z-10 cursor-pointer rounded-md bg-black/10 p-1 text-2xl text-white transition duration-200 hover:scale-125 hover:animate-pulse"
-        />
+        {isLoading ? (
+          <Loader2 className="absolute right-2 top-2 z-10 animate-spin bg-black/10 p-1 text-2xl text-white" />
+        ) : (
+          <FaUserPlus
+            onClick={() => handleFollow()}
+            title="Follow User"
+            className="absolute right-2 top-2 z-10 cursor-pointer rounded-md bg-black/10 p-1 text-2xl text-white transition duration-200 hover:scale-125 hover:animate-pulse"
+          />
+        )}
         <Image
           src={author.image || "/images/placeholder.jpg"}
           alt="author's profile photo"
