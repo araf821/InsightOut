@@ -15,10 +15,14 @@ export async function POST(request: NextRequest) {
     const { success } = await templateRateLimiter.limit(ip);
 
     if (!success) {
-      return NextResponse.json(
-        {
-          message: "You can only generate a template once every 60 seconds.",
-        },
+      // return NextResponse.json(
+      //   {
+      //     message: "You can only generate a template once every 60 seconds.",
+      //   },
+      //   { status: 429 }
+      // );
+      return new NextResponse(
+        "You can only generate a template once every 60 seconds.",
         { status: 429 }
       );
     }
@@ -32,21 +36,7 @@ export async function POST(request: NextRequest) {
         messages: [
           {
             role: "user",
-            content: `Create a blog post template based on this title in markdown format: ${title}.
-
-            Generate in this format:
-            
-            "*introduction para*
-
-            *para 1*
-
-            *para 2*
-            
-            *para 3*
-
-            *conclusion para*"
-            
-            Each paragraph should just have one starting sentence, that's it. Please keep it short. Make it so that the blog post is incomplete, but a good starting point for anyone who isn't sure where to start with their idea. Markdown is supported!
+            content: `Create a blog post starter template based on this title: "${title}". Each paragraph should only consist of one short sentence and the post template should only be of 5 paragraphs at most, that's it. Please keep it short. Make it so that the blog post is incomplete, but a good starting point for anyone who isn't sure where to start with their idea. Markdown is supported!
             `,
           },
           {
@@ -64,9 +54,6 @@ export async function POST(request: NextRequest) {
     );
   } catch (error) {
     console.error("Error when generating content: ", error);
-    NextResponse.json(
-      { error: "Error while generating content." },
-      { status: 500 }
-    );
+    return new NextResponse("Internal Error", { status: 500 });
   }
 }

@@ -15,12 +15,12 @@ export const templateRateLimiter = new Ratelimit({
 
 export const viewCountLimiter = new Ratelimit({
   redis: Redis.fromEnv(),
-  limiter: Ratelimit.slidingWindow(1, "1800 s"),
+  limiter: Ratelimit.slidingWindow(1, "60 m"),
   prefix: "@upstash/ratelimit",
 });
 
 export const postLimiter = new Ratelimit({
   redis: Redis.fromEnv(),
-  limiter: Ratelimit.slidingWindow(2, "3600 s"),
+  limiter: Ratelimit.slidingWindow(3, "60 m"),
   prefix: "@upstash/ratelimit",
 });

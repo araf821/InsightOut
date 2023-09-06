@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
 
   if (!success) {
     return new NextResponse(
-      "You're sending messages too fast. Bebibot is a fragile little catobot and can only comprehend 1 user input every 7 seconds."
+      "You're sending messages too fast. Bebibot is a fragile little cattobot and can only comprehend 1 user input every 7 seconds."
     );
   }
 
