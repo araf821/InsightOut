@@ -26,14 +26,6 @@ export default async function getSearchResults(params: IPostParams) {
                     },
                   }
                 : {},
-              keyword
-                ? {
-                    content: {
-                      contains: keyword,
-                      mode: "insensitive",
-                    },
-                  }
-                : {},
             ],
           },
           tag

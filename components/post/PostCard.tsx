@@ -83,7 +83,7 @@ const PostCard: FC<PostCardProps> = ({
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           alt="post image"
-          className={`absolute rounded-sm object-cover`}
+          className={`absolute border rounded-sm object-cover`}
         />
         {dashboard && (
           <MoreOptionsMenu
@@ -110,7 +110,7 @@ const PostCard: FC<PostCardProps> = ({
           </span>
         )}
         <p
-          className={`font-josefin text-xl font-bold md:text-2xl
+          className={`font-josefin text-xl font-bold lg:text-[1.35rem] xl:text-2xl
           ${(main || horizontal) && "md:text-xl xl:text-2xl"}`}
           onClick={() => router.push(`/post/${post.slug}`)}
         >

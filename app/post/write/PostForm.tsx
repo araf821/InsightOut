@@ -359,7 +359,7 @@ const PostForm: FC<PostFormProps> = ({ post }) => {
 
       <Disclaimer
         title="Disclaimer"
-        content="> You can publish/draft up to two posts per hour."
+        content="> You can publish/draft up to three posts per hour."
       />
       {/* Buttons */}
       {post ? (

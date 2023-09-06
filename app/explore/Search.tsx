@@ -198,7 +198,8 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
       {posts?.length ? (
         <SearchResults posts={posts} displayed={displayed} />
       ) : (
-        posts?.length === 0 && (
+        posts?.length === 0 &&
+        params?.get("keyword") && (
           <div className="my-4 grid h-32 w-full place-content-center rounded-lg text-center text-lg lg:text-2xl">
             No results match the search criteria.
             <button
@@ -228,12 +229,14 @@ const Search: FC<SearchBarProps> = ({ posts }) => {
               - End of results -
             </p>
           ) : null}
-          <Button
-            onClick={() => router.push("/explore/all-posts")}
-            label="View All Posts"
-            small
-            className="mx-auto max-w-[400px]"
-          />
+          {params?.get("keyword") && (
+            <Button
+              onClick={() => router.push("/explore/all-posts")}
+              label="View All Posts"
+              small
+              className="mx-auto max-w-[400px]"
+            />
+          )}
         </div>
       ) : null}
       <hr className="mt-4" />

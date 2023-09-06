@@ -5,6 +5,7 @@ import Heading from "@/components/Heading";
 import PostCard from "@/components/post/PostCard";
 import { FC } from "react";
 import { Post, User } from "@prisma/client";
+import CardsContainer from "@/components/CardsContainer";
 
 interface SimilarPostsProps {
   posts: (Post & { author: User })[];
@@ -18,11 +19,11 @@ const SimilarPosts: FC<SimilarPostsProps> = ({ posts }) => {
   return (
     <section className="">
       <Heading title="Similar Posts" small />
-      <div className="grid grid-cols-1 gap-4 py-6 md:grid-cols-2 lg:grid-cols-3">
+      <CardsContainer>
         {posts.map((post) => (
           <PostCard post={post} key={post.id} />
         ))}
-      </div>
+      </CardsContainer>
     </section>
   );
 };
