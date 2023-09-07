@@ -37,7 +37,7 @@ const MoreOptionsMenu: FC<MoreOptionsMenuProps> = ({
   return (
     <>
       <div
-        className={`absolute right-0 top-0 z-10 scale-105 rounded-bl-md p-1 text-3xl text-white transition duration-300 ${
+        className={`absolute right-[1px] top-[1px] z-10 scale-105 rounded-bl-md p-1 text-3xl text-white transition duration-300 ${
           !isOpen && "bg-zinc-900"
         }
         `}
@@ -61,7 +61,7 @@ const MoreOptionsMenu: FC<MoreOptionsMenuProps> = ({
         </motion.div>
       </div>
       <div
-        className={`absolute bottom-0 left-0 right-0 top-0 flex origin-top-right flex-col items-center justify-center bg-zinc-900/80 px-8 py-8 transition duration-300
+        className={`absolute bottom-0 left-0 right-[1px] top-[1px] flex origin-top-right flex-col items-center justify-center bg-zinc-900/80 px-8 py-8 transition duration-300
       ${
         isOpen
           ? "scale-x-100 scale-y-100"

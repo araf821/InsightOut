@@ -24,6 +24,22 @@ model User {
   accounts Account[]
   comments Comment[]
   likes    Like[]
+
+  followings Connection[] @relation("Followings")
+  followers  Connection[] @relation("Followers")
+}
+
+model Connection {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  following   User?   @relation("Followings", fields: [followingId], references: [id])
+  followingId String? @db.ObjectId
+
+  follower   User?   @relation("Followers", fields: [followerId], references: [id])
+  followerId String? @db.ObjectId
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Post {
@@ -61,7 +77,7 @@ model Comment {
   post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId    String   @db.ObjectId
   likes     Like[]
-  deleted   Boolean @default(false)
+  deleted   Boolean  @default(false)
 
   replyToId String?   @db.ObjectId
   replyTo   Comment?  @relation("ReplyTo", fields: [replyToId], references: [id], onDelete: NoAction, onUpdate: NoAction)
