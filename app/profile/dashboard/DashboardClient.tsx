@@ -5,6 +5,9 @@ import { Post, User } from "@prisma/client";
 import Button from "@/components/Button";
 import { BsPenFill } from "react-icons/bs";
 import { useRouter } from "next/navigation";
+import Heading from "@/components/Heading";
+import CardsContainer from "@/components/CardsContainer";
+import PostCard from "@/components/post/PostCard";
 
 interface DashboardClientProps {
   postsFromUser: (Post & { author: User })[] | null;
@@ -34,7 +37,31 @@ const DashboardClient: FC<DashboardClientProps> = ({ postsFromUser }) => {
     );
   }
 
-  return <>{}</>;
+  return (
+    <>
+      {!!published?.length && (
+        <section className="space-y-6 py-4">
+          <Heading title="Published Posts" small />
+          <CardsContainer>
+            {published.map((post) => (
+              <PostCard dashboard post={post} key={post.id} />
+            ))}
+          </CardsContainer>
+        </section>
+      )}
+      {drafts?.length && published?.length ? <hr /> : null}
+      {!!drafts?.length && (
+        <section className="space-y-6 py-4">
+          <Heading title="Drafts" small />
+          <CardsContainer>
+            {drafts.map((post) => (
+              <PostCard dashboard post={post} key={post.id} />
+            ))}
+          </CardsContainer>
+        </section>
+      )}
+    </>
+  );
 };
 
 export default DashboardClient;

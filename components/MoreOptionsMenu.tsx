@@ -2,11 +2,10 @@
 
 import { motion } from "framer-motion";
 import { FC, useState } from "react";
-import { HiOutlineMenu } from "react-icons/hi";
-import { IoCloseOutline } from "react-icons/io5";
 import MoreOptionsButton from "./MoreOptionsButton";
 import { HashLoader } from "react-spinners";
 import { Post } from "@prisma/client";
+import { Edit, X } from "lucide-react";
 
 interface MoreOptionsMenuProps {
   post: Post;
@@ -37,35 +36,35 @@ const MoreOptionsMenu: FC<MoreOptionsMenuProps> = ({
   return (
     <>
       <div
-        className={`absolute right-[1px] top-[1px] z-10 scale-105 rounded-bl-md p-1 text-3xl text-white transition duration-300 ${
-          !isOpen && "bg-zinc-900"
+        className={`absolute right-[2px] top-[2px] z-10 scale-105 rounded-bl-lg p-1 text-3xl text-white transition duration-300 ${
+          !isOpen && "bg-zinc-900/60"
         }
         `}
       >
         <motion.div
           whileHover={{ scale: 1.2 }}
-          className="relative h-7 w-7 cursor-pointer"
+          className="relative h-6 w-6 cursor-pointer"
         >
-          <IoCloseOutline
+          <X
             onClick={() => setIsOpen(false)}
-            className={`absolute right-0 top-0 origin-right transition duration-300 ${
+            className={`absolute right-0 top-0 h-5 w-5 origin-right transition duration-300 ${
               isOpen ? "scale-x-100 scale-y-100" : "scale-x-0 scale-y-0"
             }`}
           />
-          <HiOutlineMenu
+          <Edit
             onClick={() => setIsOpen(true)}
-            className={`absolute right-0 top-0 origin-right transition duration-300 ${
+            className={`absolute right-0 top-0 h-5 w-5 origin-right transition duration-300 ${
               !isOpen ? "scale-x-100 scale-y-100" : "scale-x-0 scale-y-0"
             }`}
           />
         </motion.div>
       </div>
       <div
-        className={`absolute bottom-0 left-0 right-[1px] top-[1px] flex origin-top-right flex-col items-center justify-center bg-zinc-900/80 px-8 py-8 transition duration-300
+        className={`absolute bottom-0 left-0 right-[1px] top-[1px] flex origin-top-right flex-col items-center justify-center bg-zinc-900/60 px-8 py-8 transition duration-300
       ${
         isOpen
           ? "scale-x-100 scale-y-100"
-          : "scale-x-[0.05] scale-y-[0.1] rounded-bl-2xl"
+          : "scale-0 rounded-bl-2xl"
       }
         `}
       >
@@ -79,7 +78,7 @@ const MoreOptionsMenu: FC<MoreOptionsMenuProps> = ({
           >
             {confirmationModal ? (
               <>
-                <p className="md:text-xl">
+                <p className="md:text-xl font-josefin font-semibold">
                   Are you sure you want to delete this post?
                 </p>
                 <div className="space-y-2">
@@ -96,7 +95,7 @@ const MoreOptionsMenu: FC<MoreOptionsMenuProps> = ({
               </>
             ) : (
               <>
-                <p className="font-merri md:text-xl">Post Options</p>
+                <p className="font-josefin font-semibold md:text-xl">Post Options</p>
                 <div className="space-y-2">
                   <MoreOptionsButton
                     destructive

@@ -8,7 +8,6 @@ interface HeadingProps {
   small?: boolean;
   bold?: boolean;
   post?: boolean;
-  white?: boolean;
 }
 
 const Heading: React.FC<HeadingProps> = ({
@@ -17,7 +16,6 @@ const Heading: React.FC<HeadingProps> = ({
   small,
   bold,
   post,
-  white,
 }) => {
   return (
     <div>
@@ -28,7 +26,7 @@ const Heading: React.FC<HeadingProps> = ({
             : "text-4xl sm:text-5xl lg:text-6xl"
         } balance overflow font-josefin ${
           bold ? "font-bold" : "font-semibold"
-        } ${white ? "text-white" : ""}`}
+        }`}
       >
         {post ? (
           <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl ">

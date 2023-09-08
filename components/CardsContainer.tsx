@@ -11,7 +11,7 @@ const CardsContainer: React.FC<CardsContainerProps> = ({
 }) => {
   return (
     <div
-      className={`my-4 grid w-full grid-cols-1 gap-6 md:gap-10 xl:gap-14 md:grid-cols-2 lg:grid-cols-3 ${className}`}
+      className={`my-4 grid w-full grid-cols-1 gap-6 md:gap-x-10 xl:gap-x-14 md:grid-cols-2 lg:grid-cols-3 ${className}`}
     >
       {children}
     </div>
