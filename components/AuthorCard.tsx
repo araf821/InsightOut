@@ -5,14 +5,14 @@ import Image from "next/image";
 import { FaUserPlus } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { toast } from "react-hot-toast";
-import { UserWithPosts } from "@/types";
 import { useMutation } from "@tanstack/react-query";
 import qs from "query-string";
 import axios from "axios";
 import { Loader2 } from "lucide-react";
+import { Post, User } from "@prisma/client";
 
 interface AuthorCardProps {
-  author: UserWithPosts;
+  author: User & { posts: Post[] };
   index?: number;
 }
 
