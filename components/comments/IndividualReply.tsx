@@ -5,14 +5,13 @@ import { FC, useState } from "react";
 import Avatar from "../Avatar";
 import { dateFormat } from "@/lib/helpers/dateFormat";
 import { Trash } from "lucide-react";
-import { SafeUser } from "@/types";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
 interface IndividualReplyProps {
   reply: Comment & { author: User };
-  currentUser: SafeUser | null;
+  currentUser: User | null;
 }
 
 const IndividualReply: FC<IndividualReplyProps> = ({ reply, currentUser }) => {
@@ -42,7 +41,7 @@ const IndividualReply: FC<IndividualReplyProps> = ({ reply, currentUser }) => {
   return (
     <div key={reply.id} className="flex gap-x-2.5 pt-4">
       <div className="relative">
-        <div className="absolute top-4 sm:top-6 -left-5 md:-left-6 w-3 sm:w-4 border-neutral-300 border-b-2"/>
+        <div className="absolute -left-5 top-4 w-3 border-b-2 border-neutral-300 sm:top-6 sm:w-4 md:-left-6" />
         <Avatar src={reply.author.image} classNames="w-10 md:w-12" />
       </div>
       <div className="flex w-full flex-col gap-1.5">

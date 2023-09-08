@@ -1,7 +1,6 @@
 "use client";
 
 import { FC, useCallback, useState } from "react";
-import { SafePost } from "../../types";
 import { useRouter, useSearchParams } from "next/navigation";
 import queryString from "query-string";
 import { AnimatePresence, motion } from "framer-motion";

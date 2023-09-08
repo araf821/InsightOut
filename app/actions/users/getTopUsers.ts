@@ -16,19 +16,7 @@ export default async function getTopUsers(count: number) {
       },
     });
 
-    const safeUsers = topUsers.map((user) => ({
-      ...user,
-      createdAt: user.createdAt.toISOString(),
-      updatedAt: user.updatedAt.toISOString(),
-      emailVerified:
-        user.emailVerified === null ? null : user.emailVerified.toISOString(),
-      posts: user.posts.map((post) => ({
-        title: post.title,
-        published: post.published,
-      })),
-    }));
-
-    return safeUsers;
+    return topUsers
   } catch (e) {
     return null;
   }

@@ -5,12 +5,12 @@ import { FC } from "react";
 import Logo from "../texts/Logo";
 import { IoIosCloseCircle } from "react-icons/io";
 import SidebarContent from "./SidebarContent";
-import { SafeUser } from "@/types";
 import { motion } from "framer-motion";
 import { sidebarBackgroundVariants, sidebarVariants } from "@/lib/anim";
+import { User } from "@prisma/client";
 
 interface SidebarProps {
-  currentUser: SafeUser | null;
+  currentUser: User | null;
 }
 
 const Sidebar: FC<SidebarProps> = ({ currentUser }) => {

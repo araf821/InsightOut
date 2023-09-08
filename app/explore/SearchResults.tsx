@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { FC } from "react";
-import { SafePost } from "../../types";
 import { useRouter } from "next/navigation";
 import { GrClear } from "react-icons/gr";
 import dynamic from "next/dynamic";

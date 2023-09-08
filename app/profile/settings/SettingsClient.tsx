@@ -1,8 +1,8 @@
 "use client";
 
-import { SafeUser } from "@/types";
 import Button from "@/components/Button";
 import ImageUpload from "@/components/inputs/ImageUpload";
+import { User } from "@prisma/client";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
@@ -11,7 +11,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 
 interface SettingsClientProps {
-  currentUser: SafeUser;
+  currentUser: User;
 }
 
 const SettingsClient: FC<SettingsClientProps> = ({ currentUser }) => {

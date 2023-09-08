@@ -15,22 +15,7 @@ const getPostBySlug = async (slug: string) => {
       },
     });
 
-    if (post) {
-      const safePost = {
-        ...post,
-        author: {
-          id: post.author.id,
-          name: post.author.name,
-          image: post.author.image,
-        },
-        createdAt: post.createdAt.toISOString(),
-        updatedAt: post.updatedAt.toISOString(),
-      };
-
-      return safePost;
-    } else {
-      return null;
-    }
+    return post ?? null;
   } catch (error: any) {
     return null;
   }

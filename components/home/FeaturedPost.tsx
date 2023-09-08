@@ -1,6 +1,5 @@
 "use client";
 
-import { SafePost } from "@/types";
 import { Post, User } from "@prisma/client";
 import { motion } from "framer-motion";
 import Image from "next/image";

@@ -1,7 +1,6 @@
 "use client";
 
 import { dateFormat } from "@/lib/helpers/dateFormat";
-import { SafeUser } from "@/types";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FC } from "react";
@@ -15,7 +14,7 @@ import { Comment, Post, User } from "@prisma/client";
 
 interface PostProps {
   post: Post & { author: User; comments: Comment[] };
-  currentUser: SafeUser | null;
+  currentUser: User | null;
 }
 
 const Post: FC<PostProps> = ({ post, currentUser }) => {

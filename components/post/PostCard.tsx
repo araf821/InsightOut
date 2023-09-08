@@ -7,7 +7,6 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import MoreOptionsMenu from "../MoreOptionsMenu";
 import { motion } from "framer-motion";
-import { SafePost } from "@/types";
 import { postCardVariants } from "@/lib/anim";
 import { Post, User } from "@prisma/client";
 import { dateFormat } from "@/lib/helpers/dateFormat";
@@ -83,7 +82,7 @@ const PostCard: FC<PostCardProps> = ({
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           alt="post image"
-          className={`absolute border rounded-sm object-cover`}
+          className={`absolute rounded-sm border object-cover`}
         />
         {dashboard && (
           <MoreOptionsMenu

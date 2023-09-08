@@ -5,12 +5,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FC, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { SafeUser } from "@/types";
 import Avatar from "../Avatar";
 import Button from "../Button";
+import { User } from "@prisma/client";
 
 interface CommentFormProps {
-  currentUser: SafeUser;
+  currentUser: User;
   onSubmit: (data: z.infer<typeof commentSchema>) => void;
 }
 
@@ -26,7 +26,6 @@ const commentSchema = z.object({
       message: "Comment cannot consist of only spaces.",
     }),
 });
-
 
 const CommentForm: FC<CommentFormProps> = ({ currentUser, onSubmit }) => {
   const [open, setOpen] = useState(false);

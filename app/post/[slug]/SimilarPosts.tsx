@@ -1,6 +1,5 @@
 "use client";
 
-import { SafePost } from "@/types";
 import Heading from "@/components/Heading";
 import PostCard from "@/components/post/PostCard";
 import { FC } from "react";

@@ -1,6 +1,5 @@
 "use client";
 
-import { SafeUser } from "@/types";
 import { Comment, User } from "@prisma/client";
 import { z } from "zod";
 import { validInputPattern } from "../../app/post/write/PostForm";
@@ -11,7 +10,7 @@ import IndividualComment from "@/components/comments/IndividualComment";
 import CommentForm from "@/components/comments/CommentForm";
 
 interface PostCommentsProps {
-  currentUser: SafeUser | null;
+  currentUser: User | null;
   postId: string;
   comments: (Comment & {
     author: User;

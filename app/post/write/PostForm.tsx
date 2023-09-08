@@ -10,7 +10,6 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import TitleInput from "./TitleInput";
-import { SafePost, SafeUser } from "@/types";
 import { motion } from "framer-motion";
 import PostPreview from "./PostPreview";
 import ImageUpload from "@/components/inputs/ImageUpload";
@@ -19,15 +18,17 @@ import Loader from "@/components/Loader";
 import ContentInput from "./ContentInput";
 import Disclaimer from "@/app/contact/Disclaimer";
 import { options } from "@/constants/constants";
+import { Post, User } from "@prisma/client";
 
 interface PostFormProps {
-  currentUser: SafeUser | null;
-  post?: SafePost | null;
+  currentUser: User | null;
+  post?: (Post & { author: User }) | null;
 }
 
 export const validTitlePattern = /^[A-Za-z0-9\s]*$/; // only letters, numbers, spaces
 
-export const validInputPattern = /^[A-Za-z0-9\s"'\\\-:/$@#*():!.'",\/_<>{}\[\]]*$/;
+export const validInputPattern =
+  /^[A-Za-z0-9\s"'\\\-:/$@#*():!.'",\/_<>{}\[\]]*$/;
 
 export const postSchema = z.object({
   title: z

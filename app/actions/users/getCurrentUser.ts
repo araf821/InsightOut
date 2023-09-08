@@ -24,14 +24,7 @@ const getCurrentUser = async () => {
       return null;
     }
 
-    return {
-      ...currentUser,
-      createdAt: currentUser.createdAt.toISOString(),
-      updatedAt: currentUser.updatedAt.toISOString(),
-      //@ts-ignore
-      emailVerified: currentUser.emailVerified?.toISOString() || null,
-    };
-
+    return currentUser;
   } catch (error: any) {
     return null;
   }

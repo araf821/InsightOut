@@ -5,7 +5,6 @@ import { FC, useState } from "react";
 import Avatar from "../Avatar";
 import { dateFormat } from "@/lib/helpers/dateFormat";
 import { Reply, Trash } from "lucide-react";
-import { SafeUser } from "@/types";
 import CommentForm from "./CommentForm";
 import { commentSchema } from "./PostComments";
 import { toast } from "react-hot-toast";
@@ -16,7 +15,7 @@ import IndividualReply from "./IndividualReply";
 
 interface IndividualCommentProps {
   comment: Comment & { author: User; replies: (Comment & { author: User })[] };
-  currentUser: SafeUser | null;
+  currentUser: User | null;
 }
 
 const IndividualComment: FC<IndividualCommentProps> = ({

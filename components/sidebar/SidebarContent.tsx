@@ -1,6 +1,5 @@
 "use client";
 
-import { SafeUser } from "@/types";
 import { FC } from "react";
 import SidebarButton from "./SidebarButton";
 import { signIn, signOut } from "next-auth/react";
@@ -10,9 +9,10 @@ import { FaDiscord, FaGithub } from "react-icons/fa";
 import { useSidebarContext } from "@/app/context/sidebar_context";
 import SidebarFooterLink from "./SidebarFooterLink";
 import TroubleSigningIn from "./TroubleSigningIn";
+import { User } from "@prisma/client";
 
 interface SidebarContentProps {
-  currentUser: SafeUser | null;
+  currentUser: User | null;
 }
 
 const SidebarContent: FC<SidebarContentProps> = ({ currentUser }) => {

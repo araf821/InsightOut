@@ -1,27 +1,24 @@
-import getPostsByUser from "@/app/actions/getPostsByUser";
 import DashboardClient from "./DashboardClient";
 import getCurrentUser from "@/app/actions/users/getCurrentUser";
-import Container from "@/components/Container";
+import { redirect } from "next/navigation";
+import prismaClient from "@/lib/prismadb";
 
-const Dashboard = async ({}) => {
+const DashboardPage = async ({}) => {
   const currentUser = await getCurrentUser();
   if (!currentUser) {
-    return null;
+    redirect("/");
   }
 
-  //@ts-ignore
-  const postsFromUser = await getPostsByUser(currentUser.id);
+  const postsFromUser = await prismaClient.post.findMany({
+    where: {
+      authorId: currentUser.id,
+    },
+    include: {
+      author: true,
+    },
+  });
 
-  return (
-    <Container>
-      <DashboardClient
-        userName={currentUser.name}
-        userImage={currentUser.image}
-        userCreated={currentUser.createdAt}
-        postsFromUser={postsFromUser}
-      />
-    </Container>
-  );
+  return <DashboardClient postsFromUser={postsFromUser} />;
 };
 
-export default Dashboard;
+export default DashboardPage;
