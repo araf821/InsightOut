@@ -67,15 +67,19 @@ const AuthorCard: FC<AuthorCardProps> = ({ author, index = 0 }) => {
       className="aspect-[5/6] w-full"
     >
       <div className="relative aspect-square overflow-hidden">
-        {isLoading ? (
-          <Loader2 className="absolute right-2 top-2 z-10 animate-spin bg-black/10 p-1 text-2xl text-white" />
-        ) : (
-          <FaUserPlus
-            onClick={() => handleFollow()}
-            title="Follow User"
-            className="absolute right-2 top-2 z-10 cursor-pointer rounded-md bg-black/10 p-1 text-2xl text-white transition duration-200 hover:scale-125 hover:animate-pulse"
-          />
-        )}
+        <button
+          onClick={() => handleFollow()}
+          className="absolute right-2 top-2 z-10 rounded-md bg-black/10 p-1 text-xl text-zinc-100 transition duration-200 hover:scale-125"
+        >
+          {isLoading ? (
+            <Loader2 className="animate-spin" />
+          ) : (
+            <FaUserPlus
+              title="Follow User"
+              className="cursor-pointer hover:animate-pulse"
+            />
+          )}
+        </button>
         <Image
           src={author.image || "/images/placeholder.jpg"}
           alt="author's profile photo"

@@ -9,9 +9,11 @@ import qs from "query-string";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import FollowButton from "../FollowButton";
 
 const FollowersModal = () => {
-  const { onClose, data, type, isOpen } = useModal();
+  const { onClose, data, type, isOpen, onOpen } = useModal();
   const router = useRouter();
 
   const isModalOpen = isOpen && type === "followersModal";
@@ -32,8 +34,8 @@ const FollowersModal = () => {
       toast.error("Something went wrong");
     },
     onSuccess: () => {
+      toast.success("Followed Successfully");
       router.refresh();
-      window.location.reload();
     },
   });
 
@@ -67,14 +69,18 @@ const FollowersModal = () => {
               <Avatar src={connection.follower?.image} classNames="w-10 h-10" />
               <p>{connection.follower?.name}</p>
               {connection.isFollowed ? null : (
-                <button
-                  title="follow"
-                  //@ts-ignore
-                  onClick={() => onFollow(connection.follower.id)}
-                  className="ml-auto text-zinc-500 transition hover:text-zinc-600"
-                >
-                  <UserPlus />
-                </button>
+                <FollowButton
+                  followerId={connection.follower.id}
+                  onClick={onFollow}
+                />
+                // <button
+                //   title="follow"
+                //   //@ts-ignore
+                //   onClick={() => onFollow(connection.follower.id)}
+                //   className="ml-auto text-zinc-500 transition hover:text-zinc-600"
+                // >
+                //   <UserPlus />
+                // </button>
               )}
             </div>
           );
