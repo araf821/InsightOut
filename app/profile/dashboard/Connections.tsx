@@ -5,7 +5,7 @@ import { FC } from "react";
 
 interface ConnectionsProps {
   following: { following: User | null }[];
-  followers: { follower: User | null }[];
+  followers: ({ follower: User | null } & { isFollowed: boolean })[];
 }
 
 const Connections: FC<ConnectionsProps> = ({ followers, following }) => {

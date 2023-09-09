@@ -36,14 +36,16 @@ const FollowersModal = () => {
           >
             <Avatar src={connection.follower?.image} classNames="w-10 h-10" />
             <p>{connection.follower?.name}</p>
-            <button
-              onClick={() => {
-                toast.error("Under Construction");
-              }}
-              className="ml-auto text-zinc-500 transition hover:text-zinc-600"
-            >
-              <UserPlus />
-            </button>
+            {connection.isFollowed ? null : (
+              <button
+                onClick={() => {
+                  toast.error("Under Construction");
+                }}
+                className="ml-auto text-zinc-500 transition hover:text-zinc-600"
+              >
+                <UserPlus />
+              </button>
+            )}
           </div>
         ))}
       </DialogContent>

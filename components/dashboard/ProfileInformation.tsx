@@ -14,7 +14,7 @@ interface ProfileInformationProps {
   user: User & {
     _count: { posts: number };
   };
-  followers: { follower: User | null }[];
+  followers: ({ follower: User | null } & { isFollowed: boolean })[];
   following: { following: User | null }[];
 }
 

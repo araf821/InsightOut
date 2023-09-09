@@ -21,7 +21,7 @@ const DashboardClient: FC<DashboardClientProps> = ({ postsFromUser }) => {
 
   if (!published?.length && !drafts?.length) {
     return (
-      <div className="mx-auto my-20 grid w-full max-w-lg place-items-center space-y-6 rounded-md border-2 border-zinc-800 p-6">
+      <div className="mx-auto grid w-full max-w-lg place-items-center space-y-6 px-4 py-28">
         <p className="balance text-center text-sm md:text-base">
           Looks like you have not written any posts yet.
         </p>
