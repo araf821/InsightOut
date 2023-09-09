@@ -11,6 +11,11 @@ import { motion } from "framer-motion";
 import { singlePostVariants } from "@/lib/anim";
 import PostViews from "./PostViews";
 import { Comment, Post, User } from "@prisma/client";
+import { useMutation } from "@tanstack/react-query";
+import { Check, Loader2, UserPlus } from "lucide-react";
+import qs from "query-string";
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
 interface PostProps {
   post: Post & { author: User; comments: Comment[] };
@@ -36,6 +41,42 @@ const Post: FC<PostProps> = ({ post, currentUser }) => {
       </>
     );
   }
+
+  const {
+    mutate: onFollow,
+    isLoading,
+    isSuccess,
+    isError,
+  } = useMutation({
+    mutationFn: async () => {
+      const url = qs.stringifyUrl({
+        url: "/api/following",
+        query: {
+          toFollowId: post.authorId,
+        },
+      });
+
+      await axios.post(url);
+    },
+    onError: (e: Error) => {
+      if (e.message.includes("401")) {
+        return toast.error("Unauthorized");
+      }
+
+      if (e.message.includes("400")) {
+        return toast.error("Bad Request");
+      }
+
+      if (e.message.includes("418")) {
+        return toast.error("Already Following");
+      }
+
+      toast.error("Something went wrong.");
+    },
+    onSuccess: () => {
+      toast.success("Followed");
+    },
+  });
 
   return (
     <motion.article
@@ -73,7 +114,7 @@ const Post: FC<PostProps> = ({ post, currentUser }) => {
       </div>
       {/* Author Info */}
       <hr />
-      <section className="flex max-w-[500px] gap-2 font-josefin">
+      <section className="flex gap-2 font-josefin">
         <div className="relative h-12 w-12 lg:h-20 lg:w-20">
           <Image
             src={post.author.image || "/images/placeholder.jpg"}
@@ -83,9 +124,22 @@ const Post: FC<PostProps> = ({ post, currentUser }) => {
             className="rounded-lg object-cover"
           />
         </div>
-        <div className="space-y-">
-          <p className="text-lg font-semibold sm:text-xl md:text-2xl">
+        <div className="w-full">
+          <p className="flex justify-between text-lg font-semibold sm:text-xl md:text-2xl">
             {post.author.name}
+            {isError ? null : currentUser?.id ===
+              post.authorId ? null : isSuccess ? (
+              <Check />
+            ) : isLoading ? (
+              <Loader2 className="animate-spin" />
+            ) : (
+              <button
+                onClick={() => onFollow()}
+                className="text-zinc-500 transition hover:text-zinc-600"
+              >
+                <UserPlus />
+              </button>
+            )}
           </p>
           <p className="text-sm  sm:text-base md:text-lg">
             Published: {dateFormat(post.createdAt.toISOString())}

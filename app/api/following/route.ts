@@ -18,7 +18,23 @@ export async function POST(req: Request) {
     }
 
     if (user.id === toFollowId) {
-      return new NextResponse("Bad Request", { status: 400 });
+      return new NextResponse("Bad Request", {
+        status: 400,
+      });
+    }
+
+    const isFollowing = await prismaClient.connection.findFirst({
+      where: {
+        followerId: user.id,
+        followingId: toFollowId,
+      },
+    });
+
+    if (isFollowing) {
+      return new NextResponse("Connection Already Exists", {
+        status: 418,
+        statusText: "Conflict",
+      });
     }
 
     const connection = await prismaClient.connection.create({
