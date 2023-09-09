@@ -3,13 +3,11 @@
 import { useModal } from "@/hooks/useModal";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/Dialog";
 import Avatar from "../Avatar";
-import { UserPlus } from "lucide-react";
 import { toast } from "react-hot-toast";
 import qs from "query-string";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import FollowButton from "../FollowButton";
 
 const FollowersModal = () => {
@@ -51,7 +49,7 @@ const FollowersModal = () => {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-bg px-8 ">
+      <DialogContent className="max-h-[50%] overflow-y-auto bg-bg px-8">
         <DialogHeader className="">
           <DialogTitle className="text-center text-2xl">Followers</DialogTitle>
         </DialogHeader>

@@ -2,13 +2,7 @@
 
 import { FC } from "react";
 import Image from "next/image";
-import { FaUserPlus } from "react-icons/fa";
 import { motion } from "framer-motion";
-import { toast } from "react-hot-toast";
-import { useMutation } from "@tanstack/react-query";
-import qs from "query-string";
-import axios from "axios";
-import { Loader2 } from "lucide-react";
 import { Post, User } from "@prisma/client";
 
 interface AuthorCardProps {
@@ -19,30 +13,6 @@ interface AuthorCardProps {
 const AuthorCard: FC<AuthorCardProps> = ({ author, index = 0 }) => {
   const postsPublished = author.posts.filter((post) => {
     if (post.published) return post;
-  });
-
-  const { mutate: handleFollow, isLoading } = useMutation({
-    mutationFn: async () => {
-      const url = qs.stringifyUrl({
-        url: "/api/following",
-        query: {
-          toFollowId: author.id,
-        },
-      });
-
-      await axios.post(url);
-    },
-    onError: (error: Error) => {
-      if (error.message === "Request failed with status code 400") {
-        return toast.error("Can't follow yourself!");
-      }
-
-      if (error.message === "Request failed with status code 401") {
-        return toast.error("Unauthorized.");
-      }
-
-      return toast.error("Something went wrong.");
-    },
   });
 
   return (
@@ -67,19 +37,6 @@ const AuthorCard: FC<AuthorCardProps> = ({ author, index = 0 }) => {
       className="aspect-[5/6] w-full"
     >
       <div className="relative aspect-square overflow-hidden">
-        <button
-          onClick={() => handleFollow()}
-          className="absolute right-2 top-2 z-10 rounded-md bg-black/10 p-1 text-xl text-zinc-100 transition duration-200 hover:scale-125"
-        >
-          {isLoading ? (
-            <Loader2 className="animate-spin" />
-          ) : (
-            <FaUserPlus
-              title="Follow User"
-              className="cursor-pointer hover:animate-pulse"
-            />
-          )}
-        </button>
         <Image
           src={author.image || "/images/placeholder.jpg"}
           alt="author's profile photo"

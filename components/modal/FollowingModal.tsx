@@ -51,7 +51,7 @@ const FollowingModal = () => {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-bg px-8 ">
+      <DialogContent className="max-h-[50%] overflow-y-auto bg-bg px-8">
         <DialogHeader className="">
           <DialogTitle className="text-center text-2xl text-zinc-700">
             Following
