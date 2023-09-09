@@ -26,8 +26,8 @@ export default async function RootLayout({
       <body
         className={`overflow-x-hidden break-words font-merri selection:bg-zinc-800 selection:text-white`}
       >
-        <ModalProvider />
         <Providers>
+          <ModalProvider />
           <ChatComponent />
           <ToasterProvider />
           <Sidebar currentUser={currentUser} />
