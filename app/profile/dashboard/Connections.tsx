@@ -1,9 +1,12 @@
 import { motion } from "framer-motion";
 import { FC } from "react";
 
-interface ConnectionsProps {}
+interface ConnectionsProps {
+  following: number;
+  followers: number;
+}
 
-const Connections: FC<ConnectionsProps> = ({}) => {
+const Connections: FC<ConnectionsProps> = ({ followers, following }) => {
   return (
     <motion.div
       viewport={{ once: true }}
@@ -29,14 +32,11 @@ const Connections: FC<ConnectionsProps> = ({}) => {
       }}
       whileInView="show"
       initial="hidden"
-      className="relative flex h-full w-full cursor-not-allowed flex-col items-center justify-between gap-2 font-josefin text-neutral-800 md:flex-row lg:col-span-2 lg:flex-col"
+      className="relative flex h-full w-full flex-col items-center justify-between gap-2 font-josefin text-zinc-500 md:flex-row lg:col-span-2 lg:flex-col"
     >
-      <div className="absolute right-0 top-0 z-10 rounded-bl-md rounded-tr-md bg-secondary px-2 py-1 text-zinc-800 shadow-md md:text-base">
-        Coming Soon
-      </div>
-      <div className="blur-sms grid h-full w-full items-center rounded-md bg-secondary px-6 opacity-50 shadow-md">
+      <div className="group grid h-full w-full cursor-pointer items-center rounded-md bg-secondary px-6 shadow-md transition hover:text-zinc-600">
         <div className="flex translate-y-1 flex-row gap-8 py-4">
-          <span className="text-xl md:text-2xl lg:text-3xl">0</span>
+          <span className="text-xl md:text-2xl lg:text-3xl">{followers}</span>
           <div className="border-l-2 border-neutral-300" />
           <span className="my-auto text-xl sm:text-2xl md:text-3xl">
             Followers
@@ -44,9 +44,9 @@ const Connections: FC<ConnectionsProps> = ({}) => {
         </div>
       </div>
 
-      <div className="blur- m grid h-full w-full items-center rounded-md bg-secondary px-6 opacity-50 shadow-md">
+      <div className="group grid h-full w-full cursor-pointer items-center rounded-md bg-secondary px-6 shadow-md transition hover:text-zinc-600">
         <div className="flex translate-y-1 flex-row gap-8 py-4 md:py-0">
-          <span className="text-xl md:text-2xl lg:text-3xl">0</span>
+          <span className="text-xl md:text-2xl lg:text-3xl">{following}</span>
           <div className="border-l-2 border-neutral-300" />
           <span className="my-auto text-xl sm:text-2xl md:text-3xl">
             Following

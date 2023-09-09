@@ -25,8 +25,8 @@ model User {
   comments Comment[]
   likes    Like[]
 
-  followings Connection[] @relation("Followings")
-  followers  Connection[] @relation("Followers")
+  following Connection[] @relation("Followers")
+  followers Connection[] @relation("Followings")
 }
 
 model Connection {

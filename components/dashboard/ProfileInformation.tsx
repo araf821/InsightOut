@@ -11,7 +11,9 @@ import { FC } from "react";
 import Heading from "../Heading";
 
 interface ProfileInformationProps {
-  user: User;
+  user: User & {
+    _count: { posts: number; following: number; followers: number };
+  };
 }
 
 const ProfileInformation: FC<ProfileInformationProps> = ({ user }) => {
@@ -75,15 +77,22 @@ const ProfileInformation: FC<ProfileInformationProps> = ({ user }) => {
               Member Since: {dateFormat(user.createdAt.toISOString())}
             </p>
             <p className="text-xl font-light">
-              Posts published:{" "}
-              {/* {user?.filter((post) => post.published).length} */}
+              Posts published: {user._count.posts}
             </p>
           </div>
         </motion.div>
 
         {/* Followers/Following Section*/}
-        <Connections />
+        <Connections
+          following={user._count.following}
+          followers={user._count.followers}
+        />
       </div>
+      <motion.hr
+        viewport={{ once: true }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1, transition: { duration: 0.3 } }}
+      />
     </>
   );
 };
