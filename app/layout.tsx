@@ -26,12 +26,12 @@ export default async function RootLayout({
       <body
         className={`overflow-x-hidden break-words font-merri selection:bg-zinc-800 selection:text-white`}
       >
+        <ModalProvider />
         <Providers>
           <ChatComponent />
           <ToasterProvider />
           <Sidebar currentUser={currentUser} />
           <Navbar />
-          <ModalProvider />
           {children}
           <div className="mx-auto w-full 2xl:pb-6">
             <Footer />

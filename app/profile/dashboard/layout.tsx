@@ -16,8 +16,6 @@ const ProfileLayout = async ({ children }: { children: React.ReactNode }) => {
       email: session.user.email,
     },
     include: {
-      followers: true,
-      following: true,
       _count: {
         select: {
           posts: {
@@ -34,9 +32,31 @@ const ProfileLayout = async ({ children }: { children: React.ReactNode }) => {
     redirect("/");
   }
 
+  const following = await prismaClient.connection.findMany({
+    where: {
+      followerId: currentUser.id,
+    },
+    select: {
+      following: true,
+    },
+  });
+
+  const followers = await prismaClient.connection.findMany({
+    where: {
+      followingId: currentUser.id,
+    },
+    select: {
+      follower: true,
+    },
+  });
+
   return (
     <Container className="py-8">
-      <ProfileInformation user={currentUser} />
+      <ProfileInformation
+        user={currentUser}
+        following={following}
+        followers={followers}
+      />
       {children}
     </Container>
   );

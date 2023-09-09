@@ -13,12 +13,16 @@ import Heading from "../Heading";
 interface ProfileInformationProps {
   user: User & {
     _count: { posts: number };
-    followers: Connection[];
-    following: Connection[];
   };
+  followers: { follower: User | null }[];
+  following: { following: User | null }[];
 }
 
-const ProfileInformation: FC<ProfileInformationProps> = ({ user }) => {
+const ProfileInformation: FC<ProfileInformationProps> = ({
+  user,
+  followers,
+  following,
+}) => {
   const router = useRouter();
 
   return (
@@ -85,10 +89,7 @@ const ProfileInformation: FC<ProfileInformationProps> = ({ user }) => {
         </motion.div>
 
         {/* Followers/Following Section*/}
-        <Connections
-          following={user.following}
-          followers={user.followers}
-        />
+        <Connections following={following} followers={followers} />
       </div>
       <motion.hr
         viewport={{ once: true }}

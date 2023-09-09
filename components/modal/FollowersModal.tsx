@@ -1,22 +1,42 @@
-'use client'
+"use client";
 
 import { useModal } from "@/hooks/useModal";
-import { FC } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/Dialog";
+import Avatar from "../Avatar";
+import { UserPlus } from "lucide-react";
 
-interface FollowersModalProps {}
-
-const FollowersModal: FC<FollowersModalProps> = ({}) => {
+const FollowersModal = () => {
   const { onClose, data, type, isOpen } = useModal();
 
   const isModalOpen = isOpen && type === "followersModal";
+  const { followers } = data;
+
+  if (!followers) {
+    return null;
+  }
 
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-bg p-0">
-        <DialogHeader className="pt-6">
-          <DialogTitle className="text-center">Bebi</DialogTitle>
+      <DialogContent className="bg-bg px-8 ">
+        <DialogHeader className="">
+          <DialogTitle className="text-center text-2xl">Followers</DialogTitle>
         </DialogHeader>
+        <hr />
+        {followers.map((connection) => (
+          <div
+            key={connection.follower?.id}
+            className="flex items-center gap-2"
+          >
+            <Avatar src={connection.follower?.image} classNames="w-10 h-10" />
+            <p>{connection.follower?.name}</p>
+            <button
+              onClick={() => {}}
+              className="ml-auto text-zinc-500 transition hover:text-zinc-600"
+            >
+              <UserPlus />
+            </button>
+          </div>
+        ))}
       </DialogContent>
     </Dialog>
   );
