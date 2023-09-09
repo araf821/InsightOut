@@ -51,7 +51,7 @@ const ProfileLayout = async ({ children }: { children: React.ReactNode }) => {
   });
 
   return (
-    <Container className="py-8">
+    <Container className="space-y-4 py-8">
       <ProfileInformation
         user={currentUser}
         following={following}

@@ -1,7 +1,8 @@
-'use client'
+"use client";
 
 import { useEffect, useState } from "react";
 import FollowersModal from "../modal/FollowersModal";
+import FollowingModal from "../modal/FollowingModal";
 
 const ModalProvider = ({}) => {
   const [isMounted, setIsMounted] = useState(false);
@@ -17,6 +18,7 @@ const ModalProvider = ({}) => {
   return (
     <>
       <FollowersModal />
+      <FollowingModal />
     </>
   );
 };
