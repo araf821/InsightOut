@@ -16,10 +16,10 @@ const ProfileLayout = async ({ children }: { children: React.ReactNode }) => {
       email: session.user.email,
     },
     include: {
+      followers: true,
+      following: true,
       _count: {
         select: {
-          followers: true,
-          following: true,
           posts: {
             where: {
               published: true,

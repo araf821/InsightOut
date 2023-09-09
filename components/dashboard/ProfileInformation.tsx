@@ -2,7 +2,7 @@
 
 import Connections from "@/app/profile/dashboard/Connections";
 import { dateFormat } from "@/lib/helpers/dateFormat";
-import { User } from "@prisma/client";
+import { Connection, User } from "@prisma/client";
 import { motion } from "framer-motion";
 import { Edit } from "lucide-react";
 import Image from "next/image";
@@ -12,7 +12,9 @@ import Heading from "../Heading";
 
 interface ProfileInformationProps {
   user: User & {
-    _count: { posts: number; following: number; followers: number };
+    _count: { posts: number };
+    followers: Connection[];
+    following: Connection[];
   };
 }
 
@@ -84,8 +86,8 @@ const ProfileInformation: FC<ProfileInformationProps> = ({ user }) => {
 
         {/* Followers/Following Section*/}
         <Connections
-          following={user._count.following}
-          followers={user._count.followers}
+          following={user.following}
+          followers={user.followers}
         />
       </div>
       <motion.hr

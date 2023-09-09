@@ -1,12 +1,13 @@
 import "./globals.css";
 import getCurrentUser from "./actions/users/getCurrentUser";
-import ToasterProvider from "../providers/ToasterProvider";
+import ToasterProvider from "../components/providers/ToasterProvider";
 import Providers from "@/components/Providers";
 import ChatComponent from "@/components/chat/ChatComponent";
 import Sidebar from "@/components/sidebar/Sidebar";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/Footer";
 import { josefin, merri } from "./fonts";
+import ModalProvider from "@/components/providers/ModalProvider";
 
 export const metadata = {
   title: "Insight Out",
@@ -21,10 +22,7 @@ export default async function RootLayout({
   const currentUser = await getCurrentUser();
 
   return (
-    <html
-      lang="en"
-      className={`${merri.variable} ${josefin.variable}`}
-    >
+    <html lang="en" className={`${merri.variable} ${josefin.variable}`}>
       <body
         className={`overflow-x-hidden break-words font-merri selection:bg-zinc-800 selection:text-white`}
       >
@@ -33,6 +31,7 @@ export default async function RootLayout({
           <ToasterProvider />
           <Sidebar currentUser={currentUser} />
           <Navbar />
+          <ModalProvider />
           {children}
           <div className="mx-auto w-full 2xl:pb-6">
             <Footer />
