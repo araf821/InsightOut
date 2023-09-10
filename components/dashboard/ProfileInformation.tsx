@@ -2,14 +2,14 @@
 
 import Connections from "@/app/profile/dashboard/Connections";
 import { dateFormat } from "@/lib/helpers/dateFormat";
-import { Connection, User } from "@prisma/client";
+import { User } from "@prisma/client";
 import { motion } from "framer-motion";
 import { Edit } from "lucide-react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FC } from "react";
 import Heading from "../Heading";
 import { useModal } from "@/hooks/useModal";
+import EditableProfilePicture from "./EditableProfilePicture";
 
 interface ProfileInformationProps {
   user: User & {
@@ -57,7 +57,8 @@ const ProfileInformation: FC<ProfileInformationProps> = ({
           initial="hidden"
           className="relative flex w-full flex-col overflow-hidden rounded-t-lg bg-secondary px-2 py-3 shadow-md sm:flex-row sm:rounded-l-lg lg:col-span-3"
         >
-          <div className="relative  aspect-square w-full sm:max-w-[200px] md:h-[200px]">
+          <EditableProfilePicture userId={user.id} imageUrl={user.image ?? ""} />
+          {/* <div className="relative  aspect-square w-full sm:max-w-[200px] md:h-[200px]">
             <Image
               src={user.image || "/images/placeholder.jpg"}
               alt="current user profile"
@@ -65,7 +66,7 @@ const ProfileInformation: FC<ProfileInformationProps> = ({
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="rounded-md object-cover"
             />
-          </div>
+          </div> */}
 
           <div className="flex w-full flex-col gap-2 pt-4 font-josefin sm:px-2 sm:py-0">
             <div className="flex items-center justify-between">

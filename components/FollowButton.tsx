@@ -6,9 +6,10 @@ import { FC, useState } from "react";
 interface FollowButtonProps {
   followerId: string;
   onClick: (id: string) => void;
+  icon?: React.ReactNode;
 }
 
-const FollowButton: FC<FollowButtonProps> = ({ followerId, onClick }) => {
+const FollowButton: FC<FollowButtonProps> = ({ followerId, onClick, icon }) => {
   const [showCheck, setShowCheck] = useState(false);
   const [clicked, setClicked] = useState(false);
 
@@ -36,7 +37,7 @@ const FollowButton: FC<FollowButtonProps> = ({ followerId, onClick }) => {
             }}
             className="ml-auto text-zinc-500 transition hover:text-zinc-600"
           >
-            <UserPlus />
+            {icon ? icon : <UserPlus />}
           </button>
         )
       )}

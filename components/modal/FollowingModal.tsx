@@ -9,6 +9,7 @@ import { useMutation } from "@tanstack/react-query";
 import qs from "query-string";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import FollowButton from "../FollowButton";
 
 const FollowingModal = () => {
   const { onClose, onOpen, data, type, isOpen } = useModal();
@@ -73,15 +74,11 @@ const FollowingModal = () => {
                 classNames="w-10 h-10"
               />
               <p>{connection.following?.name}</p>
-              <button
-                title="unfollow"
-                //@ts-ignore
-                onClick={() => onUnfollow(connection.following?.id)}
-                className="ml-auto text-zinc-500 transition hover:text-zinc-600"
-                aria-label="unfollow button"
-              >
-                <UserMinus />
-              </button>
+              <FollowButton
+                followerId={connection.following?.id}
+                onClick={onUnfollow}
+                icon={<UserMinus />}
+              />
             </div>
           );
         })}

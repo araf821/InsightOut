@@ -10,10 +10,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { toast } from "react-hot-toast";
-import { X } from "lucide-react";
-import { visitCommaListElements } from "typescript";
 
-export const userName = z.object({
+export const userNameSchema = z.object({
   name: z
     .string()
     .min(3, { message: "Name must be 3 to 21 characters long." })
@@ -28,7 +26,7 @@ const ProfileSettingsModal = () => {
   const { user } = data;
 
   const form = useForm({
-    resolver: zodResolver(userName),
+    resolver: zodResolver(userNameSchema),
     defaultValues: {
       name: "",
     },
@@ -43,7 +41,7 @@ const ProfileSettingsModal = () => {
   const isLoading = form.formState.isSubmitting;
   const errors = form.formState.errors;
 
-  const onSubmit = async (values: z.infer<typeof userName>) => {
+  const onSubmit = async (values: z.infer<typeof userNameSchema>) => {
     if (values.name.trim() === user?.name) {
       return toast("No Changes Made");
     }
