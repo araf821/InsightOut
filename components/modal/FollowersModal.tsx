@@ -71,14 +71,6 @@ const FollowersModal = () => {
                   followerId={connection.follower.id}
                   onClick={onFollow}
                 />
-                // <button
-                //   title="follow"
-                //   //@ts-ignore
-                //   onClick={() => onFollow(connection.follower.id)}
-                //   className="ml-auto text-zinc-500 transition hover:text-zinc-600"
-                // >
-                //   <UserPlus />
-                // </button>
               )}
             </div>
           );

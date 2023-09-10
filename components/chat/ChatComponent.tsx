@@ -26,7 +26,7 @@ const ChatComponent = () => {
       animate={isOpen ? "open" : "closed"}
       custom={height}
       ref={containerRef}
-      className={`fixed bottom-0 right-0 z-[9999] lg:p-0 h-full px-2 py-10 w-full overflow-hidden lg:bottom-8 lg:right-8 transition duration-300 lg:h-[700px] lg:w-[650px] ${
+      className={`fixed bottom-0 right-0 z-40 lg:p-0 h-full px-2 py-10 w-full overflow-hidden lg:bottom-8 lg:right-8 transition duration-300 lg:h-[700px] lg:w-[650px] ${
         isOpen ? "backdrop-blur-sm lg:backdrop-blur-0" : "pointer-events-none"
       }`}
     >

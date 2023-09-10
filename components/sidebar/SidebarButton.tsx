@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { IconType } from "react-icons";
 import { useSidebarContext } from "@/app/context/sidebar_context";
+import { useModal } from "@/hooks/useModal";
 
 interface SidebarButtonProps {
   title: string;
@@ -13,6 +14,8 @@ const SidebarButton: FC<SidebarButtonProps> = ({
   onClick,
   icon: Icon,
 }) => {
+  const {onOpen} = useModal();
+  
   return (
     <button
       onClick={onClick}

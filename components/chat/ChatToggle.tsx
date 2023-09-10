@@ -25,7 +25,7 @@ export const ChatToggle: React.FC<ChatToggleProps> = ({ toggle }) => (
         },
       },
     }}
-    className={`pointer-events-auto absolute bottom-2 right-4 lg:bottom-8 lg:right-8 z-[9999] h-12 w-12 border-spacing-24 cursor-pointer overflow-hidden rounded-full border-2 border-accent shadow-[0_0_15px_1px] shadow-accent lg:h-16 lg:w-16`}
+    className={`pointer-events-auto absolute bottom-2 right-4 lg:bottom-8 lg:right-8 z-40 h-12 w-12 border-spacing-24 cursor-pointer overflow-hidden rounded-full border-2 border-accent shadow-[0_0_15px_1px] shadow-accent lg:h-16 lg:w-16`}
     onClick={toggle}
     title="Open Chat"
   >

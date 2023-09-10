@@ -46,7 +46,7 @@ const Sidebar: FC<SidebarProps> = ({ currentUser }) => {
     <motion.div
       variants={sidebarBackgroundVariants}
       animate={isOpen ? "visible" : "hidden"}
-      className={`fixed left-0 top-0 z-[9999] h-screen w-screen ${
+      className={`fixed left-0 top-0 z-40 h-screen w-screen ${
         isOpen ? "pointer-events-auto" : "pointer-events-none"
       }`}
     >
@@ -59,7 +59,7 @@ const Sidebar: FC<SidebarProps> = ({ currentUser }) => {
           variants={sidebarVariants}
           initial={false}
           animate={isOpen ? "visible" : "hidden"}
-          className="z-50 flex flex-col h-full w-full bg-primary shadow-2xl md:max-w-[500px]"
+          className="z-40 flex flex-col h-full w-full bg-primary shadow-2xl md:max-w-[500px]"
         >
           <div className="mx-auto flex flex-col w-full items-center">{header}</div>
           <SidebarContent currentUser={currentUser} />
