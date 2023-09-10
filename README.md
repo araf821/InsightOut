@@ -35,6 +35,9 @@ Check it out [here](https://insightout.blog)!
 - Publish posts or save them as drafts
 - Upload or capture photos to go along with your post
 - Add a photo for your post directly from Unsplash
+- Follow / Unfollow users
+- Comment on posts
+- View a list of your following and followers
 - Browse other posts
 - View posts in both markdown/plain text
 - View your dashboard
@@ -50,7 +53,5 @@ Check it out [here](https://insightout.blog)!
 
 ### Upcoming Features
 
-- Following Users
-- Commenting on posts
 - Singing up for a newsletter
 - Upvoting posts/comments
