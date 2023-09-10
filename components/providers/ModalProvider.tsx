@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import FollowersModal from "../modal/FollowersModal";
 import FollowingModal from "../modal/FollowingModal";
+import ProfileSettingsModal from "../modal/ProfileSettingsModal";
 
 const ModalProvider = ({}) => {
   const [isMounted, setIsMounted] = useState(false);
@@ -19,6 +20,7 @@ const ModalProvider = ({}) => {
     <>
       <FollowersModal />
       <FollowingModal />
+      <ProfileSettingsModal />
     </>
   );
 };

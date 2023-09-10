@@ -1,7 +1,7 @@
 import { User } from "@prisma/client";
 import { create } from "zustand";
 
-export type ModalType = "followersModal" | "followingModal";
+export type ModalType = "followersModal" | "followingModal" | "profileSettingsModal";
 
 interface ModalData {
   user?: User;

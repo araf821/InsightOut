@@ -9,6 +9,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FC } from "react";
 import Heading from "../Heading";
+import { useModal } from "@/hooks/useModal";
 
 interface ProfileInformationProps {
   user: User & {
@@ -24,6 +25,7 @@ const ProfileInformation: FC<ProfileInformationProps> = ({
   following,
 }) => {
   const router = useRouter();
+  const { onOpen } = useModal();
 
   return (
     <>
@@ -71,7 +73,7 @@ const ProfileInformation: FC<ProfileInformationProps> = ({
                 {user.name}
               </span>
               <motion.span
-                onClick={() => router.push("/profile/settings")}
+                onClick={() => onOpen("profileSettingsModal", { user })}
                 whileHover={{ scale: 1.1, color: "black" }}
                 className="cursor-pointer text-xl text-neutral-600"
               >

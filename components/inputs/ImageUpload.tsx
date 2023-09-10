@@ -41,7 +41,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
         return (
           <div
             onClick={() => open?.()}
-            className={`relative flex cursor-pointer flex-col items-center justify-center border-2 border-dashed
+            className={`relative z-[999] flex cursor-pointer flex-col items-center justify-center border-2 border-dashed
             border-neutral-300 bg-white
             text-neutral-600 transition hover:opacity-70 focus:ring-4 focus:ring-zinc-800 ${className}`}
           >
