@@ -58,15 +58,6 @@ const ProfileInformation: FC<ProfileInformationProps> = ({
           className="relative flex w-full flex-col overflow-hidden rounded-t-lg bg-secondary px-2 py-3 shadow-md sm:flex-row sm:rounded-l-lg lg:col-span-3"
         >
           <EditableProfilePicture userId={user.id} imageUrl={user.image ?? ""} />
-          {/* <div className="relative  aspect-square w-full sm:max-w-[200px] md:h-[200px]">
-            <Image
-              src={user.image || "/images/placeholder.jpg"}
-              alt="current user profile"
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="rounded-md object-cover"
-            />
-          </div> */}
 
           <div className="flex w-full flex-col gap-2 pt-4 font-josefin sm:px-2 sm:py-0">
             <div className="flex items-center justify-between">
