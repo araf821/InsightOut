@@ -28,7 +28,15 @@ const FollowersModal = () => {
 
       await axios.post(url);
     },
-    onError: () => {
+    onError: (error: any) => {
+      if (error?.response?.status === 403) {
+        return toast.error("Can't follow yourself");
+      }
+
+      if (error?.response?.status === 409) {
+        return toast.error("Already following");
+      }
+
       toast.error("Something went wrong");
     },
     onSuccess: () => {

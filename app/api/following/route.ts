@@ -19,7 +19,7 @@ export async function POST(req: Request) {
 
     if (user.id === toFollowId) {
       return new NextResponse("Bad Request", {
-        status: 400,
+        status: 403,
       });
     }
 
@@ -32,7 +32,7 @@ export async function POST(req: Request) {
 
     if (isFollowing) {
       return new NextResponse("Connection Already Exists", {
-        status: 418,
+        status: 409,
         statusText: "Conflict",
       });
     }

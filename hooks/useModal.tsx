@@ -1,12 +1,15 @@
 import { User } from "@prisma/client";
 import { create } from "zustand";
 
-export type ModalType = "followersModal" | "followingModal" | "profileSettingsModal";
+export type ModalType =
+  | "followersModal"
+  | "followingModal"
+  | "profileSettingsModal";
 
 interface ModalData {
   user?: User;
-  followers?: ({ follower: User | null } & { isFollowed: boolean })[];
-  following?: { following: User | null }[];
+  followers?: ({ follower: User | null } & { isFollowed?: boolean })[];
+  following?: ({ following: User | null } & { isFollowed?: boolean })[];
 }
 
 interface ModalStoreProps {

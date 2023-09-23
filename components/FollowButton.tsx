@@ -29,7 +29,7 @@ const FollowButton: FC<FollowButtonProps> = ({ followerId, onClick, icon }) => {
       ) : (
         !clicked && (
           <button
-            title="follow"
+            title={icon ? "unfollow" : "follow"}
             //@ts-ignore
             onClick={() => {
               onClick(followerId);

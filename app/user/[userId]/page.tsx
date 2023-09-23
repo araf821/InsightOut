@@ -23,8 +23,6 @@ const UserPage = async ({ params }: { params: { userId: string } }) => {
       id: params.userId,
     },
     include: {
-      followers: true,
-      following: true,
       posts: {
         where: {
           published: true,
@@ -40,10 +38,33 @@ const UserPage = async ({ params }: { params: { userId: string } }) => {
     redirect("/");
   }
 
+  const allFollowing = await prismaClient.connection.findMany({
+    where: {
+      followerId: params.userId,
+    },
+    select: {
+      following: true,
+    },
+  });
+
+  const allFollowers = await prismaClient.connection.findMany({
+    where: {
+      followingId: params.userId,
+    },
+    select: {
+      follower: true,
+    },
+  });
+
   return (
     <Container className="py-8">
       {/* User info */}
-      <IndividualUserInfo currentUser={currentUser} user={user} />
+      <IndividualUserInfo
+        currentUser={currentUser}
+        followers={allFollowers}
+        following={allFollowing}
+        user={user}
+      />
     </Container>
   );
 };
