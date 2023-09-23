@@ -10,6 +10,7 @@ interface ModalData {
   user?: User;
   followers?: ({ follower: User | null } & { isFollowed?: boolean })[];
   following?: ({ following: User | null } & { isFollowed?: boolean })[];
+  userPage?: boolean;
 }
 
 interface ModalStoreProps {

@@ -16,7 +16,7 @@ const FollowingModal = () => {
   const router = useRouter();
 
   const isModalOpen = isOpen && type === "followingModal";
-  const { following } = data;
+  const { following, userPage } = data;
 
   const { mutate: onUnfollow } = useMutation({
     mutationFn: async (toUnfollowId: string) => {

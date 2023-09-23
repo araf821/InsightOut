@@ -1,12 +1,15 @@
 "use client";
 
 import { dateFormat } from "@/lib/helpers/dateFormat";
-import { Connection, Post, User } from "@prisma/client";
+import { Post, User } from "@prisma/client";
 import Image from "next/image";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useModal } from "@/hooks/useModal";
 import { redirect, useRouter } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
+import queryString from "query-string";
+import axios from "axios";
 
 interface IndividualUserInfoProps {
   user: User & {
@@ -25,6 +28,7 @@ const IndividualUserInfo: FC<IndividualUserInfoProps> = ({
 }) => {
   const { onOpen } = useModal();
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   // if (currentUser?.id === user.id) {
   //   redirect("/profile/dashboard");
@@ -34,16 +38,70 @@ const IndividualUserInfo: FC<IndividualUserInfoProps> = ({
     return follower.follower?.id === currentUser?.id;
   });
 
-  const handleUserConnection = async () => {
+  let allFollowers = Array.from(followers);
+  let allFollowing = Array.from(following);
+  console.log(allFollowers, allFollowing);
+
+  if (currentUser) {
+  }
+
+  // const { mutate: toggleFol } = useMutation({
+  //   mutationFn: async () => {
+  //     if (!currentUser) {
+  //       return toast.error("Please sign in first.");
+  //     }
+
+  //     const url = queryString.stringifyUrl({
+  //       url: "/api/following",
+  //       query: {
+  //         toFollowId: user.id,
+  //       },
+  //     });
+
+  //     await axios.post(url);
+  //   },
+  //   onError: () => {},
+  //   onSuccess: () => {},
+  // });
+
+  const toggleFollow = async () => {
     if (!currentUser) {
       return toast.error("Please sign in first.");
     }
+    setIsLoading(true);
 
     try {
+      if (alreadyFollowing) {
+        const url = queryString.stringifyUrl({
+          url: "/api/following",
+          query: {
+            toUnfollowId: user.id,
+          },
+        });
+        await axios.delete(url);
+      } else {
+        const url = queryString.stringifyUrl({
+          url: "/api/following",
+          query: {
+            toFollowId: user.id,
+          },
+        });
+        await axios.post(url);
+      }
+
+      router.refresh();
     } catch (error: any) {
       if (error?.response?.status === 403) {
-        return;
+        return toast.error("Can't follow yourself");
       }
+
+      if (error?.response?.status === 409) {
+        return toast.error("Already following");
+      }
+
+      toast.error("Something went wrong");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -64,8 +122,9 @@ const IndividualUserInfo: FC<IndividualUserInfoProps> = ({
               {user.name}
             </span>
             <button
-              onClick={handleUserConnection}
-              className="w-fit rounded-sm bg-zinc-200 px-2 py-1.5 text-left text-zinc-700 transition hover:bg-zinc-300 hover:text-zinc-900"
+              disabled={isLoading}
+              onClick={() => toggleFollow()}
+              className="w-fit rounded-sm bg-zinc-200 px-2 py-1.5 text-left text-zinc-700 transition hover:bg-zinc-300 hover:text-zinc-900 disabled:opacity-75"
             >
               {alreadyFollowing ? "Unfollow" : "Follow"}
             </button>
@@ -81,11 +140,13 @@ const IndividualUserInfo: FC<IndividualUserInfoProps> = ({
       {/* Followers Modal */}
       <div className="relative flex h-full w-full flex-col items-center justify-between gap-2 font-josefin text-zinc-500 md:flex-row lg:col-span-2 lg:flex-col">
         <div
-          onClick={() => onOpen("followersModal", {followers})}
+          onClick={() => onOpen("followersModal", { followers })}
           className="group grid h-full w-full cursor-pointer items-center rounded-md bg-secondary px-6 shadow-md transition hover:text-zinc-600"
         >
           <div className="flex translate-y-1 flex-row gap-8 py-4">
-            <span className="text-xl md:text-2xl lg:text-3xl">0</span>
+            <span className="text-xl md:text-2xl lg:text-3xl">
+              {followers?.length ?? 0}
+            </span>
             <div className="border-l-2 border-neutral-300" />
             <span className="my-auto text-xl sm:text-2xl md:text-3xl">
               Followers
@@ -100,7 +161,7 @@ const IndividualUserInfo: FC<IndividualUserInfoProps> = ({
         >
           <div className="flex translate-y-1 flex-row gap-8 py-4 md:py-0">
             <span className="text-xl md:text-2xl lg:text-3xl">
-              {/* {following?.length ?? 0} */}0
+              {following?.length ?? 0}
             </span>
             <div className="border-l-2 border-neutral-300" />
             <span className="my-auto text-xl sm:text-2xl md:text-3xl">
