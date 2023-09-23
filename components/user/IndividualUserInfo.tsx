@@ -18,6 +18,7 @@ interface IndividualUserInfoProps {
   followers: { follower: User | null }[];
   following: { following: User | null }[];
   currentUser: User | null;
+  currentUserFollows: { followingId: string | null }[] | null;
 }
 
 const IndividualUserInfo: FC<IndividualUserInfoProps> = ({
@@ -25,6 +26,7 @@ const IndividualUserInfo: FC<IndividualUserInfoProps> = ({
   user,
   followers,
   following,
+  currentUserFollows,
 }) => {
   const { onOpen } = useModal();
   const router = useRouter();
@@ -38,31 +40,27 @@ const IndividualUserInfo: FC<IndividualUserInfoProps> = ({
     return follower.follower?.id === currentUser?.id;
   });
 
-  let allFollowers = Array.from(followers);
-  let allFollowing = Array.from(following);
-  console.log(allFollowers, allFollowing);
+  let allFollowers:
+    | { follower: User | null; isFollowed: boolean | undefined }[]
+    | null = null;
+
+  let allFollowing:
+    | { following: User | null; isFollowed: boolean | undefined }[]
+    | null = null;
 
   if (currentUser) {
+    allFollowers = followers.map((connection) => ({
+      ...connection,
+      //@ts-ignore
+      isFollowed: currentUserFollows?.includes(connection.follower?.id),
+    }));
+
+    allFollowing = following.map((connection) => ({
+      ...connection,
+      //@ts-ignore
+      isFollowed: currentUserFollows?.includes(connection.following?.id),
+    }));
   }
-
-  // const { mutate: toggleFol } = useMutation({
-  //   mutationFn: async () => {
-  //     if (!currentUser) {
-  //       return toast.error("Please sign in first.");
-  //     }
-
-  //     const url = queryString.stringifyUrl({
-  //       url: "/api/following",
-  //       query: {
-  //         toFollowId: user.id,
-  //       },
-  //     });
-
-  //     await axios.post(url);
-  //   },
-  //   onError: () => {},
-  //   onSuccess: () => {},
-  // });
 
   const toggleFollow = async () => {
     if (!currentUser) {
@@ -140,7 +138,11 @@ const IndividualUserInfo: FC<IndividualUserInfoProps> = ({
       {/* Followers Modal */}
       <div className="relative flex h-full w-full flex-col items-center justify-between gap-2 font-josefin text-zinc-500 md:flex-row lg:col-span-2 lg:flex-col">
         <div
-          onClick={() => onOpen("followersModal", { followers })}
+          onClick={() =>
+            onOpen("followersModal", {
+              followers: allFollowers ? allFollowers : followers,
+            })
+          }
           className="group grid h-full w-full cursor-pointer items-center rounded-md bg-secondary px-6 shadow-md transition hover:text-zinc-600"
         >
           <div className="flex translate-y-1 flex-row gap-8 py-4">

@@ -56,6 +56,21 @@ const UserPage = async ({ params }: { params: { userId: string } }) => {
     },
   });
 
+  let currentUserFollows = null;
+  if (currentUser) {
+    currentUserFollows = await prismaClient.connection.findMany({
+      where: {
+        followerId: currentUser.id,
+      },
+      select: {
+        followingId: true,
+      },
+    });
+  }
+
+  console.log(currentUserFollows);
+  
+
   return (
     <Container className="py-8">
       {/* User info */}
@@ -64,6 +79,7 @@ const UserPage = async ({ params }: { params: { userId: string } }) => {
         followers={allFollowers}
         following={allFollowing}
         user={user}
+        currentUserFollows={currentUserFollows}
       />
     </Container>
   );
