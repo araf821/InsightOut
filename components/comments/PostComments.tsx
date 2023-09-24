@@ -56,9 +56,12 @@ const PostComments = ({ currentUser, postId, comments }: PostCommentsProps) => {
 
       {/* Displaying Comments */}
       {comments.length < 1 ? (
-        <div className="mx-auto py-10 text-zinc-700 md:text-lg">
-          Be the first to leave a comment!
-        </div>
+        <>
+          <div className="mx-auto py-20 text-zinc-700 md:text-lg">
+            Be the first to leave a comment!
+          </div>
+          <hr />
+        </>
       ) : (
         <div className="flex flex-col gap-4 border-t-[1px] border-zinc-200 py-4">
           {comments.map((comment) => {

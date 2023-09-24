@@ -95,7 +95,15 @@ const FollowersModal = () => {
               className="flex items-center gap-2"
             >
               <Avatar src={connection.follower?.image} classNames="w-10 h-10" />
-              <p>{connection.follower?.name}</p>
+              <p
+                className="cursor-pointer"
+                onClick={() => {
+                  onClose();
+                  router.push(`/user/${connection.follower!.id}`);
+                }}
+              >
+                {connection.follower!.name}
+              </p>
               {connection.isFollowed ? (
                 <UnfollowButton toUnfollowId={connection.follower.id} />
               ) : (

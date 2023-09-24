@@ -70,11 +70,19 @@ const IndividualComment: FC<IndividualCommentProps> = ({
       <div className="flex gap-x-2.5">
         <div className="flex flex-col items-center gap-4">
           <Avatar src={comment.author.image} classNames="w-10 md:w-12" />
-          <div className="border-r-[1px] border-zinc-300 h-full" />
+          <div className="h-full border-r-[1px] border-zinc-300" />
         </div>
         <div className="flex w-full flex-col gap-1.5">
           <div className="flex items-center gap-1.5">
-            <span>{comment.author.name}</span>
+            <span
+              className="cursor-pointer text-zinc-700 transition hover:text-zinc-900"
+              tabIndex={0}
+              onClick={() =>
+                router.push(`/user/${comment.authorId}`, { scroll: true })
+              }
+            >
+              {comment.author.name}
+            </span>
             <span className="text-sm text-zinc-500">
               {dateFormat(comment.createdAt.toISOString())}
             </span>

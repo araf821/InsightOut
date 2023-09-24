@@ -72,7 +72,7 @@ const UserPage = async ({ params }: { params: { userId: string } }) => {
   }
 
   return (
-    <Container className="py-8">
+    <Container className="pb-4">
       {/* User info */}
       <IndividualUserInfo
         currentUser={currentUser}
@@ -81,8 +81,8 @@ const UserPage = async ({ params }: { params: { userId: string } }) => {
         user={user}
         currentUserFollows={currentUserFollows}
       />
-      {!user.posts.length ? (
-        <div>
+      {!!user.posts.length ? (
+        <div className="mt-4">
           <Heading title={user.name + "'s Posts"} small />
           <CardsContainer>
             {user.posts.map((post) => (

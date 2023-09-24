@@ -46,7 +46,12 @@ const IndividualReply: FC<IndividualReplyProps> = ({ reply, currentUser }) => {
       </div>
       <div className="flex w-full flex-col gap-1.5">
         <div className="flex items-center gap-1.5">
-          <span>{reply.author.name}</span>
+          <span
+            onClick={() => router.push(`/user/${reply.authorId}`)}
+            className="cursor-pointer text-zinc-700 transition hover:text-zinc-900"
+          >
+            {reply.author.name}
+          </span>
           <span className="text-sm text-zinc-500">
             {dateFormat(reply.createdAt.toISOString())}
           </span>

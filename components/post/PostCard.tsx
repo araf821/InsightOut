@@ -91,7 +91,7 @@ const PostCard: FC<PostCardProps> = ({
             onDelete={handleDelete}
             isLoading={isLoading}
             onUpdate={() => {
-              router.push(`/post/update/${post.slug}`);
+              router.push(`/post/update/${post.slug}`, { scroll: true });
             }}
           />
         )}
@@ -113,11 +113,19 @@ const PostCard: FC<PostCardProps> = ({
           ${(main || horizontal) && "md:text-xl xl:text-2xl"}`}
           onClick={() => router.push(`/post/${post.slug}`)}
         >
-          <span className="cursor-pointer underline-offset-4 hover:underline">
+          <span tabIndex={0} className="cursor-pointer underline-offset-4 hover:underline">
             {post.title}
           </span>
         </p>
-        <p className={`font-light text-zinc-700`}>{post.author.name}</p>
+        <p
+          onClick={() =>
+            router.push(`/user/${post.authorId}`, { scroll: true })
+          }
+          className={`cursor-pointer font-light text-zinc-700`}
+          tabIndex={0}
+        >
+          {post.author.name}
+        </p>
       </div>
     </motion.div>
   );

@@ -97,7 +97,7 @@ const PostForm: FC<PostFormProps> = ({ post }) => {
         })
         .then(() => {
           toast.success("Post published!");
-          router.push("/explore");
+          router.push("/explore", { scroll: true });
           reset();
         })
         .catch((error) => {

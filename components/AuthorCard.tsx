@@ -4,6 +4,7 @@ import { FC } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Post, User } from "@prisma/client";
+import { useRouter } from "next/navigation";
 
 interface AuthorCardProps {
   author: User & { posts: Post[] };
@@ -14,6 +15,7 @@ const AuthorCard: FC<AuthorCardProps> = ({ author, index = 0 }) => {
   const postsPublished = author.posts.filter((post) => {
     if (post.published) return post;
   });
+  const router = useRouter();
 
   return (
     <motion.div
@@ -34,7 +36,10 @@ const AuthorCard: FC<AuthorCardProps> = ({ author, index = 0 }) => {
           stiffness: 200,
         },
       }}
-      className="aspect-[5/6] w-full"
+      onClick={() => {
+        router.push(`/user/${author.id}`);
+      }}
+      className="aspect-[5/6] w-full cursor-pointer"
     >
       <div className="relative aspect-square overflow-hidden">
         <Image
@@ -46,7 +51,9 @@ const AuthorCard: FC<AuthorCardProps> = ({ author, index = 0 }) => {
         />
       </div>
       <div className="mx-auto mt-2 space-y-0.5 text-center font-josefin">
-        <p className="text-xl font-semibold text-bg">{author.name}</p>
+        <p onClick={() => {}} className="text-xl font-semibold text-bg">
+          {author.name}
+        </p>
         <p className="text-bg/80 md:text-lg">
           Posts Published: {postsPublished.length}
         </p>

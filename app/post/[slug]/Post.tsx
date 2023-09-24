@@ -16,6 +16,7 @@ import { Check, Loader2, UserPlus } from "lucide-react";
 import qs from "query-string";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import FollowButton from "@/components/FollowButton";
 
 interface PostProps {
   post: Post & { author: User; comments: Comment[] };
@@ -33,7 +34,7 @@ const Post: FC<PostProps> = ({ post, currentUser }) => {
         <button
           aria-label="edit post button"
           onClick={() =>
-            router.push(`/post/update/${post.slug}`, { scroll: false })
+            router.push(`/post/update/${post.slug}`, { scroll: true })
           }
           className="flex w-fit items-center gap-1 font-semibold text-neutral-600 transition duration-200 hover:translate-x-2 hover:text-neutral-900 md:text-lg lg:text-xl"
         >
@@ -128,19 +129,27 @@ const Post: FC<PostProps> = ({ post, currentUser }) => {
         </div>
         <div className="w-full">
           <p className="flex justify-between text-lg font-semibold sm:text-xl md:text-2xl">
-            {post.author.name}
+            <span
+              onClick={() => {
+                router.push(`/user/${post.authorId}`);
+              }}
+              className="cursor-pointer"
+            >
+              {post.author.name}
+            </span>
             {isError ? null : currentUser?.id ===
               post.authorId ? null : isSuccess ? (
               <Check />
             ) : isLoading ? (
               <Loader2 className="animate-spin" />
             ) : (
-              <button
-                onClick={() => onFollow()}
-                className="text-zinc-500 transition hover:text-zinc-600"
-              >
-                <UserPlus />
-              </button>
+              // <button
+              //   onClick={() => onFollow()}
+              //   className="text-zinc-500 transition hover:text-zinc-600"
+              // >
+              //   <UserPlus />
+              // </button>
+              <FollowButton toFollowId={post.authorId} />
             )}
           </p>
           <p className="text-sm  sm:text-base md:text-lg">

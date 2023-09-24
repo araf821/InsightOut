@@ -53,7 +53,12 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({ post }) => {
             >
               {post.title}
             </p>
-            <p className="sm:text-lg md:text-xl lg:text-2xl">
+            <p
+              onClick={() =>
+                router.push(`/user/${post.authorId}`, { scroll: true })
+              }
+              className="cursor-pointer sm:text-lg md:text-xl lg:text-2xl"
+            >
               By {post.author.name}
             </p>
             <p>

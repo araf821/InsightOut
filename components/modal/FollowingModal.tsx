@@ -49,7 +49,15 @@ const FollowingModal = () => {
                 src={connection.following?.image}
                 classNames="w-10 h-10"
               />
-              <p>{connection.following?.name}</p>
+              <p
+                className="cursor-pointer text-zinc-600 transition hover:text-zinc-800"
+                onClick={() => {
+                  router.push(`/user/${connection.following!.id}`);
+                  onClose();
+                }}
+              >
+                {connection.following!.name}
+              </p>
               {connection.isFollowed ? (
                 <UnfollowButton toUnfollowId={connection.following.id} />
               ) : (
