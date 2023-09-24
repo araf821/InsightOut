@@ -3,42 +3,20 @@
 import { useModal } from "@/hooks/useModal";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/Dialog";
 import Avatar from "../Avatar";
-import { UserMinus } from "lucide-react";
 import { toast } from "react-hot-toast";
-import { useMutation } from "@tanstack/react-query";
 import qs from "query-string";
-import { useRouter } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import FollowButton from "../FollowButton";
+import UnfollowButton from "../UnfollowButton";
 
 const FollowingModal = () => {
-  const { onClose, onOpen, data, type, isOpen } = useModal();
+  const { onClose, data, type, isOpen } = useModal();
   const router = useRouter();
 
   const isModalOpen = isOpen && type === "followingModal";
-  const { following, userPage } = data;
-
-  const { mutate: onUnfollow } = useMutation({
-    mutationFn: async (toUnfollowId: string) => {
-      const url = qs.stringifyUrl({
-        url: "/api/following",
-        query: {
-          toUnfollowId,
-        },
-      });
-
-      const response = await axios.delete(url);
-
-      onOpen("followingModal", { following: response.data });
-    },
-    onError: () => {
-      toast.error("Something went wrong");
-    },
-    onSuccess: () => {
-      toast.success("Unfollowed Successfully");
-      router.refresh();
-    },
-  });
+  const { following } = data;
 
   if (!following?.length) {
     return (
@@ -54,9 +32,7 @@ const FollowingModal = () => {
     <Dialog open={isModalOpen} onOpenChange={onClose}>
       <DialogContent className="max-h-[50%] overflow-y-auto bg-bg px-8">
         <DialogHeader className="">
-          <DialogTitle className="text-center text-2xl text-zinc-700">
-            Following
-          </DialogTitle>
+          <DialogTitle className="text-center text-2xl">Following</DialogTitle>
         </DialogHeader>
         <hr />
         {following.map((connection) => {
@@ -74,11 +50,11 @@ const FollowingModal = () => {
                 classNames="w-10 h-10"
               />
               <p>{connection.following?.name}</p>
-              <FollowButton
-                followerId={connection.following?.id}
-                onClick={onUnfollow}
-                icon={<UserMinus />}
-              />
+              {connection.isFollowed ? (
+                <UnfollowButton toUnfollowId={connection.following.id} />
+              ) : (
+                <FollowButton toFollowId={connection.following.id} />
+              )}
             </div>
           );
         })}

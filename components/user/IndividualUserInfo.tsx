@@ -31,6 +31,7 @@ const IndividualUserInfo: FC<IndividualUserInfoProps> = ({
   const { onOpen } = useModal();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  console.log("UserFollows", currentUserFollows);
 
   // if (currentUser?.id === user.id) {
   //   redirect("/profile/dashboard");
@@ -49,18 +50,22 @@ const IndividualUserInfo: FC<IndividualUserInfoProps> = ({
     | null = null;
 
   if (currentUser) {
+    const followingIds =
+      currentUserFollows?.map((item) => item.followingId || null) || [];
+
     allFollowers = followers.map((connection) => ({
       ...connection,
-      //@ts-ignore
-      isFollowed: currentUserFollows?.includes(connection.follower?.id),
+      isFollowed: followingIds.includes(connection.follower?.id || null),
     }));
 
     allFollowing = following.map((connection) => ({
       ...connection,
-      //@ts-ignore
-      isFollowed: currentUserFollows?.includes(connection.following?.id),
+      isFollowed: followingIds.includes(connection.following?.id || null),
     }));
   }
+
+  console.log("All Followers ", allFollowers);
+  console.log("All Followings ", allFollowing);
 
   const toggleFollow = async () => {
     if (!currentUser) {
@@ -140,7 +145,7 @@ const IndividualUserInfo: FC<IndividualUserInfoProps> = ({
         <div
           onClick={() =>
             onOpen("followersModal", {
-              followers: allFollowers ? allFollowers : followers,
+              followers: allFollowers ?? followers,
             })
           }
           className="group grid h-full w-full cursor-pointer items-center rounded-md bg-secondary px-6 shadow-md transition hover:text-zinc-600"
@@ -158,7 +163,9 @@ const IndividualUserInfo: FC<IndividualUserInfoProps> = ({
 
         {/* Following Modal */}
         <div
-          onClick={() => onOpen("followingModal", { following })}
+          onClick={() =>
+            onOpen("followingModal", { following: allFollowing ?? following })
+          }
           className="group grid h-full w-full cursor-pointer items-center rounded-md bg-secondary px-6 shadow-md transition hover:text-zinc-600"
         >
           <div className="flex translate-y-1 flex-row gap-8 py-4 md:py-0">

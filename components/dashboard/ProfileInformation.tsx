@@ -16,7 +16,7 @@ interface ProfileInformationProps {
     _count: { posts: number };
   };
   followers: ({ follower: User | null } & { isFollowed: boolean })[];
-  following: { following: User | null }[];
+  following: ({ following: User | null } & { isFollowed: boolean })[];
 }
 
 const ProfileInformation: FC<ProfileInformationProps> = ({
@@ -57,7 +57,10 @@ const ProfileInformation: FC<ProfileInformationProps> = ({
           initial="hidden"
           className="relative flex w-full flex-col overflow-hidden rounded-t-lg bg-secondary px-2 py-3 shadow-md sm:flex-row sm:rounded-l-lg lg:col-span-3"
         >
-          <EditableProfilePicture userId={user.id} imageUrl={user.image ?? ""} />
+          <EditableProfilePicture
+            userId={user.id}
+            imageUrl={user.image ?? ""}
+          />
 
           <div className="flex w-full flex-col gap-2 pt-4 font-josefin sm:px-2 sm:py-0">
             <div className="flex items-center justify-between">

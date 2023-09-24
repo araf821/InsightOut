@@ -32,7 +32,7 @@ const ProfileLayout = async ({ children }: { children: React.ReactNode }) => {
     redirect("/");
   }
 
-  const following = await prismaClient.connection.findMany({
+  const allFollowings = await prismaClient.connection.findMany({
     where: {
       followerId: currentUser.id,
     },
@@ -42,7 +42,7 @@ const ProfileLayout = async ({ children }: { children: React.ReactNode }) => {
   });
 
   // getting all the ids of the people we are following
-  const followingIds = following.map((item) => item.following?.id);
+  const followingIds = allFollowings.map((item) => item.following?.id);
 
   const allFollowers = await prismaClient.connection.findMany({
     where: {
@@ -59,11 +59,16 @@ const ProfileLayout = async ({ children }: { children: React.ReactNode }) => {
     isFollowed: followingIds.includes(connection.follower?.id),
   }));
 
+  const followings = allFollowings.map((connection) => ({
+    ...connection,
+    isFollowed: followingIds.includes(connection.following?.id),
+  }));
+
   return (
     <Container className="space-y-4 py-8">
       <ProfileInformation
         user={currentUser}
-        following={following}
+        following={followings}
         followers={followers}
       />
       {children}

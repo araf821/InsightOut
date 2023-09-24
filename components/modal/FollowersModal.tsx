@@ -9,9 +9,11 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import FollowButton from "../FollowButton";
+import { UserMinus, UserPlus } from "lucide-react";
+import UnfollowButton from "../UnfollowButton";
 
 const FollowersModal = () => {
-  const { onClose, data, type, isOpen, onOpen } = useModal();
+  const { onClose, data, type, isOpen } = useModal();
   const router = useRouter();
 
   const isModalOpen = isOpen && type === "followersModal";
@@ -45,6 +47,26 @@ const FollowersModal = () => {
     },
   });
 
+  const { mutate: onUnfollow } = useMutation({
+    mutationFn: async (toUnfollowId: string) => {
+      const url = qs.stringifyUrl({
+        url: "/api/following",
+        query: {
+          toUnfollowId,
+        },
+      });
+
+      await axios.delete(url);
+    },
+    onError: (error: any) => {
+      toast.error("Something went wrong");
+    },
+    onSuccess: () => {
+      toast.success("Unfollowed Successfully");
+      router.refresh();
+    },
+  });
+
   if (!followers?.length) {
     return (
       <Dialog open={isModalOpen} onOpenChange={onClose}>
@@ -74,11 +96,10 @@ const FollowersModal = () => {
             >
               <Avatar src={connection.follower?.image} classNames="w-10 h-10" />
               <p>{connection.follower?.name}</p>
-              {connection.isFollowed ? null : (
-                <FollowButton
-                  followerId={connection.follower.id}
-                  onClick={onFollow}
-                />
+              {connection.isFollowed ? (
+                <UnfollowButton toUnfollowId={connection.follower.id} />
+              ) : (
+                <FollowButton toFollowId={connection.follower.id} />
               )}
             </div>
           );

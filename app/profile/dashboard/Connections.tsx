@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FC } from "react";
 
 interface ConnectionsProps {
-  following: { following: User | null }[];
+  following: ({ following: User | null } & { isFollowed: boolean })[];
   followers: ({ follower: User | null } & { isFollowed: boolean })[];
 }
 
