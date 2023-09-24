@@ -31,11 +31,10 @@ const IndividualUserInfo: FC<IndividualUserInfoProps> = ({
   const { onOpen } = useModal();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  console.log("UserFollows", currentUserFollows);
 
-  // if (currentUser?.id === user.id) {
-  //   redirect("/profile/dashboard");
-  // }
+  if (currentUser?.id === user.id) {
+    redirect("/profile/dashboard");
+  }
 
   const alreadyFollowing = followers.find((follower) => {
     return follower.follower?.id === currentUser?.id;
@@ -63,9 +62,6 @@ const IndividualUserInfo: FC<IndividualUserInfoProps> = ({
       isFollowed: followingIds.includes(connection.following?.id || null),
     }));
   }
-
-  console.log("All Followers ", allFollowers);
-  console.log("All Followings ", allFollowing);
 
   const toggleFollow = async () => {
     if (!currentUser) {

@@ -1,5 +1,8 @@
 import getCurrentUser from "@/app/actions/users/getCurrentUser";
+import CardsContainer from "@/components/CardsContainer";
 import Container from "@/components/Container";
+import Heading from "@/components/Heading";
+import PostCard from "@/components/post/PostCard";
 import IndividualUserInfo from "@/components/user/IndividualUserInfo";
 import prismaClient from "@/lib/prismadb";
 import { redirect } from "next/navigation";
@@ -68,9 +71,6 @@ const UserPage = async ({ params }: { params: { userId: string } }) => {
     });
   }
 
-  console.log(currentUserFollows);
-  
-
   return (
     <Container className="py-8">
       {/* User info */}
@@ -81,6 +81,20 @@ const UserPage = async ({ params }: { params: { userId: string } }) => {
         user={user}
         currentUserFollows={currentUserFollows}
       />
+      {!user.posts.length ? (
+        <div>
+          <Heading title={user.name + "'s Posts"} small />
+          <CardsContainer>
+            {user.posts.map((post) => (
+              <PostCard key={post.id} post={{ ...post, author: user }} />
+            ))}
+          </CardsContainer>
+        </div>
+      ) : (
+        <div className="flex items-center justify-center font-josefin py-20 md:text-lg">
+          {user.name} has not published any posts yet.
+        </div>
+      )}
     </Container>
   );
 };
