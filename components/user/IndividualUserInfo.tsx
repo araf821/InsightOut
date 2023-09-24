@@ -7,7 +7,6 @@ import { FC, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useModal } from "@/hooks/useModal";
 import { redirect, useRouter } from "next/navigation";
-import { useMutation } from "@tanstack/react-query";
 import queryString from "query-string";
 import axios from "axios";
 
@@ -132,7 +131,9 @@ const IndividualUserInfo: FC<IndividualUserInfoProps> = ({
           <p className="text-xl font-light">
             Member Since: {dateFormat(user.createdAt.toISOString())}
           </p>
-          <p className="text-xl font-light">Posts published: 0</p>
+          <p className="text-xl font-light">
+            Posts published: {user.posts.length}
+          </p>
         </div>
       </div>
 
