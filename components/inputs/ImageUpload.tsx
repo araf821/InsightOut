@@ -1,11 +1,11 @@
-import { CldUploadWidget } from "next-cloudinary";
+import {
+  CldUploadWidget,
+  CloudinaryUploadWidgetResults,
+} from "next-cloudinary";
 import Image from "next/image";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { TbPhotoPlus } from "react-icons/tb";
-
-declare global {
-  var cloudinary: any;
-}
+import { toast } from "react-hot-toast";
 
 interface ImageUploadProps {
   onChange: (value: string) => void;
@@ -20,33 +20,68 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
   className,
   rounded,
 }) => {
+  const [isUploading, setIsUploading] = useState(false);
+
   const handleUpload = useCallback(
-    (result: any) => {
-      onChange(result.info.secure_url);
+    (result: CloudinaryUploadWidgetResults) => {
+      if (result.event === "queues-start") {
+        setIsUploading(true);
+        return;
+      }
+
+      if (result.event === "success" && result.info) {
+        setIsUploading(false);
+        const info = result.info as { secure_url: string };
+        onChange(info.secure_url);
+        toast.success("Image uploaded successfully!");
+      }
     },
     [onChange]
   );
 
   return (
     <CldUploadWidget
-      onUpload={handleUpload}
+      onSuccess={handleUpload}
       uploadPreset="updapnr1"
       options={{
         maxFiles: 1,
-        sources: ["unsplash", "local", "camera"],
+        sources: ["local", "camera", "unsplash"],
         clientAllowedFormats: ["png", "jpg", "jpeg", "webp"],
+        maxFileSize: 5000000, // 5MB
+        cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+      }}
+      onError={(err) => {
+        setIsUploading(false);
+        const errorMessage =
+          typeof err === "string"
+            ? err
+            : err?.statusText || "Failed to upload image";
+        toast.error(errorMessage);
       }}
     >
       {({ open }) => {
         return (
           <div
-            onClick={() => open?.()}
+            onClick={() => {
+              if (!isUploading) {
+                open?.();
+              }
+            }}
             className={`relative flex cursor-pointer flex-col items-center justify-center border-2 border-dashed
             border-neutral-300 bg-white
-            text-neutral-600 transition hover:opacity-70 focus:ring-4 focus:ring-zinc-800 ${className}`}
+            text-neutral-600 transition hover:opacity-70 focus:ring-4 focus:ring-zinc-800
+            ${isUploading ? "cursor-not-allowed opacity-50" : ""}
+            ${className}`}
           >
-            <TbPhotoPlus size={50} />
-            {value && (
+            {isUploading ? (
+              <div className="flex items-center gap-2">
+                <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-zinc-800"></div>
+                <span>Uploading...</span>
+              </div>
+            ) : (
+              <TbPhotoPlus size={50} />
+            )}
+            {value && !isUploading && (
               <div className="absolute inset-0 h-full w-full">
                 <Image
                   alt="image upload"
@@ -63,4 +98,5 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
     </CldUploadWidget>
   );
 };
+
 export default ImageUpload;
