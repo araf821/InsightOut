@@ -11,7 +11,8 @@ const openai = new OpenAIApi(configuration);
 export async function POST(request: NextRequest) {
   try {
     const { title } = await request.json();
-    const ip = request.ip ?? "127.0.0.1";
+    const forwarded = request.headers.get("x-forwarded-for");
+    const ip = forwarded ? forwarded.split(",")[0] : "127.0.0.1";
     const { success } = await templateRateLimiter.limit(ip);
 
     if (!success) {

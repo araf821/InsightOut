@@ -14,10 +14,12 @@ export async function PUT(
   if (!postId || typeof postId !== "string") {
     throw new Error("Invalid post ID.");
   }
-  
+
   // identifier used to determine if the request should be accepted or not,
   // user's ip address + the post id
-  const identifier = request.ip ?? "127.0.0.1" + postId;
+  const forwarded = request.headers.get("x-forwarded-for");
+  const ip = forwarded ? forwarded.split(",")[0] : "127.0.0.1";
+  const identifier = ip + postId;
   const { success } = await viewCountLimiter.limit(identifier);
 
   if (!success) {

@@ -10,7 +10,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.error();
   }
 
-  const ip = request.ip ?? "127.0.0.1";
+  // Get IP from headers
+  const forwarded = request.headers.get("x-forwarded-for");
+  const ip = forwarded ? forwarded.split(",")[0] : "127.0.0.1";
   const { success } = await postLimiter.limit(ip);
 
   if (!success) {

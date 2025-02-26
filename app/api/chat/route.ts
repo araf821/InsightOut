@@ -12,7 +12,8 @@ export const runtime = "edge";
 
 export async function POST(req: NextRequest) {
   const { messages } = await req.json();
-  const ip = req.ip ?? "127.0.0.1";
+  const forwarded = req.headers.get("x-forwarded-for");
+  const ip = forwarded ? forwarded.split(",")[0] : "127.0.0.1";
   const { success } = await chatRateLimiter.limit(ip);
 
   if (!success) {
