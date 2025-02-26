@@ -47,7 +47,6 @@ const CommentForm: FC<CommentFormProps> = ({ currentUser, onSubmit }) => {
   return (
     <form
       onSubmit={form.handleSubmit(onSubmit)}
-      {...form}
       className="flex flex-col gap-2"
     >
       <div className="flex gap-x-2.5">
@@ -69,19 +68,22 @@ const CommentForm: FC<CommentFormProps> = ({ currentUser, onSubmit }) => {
           {open ? (
             <div className="flex justify-end gap-x-2">
               <Button
+                type="button"
                 className="max-w-[175px]"
                 outline
                 small
                 onClick={() => {
+                  form.reset();
                   setOpen(false);
                 }}
                 label="Cancel"
               />
               <Button
-                onClick={form.handleSubmit(onSubmit)}
+                type="submit"
+                disabled={isLoading || !form.formState.isDirty}
                 className="max-w-[250px]"
                 small
-                label="Submit"
+                label={isLoading ? "Submitting..." : "Submit"}
               />
             </div>
           ) : null}

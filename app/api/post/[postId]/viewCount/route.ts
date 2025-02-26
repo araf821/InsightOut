@@ -23,6 +23,8 @@ export async function PUT(
   const { success } = await viewCountLimiter.limit(identifier);
 
   if (!success) {
+    console.error("View count limit exceeded.", 1);
+
     return NextResponse.json(
       {
         message:

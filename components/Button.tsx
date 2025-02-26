@@ -4,13 +4,14 @@ import { IconType } from "react-icons";
 
 interface ButtonProps {
   label?: string;
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   outline?: boolean;
   icon?: IconType;
   disabled?: boolean;
   special?: boolean;
   small?: boolean;
   className?: string;
+  type?: "button" | "submit" | "reset";
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -22,13 +23,14 @@ const Button: React.FC<ButtonProps> = ({
   disabled,
   small,
   className = "",
+  type = "button",
 }) => {
   return (
     <button
       aria-label={`${label} button`}
       onClick={onClick}
       disabled={disabled}
-      type="button"
+      type={type}
       className={`group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-sm border-2 outline-none ring-offset-2 transition-all duration-300 focus:ring-2 active:scale-90 disabled:cursor-not-allowed disabled:opacity-70
       ${
         special

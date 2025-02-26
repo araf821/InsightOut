@@ -10,7 +10,7 @@ import Heading from "@/components/Heading";
 import { motion } from "framer-motion";
 import { singlePostVariants } from "@/lib/anim";
 import PostViews from "./PostViews";
-import { Comment, Post, User } from "@prisma/client";
+import { Comment, Post as PostType, User } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import { Check, Loader2, UserPlus } from "lucide-react";
 import qs from "query-string";
@@ -19,7 +19,7 @@ import { toast } from "react-hot-toast";
 import FollowButton from "@/components/FollowButton";
 
 interface PostProps {
-  post: Post & { author: User; comments: Comment[] };
+  post: PostType & { author: User; comments: Comment[] };
   currentUser: User | null;
 }
 
@@ -59,25 +59,31 @@ const Post: FC<PostProps> = ({ post, currentUser }) => {
         },
       });
 
-      await axios.post(url);
+      const response = await axios.post<{ message: string }>(url);
+      return response.data;
     },
-    onError: (e: Error) => {
-      if (e.message.includes("401")) {
-        return toast.error("Unauthorized");
+    onError: (error: unknown) => {
+      if (axios.isAxiosError(error)) {
+        switch (error.response?.status) {
+          case 401:
+            toast.error("Please sign in to follow users");
+            break;
+          case 400:
+            toast.error("Invalid request");
+            break;
+          case 418:
+            toast.error("You are already following this user");
+            break;
+          default:
+            toast.error("Something went wrong. Please try again later.");
+        }
+        return;
       }
-
-      if (e.message.includes("400")) {
-        return toast.error("Bad Request");
-      }
-
-      if (e.message.includes("418")) {
-        return toast.error("Already Following");
-      }
-
-      toast.error("Something went wrong.");
+      toast.error("An unexpected error occurred");
     },
-    onSuccess: () => {
-      toast.success("Followed");
+    onSuccess: (data) => {
+      toast.success(`Now following ${post.author.name}`);
+      router.refresh();
     },
   });
 
@@ -112,7 +118,17 @@ const Post: FC<PostProps> = ({ post, currentUser }) => {
           alt="post image"
           sizes="(max-width: 768px) 100vw, 80vw"
           fill
-          className="rounded-md object-cover"
+          priority
+          className="rounded-md object-cover transition-opacity duration-300"
+          onLoadingComplete={(image) => {
+            image.classList.remove("opacity-0");
+          }}
+          onLoad={(event) => {
+            const img = event.target as HTMLImageElement;
+            if (img.complete) {
+              img.classList.remove("opacity-0");
+            }
+          }}
         />
       </div>
       {/* Author Info */}
@@ -137,19 +153,16 @@ const Post: FC<PostProps> = ({ post, currentUser }) => {
             >
               {post.author.name}
             </span>
-            {isError ? null : currentUser?.id ===
-              post.authorId ? null : isSuccess ? (
-              <Check />
-            ) : isLoading ? (
-              <Loader2 className="animate-spin" />
-            ) : (
-              // <button
-              //   onClick={() => onFollow()}
-              //   className="text-zinc-500 transition hover:text-zinc-600"
-              // >
-              //   <UserPlus />
-              // </button>
-              <FollowButton toFollowId={post.authorId} />
+            {!isError && currentUser?.id !== post.authorId && (
+              <>
+                {isSuccess ? (
+                  <Check className="text-green-600" />
+                ) : isLoading ? (
+                  <Loader2 className="animate-spin text-neutral-600" />
+                ) : (
+                  <FollowButton toFollowId={post.authorId} />
+                )}
+              </>
             )}
           </p>
           <p className="text-sm  sm:text-base md:text-lg">
