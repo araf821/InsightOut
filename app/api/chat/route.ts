@@ -146,7 +146,7 @@ export async function POST(req: NextRequest) {
       "You love helping users with their writing and creative tasks.";
 
     const response = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo",
+      model: "gpt-4o-mini",
       stream: true,
       messages: [
         {

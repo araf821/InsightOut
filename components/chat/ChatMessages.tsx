@@ -280,6 +280,7 @@ const ChatMessages = () => {
                 e.preventDefault();
                 clearChat();
               }}
+              type="button"
               className="w-full cursor-pointer rounded-md px-2 py-1 text-left text-white transition duration-200 hover:bg-primary/80"
               role="menuitem"
             >
