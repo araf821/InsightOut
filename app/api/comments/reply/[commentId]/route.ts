@@ -4,11 +4,11 @@ import { NextResponse } from "next/server";
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { commentId: string } }
+  { params }: { params: Promise<{ commentId: string }> }
 ) {
   try {
     const { comment, postId } = await req.json();
-    const { commentId } = params;
+    const { commentId } = await params;
     const currentUser = await getCurrentUser();
 
     if (!commentId) {

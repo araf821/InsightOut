@@ -9,8 +9,8 @@ import Container from "@/components/Container";
 import prismaClient from "@/lib/prismadb";
 import PostComments from "../../../components/comments/PostComments";
 
-const PostPage = async ({ params }: { params: { slug: string } }) => {
-  const { slug } = params;
+const PostPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
+  const { slug } = await params;
   const currentUser = await getCurrentUser();
 
   const post = await prismaClient.post.findUnique({

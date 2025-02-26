@@ -2,17 +2,16 @@ import getCurrentUser from "@/app/actions/users/getCurrentUser";
 import prismaClient from "@/lib/prismadb";
 import { NextResponse } from "next/server";
 
-interface IParams {
-  postId: string;
-}
-
-export async function PUT(request: Request, { params }: { params: IParams }) {
+export async function PUT(
+  request: Request,
+  { params }: { params: Promise<{ postId: string }> }
+) {
   const currentUser = await getCurrentUser();
   if (!currentUser) {
     return NextResponse.error();
   }
 
-  const { postId } = params;
+  const { postId } = await params;
   if (!postId || typeof postId !== "string") {
     throw new Error("Invalid post ID.");
   }
@@ -41,7 +40,7 @@ export async function PUT(request: Request, { params }: { params: IParams }) {
 
 export async function DELETE(
   request: Request,
-  { params }: { params: IParams }
+  { params }: { params: Promise<{ postId: string }> }
 ) {
   const currentUser = await getCurrentUser();
 
@@ -49,7 +48,7 @@ export async function DELETE(
     return NextResponse.error();
   }
 
-  const { postId } = params;
+  const { postId } = await params;
   if (!postId || typeof postId !== "string") {
     throw new Error("Invalid listing ID.");
   }

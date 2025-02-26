@@ -10,7 +10,7 @@ import Container from "@/components/Container";
 import getAllPosts from "../actions/getAllPosts";
 
 interface ExploreProps {
-  searchParams: IPostParams;
+  searchParams: Promise<IPostParams>;
 }
 
 const page = async ({ searchParams }: ExploreProps) => {

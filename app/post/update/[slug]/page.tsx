@@ -7,8 +7,8 @@ interface IParams {
   slug: string;
 }
 
-const UpdatePage = async ({ params }: { params: IParams }) => {
-  const { slug } = params;
+const UpdatePage = async ({ params }: { params: Promise<IParams> }) => {
+  const { slug } = await params;
 
   const currentUser = await getCurrentUser();
   const post = await getPostBySlug(decodeURIComponent(slug));

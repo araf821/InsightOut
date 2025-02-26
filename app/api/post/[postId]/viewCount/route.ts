@@ -2,15 +2,11 @@ import prismaClient from "@/lib/prismadb";
 import { viewCountLimiter } from "@/lib/rate-limiter";
 import { NextRequest, NextResponse } from "next/server";
 
-interface IParams {
-  postId: string;
-}
-
 export async function PUT(
   request: NextRequest,
-  { params }: { params: IParams }
+  { params }: { params: Promise<{ postId: string }> }
 ) {
-  const { postId } = params;
+  const { postId } = await params;
   if (!postId || typeof postId !== "string") {
     throw new Error("Invalid post ID.");
   }

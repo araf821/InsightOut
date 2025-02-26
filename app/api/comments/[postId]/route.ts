@@ -4,11 +4,17 @@ import { NextResponse } from "next/server";
 
 export async function POST(
   req: Request,
-  { params }: { params: { postId: string } }
+  {
+    params,
+  }: {
+    params: Promise<{
+      postId: string;
+    }>;
+  }
 ) {
   try {
     const { comment } = await req.json();
-    const { postId } = params;
+    const { postId } = await params;
     const currentUser = await getCurrentUser();
 
     if (!postId) {

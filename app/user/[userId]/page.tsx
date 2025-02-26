@@ -11,19 +11,25 @@ export const metadata = {
   title: "User Page | InsightOut",
 };
 
-const UserPage = async ({ params }: { params: { userId: string } }) => {
-  if (!params.userId) {
+const UserPage = async ({
+  params,
+}: {
+  params: Promise<{ userId: string }>;
+}) => {
+  const { userId } = await params;
+
+  if (!userId) {
     redirect("/");
   }
   const currentUser = await getCurrentUser();
 
-  // if (currentUser?.id === params.userId) {
+  // if (currentUser?.id === userId) {
   //   redirect("/profile/dashboard");
   // }
 
   const user = await prismaClient.user.findUnique({
     where: {
-      id: params.userId,
+      id: userId,
     },
     include: {
       posts: {
@@ -43,7 +49,7 @@ const UserPage = async ({ params }: { params: { userId: string } }) => {
 
   const allFollowing = await prismaClient.connection.findMany({
     where: {
-      followerId: params.userId,
+      followerId: userId,
     },
     select: {
       following: true,
@@ -52,7 +58,7 @@ const UserPage = async ({ params }: { params: { userId: string } }) => {
 
   const allFollowers = await prismaClient.connection.findMany({
     where: {
-      followingId: params.userId,
+      followingId: userId,
     },
     select: {
       follower: true,

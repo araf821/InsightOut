@@ -7,10 +7,11 @@ import { ZodError } from "zod";
 // Update user's name
 export async function PATCH(
   req: Request,
-  { params }: { params: { userId: string } }
+  { params }: { params: Promise<{ userId: string }> }
 ) {
   try {
     const currentUser = await getCurrentUser();
+    const { userId } = await params;
 
     const { image } = await req.json();
 
@@ -18,13 +19,13 @@ export async function PATCH(
       return new Response("Invalid request data given.", { status: 422 });
     }
 
-    if (!currentUser || currentUser.id !== params.userId) {
+    if (!currentUser || currentUser.id !== userId) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
     const user = await prismaClient.user.update({
       where: {
-        id: params.userId,
+        id: userId,
       },
       data: {
         image,
