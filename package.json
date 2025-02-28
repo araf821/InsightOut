@@ -7,7 +7,11 @@
     "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "build:worker": "opennextjs-cloudflare",
+    "dev:worker": "wrangler dev --port 8771",
+    "preview:worker": "npm run build:worker && npm run dev:worker",
+    "deploy:worker": "npm run build:worker && wrangler deploy"
   },
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
@@ -54,6 +58,7 @@
     "zustand": "^4.3.7"
   },
   "devDependencies": {
+    "@opennextjs/cloudflare": "^0.5.4",
     "@tailwindcss/typography": "^0.5.9",
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.2.8",
